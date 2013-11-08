@@ -5,7 +5,6 @@
     /// </summary>
     public enum SaveFormat
     {
-
         CSV,
         XLSX,
         XLSM,
@@ -20,5 +19,4 @@
         XLSB,
         XPS,
         TIFF
-
     }
