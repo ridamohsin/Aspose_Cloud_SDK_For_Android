@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -31,7 +31,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/documentProperties";
 
@@ -67,7 +67,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/documentProperties/" + propertyName;
 
@@ -98,7 +98,7 @@ public class Workbook {
 	public boolean setProperty(String propertyName, String propertyValue) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName + "/documentProperties/"
 					+ propertyName;
 			String signedURI = Utils.sign(strURI);
@@ -141,7 +141,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/documentProperties";
 
@@ -176,7 +176,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/documentProperties/" + propertyName;
 
@@ -211,7 +211,7 @@ public class Workbook {
 	public boolean createEmptyWorkbook() {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			String signedURI = Utils.sign(strURI);
 
 			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
@@ -240,7 +240,7 @@ public class Workbook {
 	public boolean createWorkbookFromTemplate(String templateFileName) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "?templatefile=" + templateFileName;
 			String signedURI = Utils.sign(strURI);
 
@@ -277,7 +277,7 @@ public class Workbook {
 			String templateFileName, String dataFile) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "?templatefile=" + templateFileName + "&dataFile="
 					+ dataFile;
 			String signedURI = Utils.sign(strURI);
@@ -308,7 +308,7 @@ public class Workbook {
 	public boolean processSmartMarker(String dataFile) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/smartmarker?xmlFile=" + dataFile;
 			String signedURI = Utils.sign(strURI);
 
@@ -345,7 +345,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/worksheets";
 
@@ -379,7 +379,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/names";
 
@@ -411,7 +411,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/defaultStyle";
 
@@ -438,7 +438,7 @@ public class Workbook {
 			String password, int keyLength) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/encryption";
 			String signedURI = Utils.sign(strURI);
 
@@ -478,7 +478,7 @@ public class Workbook {
 			String password) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/protection";
 			String signedURI = Utils.sign(strURI);
 
@@ -516,7 +516,7 @@ public class Workbook {
 	public boolean unprotectWorkbook(String password) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/protection";
 			String signedURI = Utils.sign(strURI);
 
@@ -553,7 +553,7 @@ public class Workbook {
 	public boolean setModifyPassword(String password) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/writeProtection";
 			String signedURI = Utils.sign(strURI);
 
@@ -590,7 +590,7 @@ public class Workbook {
 	public boolean clearModifyPassword(String password) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/writeProtection";
 			String signedURI = Utils.sign(strURI);
 
@@ -628,7 +628,7 @@ public class Workbook {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/encryption";
 			String signedURI = Utils.sign(strURI);
 
@@ -671,7 +671,7 @@ public class Workbook {
 	public boolean addWorksheet(String worksheetName) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/worksheets/" + worksheetName;
 			String signedURI = Utils.sign(strURI);
 
@@ -711,7 +711,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/worksheets/" + worksheetName;
 
@@ -748,7 +748,7 @@ public class Workbook {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/cells/" + fileName;
 			strURI += "/merge?mergeWith=" + mergefileName;
 

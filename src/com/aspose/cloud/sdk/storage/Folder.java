@@ -15,19 +15,19 @@ import org.apache.log4j.Logger;
 
 import android.os.Environment;
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
 public class Folder {
 
-	private String strURIFolder = Product.getBaseProductUri()
+	private String strURIFolder = AsposeApp.BASE_PRODUCT_URI
 			+ "/storage/folder/";
-	private String strURIFile = Product.getBaseProductUri() + "/storage/file/";
-	private String strURIExist = Product.getBaseProductUri()
+	private String strURIFile = AsposeApp.BASE_PRODUCT_URI + "/storage/file/";
+	private String strURIExist = AsposeApp.BASE_PRODUCT_URI
 			+ "/storage/exist/";
-	private String strURIDisc = Product.getBaseProductUri() + "/storage/disc/";
+	private String strURIDisc = AsposeApp.BASE_PRODUCT_URI + "/storage/disc/";
 	static final Logger logger = Logger.getLogger(Folder.class);
 
 	// / <summary>

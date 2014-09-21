@@ -4,8 +4,8 @@ import java.io.InputStream;
 import java.util.List;
 
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -28,7 +28,7 @@ public class Field {
 			String format, Boolean isTop, Boolean SetPageNumberOnFirstPage) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/insertPageNumbers";
 
 			String signedURI = Utils.sign(strURI);
@@ -80,7 +80,7 @@ public class Field {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName;
 			strURI += "/mailMergeFieldNames";
 
 			// sign URI

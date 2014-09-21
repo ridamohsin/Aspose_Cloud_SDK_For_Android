@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -36,7 +36,7 @@ public class TextEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/TextItems";
 			String signedURI = Utils.sign(strURI);
 
@@ -67,7 +67,7 @@ public class TextEditor {
 	public String getText(int pageNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/TextItems";
 			String signedURI = Utils.sign(strURI);
 
@@ -101,7 +101,7 @@ public class TextEditor {
 	public List<TextItem> getTextItems() {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/TextItems";
 			String signedURI = Utils.sign(strURI);
 
@@ -129,7 +129,7 @@ public class TextEditor {
 	public List<TextItem> getTextItems(int pageNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/TextItems";
 			String signedURI = Utils.sign(strURI);
 
@@ -156,7 +156,7 @@ public class TextEditor {
 	public List<TextItem> getTextItems(int pageNumber, int fragmentNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
 					+ Integer.toString(fragmentNumber);
 			String signedURI = Utils.sign(strURI);
@@ -186,7 +186,7 @@ public class TextEditor {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments";
 			String signedURI = Utils.sign(strURI);
 
@@ -216,7 +216,7 @@ public class TextEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
 					+ Integer.toString(fragmentNumber);
 			String signedURI = Utils.sign(strURI);
@@ -246,7 +246,7 @@ public class TextEditor {
 	public TextFormat getTextFormat(int pageNumber, int fragmentNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
 					+ Integer.toString(fragmentNumber) + "/textformat";
 			String signedURI = Utils.sign(strURI);
@@ -279,7 +279,7 @@ public class TextEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/fragments/"
 					+ Integer.toString(fragmentNumber) + "/segments/"
 					+ Integer.toString(segmentNumber) + "/textformat";
@@ -311,7 +311,7 @@ public class TextEditor {
 			boolean isRegularExpression) {
 		try {
 			// build URI to get replace text
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/replaceText";
 			String signedURI = Utils.sign(strURI);
 
@@ -363,7 +363,7 @@ public class TextEditor {
 			boolean isRegularExpression) {
 		try {
 			// build URI to get replace text
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + pageNumber + "/replaceText";
 			String signedURI = Utils.sign(strURI);
 

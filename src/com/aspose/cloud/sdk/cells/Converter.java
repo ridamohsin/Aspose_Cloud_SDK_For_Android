@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 
@@ -66,7 +66,7 @@ public class Converter
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/autoshapes/" + index + "?format=" + outputformat;
 
 			// sign URI
@@ -101,7 +101,7 @@ public class Converter
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/charts/" + index + "?format=" + outputformat;
 
 			// sign URI
@@ -136,7 +136,7 @@ public class Converter
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/oleobjects/" + index + "?format=" + outputformat;
 
 			// sign URI
@@ -171,7 +171,7 @@ public class Converter
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/pictures/" + index + "?format=" + outputformat;
 
 			// sign URI
@@ -207,7 +207,7 @@ public class Converter
 				throw new Exception("No Worksheet name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "?format=" + outputFormat;
 
 			// sign URI
@@ -234,7 +234,7 @@ public class Converter
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "?format=" + outputFormat;
 
 			// sign URI
@@ -262,7 +262,7 @@ public class Converter
 		try
 		{
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/convert?format=" + outputFormat;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/convert?format=" + outputFormat;
 
 			// sign URI
 			String signedURI = Utils.sign(strURI);

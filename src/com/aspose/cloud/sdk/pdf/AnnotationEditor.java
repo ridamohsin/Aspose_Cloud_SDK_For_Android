@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 import com.google.gson.Gson;
@@ -47,7 +47,7 @@ public class AnnotationEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/annotations";
 			String signedURI = Utils.sign(strURI);
 
@@ -96,7 +96,7 @@ public class AnnotationEditor {
 	public Annotation getAnnotation(int pageNumber, int annotationIndex) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber)
 					+ "/annotations/" + Integer.toString(annotationIndex);
 			String signedURI = Utils.sign(strURI);
@@ -125,7 +125,7 @@ public class AnnotationEditor {
 	public int getBookmarksCount() {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/bookmarks/";
 			String signedURI = Utils.sign(strURI);
 
@@ -160,7 +160,7 @@ public class AnnotationEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/bookmarks/" + Integer.toString(iParent) + "/bookmarks";
 			String signedURI = Utils.sign(strURI);
 
@@ -242,7 +242,7 @@ public class AnnotationEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/bookmarks/" + Integer.toString(bookmarkIndex);
 
 			String signedURI = Utils.sign(strURI);
@@ -276,7 +276,7 @@ public class AnnotationEditor {
 			int childBookmarkIndex) {
 		try { // build URI to get page count
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/bookmarks/" + Integer.toString(parentBookmarkIndex)
 					+ "/bookmarks/" + Integer.toString(childBookmarkIndex);
 
@@ -306,7 +306,7 @@ public class AnnotationEditor {
 	public boolean isChildBookmark(int bookmarkIndex) {
 		try { // build URI to get page count
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/bookmarks/" + Integer.toString(bookmarkIndex);
 
 			String signedURI = Utils.sign(strURI);
@@ -334,7 +334,7 @@ public class AnnotationEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/attachments";
 			String signedURI = Utils.sign(strURI);
 
@@ -383,7 +383,7 @@ public class AnnotationEditor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/attachments/" + Integer.toString(attachmentIndex);
 			String signedURI = Utils.sign(strURI);
 
@@ -416,7 +416,7 @@ public class AnnotationEditor {
 			Attachment FileInformation = getAttachment(attachmentIndex);
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/attachments/" + Integer.toString(attachmentIndex)
 					+ "/download";
 			String signedURI = Utils.sign(strURI);
@@ -444,7 +444,7 @@ public class AnnotationEditor {
 		try {
 			// build URI to get page count
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/links";
 			String signedURI = Utils.sign(strURI);
 
@@ -495,7 +495,7 @@ public class AnnotationEditor {
 	public Link getLink(int pageNumber, int attachmentIndex) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/links/"
 					+ Integer.toString(attachmentIndex);
 			String signedURI = Utils.sign(strURI);

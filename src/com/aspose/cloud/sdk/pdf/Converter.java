@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 
@@ -36,7 +36,7 @@ public class Converter {
 			int imageHeight, int imageWidth) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber);
 			strURI += "?format=" + imageFormat.toString();
 			strURI += "&width=" + Integer.toString(imageWidth);
@@ -65,7 +65,7 @@ public class Converter {
 			ConvertImageFormat imageFormat, SaveLocation saveLocation) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber);
 			strURI += "?format=" + imageFormat.toString();
 
@@ -93,7 +93,7 @@ public class Converter {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName;
 			strURI += "?format=" + saveFormat.toString();
 
 			String signedURI = Utils.sign(strURI);
@@ -120,7 +120,7 @@ public class Converter {
 		try {
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/pdf/convert?format=" + outputFormat;
 
 			// sign URI
@@ -151,7 +151,7 @@ public class Converter {
 			SaveFormat outputFormat) {
 		try {
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/pdf/convert?format=" + outputFormat;
 
 			// sign URI

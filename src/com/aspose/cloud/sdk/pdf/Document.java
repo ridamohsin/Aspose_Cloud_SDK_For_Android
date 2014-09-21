@@ -3,7 +3,11 @@
  */
 package com.aspose.cloud.sdk.pdf;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +15,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -35,7 +39,7 @@ public class Document {
 		try {
 			// build URI to get page count
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/Pages";
 			String signedURI = Utils.sign(strURI);
 
@@ -65,7 +69,7 @@ public class Document {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/documentProperties";
 			String signedURI = Utils.sign(strURI);
 
@@ -95,7 +99,7 @@ public class Document {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/documentProperties/" + propertyName;
 			String signedURI = Utils.sign(strURI);
 
@@ -124,10 +128,10 @@ public class Document {
 	// / <param name="propertyValue"></param>
 	// / <returns></returns>
 	public boolean setDocumentProperty(String propertyName, String propertyValue)
-			throws SignatureException {
+			throws SignatureException, InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		// build URI to get page count
-		String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+		String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 				+ "/documentProperties/" + propertyName;
 		String signedURI = Utils.sign(strURI);
 
@@ -175,7 +179,7 @@ public class Document {
 			// The remote server returned an error: (400) Bad Request
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/documentProperties";
 			String signedURI = Utils.sign(strURI);
 
@@ -210,7 +214,7 @@ public class Document {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/fields";
 			String signedURI = Utils.sign(strURI);
 
@@ -241,7 +245,7 @@ public class Document {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/fields";
 			String signedURI = Utils.sign(strURI);
 
@@ -274,7 +278,7 @@ public class Document {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/fields/" + fieldName;
 			String signedURI = Utils.sign(strURI);
 
@@ -309,7 +313,7 @@ public class Document {
 			String xmlFileName) {
 		try {
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + pdfFileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + pdfFileName
 					+ "?templateFile=" + xsltFileName + "&dataFile="
 					+ xmlFileName + "&templateType=xml";
 			String signedURI = Utils.sign(strURI);
@@ -347,7 +351,7 @@ public class Document {
 	public boolean createFromHtml(String pdfFileName, String htmlFileName) {
 		try {
 
-			String strURI = Product.getBaseProductUri() + "/pdf/" + pdfFileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + pdfFileName
 					+ "?templateFile=" + htmlFileName + "&templateType=html";
 			String signedURI = Utils.sign(strURI);
 
@@ -385,7 +389,7 @@ public class Document {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/"
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/"
 					+ newDocumentName;
 			String signedURI = Utils.sign(strURI);
 
@@ -432,7 +436,7 @@ public class Document {
 				throw new Exception("Two or more files are requred to merge");
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/"
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/"
 					+ mergedFileName + "/merge";
 			String signedURI = Utils.sign(strURI);
 
@@ -489,7 +493,7 @@ public class Document {
 			fileName = sOldFile;
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + basePdf
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + basePdf
 					+ "/appendDocument?appendFile=" + newPdf
 					+ "&startPage=1&endPage=" + Integer.toString(iPageCount);
 			String signedURI = Utils.sign(strURI);
@@ -536,7 +540,7 @@ public class Document {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + basePdf
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + basePdf
 					+ "/appendDocument/?appendFile=" + newPdf + "&startPage="
 					+ Integer.toString(startPage) + "&endPage="
 					+ Integer.toString(endPage);
@@ -578,7 +582,7 @@ public class Document {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages";
 			String signedURI = Utils.sign(strURI);
 
@@ -616,7 +620,7 @@ public class Document {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber);
 			String signedURI = Utils.sign(strURI);
 
@@ -654,7 +658,7 @@ public class Document {
 	public boolean movePage(int pageNumber, int newLocation) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber)
 					+ "/movePage?newIndex=" + Integer.toString(newLocation);
 			String signedURI = Utils.sign(strURI);
@@ -695,7 +699,7 @@ public class Document {
 			InputStream imageStream) {
 		try {
 			// build URI to replace image
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + pageNumber + "/images/" + imageIndex;
 
 			String signedURI = Utils.sign(strURI);
@@ -736,7 +740,7 @@ public class Document {
 			String fileName) {
 		try {
 			// build URI to replace image
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + pageNumber + "/images/" + imageIndex
 					+ "?imageFile=" + fileName;
 

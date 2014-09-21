@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -37,10 +37,10 @@ public class Extractor {
 			// build URI to extract text
 			String strURI = "";
 			if (IsNullOrEmpty(folder))
-				strURI = Product.getBaseProductUri() + "/ocr/" + imageFileName
+				strURI = AsposeApp.BASE_PRODUCT_URI + "/ocr/" + imageFileName
 						+ "/recognize";
 			else
-				strURI = Product.getBaseProductUri() + "/ocr/" + imageFileName
+				strURI = AsposeApp.BASE_PRODUCT_URI + "/ocr/" + imageFileName
 						+ "/recognize?folder=" + folder;
 
 			// sign URI
@@ -77,11 +77,11 @@ public class Extractor {
 			// build URI to extract text
 			String strURI = "";
 			if (IsNullOrEmpty(folder))
-				strURI = Product.getBaseProductUri() + "/ocr/" + imageFileName
+				strURI = AsposeApp.BASE_PRODUCT_URI + "/ocr/" + imageFileName
 						+ "/recognize?language=" + language
 						+ "&useDefaultDictionaries=" + useDefaultDictionaries;
 			else
-				strURI = Product.getBaseProductUri() + "/ocr/" + imageFileName
+				strURI = AsposeApp.BASE_PRODUCT_URI + "/ocr/" + imageFileName
 						+ "/recognize?language=" + language
 						+ "&useDefaultDictionaries=" + useDefaultDictionaries
 						+ "&folder=" + folder;
@@ -117,7 +117,7 @@ public class Extractor {
 		try {
 
 			// build URI to extract text
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/ocr/recognize?language=" + language
 					+ "&useDefaultDictionaries=" + useDefaultDictionaries;
 
@@ -155,7 +155,7 @@ public class Extractor {
 		try {
 
 			// build URI to extract text
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/ocr/recognize?language=" + language
 					+ "&useDefaultDictionaries=" + useDefaultDictionaries;
 
@@ -185,7 +185,7 @@ public class Extractor {
 	public OCRResponse extractText(String imageFileName) {
 		try {
 			// build URI to extract text
-			String strURI = Product.getBaseProductUri() + "/ocr/"
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/ocr/"
 					+ imageFileName + "/recognize?useDefaultDictionaries=true";
 
 			// sign URI
@@ -229,7 +229,7 @@ public class Extractor {
 			int height, String folder) {
 		try {
 			// build URI to extract text
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/ocr/"
 					+ imageFileName
 					+ "/recognize?language="
@@ -277,7 +277,7 @@ public class Extractor {
 		try {
 
 			// build URI to extract text
-			String strURI = Product.getBaseProductUri() + "/ocr/recognize?url="
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/ocr/recognize?url="
 					+ url + "&language=" + language
 					+ "&useDefaultDictionaries=" + useDefaultDictionaries;
 

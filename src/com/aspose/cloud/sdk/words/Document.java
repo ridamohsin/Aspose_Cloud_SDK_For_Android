@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -69,7 +69,7 @@ public class Document {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
 			strURI += "/documentProperties";
 
 			// sign URI
@@ -99,7 +99,7 @@ public class Document {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
 			strURI += "/documentProperties/" + propertyName;
 
 			// sign URI
@@ -128,7 +128,7 @@ public class Document {
 	// / <param name="propertyValue">property value</param>
 	public boolean setProperty(String propertyName, String propertyValue) {
 		try {
-			String strURI = Product.getBaseProductUri() + "/words/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName
 					+ "/documentProperties/" + propertyName;
 			String signedURI = Utils.sign(strURI);
 
@@ -174,7 +174,7 @@ public class Document {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
 			strURI += "/documentProperties/" + propertyName;
 
 			// sign URI
@@ -213,7 +213,7 @@ public class Document {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
 			// strURI += "/document";
 
 			// sign URI
@@ -263,7 +263,7 @@ public class Document {
 			String inputFileName = new File(fileName).getName();
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/"
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/"
 					+ inputFileName + "/appendDocument";
 			if (folder != "")
 				strURI = strURI + "?folder=" + folder;

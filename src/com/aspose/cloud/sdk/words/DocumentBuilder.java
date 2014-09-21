@@ -3,8 +3,8 @@
 import java.io.InputStream;
 
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 import com.google.gson.Gson;
@@ -38,7 +38,7 @@ public class DocumentBuilder {
 			double rotationAngle) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/insertWatermarkText";
 
 			String signedURI = Utils.sign(strURI);
@@ -88,7 +88,7 @@ public class DocumentBuilder {
 			double rotationAngle) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/insertWatermarkImage?imageFile=";
 			strURI += imageFile + "&rotationAngle=" + rotationAngle;
 
@@ -134,7 +134,7 @@ public class DocumentBuilder {
 			String output) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/replaceText";
 
 			String signedURI = Utils.sign(strURI);

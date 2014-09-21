@@ -3,8 +3,8 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -28,7 +28,7 @@ public class ChartEditor
             try
             {
                 //build URI to get page count
-                String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+                String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
                 strURI += "/worksheets/" + workSheetName + "/charts?chartType=" + chartType + "&upperLeftRow=" + upperLeftRow +
                     "&upperLeftColumn=" + upperLeftColumn + "&lowerRightRow=" + lowerRightRow + "&lowerRightColumn=" + lowerRightColumn;
                 
@@ -62,7 +62,7 @@ public class ChartEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/worksheets/" + workSheetName + "/charts/" + chartIndex;
 
             //sign URI
@@ -89,7 +89,7 @@ public class ChartEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/worksheets/" + workSheetName + "/charts/" + chartIndex + "/chartArea";
 
             //sign URI
@@ -114,7 +114,7 @@ public class ChartEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/worksheets/" + workSheetName + "/charts/" + chartIndex + "/chartArea/fillFormat";
 
             //sign URI
@@ -139,7 +139,7 @@ public class ChartEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/worksheets/" + workSheetName + "/charts/" + chartIndex + "/chartArea/border";
 
             //sign URI

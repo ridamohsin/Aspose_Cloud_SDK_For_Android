@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 import com.google.gson.Gson;
@@ -34,7 +34,7 @@ public class Extractor {
 	public int getImageCount(int pageNumber) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/images";
 			String signedURI = Utils.sign(strURI);
 
@@ -67,7 +67,7 @@ public class Extractor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/images/"
 					+ Integer.toString(imageIndex);
 			strURI += "?format=" + imageFormat.toString();
@@ -99,7 +99,7 @@ public class Extractor {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/pdf/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
 					+ "/pages/" + Integer.toString(pageNumber) + "/images/"
 					+ Integer.toString(imageIndex);
 			strURI += "?format=" + imageFormat.toString();

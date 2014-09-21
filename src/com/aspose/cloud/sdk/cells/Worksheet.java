@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -27,7 +27,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells?offset="
 					+ offset + "&count=" + count;
 
@@ -59,7 +59,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells/rows?offset="
 					+ offset + "&count=" + count;
 
@@ -90,7 +90,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells/columns?offset="
 					+ offset + "&count=" + count;
 
@@ -127,7 +127,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells?offset="
 					+ offset + "&count=" + count;
 
@@ -164,7 +164,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells?offset="
 					+ offset + "&count=" + count;
 
@@ -201,7 +201,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells?offset="
 					+ offset + "&count=" + count;
 
@@ -236,7 +236,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/autoshapes";
 
 			// sign URI
@@ -272,7 +272,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/autoshapes/" + index;
 
 			// sign URI
@@ -309,7 +309,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName;
 
 			// sign URI
@@ -344,7 +344,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
 					+ "/style";
 
@@ -382,7 +382,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
 					+ "/style";
 
@@ -429,7 +429,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/charts/" + index;
 
 			// sign URI
@@ -464,7 +464,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/hyperlinks/" + index;
 
 			// sign URI
@@ -500,7 +500,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/comments/" + cellName;
 
 			// sign URI
@@ -537,7 +537,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/oleobjects/" + index;
 
 			// sign URI
@@ -577,7 +577,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/pictures/" + index;
 
 			// sign URI
@@ -616,7 +616,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/validations/" + index;
 
 			// sign URI
@@ -656,7 +656,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/mergedCells/" + index;
 
 			// sign URI
@@ -695,7 +695,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/mergedCells";
 
 			// sign URI
@@ -735,7 +735,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/validations";
 
 			// sign URI
@@ -774,7 +774,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/pictures";
 
 			// sign URI
@@ -812,7 +812,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/oleobjects";
 
 			// sign URI
@@ -849,7 +849,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/charts";
 
 			// sign URI
@@ -886,7 +886,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/comments";
 
 			// sign URI
@@ -924,7 +924,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/hyperlinks";
 
 			// sign URI
@@ -962,7 +962,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName
 					+ "/visible?isVisible=false";
 
@@ -1003,7 +1003,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName
 					+ "/visible?isVisible=true";
 
@@ -1036,7 +1036,7 @@ public class Worksheet {
 	public boolean moveWorksheet(String worksheetName, Position position) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
 					+ "/worksheets/" + workSheetName + "/position";
 			String signedURI = Utils.sign(strURI);
 
@@ -1083,7 +1083,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName
 					+ "/formulaResult?formula=" + formula;
 
@@ -1110,7 +1110,7 @@ public class Worksheet {
 	public boolean setCellValue(String cellName, String valueType, String value) {
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
 					+ "?value=" + value + "&type=" + valueType;
 
@@ -1154,7 +1154,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/rows?offset=" + offset
 					+ "&count=" + count;
 
@@ -1188,7 +1188,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/rows/" + rowIndex;
 
 			// sign URI
@@ -1222,7 +1222,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/rows/" + rowIndex;
 
 			// sign URI
@@ -1256,7 +1256,7 @@ public class Worksheet {
 	public boolean sortData(DataSort dataSort, String cellArea) {
 		try {
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/sort?" + cellArea;
 
 			String signedURI = Utils.sign(strURI);
@@ -1295,7 +1295,7 @@ public class Worksheet {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
 			strURI += "/worksheets/" + workSheetName + "/columns/"
 					+ columnIndex;
 

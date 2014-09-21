@@ -2,7 +2,7 @@
 import java.io.InputStream;
 import java.util.List;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -25,7 +25,7 @@ public class TextEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/findText?text=" + text;
 
             //sign URI
@@ -50,7 +50,7 @@ public class TextEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/replaceText?oldValue=" + oldText + "&newValue=" + newText;
             
             //sign URI
@@ -74,7 +74,7 @@ public class TextEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/textItems";
 
             //sign URI
@@ -104,7 +104,7 @@ public class TextEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/worksheets/" + WorkSheetName + "/findText?text=" + text;
 
             //sign URI
@@ -128,7 +128,7 @@ public class TextEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName;
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
             strURI += "/worksheets/"+workSheet+"/replaceText?oldValue=" + oldText + "&newValue=" + newText;
 
             //sign URI
@@ -156,7 +156,7 @@ public class TextEditor
                 throw new Exception("No file name specified");
 
             //build URI
-            String strURI = Product.getBaseProductUri() + "/cells/" + fileName + "/textItems";
+            String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName + "/textItems";
 
             //sign URI
             String signedURI = Utils.sign(strURI);

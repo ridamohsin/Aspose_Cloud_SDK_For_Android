@@ -3,13 +3,16 @@
  */
 package com.aspose.cloud.sdk.slides;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 import com.google.gson.Gson;
@@ -38,7 +41,7 @@ public class Document {
 		try {
 			// build URI to get slide count
 
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/slides";
 			String signedURI = Utils.sign(strURI);
 
@@ -67,7 +70,7 @@ public class Document {
 		try {
 			// build URI to get document properties
 
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/documentProperties";
 			String signedURI = Utils.sign(strURI);
 
@@ -96,7 +99,7 @@ public class Document {
 		try {
 			// build URI to get document properties
 
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/documentProperties";
 			String signedURI = Utils.sign(strURI);
 
@@ -125,7 +128,7 @@ public class Document {
 			String propertyName) {
 		try {
 			// build URI to get single property
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/presentation/documentproperties/" + propertyName;
 			String signedURI = Utils.sign(strURI);
 
@@ -151,7 +154,7 @@ public class Document {
 	public boolean removeAllProperties() {
 		try {
 			// build URI to remove/reset all the properties
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/documentProperties";
 			String signedURI = Utils.sign(strURI);
 
@@ -183,7 +186,7 @@ public class Document {
 	public boolean replaceText(String oldText, String newText) {
 		try {
 			// build URI to replace text
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/replaceText?oldValue=" + oldText + "&newValue="
 					+ newText;// + "&ignoreCase=true";
 			strURI = strURI.replace(" ", "%20");
@@ -219,7 +222,7 @@ public class Document {
 	public boolean replaceText(String oldText, String newText, int slideNumber) {
 		try {
 			// build URI to replace text in a particular slide
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber)
 					+ "/replaceText?oldValue=" + oldText + "&newValue="
 					+ newText + "&ignoreCase=true";
@@ -255,7 +258,7 @@ public class Document {
 	public boolean deleteDocumentProperty(String propertyName) {
 		try {
 			// build URI to remove single property
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/documentProperties/" + propertyName;
 			String signedURI = Utils.sign(strURI);
 
@@ -286,7 +289,7 @@ public class Document {
 	public List<TextItem> getAllTextItems() {
 		try {
 			// build URI to get all text items in a presentation
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/textItems";
 			String signedURI = Utils.sign(strURI);
 
@@ -316,7 +319,7 @@ public class Document {
 	public List<TextItem> getAllTextItems(int slideNumber, boolean withEmpty) {
 		try {
 			// build URI to get all text items in a slide
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber)
 					+ "/textItems?withEmpty="
 					+ new Boolean(withEmpty).toString();
@@ -346,7 +349,7 @@ public class Document {
 
 		try {
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName;
 			strURI += "?format=" + saveFormat.toString().toLowerCase();
 
 			String signedURI = Utils.sign(strURI);
@@ -377,7 +380,7 @@ public class Document {
 		try {
 
 			// build URI to get page count
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber) + "?format="
 					+ imageFormat.toString().toLowerCase();
 
@@ -409,11 +412,11 @@ public class Document {
 			ImageFormat imageFormat, int width, int height) {
 		try {
 			// build URI to get page count
-			// String strURI = Product.getBaseProductUri() + "/slides/" +
+			// String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" +
 			// FileName + "/slides/" + slideNumber+"/images" + "?format=" +
 			// imageFormat.toString().toLowerCase() + "&width=" +
 			// Integer.toString(width) + "&height=" + Integer.toString(height);
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/slides/" + slideNumber + "?format="
 					+ imageFormat.toString().toLowerCase() + "&width="
 					+ Integer.toString(width) + "&height="
@@ -440,10 +443,10 @@ public class Document {
 	// / </summary>
 	// / <param name="propertyName"></param>
 	// / <param name="value"></param>
-	public boolean setDocumentProperty(String propertyName, String value) {
+	public boolean setDocumentProperty(String propertyName, String value) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
 
 		// build URI to remove single property
-		String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+		String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 				+ "/documentProperties/" + propertyName;
 		String signedURI = Utils.sign(strURI);
 

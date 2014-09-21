@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 
@@ -44,7 +44,7 @@ public class Converter {
 			}
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
 			strURI += "?format=" + saveformat;
 
 			// sign URI
@@ -72,7 +72,7 @@ public class Converter {
 				throw new Exception("No file name specified");
 
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + fileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
 			strURI += "?format=" + OutPutType;
 
 			// sign URI
@@ -98,7 +98,7 @@ public class Converter {
 		try {
 
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/words/convert?format=" + outputFormat;
 
 			// sign URI
@@ -127,7 +127,7 @@ public class Converter {
 			SaveFormat outputFormat) {
 		try {
 			// build URI
-			String strURI = Product.getBaseProductUri()
+			String strURI = AsposeApp.BASE_PRODUCT_URI
 					+ "/words/convert?format=" + outputFormat;
 
 			// sign URI

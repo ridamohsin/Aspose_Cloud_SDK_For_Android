@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -135,34 +136,25 @@ public class Utils {
 		return httpCon.getInputStream();
 	}
 
-	public static InputStream processCommand(String strURI,
-			String strHttpCommand, InputStream strContent) {
-		try {
-			byte[] bytes = IOUtils.toByteArray(strContent);
-			URL address = new URL(strURI);
-			HttpURLConnection httpCon = (HttpURLConnection) address
-					.openConnection();
-			//httpCon.setDoOutput(true);
+	public static InputStream processCommand(String strURI, String strHttpCommand, InputStream fileStream) throws IOException {
+		
+		byte[] bytes = IOUtils.toByteArray(fileStream);
+		URL url = new URL(strURI);
+		HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+		httpCon.setDoOutput(true);
+		httpCon.setRequestProperty("Content-Type", "multipart/form-data");
+		httpCon.setRequestMethod(strHttpCommand);
+		httpCon.setFixedLengthStreamingMode(bytes.length);
 
-			httpCon.setRequestProperty("Content-Type", "multipart/form-data");// "application/x-www-form-urlencoded"
-																				// );
-			httpCon.setRequestMethod(strHttpCommand);
-
-			httpCon.setFixedLengthStreamingMode(bytes.length);
-
-			java.io.OutputStream out = httpCon.getOutputStream();
-			out.write(bytes);
-			out.flush();
-
-			String d = httpCon.getResponseMessage();
-			Log.i(TAG, d);
-
-			return httpCon.getInputStream();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
+		OutputStream out = httpCon.getOutputStream();
+		out.write(bytes);
+		out.flush();
+		out.close();
+		
+		String d = httpCon.getResponseMessage();
+		Log.i(TAG, d);
+		
+		return httpCon.getInputStream();
 	}
 
 	public static InputStream processCommand(String strURI,
@@ -283,4 +275,5 @@ public class Utils {
 		
 		return filePath;
 	}
+	
 }

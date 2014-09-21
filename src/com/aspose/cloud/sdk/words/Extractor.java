@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 import com.google.gson.Gson;
@@ -19,7 +19,7 @@ public class Extractor {
 	public List<Paragraph> getText(String FileName) {
 		try {
 			// build URI
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName;
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName;
 			strURI += "/textItems";
 
 			// sign URI
@@ -52,7 +52,7 @@ public class Extractor {
 
 		try {
 			// build URI to get Drawing Objects
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/drawingObjects";
 			String signedURI = Utils.sign(strURI);
 
@@ -140,7 +140,7 @@ public class Extractor {
 	 * String> GetDrawingObjectList(String FileName) {
 	 * 
 	 * try { //build URI to get Drawing Objects String strURI =
-	 * Product.getBaseProductUri() + "/words/" + FileName + "/drawingObjects";
+	 * AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName + "/drawingObjects";
 	 * 
 	 * String signedURI = Utils.Sign(strURI);
 	 * 
@@ -191,7 +191,7 @@ public class Extractor {
 
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/drawingObjects/" + index + "/oleData";
 
 			String signedURI = Utils.sign(strURI);
@@ -218,7 +218,7 @@ public class Extractor {
 			DrawingObjectsRenderFormat renderformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/drawingObjects/" + index + "/ImageData";
 
 			String signedURI = Utils.sign(strURI);
@@ -245,7 +245,7 @@ public class Extractor {
 			DrawingObjectsRenderFormat renderformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/drawingObjects/" + index;
 			strURI = strURI + "?format=" + renderformat.toString();
 

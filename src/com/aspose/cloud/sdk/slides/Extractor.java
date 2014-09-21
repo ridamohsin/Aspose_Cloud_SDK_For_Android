@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
@@ -35,7 +35,7 @@ public class Extractor {
 	public int getImageCount() {
 		try {
 			// build URI to get image count
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/images";
 			String signedURI = Utils.sign(strURI);
 
@@ -61,7 +61,7 @@ public class Extractor {
 	public List<Image> getPresentationImages() {
 		try {
 			// build URI to get image count
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/images";
 			String signedURI = Utils.sign(strURI);
 
@@ -88,7 +88,7 @@ public class Extractor {
 	public int getImageCount(int slideNumber) {
 		try {
 			// build URI to get image count
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/images";
 			String signedURI = Utils.sign(strURI);
 
@@ -115,7 +115,7 @@ public class Extractor {
 	public List<Shape> getShapes(int slideNumber) {
 		try {
 			// build URI to get shapes
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/shapes";
 			String signedURI = Utils.sign(strURI);
 
@@ -153,7 +153,7 @@ public class Extractor {
 	public int getShapesCount(int slideNumber) {
 		try {
 			// build URI to get shapes
-			String strURI = Product.getBaseProductUri() + "/slides/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
 					+ "/slides/" + Integer.toString(slideNumber) + "/shapes";
 			String signedURI = Utils.sign(strURI);
 

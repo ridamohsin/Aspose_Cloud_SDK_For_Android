@@ -7,7 +7,6 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
@@ -202,7 +201,7 @@ public class BarCodeBuilder {
 	// / </summary>
 	private String uriBuilder(String imageFileName) {
 		// Initialize with server URI, text and type, which are must
-		String uri = Product.getBaseProductUri() + "/barcode/";
+		String uri = AsposeApp.BASE_PRODUCT_URI + "/barcode/";
 		// imageFileName is to be handled in case of PUT request, where barcode
 		// is to be saved on Aspose server
 		if (imageFileName != null && !imageFileName.equals("")) {
@@ -242,14 +241,14 @@ public class BarCodeBuilder {
 	// / </summary>
 	private void performValidations() throws Exception {
 		// Throw exception if App Key is empty
-		if (AsposeApp.getAppKey() == null
-				|| AsposeApp.getAppKey().trim().length() == 0) {
+		if (AsposeApp.APP_KEY == null
+				|| AsposeApp.APP_KEY.trim().length() == 0) {
 			throw new Exception(
 					"App Key is not specified. Please set the App Key property.");
 		}
 		// Throw exception if App SID is empty
-		if (AsposeApp.getAppSID() == null
-				|| AsposeApp.getAppSID().trim().length() == 0) {
+		if (AsposeApp.APP_SID == null
+				|| AsposeApp.APP_SID.trim().length() == 0) {
 			throw new Exception(
 					"App SID is not specified. Please set App SID property.");
 		}

@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.aspose.cloud.sdk.common.Product;
+import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 
@@ -28,7 +28,7 @@ public class MailMerge {
 			SaveFormat saveformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + fileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName
 					+ "/executeMailMerge";
 
 			String signedURI = Utils.sign(strURI);
@@ -52,7 +52,7 @@ public class MailMerge {
 					.getNodeValue();
 
 			// build URI
-			strURI = Product.getBaseProductUri() + "/words/" + DocName;
+			strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + DocName;
 			strURI += "?format=" + saveformat;
 
 			// sign URI
@@ -79,7 +79,7 @@ public class MailMerge {
 			SaveFormat saveformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/executeMailMerge?withRegions=true";
 
 			String signedURI = Utils.sign(strURI);
@@ -104,7 +104,7 @@ public class MailMerge {
 					.getNodeValue();
 
 			// build URI
-			strURI = Product.getBaseProductUri() + "/words/" + DocName;
+			strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + DocName;
 			strURI += "?format=" + saveformat;
 
 			// sign URI
@@ -132,7 +132,7 @@ public class MailMerge {
 			SaveFormat saveformat, String outputPath) {
 		try {
 			// build URI to get Image
-			String strURI = Product.getBaseProductUri() + "/words/" + FileName
+			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
 					+ "/executeTemplate";
 
 			String signedURI = Utils.sign(strURI);
@@ -156,7 +156,7 @@ public class MailMerge {
 					.getNodeValue();
 
 			// build URI
-			strURI = Product.getBaseProductUri() + "/words/" + DocName;
+			strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + DocName;
 			strURI += "?format=" + saveformat;
 
 			// sign URI

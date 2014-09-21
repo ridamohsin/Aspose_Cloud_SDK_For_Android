@@ -2,7 +2,6 @@
 
 import org.apache.log4j.Logger;
 
-import com.aspose.cloud.sdk.common.Product;
 import com.aspose.cloud.sdk.common.AsposeApp;
 
 /// <summary>
@@ -25,20 +24,20 @@ public class Validator {
 	public static void LocalValidation() {
 		try {
 			// Throws exception if product server is not specified
-			if (Product.getBaseProductUri() + "/words/" == null
-					|| (Product.getBaseProductUri() + "/words/").length() == 0)
+			if (AsposeApp.BASE_PRODUCT_URI + "/words/" == null
+					|| (AsposeApp.BASE_PRODUCT_URI + "/words/").length() == 0)
 				throw new Exception(
 						"App Server is not specified. Please set Server property.");
 
 			// Throw exception if App Key is empty
-			if (AsposeApp.getAppKey() == null
-					|| AsposeApp.getAppKey().length() == 0)
+			if (AsposeApp.APP_KEY == null
+					|| AsposeApp.APP_KEY.length() == 0)
 				throw new Exception(
 						"App Key is not specified. Please set the App Key property.");
 
 			// Throw exception if App SID is empty
-			if (AsposeApp.getAppSID() == null
-					|| AsposeApp.getAppSID().length() == 0)
+			if (AsposeApp.APP_SID == null
+					|| AsposeApp.APP_SID.length() == 0)
 				throw new Exception(
 						"App SID is not specified. Please set App SID property.");
 		} catch (Exception ex) {
