@@ -1,6 +1,6 @@
 ﻿package com.aspose.cloud.sdk.words;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 
@@ -12,7 +12,7 @@ public class Validator {
 		// set default values
 		FileName = fileName;
 	}
-	static final Logger logger = Logger.getLogger(Validator.class);
+	private static final String TAG = "Validator";
 	// / <summary>
 	// / get or set file name
 	// / </summary>
@@ -41,7 +41,7 @@ public class Validator {
 				throw new Exception(
 						"App SID is not specified. Please set App SID property.");
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 		}
 	}
 

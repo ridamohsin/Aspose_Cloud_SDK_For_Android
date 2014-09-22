@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -24,7 +24,7 @@ public class BarCodeReader {
 	// / <summary>
 	// / Default constructor
 	// / </summary>
-	static final Logger logger = Logger.getLogger(BarCodeReader.class);
+	private static final String TAG = "BarCodeReader";
 
 	public BarCodeReader() {
 		this.gson = new Gson();
@@ -68,7 +68,7 @@ public class BarCodeReader {
 			return read(new File(localImage).getName(), remoteFolder,
 					barcodeReadType);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -116,7 +116,7 @@ public class BarCodeReader {
 
 			return barcodeRecognitionResponse.getBarcodes();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -164,7 +164,7 @@ public class BarCodeReader {
 			return barcodeRecognitionResponse.getBarcodes();
 		} catch (Exception e) {
 
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}

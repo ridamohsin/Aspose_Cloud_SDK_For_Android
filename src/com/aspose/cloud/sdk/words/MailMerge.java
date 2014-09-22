@@ -5,16 +5,17 @@ import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.log4j.Logger;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 
 public class MailMerge {
-	static final Logger logger = Logger.getLogger(MailMerge.class);
+	private static final String TAG = "MailMerge";
 
 	// / <summary>
 	// / Execute mail merge without regions.
@@ -64,7 +65,7 @@ public class MailMerge {
 			Folder.saveStreamToFile(outputPath, responseStream);
 			responseStream.close();
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 		}
 	}
 
@@ -117,7 +118,7 @@ public class MailMerge {
 			responseStream.close();
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 		}
 	}
 
@@ -168,7 +169,7 @@ public class MailMerge {
 			Folder.saveStreamToFile(outputPath, responseStream);
 			responseStream.close();
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 		}
 	}
 

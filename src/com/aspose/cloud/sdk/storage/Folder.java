@@ -11,9 +11,8 @@ import java.io.OutputStream;
 import java.security.SignatureException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import android.os.Environment;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
@@ -28,7 +27,7 @@ public class Folder {
 	private String strURIExist = AsposeApp.BASE_PRODUCT_URI
 			+ "/storage/exist/";
 	private String strURIDisc = AsposeApp.BASE_PRODUCT_URI + "/storage/disc/";
-	static final Logger logger = Logger.getLogger(Folder.class);
+	private static final String TAG = "Folder";
 
 	// / <summary>
 	// / Retrives the list of files and folders under the specified folder. Use
@@ -48,7 +47,7 @@ public class Folder {
 
 			return FileCollection.getFilesList(strJSON);
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return null;
 		}
 	}
@@ -77,7 +76,7 @@ public class Folder {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			ex.printStackTrace();
 			return false;
 		}
@@ -106,7 +105,7 @@ public class Folder {
 			else
 				return false;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -136,7 +135,7 @@ public class Folder {
 			else
 				return false;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -167,7 +166,7 @@ public class Folder {
 			else
 				return false;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -195,7 +194,7 @@ public class Folder {
 			return existResponse.getFileExist();
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return null;
 		}
 	}
@@ -219,7 +218,7 @@ public class Folder {
 			return discResponse.getDiscUsage();
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return null;
 		}
 	}
@@ -235,7 +234,7 @@ public class Folder {
 					"GET");
 
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -289,7 +288,7 @@ public class Folder {
 //			return true;
 
 		} catch (IOException e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}

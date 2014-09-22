@@ -3,7 +3,7 @@ package com.aspose.cloud.sdk.ocr;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -23,7 +23,7 @@ public class Extractor {
 
 	}
 
-	static final Logger logger = Logger.getLogger(Extractor.class);
+	private static final String TAG = "Extractor";
 	Gson gson = null;
 
 	// / <summary>
@@ -56,7 +56,7 @@ public class Extractor {
 
 			return ocrResponse;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -99,7 +99,7 @@ public class Extractor {
 
 			return ocrResponse;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -137,7 +137,7 @@ public class Extractor {
 
 			return ocrResponse;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -173,7 +173,7 @@ public class Extractor {
 
 			return ocrResponse;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -201,7 +201,7 @@ public class Extractor {
 
 			return ocrResponse;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -258,7 +258,7 @@ public class Extractor {
 
 			return ocrResponse;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -295,7 +295,7 @@ public class Extractor {
 
 			return ocrResponse;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}

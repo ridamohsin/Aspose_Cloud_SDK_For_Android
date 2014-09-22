@@ -5,7 +5,6 @@ package com.aspose.cloud.sdk.pdf;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
@@ -25,7 +24,7 @@ public class Document {
 	// / PDF document name
 	// / </summary>
 	public String fileName;
-	static final Logger logger = Logger.getLogger(Document.class);
+	private static final String TAG = "Document";
 
 	public Document(String fileName) {
 		this.fileName = fileName;
@@ -56,7 +55,7 @@ public class Document {
 			int count = pagesResponse.getPages().getList().size();
 			return count;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -84,7 +83,7 @@ public class Document {
 
 			return documentPropertiesResponse.getDocumentProperties().getList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -115,7 +114,7 @@ public class Document {
 
 			return documentPropertyResponse.getDocumentProperty();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -199,7 +198,7 @@ public class Document {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -231,7 +230,7 @@ public class Document {
 
 			return formFieldsResponse.getFields().getList().size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -262,7 +261,7 @@ public class Document {
 
 			return formFieldsResponse.getFields().getList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -297,7 +296,7 @@ public class Document {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -336,7 +335,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 
@@ -373,7 +372,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 
@@ -411,7 +410,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 
@@ -466,7 +465,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 
@@ -518,7 +517,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 
@@ -566,7 +565,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 
@@ -605,7 +604,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -644,7 +643,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -683,7 +682,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -724,7 +723,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -766,7 +765,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}

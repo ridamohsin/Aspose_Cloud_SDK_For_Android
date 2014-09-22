@@ -8,7 +8,7 @@ import java.security.SignatureException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -33,7 +33,7 @@ public class AnnotationEditor {
 	// / PDF document name
 	// / </summary>
 	public String fileName;
-	static final Logger logger = Logger.getLogger(AnnotationEditor.class);
+	private static final String TAG = "AnnotationEditor";
 
 	Gson gson = null;
 
@@ -64,7 +64,7 @@ public class AnnotationEditor {
 
 			return count;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -112,7 +112,7 @@ public class AnnotationEditor {
 
 			return annotationResponse.getAnnotation();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -143,8 +143,7 @@ public class AnnotationEditor {
 		}
 
 		catch (Exception e) {
-
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -177,7 +176,7 @@ public class AnnotationEditor {
 			return count;
 
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -258,7 +257,7 @@ public class AnnotationEditor {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -291,7 +290,7 @@ public class AnnotationEditor {
 
 			return bookmarkResponse.getBookmark();
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return null;
 		}
 	}
@@ -320,7 +319,7 @@ public class AnnotationEditor {
 
 			return true;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -350,7 +349,7 @@ public class AnnotationEditor {
 
 			return count;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -397,7 +396,7 @@ public class AnnotationEditor {
 
 			return attachmentResponse.getAttachment();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -428,7 +427,7 @@ public class AnnotationEditor {
 			responseStream.close();
 			return response;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -460,7 +459,7 @@ public class AnnotationEditor {
 
 			return count;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -513,8 +512,7 @@ public class AnnotationEditor {
 			// return pdfLinkResponse;
 			return pdfLinkResponse.getLink();
 		} catch (Exception e) {
-
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}

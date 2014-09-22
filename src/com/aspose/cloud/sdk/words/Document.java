@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 /// Deals with document level aspects
 /// </summary>
 public class Document {
-	static final Logger logger = Logger.getLogger(Document.class);
+	private static final String TAG = "Document";
 	// / <summary>
 	// / document name
 	// / </summary>
@@ -86,7 +86,7 @@ public class Document {
 
 			return docResponse.DocumentProperties.List;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -116,7 +116,7 @@ public class Document {
 
 			return docResponse.DocumentProperty;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -157,7 +157,7 @@ public class Document {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -196,7 +196,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -230,7 +230,7 @@ public class Document {
 
 			return docResponse;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -293,7 +293,7 @@ public class Document {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 

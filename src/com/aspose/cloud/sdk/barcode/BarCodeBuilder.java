@@ -5,7 +5,7 @@ package com.aspose.cloud.sdk.barcode;
 
 import java.io.InputStream;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 /// </code>
 /// </example>
 public class BarCodeBuilder {
-	static final Logger logger = Logger.getLogger(BarCodeBuilder.class);
+	private static final String TAG = "BarCodeBuilder";
 
 	// / <summary>
 	// / Default constructor, initialize the BarcodeBuilder class
@@ -149,7 +149,7 @@ public class BarCodeBuilder {
 			// Return null, if anything goes wrong
 			return null;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -191,7 +191,7 @@ public class BarCodeBuilder {
 			// response.getStatus() = "OK";
 			// return response;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}

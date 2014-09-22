@@ -1,8 +1,6 @@
 ﻿package com.aspose.cloud.sdk.cells;
 import java.io.InputStream;
 
-import org.apache.log4j.Logger;
-
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
@@ -167,6 +165,5 @@ public class ChartEditor
         /// </summary>
         public String workSheetName ;
         
-        static final Logger logger = Logger.getLogger(ChartEditor.class);
         Gson gson =null;
     }

@@ -6,7 +6,7 @@ package com.aspose.cloud.sdk.slides;
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -26,7 +26,7 @@ public class Extractor {
 	// / </summary>
 	public String fileName;
 	Gson gson = null;
-	static final Logger logger = Logger.getLogger(Extractor.class);
+	private static final String TAG = "Extractor";
 
 	// / <summary>
 	// / Gets total number of images in a presentation
@@ -49,7 +49,7 @@ public class Extractor {
 
 			return imagesResponse.getImages().getList().size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -75,7 +75,7 @@ public class Extractor {
 
 			return imagesResponse.getImages().getList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -102,7 +102,7 @@ public class Extractor {
 
 			return imagesResponse.getImages().getList().size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -140,7 +140,7 @@ public class Extractor {
 
 			return shapes;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -178,7 +178,7 @@ public class Extractor {
 
 			return shapes.size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -198,7 +198,7 @@ public class Extractor {
 			// Parse the json String to JObject
 			return Utils.streamToString(responseStream);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 

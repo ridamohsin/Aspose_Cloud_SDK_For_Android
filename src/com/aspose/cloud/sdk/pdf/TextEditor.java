@@ -6,7 +6,7 @@ package com.aspose.cloud.sdk.pdf;
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -26,7 +26,7 @@ public class TextEditor {
 	// / </summary>
 	public String fileName;
 	Gson gson = null;
-	static final Logger logger = Logger.getLogger(TextEditor.class);
+	private static final String TAG = "TextEditor";
 
 	// / <summary>
 	// / Gets raw text from the whole PDF file
@@ -55,7 +55,7 @@ public class TextEditor {
 
 			return stringBuilder.toString();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -88,7 +88,7 @@ public class TextEditor {
 
 			return stringBuilder.toString();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -116,7 +116,7 @@ public class TextEditor {
 
 			return textItemsResponse.getTextItems().getList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -144,7 +144,7 @@ public class TextEditor {
 
 			return textItemsResponse.getTextItems().getList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -172,7 +172,7 @@ public class TextEditor {
 
 			return textItemsResponse.getTextItems().getList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -201,7 +201,7 @@ public class TextEditor {
 
 			return textItemsResponse.getTextItems().getList().size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -232,7 +232,7 @@ public class TextEditor {
 
 			return textItemsResponse.getTextItems().getList().size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -262,7 +262,7 @@ public class TextEditor {
 
 			return textformatResponse.getTextFormat();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -295,7 +295,7 @@ public class TextEditor {
 					TextFormatResponse.class);
 			return textformatResponse.getTextFormat();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -345,7 +345,7 @@ public class TextEditor {
 			else
 				return 0;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return 0;
 		}
 
@@ -397,7 +397,7 @@ public class TextEditor {
 			else
 				return 0;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return 0;
 		}
 	}

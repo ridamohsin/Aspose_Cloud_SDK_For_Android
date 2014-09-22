@@ -3,7 +3,7 @@
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -11,7 +11,7 @@ import com.aspose.cloud.sdk.storage.Folder;
 import com.google.gson.Gson;
 
 public class Extractor {
-	static final Logger logger = Logger.getLogger(Extractor.class);
+	private static final String TAG = "Extractor";
 
 	public Extractor() {
 	}
@@ -37,7 +37,7 @@ public class Extractor {
 			return docResponse.TextItems.List;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return null;
 		}
 	}
@@ -70,7 +70,7 @@ public class Extractor {
 
 			}
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 		}
 	}
 
@@ -129,7 +129,7 @@ public class Extractor {
 			responseStream.close();
 			return response;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -202,7 +202,7 @@ public class Extractor {
 			responseStream.close();
 			return response;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -229,7 +229,7 @@ public class Extractor {
 			responseStream.close();
 			return response;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -257,7 +257,7 @@ public class Extractor {
 			responseStream.close();
 			return response;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}

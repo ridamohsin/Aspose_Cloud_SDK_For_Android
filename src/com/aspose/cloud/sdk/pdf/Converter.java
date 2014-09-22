@@ -6,7 +6,7 @@ package com.aspose.cloud.sdk.pdf;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -24,7 +24,7 @@ public class Converter {
 	// / PDF document name
 	// / </summary>
 	public String fileName;
-	static final Logger logger = Logger.getLogger(Converter.class);
+	private static final String TAG = "Converter";
 
 	// / <summary>
 	// / convert a particular page to image
@@ -50,7 +50,7 @@ public class Converter {
 			responseStream.close();
 			return response;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -77,7 +77,7 @@ public class Converter {
 			responseStream.close();
 			return response;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -104,7 +104,7 @@ public class Converter {
 			responseStream.close();
 			return response;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -137,7 +137,7 @@ public class Converter {
 			responseStream.close();
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 		}
 
 	}
@@ -159,7 +159,7 @@ public class Converter {
 
 			return Utils.processCommand(signedURI, "PUT", inputStream);
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return null;
 		}
 

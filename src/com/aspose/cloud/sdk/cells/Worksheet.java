@@ -3,7 +3,7 @@
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
@@ -11,6 +11,8 @@ import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
 public class Worksheet {
+	
+	private static final String TAG = "Worksheet";
 	public Worksheet(String fileName, String worksheetName) {
 		this.fileName = fileName;
 		this.workSheetName = worksheetName;
@@ -45,7 +47,7 @@ public class Worksheet {
 
 			return worksheetResponse.getCells().getCellList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -77,7 +79,7 @@ public class Worksheet {
 
 			return worksheetResponse.getRows().getRowsList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -108,7 +110,7 @@ public class Worksheet {
 
 			return worksheetResponse.getColumns().getColumnsList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -145,7 +147,7 @@ public class Worksheet {
 
 			return worksheetResponse.getCells().getMaxColumn();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return 0;
 		}
 	}
@@ -182,7 +184,7 @@ public class Worksheet {
 
 			return worksheetResponse.getCells().getMaxRow();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return 0;
 		}
 	}
@@ -219,7 +221,7 @@ public class Worksheet {
 
 			return worksheetResponse.getCells().getCellCount();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return 0;
 		}
 	}
@@ -253,7 +255,7 @@ public class Worksheet {
 
 			return worksheetResponse.getAutoShapes().getAuotShapeList().size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -289,7 +291,7 @@ public class Worksheet {
 
 			return autoShapesResponse.getAutoShape();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -326,7 +328,7 @@ public class Worksheet {
 
 			return cellsResponse.getCell();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -362,7 +364,7 @@ public class Worksheet {
 
 			return cellsResponse.getStyle();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -410,7 +412,7 @@ public class Worksheet {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -447,7 +449,7 @@ public class Worksheet {
 
 			return chartsResponse.getChart();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -482,7 +484,7 @@ public class Worksheet {
 
 			return hyperlinksResponse.getHyperlink();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -520,7 +522,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -558,7 +560,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -598,7 +600,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -637,7 +639,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -677,7 +679,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -716,7 +718,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -756,7 +758,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 	}
@@ -794,7 +796,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -832,7 +834,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -868,7 +870,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -906,7 +908,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -944,7 +946,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -986,7 +988,7 @@ public class Worksheet {
 			else
 				return false;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -1028,7 +1030,7 @@ public class Worksheet {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -1064,7 +1066,7 @@ public class Worksheet {
 			else
 				return false;
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -1102,7 +1104,7 @@ public class Worksheet {
 
 			return formulaResponse.getValue();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -1134,7 +1136,7 @@ public class Worksheet {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 
@@ -1174,7 +1176,7 @@ public class Worksheet {
 			return worksheetResponse.getRows().getRowCount();
 
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -1207,7 +1209,7 @@ public class Worksheet {
 			return rowsResponse.getRow();
 
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -1248,7 +1250,7 @@ public class Worksheet {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -1282,7 +1284,7 @@ public class Worksheet {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -1316,7 +1318,7 @@ public class Worksheet {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -1330,7 +1332,6 @@ public class Worksheet {
 	private boolean isProtected;
 	private int index;
 	private String name;
-	static final Logger logger = Logger.getLogger(Worksheet.class);
 
 	public String getWorkSheetName() {
 		return workSheetName;

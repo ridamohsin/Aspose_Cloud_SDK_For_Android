@@ -3,7 +3,7 @@
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -22,7 +22,7 @@ public class Converter
 	public String workSheetName;
 
 	private final static String EMPTY = "";
-	static final Logger logger = Logger.getLogger(Converter.class);
+	private final static String TAG = "Converter";
 
 	// / <summary>
 	// / Converter Class Constructor
@@ -79,7 +79,7 @@ public class Converter
 		}
 		catch (Exception ex)
 		{
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -114,7 +114,7 @@ public class Converter
 		}
 		catch (Exception ex)
 		{
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -149,7 +149,7 @@ public class Converter
 		}
 		catch (Exception ex)
 		{
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -184,7 +184,7 @@ public class Converter
 		}
 		catch (Exception ex)
 		{
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -220,7 +220,7 @@ public class Converter
 		}
 		catch (Exception ex)
 		{
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -247,7 +247,7 @@ public class Converter
 		}
 		catch (Exception ex)
 		{
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -278,7 +278,7 @@ public class Converter
 		}
 		catch (Exception ex)
 		{
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}

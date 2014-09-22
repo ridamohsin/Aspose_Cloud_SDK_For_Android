@@ -3,7 +3,7 @@
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 
 public class Workbook {
 
+	private static final String TAG = "Workbook";
 	// / <summary>
 	// / Workbook Constructor, set the file name and password
 	// / </summary>
@@ -50,7 +51,7 @@ public class Workbook {
 			return workbookResponse.getDocumentProperties()
 					.getDocumentPropertyList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -85,7 +86,7 @@ public class Workbook {
 
 			return workbookResponse.getDocumentProperty();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -128,7 +129,7 @@ public class Workbook {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -164,7 +165,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -199,7 +200,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -232,7 +233,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -262,7 +263,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -300,7 +301,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -332,7 +333,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -365,7 +366,7 @@ public class Workbook {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return 0;
 		}
 
@@ -397,7 +398,7 @@ public class Workbook {
 
 			return workbookResponse.getNames().getCount();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return 0;
 		}
 
@@ -429,7 +430,7 @@ public class Workbook {
 
 			return workbookResponse.getStyle();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -469,7 +470,7 @@ public class Workbook {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -508,7 +509,7 @@ public class Workbook {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -545,7 +546,7 @@ public class Workbook {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -582,7 +583,7 @@ public class Workbook {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -619,7 +620,7 @@ public class Workbook {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -658,7 +659,7 @@ public class Workbook {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -692,7 +693,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -736,7 +737,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -775,7 +776,7 @@ public class Workbook {
 				return false;
 
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			Log.e(TAG, ex.getMessage());
 			return false;
 		}
 	}
@@ -784,7 +785,5 @@ public class Workbook {
 	// / Workbook name
 	// / </summary>
 	public String fileName;
-
-	static final Logger logger = Logger.getLogger(Workbook.class);
 
 }

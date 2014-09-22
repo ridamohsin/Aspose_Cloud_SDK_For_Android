@@ -5,7 +5,7 @@ package com.aspose.cloud.sdk.pdf;
 
 import java.io.InputStream;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -24,7 +24,7 @@ public class Extractor {
 	// / PDF document name
 	// / </summary>
 	public String fileName;
-	static final Logger logger = Logger.getLogger(Extractor.class);
+	private static final String TAG = "Extractor";;
 
 	// / <summary>
 	// / Gets number of images in a specified page
@@ -50,7 +50,7 @@ public class Extractor {
 
 			return imagesResponse.getImages().getList().size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -82,7 +82,7 @@ public class Extractor {
 			responseStream.close();
 			return response;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -112,7 +112,7 @@ public class Extractor {
 			responseStream.close();
 			return response;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 

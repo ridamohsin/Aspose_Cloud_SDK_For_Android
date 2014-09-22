@@ -9,7 +9,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
@@ -31,7 +31,7 @@ public class Document {
 	// / </summary>
 	public String fileName;
 	Gson gson = null;
-	static final Logger logger = Logger.getLogger(Document.class);
+	private static final String TAG = "Document";
 
 	// / <summary>
 	// / Finds the slide count of the specified PowerPoint document
@@ -56,7 +56,7 @@ public class Document {
 			int count = slidesResponse.getSlides().getSlideList().size();
 			return count;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -85,7 +85,7 @@ public class Document {
 			return documentPropertiesResponse.getDocumentProperties().getList()
 					.size();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return -1;
 		}
 
@@ -113,7 +113,7 @@ public class Document {
 
 			return documentPropertiesResponse.getDocumentProperties().getList();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -142,7 +142,7 @@ public class Document {
 
 			return documentPropertyResponse.getDocumentProperty();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -173,7 +173,7 @@ public class Document {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -207,7 +207,7 @@ public class Document {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -244,7 +244,7 @@ public class Document {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 
@@ -277,7 +277,7 @@ public class Document {
 			else
 				return false;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return false;
 		}
 	}
@@ -303,7 +303,7 @@ public class Document {
 
 			return textItemsResponse.getTextItems().getItems();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 
@@ -335,7 +335,7 @@ public class Document {
 
 			return textItemsResponse.getTextItems().getItems();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return null;
 		}
 	}
@@ -363,7 +363,7 @@ public class Document {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 		}
 	}
 
@@ -395,7 +395,7 @@ public class Document {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 		}
 	}
 
@@ -433,7 +433,7 @@ public class Document {
 		}
 
 		catch (Exception e) {
-			logger.error(e.getMessage());
+			Log.e(TAG, e.getMessage());
 		}
 	}
 
