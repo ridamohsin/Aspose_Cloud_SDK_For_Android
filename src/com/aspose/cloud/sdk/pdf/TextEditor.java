@@ -348,7 +348,6 @@ public class TextEditor {
 			Log.e(TAG, e.getMessage());
 			return 0;
 		}
-
 	}
 
 	// / <summary>
