@@ -12,14 +12,26 @@ import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 
+/**
+ * ProjectDocuments --- Using this class you can read MS Project properties and can convert project document to other formats.
+ * @author   M. Sohail Ismail
+ */
 public class ProjectDocuments {
 	
 	private static final String TASKS_URI = AsposeApp.BASE_PRODUCT_URI + "/tasks/";
 	private static final List<String> validFormats = Arrays.asList("mpp", "xml", "html", "bmp", "png", "jpeg", 
 			"pdf", "tiff", "xps", "xaml", "svg", "csv", "txt", "Spreadsheet2003", "XLSX", "PrimaveraP6XML", "PrimaveraXER");
 	
-	public static ArrayList<DocumentNameAndValue> retrieveProjectProperties(String projectName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
-		ArrayList<DocumentNameAndValue> documentPropertiesList = null;
+	/**
+	 * Retrieve a Project's Properties
+	 * @param projectName Name of the MS Project Binary File
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An array of project properties
+	*/ 
+	public static ArrayList<ProjectPropertyModel> retrieveProjectProperties(String projectName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		ArrayList<ProjectPropertyModel> documentPropertiesList = null;
 		
 		if(projectName == null || projectName.length() == 0) {
 			throw new IllegalArgumentException("Project name cannot be null or empty");
@@ -34,7 +46,7 @@ public class ProjectDocuments {
 		
 		//Parsing JSON
 		Gson gson = new Gson();
-		DocumentProperties documentPropertyResponse = gson.fromJson(jsonStr, DocumentProperties.class);
+		GetDocumentPropertiesResponseModel documentPropertyResponse = gson.fromJson(jsonStr, GetDocumentPropertiesResponseModel.class);
 		if(documentPropertyResponse.getCode().equals("200") && documentPropertyResponse.getStatus().equals("OK")) {
 			documentPropertiesList = documentPropertyResponse.properties.list;
 		}
@@ -42,7 +54,17 @@ public class ProjectDocuments {
 		return documentPropertiesList;
 	}
 	
-	public static String convertProjectDocumentToFormat(String projectName, String designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	/**
+	 * Convert Project document to other formats and valid formats are mpp, xml, html, bmp, png, jpeg, 
+			pdf, tiff, xps, xaml, svg, csv, txt, Spreadsheet2003, XLSX, PrimaveraP6XML and PrimaveraXER.
+	 * @param projectName Name of the MS Project Binary File
+	 * @param designatedFormat A format to which project file will be converted
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return A path to locally saved file
+	*/ 
+	public static String convertProjectDataToFormat(String projectName, String designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		String localFilePath = null;
 		
@@ -69,41 +91,5 @@ public class ProjectDocuments {
 		localFilePath = Utils.saveStreamToFile(responseStream, projectName);
 		
 		return localFilePath;
-	}
-	
-	public static TaskItem addATaskToProject(String srcProjectName, String taskName, int beforeTaskId, String changedProjectName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
-		TaskItem taskItem = null;
-		
-		if(srcProjectName == null || srcProjectName.length() == 0) {
-			throw new IllegalArgumentException("Source Project name cannot be null or empty");
-		}
-		
-		if(taskName == null || taskName.length() == 0) {
-			throw new IllegalArgumentException("Task name cannot be null or empty");
-		}
-		
-		String strURL;
-		//changedProjectName is an optional parameter
-		if(changedProjectName.length() != 0) {
-			//Changes will save to changedProjectName project document
-			strURL = TASKS_URI + srcProjectName + "/tasks?taskName=" + taskName + "&beforeTaskId=" + beforeTaskId + "&fileName=" + changedProjectName;
-		} else {
-			//changedProjectName is omitted so the changes will be saved to the source project document
-			strURL = TASKS_URI + srcProjectName + "/tasks?taskName=" + taskName + "&beforeTaskId=" + beforeTaskId;
-		}
-		
-		//sign URL
-		String signedURL = Utils.sign(strURL);
-		InputStream responseStream = Utils.processCommand(signedURL, "GET");
-		String jsonStr = Utils.streamToString(responseStream);
-		
-		//Parsing JSON
-		Gson gson = new Gson();
-		AddNewTaskResponse addNewItemResponse = gson.fromJson(jsonStr, AddNewTaskResponse.class);
-		if(addNewItemResponse.getCode().equals("200") && addNewItemResponse.getStatus().equals("OK")) {
-			taskItem = addNewItemResponse.taskItem;
-		}
-		
-		return taskItem;
 	}
 }
