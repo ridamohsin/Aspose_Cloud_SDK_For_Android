@@ -1,149 +1,134 @@
-﻿package com.aspose.cloud.sdk.words;
+package com.aspose.cloud.sdk.words;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
-
-import android.util.Log;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
-import com.aspose.cloud.sdk.storage.Folder;
 
-/// <summary>
-/// Class to convert file to different formats
-/// </summary>
+/**
+ * Bookmark --- Using this class you can convert a Word document to images, multipage tiff, HTML, PDF and other file formats
+ * on the Aspose cloud storage and without using cloud Storage.
+ * @author   M. Sohail Ismail
+ */
+
 public class Converter {
-	public Converter(String fileName) {
-
-		// set default values
-		this.fileName = fileName;
-
-		saveformat = SaveFormat.Doc;
-	}
-
-	// / <summary>
-	// / get or set Doc file name
-	// / </summary>
-	public String fileName;
-
-	// / <summary>
-	// / get or set the SaveFormat type
-	// / </summary>
-	public SaveFormat saveformat;
-	private static final String TAG = "Converter";
-
-	// / <summary>
-	// / convert a document to SaveFormat
-	// / </summary>
-	// / <param name="output">the location of the output file</param>
-	public boolean convert(String output) {
-		try {
-			// check whether file is set or not
-			if (fileName.equals("")) {
-				throw new Exception("No file name specified");
-			}
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
-			strURI += "?format=" + saveformat;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-			boolean response = Folder.saveStreamToFile(output, responseStream);
-			responseStream.close();
-			return response;
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	private static final String WORD_URI = AsposeApp.BASE_PRODUCT_URI + "/words/";
+	
+	/**
+	 * Convert a Word document to images, multipage tiff, HTML, PDF and other file formats.
+	 * @param fileName Name of the MS Word document on cloud
+	 * @param designatedFormat A format to which word docuemnt will be converted
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return A path to converted word document
+	*/ 
+	public static String convertWordDocumentToFormat(String fileName, ValidFormatsEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String localFilePath = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-	}
-
-	// / <summary>
-	// / convert a document to SaveFormat
-	// / </summary>
-	// / <param name="output">the location of the output file</param>
-	// / /// <param name="output">SaveFormat of the output file</param>
-	public boolean convert(String output, SaveFormat OutPutType) {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
-			strURI += "?format=" + OutPutType;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-			boolean response = Folder.saveStreamToFile(output, responseStream);
-			responseStream.close();
-			return response;
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
 		}
+		
+		//build URL
+		String strURL = WORD_URI + fileName + "?format=" + designatedFormat;
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+		
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		return localFilePath;
 	}
-
-	// / <summary>
-	// / Convert Document to different file format without using storage
-	// / </summary>
-	// / <param name="outputFileName"></param>
-	// / <param name="outputFormat"></param>
-	public void convertLocalFile(String inputPath, String outputPath,
-			SaveFormat outputFormat) {
-		try {
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/words/convert?format=" + outputFormat;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream fileStream = new FileInputStream(inputPath);
-
-			// get response stream
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
-					fileStream);
-
-			Folder.saveStreamToFile(outputPath, responseStream);
-			responseStream.close();
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
+	
+	/**
+	 * Convert Word document that is locally stored on device to images, multipage tiff, HTML, PDF and other file formats.
+	 * @param localFilePath A path to Word document on disk
+	 * @param designatedFormat A format to which word docuemnt will be converted
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return A path to converted word document
+	*/ 
+	public static String convertLocallyStoredWordDocumentToFormat(String localFilePath, ValidFormatsEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		String convertedFilePath = null;
+		
+		if(localFilePath == null || localFilePath.length() == 0) {
+			throw new IllegalArgumentException("Local file path cannot be null or empty");
 		}
-
-	}
-
-	// / <summary>
-	// / Convert document to different file format without using storage
-	// / </summary>
-	// / <param name="outputFileName"></param>
-	// / <param name="outputFormat"></param>
-	public InputStream convertLocalFile(InputStream inputStream,
-			SaveFormat outputFormat) {
-		try {
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/words/convert?format=" + outputFormat;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			// InputStream ResponseStream;
-
-			// ResponseStream = Utils.ProcessCommand(signedURI, "PUT",
-			// inputStream);//, Stream);
-
-			return Utils.processCommand(signedURI, "PUT", inputStream);
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return null;
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
 		}
-
+		
+		//Build the request URI to resize image
+		String strURL = WORD_URI + "convert?format=" + designatedFormat;
+		//Sign the request URI
+		String signedURL = Utils.sign(strURL);	
+		//Convert the local file to InputStream
+		InputStream fileStream = new FileInputStream(localFilePath);
+		//Process the request on server
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT", fileStream);
+		//Get fileName from localFilePath
+		String fileName;
+		int index = localFilePath.lastIndexOf("/");
+		if(index != -1) {
+			fileName = localFilePath.substring(index+1);
+		} else {
+			fileName = localFilePath;
+		}
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+				
+		//Save the stream in response to the disk
+		convertedFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		
+		return convertedFilePath;
 	}
-
+	
+	/**
+	 * Convert a Word document to other formats with additional settings
+	 * @param fileName Name of the MS Word document on cloud
+	 * @param xmlData Additional settings in XML format
+	 * @param outputFileName Converted document will save on disk with this name
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return A path to converted word document
+	*/
+	public static String convertWordDocumentToFormatWithAdditionalSettings(String fileName, String xmlData, String outputFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		String localFilePath = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(xmlData == null) {
+			throw new IllegalArgumentException("XML Data cannot be null");
+		}
+		
+		//build URL
+		String strURL = WORD_URI + fileName + "/saveAs";
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "xml");
+		
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, outputFileName);
+		return localFilePath;
+	}
 }

@@ -1,106 +1,146 @@
-﻿package com.aspose.cloud.sdk.words;
+package com.aspose.cloud.sdk.words;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
-import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.words.DocumentResponse.Document;
+import com.aspose.cloud.sdk.words.GetMailMergeFieldNamesResponse.FieldName;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+/**
+ * Field --- Using this class you can get all merge field names from a word document, insert page number field into the Word document
+ * and update all fields in the word document. 
+ * @author   M. Sohail Ismail
+ */
 public class Field {
-	public String format;
-	public String alignment;
-	public boolean isTop;
-	public boolean setPageNumberOnFirstPage;
-
-	// / <summary>
-	// / insert page number filed into the document
-	// / </summary>
-	// / <param name="FileName"></param>
-	// / <param name="alignment"></param>
-	// / <param name="format"></param>
-	// / <param name="isTop"></param>
-	// / <param name="SetPageNumberOnFirstPage"></param>
-
-	public Boolean insertPageNumber(String FileName, String alignment,
-			String format, Boolean isTop, Boolean SetPageNumberOnFirstPage) {
-		try {
-			// build URI to get Image
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
-					+ "/insertPageNumbers";
-
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			Field field = new Field();
-			field.alignment = alignment;
-			field.format = format;
-			field.isTop = isTop;
-			field.setPageNumberOnFirstPage = SetPageNumberOnFirstPage;
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(field, Field.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
+	
+	private static final String WORD_URI = AsposeApp.BASE_PRODUCT_URI + "/words/";
+	
+	/**
+	 * Get all merge field names from a word document
+	 * @param fileName Name of the MS Word document on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains field names
+	*/
+	public static FieldName getAllMergeFieldNamesFromAWordDocument(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		FieldName fieldName = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-
-		catch (Exception ex) {
-			ex.printStackTrace();
-			return false;
+		
+		//build URL
+      	String strURL = WORD_URI + fileName + "/mailMergeFieldNames";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	GetMailMergeFieldNamesResponse mergeFieldNameRes = gson.fromJson(responseJSONString, GetMailMergeFieldNamesResponse.class);
+		if(mergeFieldNameRes.getCode().equals("200") && mergeFieldNameRes.getStatus().equals("OK")) {
+			fieldName = mergeFieldNameRes.fieldName;
 		}
+		
+		return fieldName;
 	}
-
-	// / <summary>
-	// / Gets all merge filed names from document
-	// / </summary>
-	// / <param name="FileName"></param>
-	public List<String> getMailMergeFieldNames(String FileName) {
-		try {
-			// check whether file is set or not
-			if (FileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName;
-			strURI += "/mailMergeFieldNames";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-			
-			Gson gson = new Gson();
-
-			MergeFieldResponse Response = gson.fromJson(strJSON,
-					MergeFieldResponse.class);
-
-			// return document property
-			return Response.FieldNames.Names;
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return null;
+	
+	/**
+	 * Insert page number field into the Word document 
+	 * @param fileName Name of the MS Word document on cloud
+	 * @param format Field text format {PAGE} of {NUMPAGES}
+	 * @param alignment Alignment of the field
+	 * @param isTop Field position
+	 * @param setPageNumberOnFirstPage Set page number on first page
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An document object
+	*/
+	public static Document insertPageNumberFieldIntoTheWordDocument(String fileName, String format, String alignment, Boolean isTop, Boolean setPageNumberOnFirstPage) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		Document document = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
+		
+		if(format == null || format.length() == 0) {
+			throw new IllegalArgumentException("Format cannot be null or empty");
+		}
+		
+		if(alignment == null || alignment.length() == 0) {
+			throw new IllegalArgumentException("Alignment cannot be null or empty");
+		}
+		
+		InsertPageNumberFieldModel insertPageNumberFieldData = new InsertPageNumberFieldModel();
+		insertPageNumberFieldData.format = format;
+		insertPageNumberFieldData.alignment = alignment;
+		insertPageNumberFieldData.isTop = isTop;
+		insertPageNumberFieldData.setPageNumberOnFirstPage = setPageNumberOnFirstPage;
+		
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(insertPageNumberFieldData, InsertPageNumberFieldModel.class);
+        
+		//build URL
+      	String strURL = WORD_URI + fileName + "/insertPageNumbers";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+        DocumentResponse insertPageNumberFieldResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(insertPageNumberFieldResponse.getCode().equals("200") && insertPageNumberFieldResponse.getStatus().equals("OK")) {
+			document = insertPageNumberFieldResponse.document;
+		}
+		
+		return document;
+	}
+	
+	/**
+	 * Update all fields in the word document
+	 * @param fileName Name of the MS Word document on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An document object
+	*/
+	public static Document updateAllFieldsInTheWordDocument(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		Document document = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = WORD_URI + fileName + "/updateFields";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+        Gson gson = new Gson();
+        DocumentResponse updateFieldsResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(updateFieldsResponse.getCode().equals("200") && updateFieldsResponse.getStatus().equals("OK")) {
+			document = updateFieldsResponse.document;
+		}
+		
+		return document;
 	}
 }

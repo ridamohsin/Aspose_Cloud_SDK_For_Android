@@ -1,176 +1,60 @@
 package com.aspose.cloud.sdk.words;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-
-import android.util.Log;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
-import com.aspose.cloud.sdk.storage.Folder;
+import com.aspose.cloud.sdk.words.DocumentResponse.Document;
+import com.google.gson.Gson;
 
+/**
+ * MailMerge --- Using this class you can execute mail merge template and populate a word document from XML data 
+ * @author   M. Sohail Ismail
+ */
 public class MailMerge {
-	private static final String TAG = "MailMerge";
 
-	// / <summary>
-	// / Execute mail merge without regions.
-	// / </summary>
-	// / <param name="FileName"></param>
-	// / <param name="strXML"></param>
-	// / <param name="saveformat"></param>
-	// / <param name="output"></param>
-
-	public void executeMailMerege(String fileName, String strXML,
-			SaveFormat saveformat, String outputPath) {
-		try {
-			// build URI to get Image
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName
-					+ "/executeMailMerge";
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strXML, "xml");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			InputSource source = new InputSource(new StringReader(strJSON));
-
-			// Parse the input document
-			DocumentBuilderFactory factory = DocumentBuilderFactory
-					.newInstance();
-			javax.xml.parsers.DocumentBuilder builder = factory
-					.newDocumentBuilder();
-			org.w3c.dom.Document doc = builder.parse(source);
-
-			NodeList nodes = doc.getElementsByTagName("FileName");
-			String DocName = nodes.item(0).getChildNodes().item(0)
-					.getNodeValue();
-
-			// build URI
-			strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + DocName;
-			strURI += "?format=" + saveformat;
-
-			// sign URI
-			signedURI = Utils.sign(strURI);
-
-			// get response stream
-			responseStream = Utils.processCommand(signedURI, "GET");
-
-			Folder.saveStreamToFile(outputPath, responseStream);
-			responseStream.close();
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
+	private static final String WORD_URI = AsposeApp.BASE_PRODUCT_URI + "/words/";
+	
+	/**
+	 * Execute mail merge template and populate a word document from XML data
+	 * @param fileName Name of the MS Word document on cloud
+	 * @param xmlData An XML data used to populate a word document
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return A document object
+	*/
+	public static Document executeMailMergeTemplateAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		Document document = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-	}
-
-	// / <summary>
-	// / Execute mail merge with regions.
-	// / </summary>
-	// / <param name="FileName"></param>
-	// / <param name="strXML"></param>
-	// / <param name="saveformat"></param>
-	// / <param name="output"></param>
-	public void executeMailMeregewithRegions(String FileName, String strXML,
-			SaveFormat saveformat, String outputPath) {
-		try {
-			// build URI to get Image
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
-					+ "/executeMailMerge?withRegions=true";
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strXML, "xml");
-
-			// further process JSON response
-			String strResponse = Utils.streamToString(responseStream);
-
-			InputSource source = new InputSource(new StringReader(strResponse));
-
-			// Parse the input document
-			DocumentBuilderFactory factory = DocumentBuilderFactory
-					.newInstance();
-			javax.xml.parsers.DocumentBuilder builder = factory
-					.newDocumentBuilder();
-			org.w3c.dom.Document doc = builder.parse(source);
-
-			NodeList nodes = doc.getElementsByTagName("FileName");
-			String DocName = nodes.item(0).getChildNodes().item(0)
-					.getNodeValue();
-
-			// build URI
-			strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + DocName;
-			strURI += "?format=" + saveformat;
-
-			// sign URI
-			signedURI = Utils.sign(strURI);
-
-			// get response stream
-			responseStream = Utils.processCommand(signedURI, "GET");
-
-			Folder.saveStreamToFile(outputPath, responseStream);
-			responseStream.close();
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
+		
+		if(xmlData == null || xmlData.length() == 0) {
+			throw new IllegalArgumentException("XML data cannot be null or empty");
 		}
-	}
-
-	// / <summary>
-	// / Execute mail merge template.
-	// / </summary>
-	// / <param name="FileName"></param>
-	// / <param name="strXML"></param>
-	// / <param name="saveformat"></param>
-	// / <param name="output"></param>
-	public void executeTemplate(String FileName, String strXML,
-			SaveFormat saveformat, String outputPath) {
-		try {
-			// build URI to get Image
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + FileName
-					+ "/executeTemplate";
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strXML, "xml");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			InputSource source = new InputSource(new StringReader(strJSON));
-
-			// Parse the input document
-			DocumentBuilderFactory factory = DocumentBuilderFactory
-					.newInstance();
-			javax.xml.parsers.DocumentBuilder builder = factory
-					.newDocumentBuilder();
-			org.w3c.dom.Document doc = builder.parse(source);
-
-			NodeList nodes = doc.getElementsByTagName("FileName");
-			String DocName = nodes.item(0).getChildNodes().item(0)
-					.getNodeValue();
-
-			// build URI
-			strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + DocName;
-			strURI += "?format=" + saveformat;
-
-			// sign URI
-			signedURI = Utils.sign(strURI);
-
-			// get response stream
-			responseStream = Utils.processCommand(signedURI, "GET");
-
-			Folder.saveStreamToFile(outputPath, responseStream);
-			responseStream.close();
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
+		
+		//build URL
+      	String strURL = WORD_URI + fileName + "/executeTemplate";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "xml");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	DocumentResponse executeMailMergeRes = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(executeMailMergeRes.getCode().equals("200") && executeMailMergeRes.getStatus().equals("OK")) {
+			document = executeMailMergeRes.document;
 		}
+		
+		return document;
 	}
-
+	
 }

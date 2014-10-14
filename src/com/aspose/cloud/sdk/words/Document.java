@@ -1,302 +1,281 @@
-﻿package com.aspose.cloud.sdk.words;
+package com.aspose.cloud.sdk.words;
 
-import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-
-import android.util.Log;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
-import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.LinkModel;
 import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.storage.Folder;
+import com.aspose.cloud.sdk.words.TrackingChangesResponse.TrackChangesResult;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-/// <summary>
-/// Deals with document level aspects
-/// </summary>
+/**
+ * Document --- Using this class you can append documents to source document, convert individual page to new format, 
+ * accept/reject revisions in source document and get statistical data of the document.
+ * @author   M. Sohail Ismail
+ */
 public class Document {
-	private static final String TAG = "Document";
-	// / <summary>
-	// / document name
-	// / </summary>
-	public String fileName;
-
-	// / <summary>
-	// / The original format of the file.
-	// / </summary>
-	public String sourceFormat;
-
-	// / <summary>
-	// / Returns true if the document is encrypted and requires a password to
-	// open
-	// / </summary>
-	public String isEncrypted;
-
-	// / <summary>
-	// / Returns true if the document contains a digital signature.
-	// / </summary>
-	public String isSigned;
-
-	// / <summary>
-	// / Document Properties Response
-	// / </summary>
-	public DocumentPropertiesResponse documentproperties;
-
-	// / <summary>
-	// / Link Response related to document like
-	// / <link
-	// href="http://api.aspose.com/v1.1/words/TestGet.doc/documentProperties"
-	// rel="self" />
-	// / </summary>
-	public List<LinkResponse> links;
-
-	// / <summary>
-	// / Document Constructor, set the file name
-	// / </summary>
-	// / <param name="fileName"> File Name</param>
-	public Document(String fileName) {
-		this.fileName = fileName;
+	
+	private static final String WORD_URI = AsposeApp.BASE_PRODUCT_URI + "/words/";
+	
+	/**
+	 * Append a document or documents specified in the list to the original resource document
+	 * @param fileName Name of the document to which list of documents will be appended
+	 * @param appendDocs List of documents to be appended
+	 * @param importFormatsModes Defines which formatting will be used: appended or destination document. 
+	 * Can be KeepSourceFormatting or UseDestinationStyles.
+	 * @param folderName Path to document to append at the server
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable indicates whether documents appended successfully
+	*/ 
+	public static boolean appendDocument(String fileName, String[] appendDocs, String[] importFormatsModes, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		boolean isDocumentAppendedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+	
+		//check whether required information is complete
+        if (appendDocs.length != importFormatsModes.length) {
+            throw new IllegalArgumentException("Please specify complete documents and import format modes");
+        }
+        
+        DocumentEntryListModel documentEntryList = new DocumentEntryListModel();
+        //Create DocumentEntryList object
+        for(int i=0; i<appendDocs.length; i++) {
+        	String appendDoc = appendDocs[i];
+        	String docServerPath = (folderName != null  && folderName.length() != 0) ? folderName+"\\"+appendDoc : appendDoc;
+        	documentEntryList.documentEntries.add(new DocumentEntryModel(docServerPath, importFormatsModes[i]));
+        }
+        
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(documentEntryList, DocumentEntryListModel.class);
+        
+        //build URL
+      	String strURL = WORD_URI + fileName + "/appendDocument";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        AppendDocumentResponse appendDocumentResponse = gson.fromJson(responseJSONString, AppendDocumentResponse.class);
+		if(appendDocumentResponse.getCode().equals("200") && appendDocumentResponse.getStatus().equals("OK")) {
+			isDocumentAppendedSuccessfully = true;
+		}
+		
+		return isDocumentAppendedSuccessfully;
 	}
-
-	// / <summary>
-	// / Get Document's properties
-	// / </summary>
-	// / <returns>List of document properties</returns>
-	public List<DocumentProperty> getProperties() {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
-			strURI += "/documentProperties";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			DocumentResponse docResponse = gson.fromJson(strJSON,
-					DocumentResponse.class);
-
-			return docResponse.DocumentProperties.List;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
+	
+	/**
+	 * Split all pages to new PDFs
+	 * @param fileName Name of the MS Word document on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return List of paths to new PDF files
+	*/
+	public static ArrayList<String> splitAllPagesToNewPDFs(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		ArrayList<String> localFilesPaths = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = WORD_URI + fileName + "/split?format=pdf";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	SplitDocumentResponse splitDocumentResponse = gson.fromJson(responseJSONString, SplitDocumentResponse.class);
+		if(splitDocumentResponse.getCode().equals("200") && splitDocumentResponse.getStatus().equals("OK")) {
+			localFilesPaths = new ArrayList<String>();
+			for(LinkModel page : splitDocumentResponse.splitResult.pages)
+            {
+                //build URI to download a particular file
+				responseStream = Folder.getFile(page.href);
+				String filePath = Utils.saveStreamToFile(responseStream, page.href);
+				localFilesPaths.add(filePath);
+                responseStream.close();
+            }
+		}
+		
+		return localFilesPaths;
+	}
+	
+	/**
+	 * Split specific pages to any supported format
+	 * @param fileName Name of the MS Word document on cloud
+	 * @param designatedFormat A format to which word document will be converted
+	 * @param fromPage The start page number for splitting, if is not specified splitting starts from the first page of the document.
+	 * @param toPage The last page number for splitting, if is not specified splitting ends at the last page of the document.
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return List of paths to formatted files
+	*/
+	public static ArrayList<String> splitSpecificPagesToFormat(String fileName, ValidFormatsEnum designatedFormat, 
+			int fromPage, int toPage) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		ArrayList<String> localFilesPaths = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URL
+      	String strURL = WORD_URI + fileName + "/split?format=" + designatedFormat + 
+      			"&from=" + fromPage + "&to=" + toPage;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	SplitDocumentResponse splitDocumentResponse = gson.fromJson(responseJSONString, SplitDocumentResponse.class);
+		if(splitDocumentResponse.getCode().equals("200") && splitDocumentResponse.getStatus().equals("OK")) {
+			localFilesPaths = new ArrayList<String>();
+			for(LinkModel page : splitDocumentResponse.splitResult.pages)
+            {
+                //build URI to download a particular file
+				responseStream = Folder.getFile(page.href);
+				String filePath = Utils.saveStreamToFile(responseStream, page.href);
+				localFilesPaths.add(filePath);
+                responseStream.close();
+            }
+		}
+		return localFilesPaths;
+	}
+	
+	/**
+	 * Accept all revisions in source document
+	 * @param fileName Name of the MS Word document on cloud
+	 * @param destFileName Result name of the document after the operation. If this parameter is omitted 
+	 * then result of the operation will be saved as the source document
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to source and destination document
+	*/
+	public static TrackChangesResult acceptAllTrackingChanges(String srcfileName, String destFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		TrackChangesResult acceptTrackChangesResult = null;
+		
+		if(srcfileName == null || srcfileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+		String strURL;
+		if(destFileName.equals("")) {
+			strURL = WORD_URI + srcfileName + "/revisions/acceptAll";
+		} else {
+			strURL = WORD_URI + srcfileName + "/revisions/acceptAll?filename=" + destFileName;
+		}
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	TrackingChangesResponse acceptTrackingChangesResponse = gson.fromJson(responseJSONString, TrackingChangesResponse.class);
+		if(acceptTrackingChangesResponse.getCode().equals("200") && acceptTrackingChangesResponse.getStatus().equals("OK")) {
+			acceptTrackChangesResult = acceptTrackingChangesResponse.result;
+		}
+		return acceptTrackChangesResult;
+	}
+	
+	/**
+	 * Reject all revisions in source document
+	 * @param srcfileName Name of the source MS Word document stored on the cloud
+	 * @param destFileName Result name of the document after the operation. If this parameter is omitted 
+	 * then result of the operation will be saved as the source document
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to source and destination document
+	*/
+	public static TrackChangesResult rejectAllTrackingChanges(String srcfileName, String destFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		TrackChangesResult rejectTrackChangesResult = null;
+		
+		if(srcfileName == null || srcfileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+		String strURL;
+		if(destFileName.equals("")) {
+			strURL = WORD_URI + srcfileName + "/revisions/rejectAll";
+		} else {
+			strURL = WORD_URI + srcfileName + "/revisions/rejectAll?filename=" + destFileName;
+		}
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	TrackingChangesResponse acceptTrackingChangesResponse = gson.fromJson(responseJSONString, TrackingChangesResponse.class);
+		if(acceptTrackingChangesResponse.getCode().equals("200") && acceptTrackingChangesResponse.getStatus().equals("OK")) {
+			rejectTrackChangesResult = acceptTrackingChangesResponse.result;
+		}
+		return rejectTrackChangesResult;
+	}
+	
+	
+	/**
+	 * Get statistical data of the document like word and paragraph count
+	 * @param fileName Name of the MS Word document stored on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains stats of document as whole as well as of each page.
+	*/
+	public static StatisticsOfDocumentResponse statisticsOfDocument(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		StatisticsOfDocumentResponse statisticsOfDocument = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+		String strURL = WORD_URI + fileName + "/statistics";
+		//sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	statisticsOfDocument = gson.fromJson(responseJSONString, StatisticsOfDocumentResponse.class);
+		if(statisticsOfDocument.getCode().equals("200") && statisticsOfDocument.getStatus().equals("OK")) {
+			return statisticsOfDocument;
+		} else {
 			return null;
 		}
-
 	}
-
-	public DocumentProperty getProperty(String propertyName) {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
-			strURI += "/documentProperties/" + propertyName;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			DocumentResponse docResponse = gson.fromJson(strJSON,
-					DocumentResponse.class);
-
-			return docResponse.DocumentProperty;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-	}
-
-	// / <summary>
-	// / Set document property
-	// / </summary>
-	// / <param name="propertyName">property name</param>
-	// / <param name="propertyValue">property value</param>
-	public boolean setProperty(String propertyName, String propertyValue) {
-		try {
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName
-					+ "/documentProperties/" + propertyName;
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			DocumentProperty docProperty = new DocumentProperty();
-			docProperty.Value = propertyValue;
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(docProperty, DocumentProperty.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
-					strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// / Delete a document property
-	// / </summary>
-	// / <param name="propertyName">Property Name</param>
-	// / <returns></returns>
-	public boolean deleteProperty(String propertyName) {
-		try {
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
-			strURI += "/documentProperties/" + propertyName;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// / Get Resource Properties information like document source format,
-	// IsEncrypted, IsSigned and document properties
-	// / </summary>
-	// / <returns></returns>
-	public DocumentResourceResponse getDocumentInfo() {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/" + fileName;
-			// strURI += "/document";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			DocumentResourceResponse docResponse = gson.fromJson(strJSON,
-					DocumentResourceResponse.class);
-
-			return docResponse;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-	}
-
-	public Boolean appendDocument(String[] appendDocs,
-			String[] importFormatModes, String folder) {
-
-		// check whether file is set or not
-		if (fileName == "")
-			throw new RuntimeException("No file name specified");
-
-		// check whether required information is complete
-		if (appendDocs.length != importFormatModes.length)
-			throw new RuntimeException(
-					"Please specify complete documents and import format modes");
-
-		try {
-			// Create DocumentEntryList object
-			DocumentEntryList list = new DocumentEntryList();
-			list.setDocumentEntries(new java.util.ArrayList<DocumentEntry>());
-
-			for (int i = 0; i < appendDocs.length; i++) {
-				String appendDoc = appendDocs[i];
-				String docServerPath = folder + "\\" + appendDoc;
-				list.getDocumentEntries().add(
-						new DocumentEntry(docServerPath, importFormatModes[i]));
-			}
-
-			// Extract File Name
-			String inputFileName = new File(fileName).getName();
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/words/"
-					+ inputFileName + "/appendDocument";
-			if (folder != "")
-				strURI = strURI + "?folder=" + folder;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(list, DocumentEntryList.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strJSON);
-
-			String ResJSONStr = Utils.streamToString(responseStream);
-
-			Gson gsonObj = new Gson();
-
-			BaseResponse baseResponse = gsonObj.fromJson(ResJSONStr,
-					BaseResponse.class);
-
-			if (baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-
-	}
-
 }
