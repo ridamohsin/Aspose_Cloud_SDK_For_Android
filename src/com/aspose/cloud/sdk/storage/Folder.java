@@ -21,14 +21,13 @@ import com.google.gson.Gson;
 
 public class Folder {
 
-	private String strURIFolder = AsposeApp.BASE_PRODUCT_URI
-			+ "/storage/folder/";
-	private String strURIFile = AsposeApp.BASE_PRODUCT_URI + "/storage/file/";
-	private String strURIExist = AsposeApp.BASE_PRODUCT_URI
-			+ "/storage/exist/";
-	private String strURIDisc = AsposeApp.BASE_PRODUCT_URI + "/storage/disc/";
+	private static final String strURIFolder = AsposeApp.BASE_PRODUCT_URI + "/storage/folder/";
+	private static final String strURIFile = AsposeApp.BASE_PRODUCT_URI + "/storage/file/";
+	private static final String strURIExist = AsposeApp.BASE_PRODUCT_URI + "/storage/exist/";
+	private static final String strURIDisc = AsposeApp.BASE_PRODUCT_URI + "/storage/disc/";
+	
 	private static final String TAG = "Folder";
-
+	
 	// / <summary>
 	// / Retrives the list of files and folders under the specified folder. Use
 	// empty string to specify root folder.
@@ -212,8 +211,7 @@ public class Folder {
 
 			Gson gson = new Gson();
 			// Parse the json string to JObject
-			DiscResponse discResponse = gson.fromJson(strJSON,
-					DiscResponse.class);
+			DiscResponse discResponse = gson.fromJson(strJSON, DiscResponse.class);
 
 			return discResponse.getDiscUsage();
 
@@ -228,11 +226,9 @@ public class Folder {
 	// / </summary>
 	// / <param name="fileName">file name on the server</param>
 	// / <returns></returns>
-	public InputStream getFile(String fileName) throws SignatureException {
+	public static InputStream getFile(String fileName) {
 		try {
-			return Utils.processCommand(Utils.sign(this.strURIFile + fileName),
-					"GET");
-
+			return Utils.processCommand(Utils.sign(Folder.strURIFile + fileName), "GET");
 		} catch (Exception e) {
 			Log.e(TAG, e.getMessage());
 			return null;
