@@ -6,17 +6,12 @@ import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.LinkModel;
 import com.google.gson.annotations.SerializedName;
 
-public class ShapesResponse extends BaseResponse {
+public class SlideCommentsResponse extends BaseResponse {
+	@SerializedName("SlideComments")
+	SlideComments slideComments;
 	
-	@SerializedName("ShapeList")
-	public ShapeList shapeList;
-	
-	public class ShapeList {
+	public class SlideComments {
 		ArrayList<LinkModel> _links;
-		ArrayList<ShapeURI> ShapesLinks;
-	}
-	
-	public class ShapeURI {
-		LinkModel Uri;
+		ArrayList<LinkModel> List;
 	}
 }

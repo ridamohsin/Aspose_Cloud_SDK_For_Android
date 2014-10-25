@@ -3,476 +3,367 @@
  */
 package com.aspose.cloud.sdk.slides;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-
-import android.util.Log;
+import java.util.HashMap;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
-import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
-import com.aspose.cloud.sdk.storage.Folder;
+import com.aspose.cloud.sdk.slides.DocumentResponse.DocumentModel;
+import com.aspose.cloud.sdk.slides.SplitPowerPointPresentationsResponse.SplitResult;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-// / <summary>
-// / Deals with PowerPoint presentation level aspects
-// / </summary>
+/**
+ * Document --- Using this class you can create a new empty PowerPoint presentation, convert PowerPoint document to other File formats, 
+ * merge multiple PowerPoint presentation files and split all or specific slides of a presentation file
+ * @author   M. Sohail Ismail
+ */
 public class Document {
-	public Document(String fileName) {
-		this.fileName = fileName;
-		gson = new Gson();
+	
+	private static final String SLIDES_URI = AsposeApp.BASE_PRODUCT_URI + "/slides/";
+	public static final String TEXTCOMPRESSION_KEY = "TextCompression";
+	public static final String EMBEDFULLFONTS_KEY = "EmbedFullFonts";
+	public static final String COMPLIANCE_KEY = "Compliance";
+	public static final String JPEGQUALITY_KEY = "JpegQuality";
+	public static final String SAVEMETAFILESASPNG_KEY = "SaveMetafilesAsPng";
+	public static final String PDFPASSWORD_KEY = "PdfPassword";
+	public static final String EMBEDTRUETYPEFONTSFORASCII_KEY = "EmbedTrueTypeFontsForASCII";
+	
+	/**
+	 * Create a new empty PowerPoint presentation
+	 * @param fileName Name of the file stored on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to document properties, slides and images and alternative links to download document in other formats
+	*/ 
+	public static DocumentModel createEmptyPowerPointPresentation(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		DocumentModel document = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+		String strURL = SLIDES_URI + fileName;
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		String jsonStr = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		DocumentResponse documentResponse = gson.fromJson(jsonStr, DocumentResponse.class);
+		if(documentResponse.getCode().equals("201") && documentResponse.getStatus().equals("Created")) {
+			document = documentResponse.document;
+		}
+		
+		return document;
+	}
+	
+	/**
+	 * Convert PowerPoint document to other File formats 
+	 * @param fileName Name of the file stored on cloud
+	 * @param designatedFormat Valid formats are tiff, pdf, xps, odp, ppsx, pptm, ppsm, potx, potm and html
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return A path to converted document
+	*/ 
+	public static String convertPowerPointDocumentToOtherFileFormats(String fileName, ValidFormatsEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String localFilePath = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URL
+		String strURL = SLIDES_URI + fileName + "?format=" + designatedFormat;
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+		
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		return localFilePath;
+	}
+	
+	/**
+	 * Convert PowerPoint document to other file formats with additional settings
+	 * @param fileName Name of the file stored on cloud
+	 * @param designatedFormat Valid formats are tiff, pdf, xps, odp, ppsx, pptm, ppsm, potx, potm and html
+	 * @param exportOptions Depends of parameter "format" service can receive export options
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return A path to converted document
+	*/ 
+	public static String convertPowerPointDocumentToOtherFileFormatsWithAdditionalSettings(String fileName, ValidFormatsEnum designatedFormat, HashMap<String, String> exportOptions) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String localFilePath = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URL
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + fileName + "?format=" + designatedFormat);
+		if(exportOptions.get(TEXTCOMPRESSION_KEY) != null) {
+			strURL.append("&TextCompression=" + exportOptions.get(TEXTCOMPRESSION_KEY));
+		}
+		if(exportOptions.get(EMBEDFULLFONTS_KEY) != null) {
+			strURL.append("&EmbedFullFonts=" + exportOptions.get(EMBEDFULLFONTS_KEY));
+		}
+		if(exportOptions.get(COMPLIANCE_KEY) != null) {
+			strURL.append("&Compliance=" + exportOptions.get(COMPLIANCE_KEY));
+		}
+		if(exportOptions.get(JPEGQUALITY_KEY) != null) {
+			strURL.append("&JpegQuality=" + exportOptions.get(JPEGQUALITY_KEY));
+		}
+		if(exportOptions.get(SAVEMETAFILESASPNG_KEY) != null) {
+			strURL.append("&SaveMetafilesAsPng=" + exportOptions.get(SAVEMETAFILESASPNG_KEY));
+		}
+		if(exportOptions.get(PDFPASSWORD_KEY) != null) {
+			strURL.append("&PdfPassword=" + exportOptions.get(PDFPASSWORD_KEY));
+		}
+		if(exportOptions.get(EMBEDTRUETYPEFONTSFORASCII_KEY) != null) {
+			strURL.append("&EmbedTrueTypeFontsForASCII=" + exportOptions.get(EMBEDTRUETYPEFONTSFORASCII_KEY));
+		}
+		
+		//sign URL
+		String signedURL = Utils.sign(strURL.toString());
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+		
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		return localFilePath;
 	}
 
-	// / <summary>
-	// / Presentation name
-	// / </summary>
-	public String fileName;
-	Gson gson = null;
-	private static final String TAG = "Document";
-
-	// / <summary>
-	// / Finds the slide count of the specified PowerPoint document
-	// / </summary>
-	// / <returns>slide count</returns>
-	public int getSlideCount() {
-		try {
-			// build URI to get slide count
-
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/slides";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			SlidesResponse slidesResponse = gson.fromJson(strJSON,
-					SlidesResponse.class);
-
-			int count = slidesResponse.getSlides().getSlideList().size();
-			return count;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
+	/**
+	 * Convert PowerPoint document stored on device to other file formats
+	 * @param fileName Name of the file stored on device
+	 * @param designatedFormat Valid formats are tiff, pdf, xps, odp, ppsx, pptm, ppsm, potx, potm and html
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return A path to converted document
+	*/ 
+	public static String convertLocallyStoredPowerPointDocumentToOtherFileFormats(String localFilePath, ValidFormatsEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String updatedFilePath = null;
+		
+		if(localFilePath == null || localFilePath.length() == 0) {
+			throw new IllegalArgumentException("Local file path cannot be null or empty");
 		}
-
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//Build URI 
+		String strURL = SLIDES_URI + "convert?format=" + designatedFormat;
+		//Sign the request URI
+		String signedURL = Utils.sign(strURL);	
+		//Convert the local file to InputStream
+		InputStream fileStream = new FileInputStream(localFilePath);
+		//Process the request on server
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", fileStream);
+		//Get fileName from localFilePath
+		String fileName;
+		int index = localFilePath.lastIndexOf("/");
+		if(index != -1) {
+			fileName = localFilePath.substring(index+1);
+		} else {
+			fileName = localFilePath;
+		}
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+				
+		//Save the stream in response to the disk
+		updatedFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		
+		return updatedFilePath;
 	}
-
-	// / <summary>
-	// / Gets a list containing all document properties
-	// / </summary>
-	// / <returns>List of document properties</returns>
-	public int getDocumentPropertiesCount() {
-		try {
-			// build URI to get document properties
-
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/documentProperties";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			DocumentPropertiesResponse documentPropertiesResponse = gson
-					.fromJson(strJSON, DocumentPropertiesResponse.class);
-
-			return documentPropertiesResponse.getDocumentProperties().getList()
-					.size();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
+	
+	/**
+	 * You can merge multiple PowerPoint presentation files
+	 * @param fileName Name of the file stored on cloud
+	 * @param mergePresentationsRequest Contains an array of PowerPoint presentations to be merged with
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to document properties, slides and images and alternative links to download document in other formats
+	*/ 
+	public static DocumentModel mergePowerPointPresentations(String fileName, MergePresentationsRequest mergePresentationsRequest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		DocumentModel document = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-
+		
+		if(mergePresentationsRequest == null) {
+			throw new IllegalArgumentException("Merge presentations request cannot be null");
+		}
+		
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(mergePresentationsRequest, MergePresentationsRequest.class);
+        
+        //Build URI 
+      	String strURL = SLIDES_URI + fileName + "/merge";
+      	//Sign the request URI
+      	String signedURL = Utils.sign(strURL);	
+      		
+        InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+        String responseJSONString = Utils.streamToString(responseStream);
+		
+        //Parsing JSON
+		DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
+			document = documentResponse.document;
+		}
+		
+		return document;
 	}
-
-	// / <summary>
-	// / Gets a list containing all document properties
-	// / </summary>
-	// / <returns>List of document properties</returns>
-	public List<DocumentProperty> getDocumentProperties() {
-		try {
-			// build URI to get document properties
-
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/documentProperties";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			DocumentPropertiesResponse documentPropertiesResponse = gson
-					.fromJson(strJSON, DocumentPropertiesResponse.class);
-
-			return documentPropertiesResponse.getDocumentProperties().getList();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	
+	/**
+	 * Take selected slides from multiple presentation files and merge into another presentation
+	 * @param fileName Name of the file stored on cloud
+	 * @param mergePresentationsRequest Contains an array of PowerPoint presentations to be merged with
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to document properties, slides and images and alternative links to download document in other formats
+	*/ 
+	public static DocumentModel mergeSelectedSlidesOfPowerPointPresentations(String fileName, MergeSelectedSlidesOfPowerPointPresentationsRequest mergePresentationsRequest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		DocumentModel document = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-
+		
+		if(mergePresentationsRequest == null) {
+			throw new IllegalArgumentException("Merge presentations request cannot be null");
+		}
+		
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(mergePresentationsRequest, MergeSelectedSlidesOfPowerPointPresentationsRequest.class);
+        
+        //Build URI 
+      	String strURL = SLIDES_URI + fileName + "/merge";
+      	//Sign the request URI
+      	String signedURL = Utils.sign(strURL);	
+      		
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT", requestJSONString);
+        String responseJSONString = Utils.streamToString(responseStream);
+		
+        //Parsing JSON
+		DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
+			document = documentResponse.document;
+		}
+		
+		return document;
 	}
-
-	// / <summary>
-	// / Gets the value of a particular property
-	// / </summary>
-	// / <param name="propertyName"></param>
-	// / <returns>value of the specified property</returns>
-	public DocumentProperty getDocumentProperty(
-			String propertyName) {
-		try {
-			// build URI to get single property
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/presentation/documentproperties/" + propertyName;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			DocumentPropertyResponse documentPropertyResponse = gson.fromJson(
-					strJSON, DocumentPropertyResponse.class);
-
-			return documentPropertyResponse.getDocumentProperty();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	
+	/**
+	 * Split all slides of a presentation file and save each slide as a new HTML or any supported image format
+	 * @param fileName Name of the file stored on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to slides
+	*/ 
+	public static SplitResult splitPowerPointPresentations(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		SplitResult splitResult = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
+		
+		//build URL
+		String strURL = SLIDES_URI + fileName + "/split";
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		
+		InputStream responseStream = Utils.processCommand(signedURL, "POST");
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		SplitPowerPointPresentationsResponse splitPowerPointPresentationResponse = gson.fromJson(responseJSONString, SplitPowerPointPresentationsResponse.class);
+		if(splitPowerPointPresentationResponse.getCode().equals("200") && splitPowerPointPresentationResponse.getStatus().equals("OK")) {
+			splitResult = splitPowerPointPresentationResponse.splitResult;
+		}
+		
+		return splitResult;
 	}
-
-	// / <summary>
-	// / Removes all the custom properties and resets all the built-in
-	// properties
-	// / </summary>
-	public boolean removeAllProperties() {
-		try {
-			// build URI to remove/reset all the properties
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/documentProperties";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
+	
+	/**
+	 * Split specific slides of a presentation file and save each slide as a new HTML or any supported image format
+	 * @param fileName Name of the file stored on cloud
+	 * @param from The start slide number for splitting
+	 * @param to The last slide number for splitting
+	 * @param designatedFormat Valid formats are tiff, jpeg, png, bmp and gif
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to slides
+	*/
+	public static SplitResult splitPowerPointPresentations(String fileName, int from, int to, ValidSlidesFormats designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		SplitResult splitResult = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URL
+		String strURL = SLIDES_URI + fileName + "/split?from=" + from + "&to=" + to + "&format=" + designatedFormat;
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		
+		InputStream responseStream = Utils.processCommand(signedURL, "POST");
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		SplitPowerPointPresentationsResponse splitPowerPointPresentationResponse = gson.fromJson(responseJSONString, SplitPowerPointPresentationsResponse.class);
+		if(splitPowerPointPresentationResponse.getCode().equals("200") && splitPowerPointPresentationResponse.getStatus().equals("OK")) {
+			splitResult = splitPowerPointPresentationResponse.splitResult;
+		}
+		
+		return splitResult;
 	}
-
-	// / <summary>
-	// / Replaces all instances of old text with new text in a presentation
-	// / </summary>
-	// / <param name="oldText"></param>
-	// / <param name="newText"></param>
-	public boolean replaceText(String oldText, String newText) {
-		try {
-			// build URI to replace text
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/replaceText?oldValue=" + oldText + "&newValue="
-					+ newText;// + "&ignoreCase=true";
-			strURI = strURI.replace(" ", "%20");
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-
-	}
-
-	// / <summary>
-	// / Replaces all instances of old text with new text in a slide
-	// / </summary>
-	// / <param name="oldText"></param>
-	// / <param name="newText"></param>
-	// / <param name="slideNumber"></param>
-	public boolean replaceText(String oldText, String newText, int slideNumber) {
-		try {
-			// build URI to replace text in a particular slide
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/slides/" + Integer.toString(slideNumber)
-					+ "/replaceText?oldValue=" + oldText + "&newValue="
-					+ newText + "&ignoreCase=true";
-			strURI = strURI.replace(" ", "%20");
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-
-	}
-
-	// / <summary>
-	// / Deletes a particular custom property or resets a particular built-in
-	// property
-	// / </summary>
-	// / <param name="propertyName"></param>
-	public boolean deleteDocumentProperty(String propertyName) {
-		try {
-			// build URI to remove single property
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/documentProperties/" + propertyName;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// / Gets all the text items in a presentation
-	// / </summary>
-	// / <returns>A list containing all the text items</returns>
-	public List<TextItem> getAllTextItems() {
-		try {
-			// build URI to get all text items in a presentation
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/textItems";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			TextItemsResponse textItemsResponse = gson.fromJson(strJSON,
-					TextItemsResponse.class);
-
-			return textItemsResponse.getTextItems().getItems();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
-	}
-
-	// / <summary>
-	// / Gets all the text items in a slide
-	// / </summary>
-	// / <param name="slideNumber"></param>
-	// / /// <param name="withEmpty">Set this to true to include items for
-	// shapes without text</param>
-	// / <returns>A list containing all the text items in a slide</returns>
-	public List<TextItem> getAllTextItems(int slideNumber, boolean withEmpty) {
-		try {
-			// build URI to get all text items in a slide
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/slides/" + Integer.toString(slideNumber)
-					+ "/textItems?withEmpty="
-					+ new Boolean(withEmpty).toString();
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			// Parse and deserialize the JSON to a object.
-			TextItemsResponse textItemsResponse = gson.fromJson(strJSON,
-					TextItemsResponse.class);
-
-			return textItemsResponse.getTextItems().getItems();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-	}
-
-	// / <summary>
-	// / saves the document into various formats
-	// / </summary>
-	// / <param name="outputPath"></param>
-	// / <param name="saveFormat"></param>
-	public void saveAs(String outputPath, SaveFormat saveFormat) {
-
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName;
-			strURI += "?format=" + saveFormat.toString().toLowerCase();
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Folder.saveStreamToFile(outputPath,
-					responseStream);
-
-			responseStream.close();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-		}
-	}
-
-	// / <summary>
-	// / Saves a particular slide into various formats
-	// / </summary>
-	// / <param name="outputPath"></param>
-	// / <param name="slideNumber"></param>
-	// / <param name="imageFormat"></param>
-	public void saveSlideAs(String outputPath, int slideNumber,
-			ImageFormat imageFormat)// Returns 100x100 image
-	{
-
-		try {
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/slides/" + Integer.toString(slideNumber) + "?format="
-					+ imageFormat.toString().toLowerCase();
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Folder.saveStreamToFile(outputPath,
-					responseStream);
-
-			responseStream.close();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-		}
-	}
-
-	// / <summary>
-	// / Saves a particular slide into various formats with specified width and
-	// height
-	// / </summary>
-	// / <param name="outputPath"></param>
-	// / <param name="slideNumber"></param>
-	// / <param name="imageFormat"></param>
-	// / <param name="width"></param>
-	// / <param name="height"></param>
-	public void saveSlideAs(String outputPath, int slideNumber,
-			ImageFormat imageFormat, int width, int height) {
-		try {
-			// build URI to get page count
-			// String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" +
-			// FileName + "/slides/" + slideNumber+"/images" + "?format=" +
-			// imageFormat.toString().toLowerCase() + "&width=" +
-			// Integer.toString(width) + "&height=" + Integer.toString(height);
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-					+ "/slides/" + slideNumber + "?format="
-					+ imageFormat.toString().toLowerCase() + "&width="
-					+ Integer.toString(width) + "&height="
-					+ Integer.toString(height);
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Folder.saveStreamToFile(outputPath,
-					responseStream);
-
-			responseStream.close();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-		}
-	}
-
-	// / <summary>
-	// / Sets the value of a particular property or adds a new property if the
-	// specified property does not exist
-	// / </summary>
-	// / <param name="propertyName"></param>
-	// / <param name="value"></param>
-	public boolean setDocumentProperty(String propertyName, String value) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
-
-		// build URI to remove single property
-		String strURI = AsposeApp.BASE_PRODUCT_URI + "/slides/" + fileName
-				+ "/documentProperties/" + propertyName;
-		String signedURI = Utils.sign(strURI);
-
-		// serialize the JSON request content
-		DocumentProperty docProperty = new DocumentProperty();
-		docProperty.setValue(value);
-
-		String strJSON = "";
-		strJSON = gson.toJson(docProperty,
-				DocumentProperty.class);
-
-		InputStream responseStream = Utils.processCommand(signedURI, "PUT",
-				strJSON);
-
-		String strResponse = Utils.streamToString(responseStream);
-		// Parse and deserialize the JSON to a object.
-		DocumentPropertyResponse baseResponse = gson.fromJson(strResponse,
-				DocumentPropertyResponse.class);
-
-		if ((baseResponse.getCode().equals("200") && baseResponse.getStatus()
-				.equals("OK"))
-				|| (baseResponse.getCode().equals("201") && baseResponse
-						.getStatus().equals("Created")))
-			return true;
-		else
-			return false;
-	}
-
 }

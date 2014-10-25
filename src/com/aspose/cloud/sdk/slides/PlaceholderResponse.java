@@ -6,17 +6,20 @@ import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.LinkModel;
 import com.google.gson.annotations.SerializedName;
 
-public class ShapesResponse extends BaseResponse {
+public class PlaceholderResponse extends BaseResponse {
+	@SerializedName("Placeholder")
+	PlaceholderResult placeholder;
 	
-	@SerializedName("ShapeList")
-	public ShapeList shapeList;
-	
-	public class ShapeList {
+	public class PlaceholderResult {
+		int Index;
+		int Orientation;
+		int Size;
+		int Type;
+		ShapeUri Shape;
 		ArrayList<LinkModel> _links;
-		ArrayList<ShapeURI> ShapesLinks;
 	}
 	
-	public class ShapeURI {
+	public class ShapeUri {
 		LinkModel Uri;
 	}
 }
