@@ -1,20 +1,9 @@
-/**
- * 
- */
 package com.aspose.cloud.sdk.pdf;
 
 import com.aspose.cloud.sdk.common.BaseResponse;
+import com.google.gson.annotations.SerializedName;
 
-/// <summary>
-/// represents response of a single Attachment
-/// </summary>
-
-public class AttachmentResponse extends BaseResponse
-{
-    public AttachmentResponse() { }
-
-    private Attachment Attachment;
-    
-    public Attachment getAttachment(){return Attachment;}
-
+public class AttachmentResponse extends BaseResponse {
+	@SerializedName("Attachment")
+	public AttachmentDetails attachment;
 }

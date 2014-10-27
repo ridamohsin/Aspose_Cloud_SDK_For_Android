@@ -1,20 +1,19 @@
-/**
- * 
- */
 package com.aspose.cloud.sdk.pdf;
 
+import java.util.ArrayList;
+
 import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.LinkModel;
+import com.google.gson.annotations.SerializedName;
 
-/**
- * @author Mudassir
- *
- */
-/// <summary>
-/// represents response of a single text item
-/// </summary>
-public class TextFormatResponse extends BaseResponse
-{
-    private TextFormat TextFormat;
-    public TextFormat getTextFormat(){return TextFormat;}
-
+public class TextFormatResponse extends BaseResponse {
+	@SerializedName("TextFormat")
+	public TextFormat textFormat;
+	
+	public class TextFormat {
+		public ColorModel Color;
+		public int FontSize;
+		public String FontName;
+		public ArrayList<LinkModel> Links;
+	}
 }

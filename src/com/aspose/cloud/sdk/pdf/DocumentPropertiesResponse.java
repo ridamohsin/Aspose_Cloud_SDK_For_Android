@@ -1,17 +1,16 @@
-/**
- * 
- */
 package com.aspose.cloud.sdk.pdf;
 
+import java.util.ArrayList;
+
 import com.aspose.cloud.sdk.common.BaseResponse;
+import com.google.gson.annotations.SerializedName;
 
+public class DocumentPropertiesResponse extends BaseResponse {
+	@SerializedName("DocumentProperties")
+	public DocumentPropertiesResult documentProperties;
+	
+	public class DocumentPropertiesResult {
+        public ArrayList<DocumentPropertyModel> List;
+	}
 
-/// <summary>
-/// represents response from the documentProperties resource
-/// </summary>
-public class DocumentPropertiesResponse extends BaseResponse 
-{
-	 private DocumentPropertiesEnvelop DocumentProperties;
-	 
-	 public DocumentPropertiesEnvelop getDocumentProperties(){return DocumentProperties;}
 }

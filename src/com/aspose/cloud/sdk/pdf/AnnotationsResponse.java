@@ -1,17 +1,17 @@
-/**
- * 
- */
 package com.aspose.cloud.sdk.pdf;
 
+import java.util.ArrayList;
+
 import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.LinkModel;
+import com.google.gson.annotations.SerializedName;
 
-
-/// <summary>
-/// represents response from the annotations resource
-/// </summary>
-public class AnnotationsResponse extends BaseResponse
-{
-//    public AnnotationsEnvelop Annotations;
-    private AnnotationsEnvelop Annotations;
-    public AnnotationsEnvelop getAnnotations(){return Annotations;};
+public class AnnotationsResponse extends BaseResponse {
+	@SerializedName("Annotations")
+	public AnnotationsResult annotations;
+	
+	public class AnnotationsResult {
+		public ArrayList<LinkModel> Links;
+        public ArrayList<AnnotationDetails> List;
+	}
 }

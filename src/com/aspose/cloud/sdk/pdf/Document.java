@@ -1,773 +1,423 @@
-/**
- * 
- */
 package com.aspose.cloud.sdk.pdf;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SignatureException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import android.util.Log;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.pdf.DocumentResponse.DocumentData;
+import com.aspose.cloud.sdk.pdf.SplitDocumentResponse.SplitResult;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+/**
+ * Document --- Using this class you can create empty PDF file, convert PDF to images, TIFF, DOC, HTML, and other formats, 
+ * merge multiple PDF files, split all or specific pages of a PDF file and sign PDF documents.
+ * @author   M. Sohail Ismail
+ */
 public class Document {
-	// / <summary>
-	// / PDF document name
-	// / </summary>
-	public String fileName;
-	private static final String TAG = "Document";
 
-	public Document(String fileName) {
-		this.fileName = fileName;
-	}
-
-	// / <summary>
-	// / Gets the page count of the specified PDF document
-	// / </summary>
-	// / <returns>page count</returns>
-	public int getPageCount() {
-		try {
-			// build URI to get page count
-
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/Pages";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject
-			PagesResponse pagesResponse = gson.fromJson(strJSON,
-					PagesResponse.class);
-
-			int count = pagesResponse.getPages().getList().size();
-			return count;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
+	private static final String PDF_URI = AsposeApp.BASE_PRODUCT_URI + "/pdf/";
+	
+	/**
+	 * Create empty PDF file
+	 * @param fileName Name of the file stored on cloud
+	 * @param designatedFormat A format to which email message will be converted
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to document properties and pages
+	*/ 
+	public static DocumentData createEmptyPDF(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		DocumentData document = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-	}
-
-	// / <summary>
-	// / Gets all the properties of the specified document
-	// / </summary>
-	// / <returns>list of properties</returns>
-	public List<DocumentProperty> getDocumentProperties() {
-		try {
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/documentProperties";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			DocumentPropertiesResponse documentPropertiesResponse = gson
-					.fromJson(strJSON, DocumentPropertiesResponse.class);
-
-			return documentPropertiesResponse.getDocumentProperties().getList();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
-	}
-
-	// / <summary>
-	// / Gets the value of a particular property
-	// / </summary>
-	// / <param name="propertyName"></param>
-	// / <returns>value of the specified property</returns>
-	public DocumentProperty getDocumentProperty(String propertyName) {
-		try {
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/documentProperties/" + propertyName;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject
-			DocumentPropertyResponse documentPropertyResponse = gson.fromJson(
-					strJSON, DocumentPropertyResponse.class);
-
-			return documentPropertyResponse.getDocumentProperty();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
-	}
-
-	// / <summary>
-	// / Sets the value of a particular property
-	// / </summary>
-	// / <param name="propertyName"></param>
-	// / <param name="propertyValue"></param>
-	// / <returns></returns>
-	public boolean setDocumentProperty(String propertyName, String propertyValue)
-			throws SignatureException, InvalidKeyException, NoSuchAlgorithmException, IOException {
-
-		// build URI to get page count
-		String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-				+ "/documentProperties/" + propertyName;
-		String signedURI = Utils.sign(strURI);
-
-		// serialize the JSON request content
-		DocumentProperty docProperty = new DocumentProperty();
-		docProperty.setValue(propertyValue);
-
-		String strJSON = "";
-
+		
+		//build URL
+		String strURL = PDF_URI + fileName;
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		String jsonStr = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
 		Gson gson = new Gson();
-
-		strJSON = gson.toJson(docProperty, DocumentProperty.class);
-
-		InputStream responseStream = Utils.processCommand(signedURI, "PUT",
-				strJSON);
-
-		String strResponse = Utils.streamToString(responseStream);
-
-		// Parse the json string to JObject
-		DocumentPropertyResponse baseResponse = gson.fromJson(strResponse,
-				DocumentPropertyResponse.class);
-
-		if (baseResponse.getCode().equals("200")
-				&& baseResponse.getStatus().equals("OK"))
-			return true;
-		else
-			return false;
-	}
-
-	// / <summary>
-	// / removes values of all the properties
-	// / </summary>
-	// / <returns></returns>
-	public boolean removeAllProperties() throws SignatureException {
-		try {
-
-			// throw new Exception("Resource removeAll throws exception");
-
-			// with POST following exception
-			// throw new
-			// Exception("Exception received: The remote server returned an error: (405) Method Not Allowed");
-			// if GET works then documentation needs to be updated
-
-			// with GET following exception
-			// The remote server returned an error: (400) Bad Request
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/documentProperties";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE");
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
+		DocumentResponse documentResponse = gson.fromJson(jsonStr, DocumentResponse.class);
+		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
+			document = documentResponse.document;
 		}
-
+		
+		return document;
 	}
-
-	// /////
-	// / <summary>
-	// / Gets the form field count
-	// / </summary>
-	// / <returns>count of the form fields</returns>
-	public int getFormFieldCount() {
-
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/fields";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			FormFieldsResponse formFieldsResponse = gson.fromJson(strJSON,
-					FormFieldsResponse.class);
-
-			return formFieldsResponse.getFields().getList().size();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
+	
+	/**
+	 * Create PDF file from template
+	 * @param fileName Name of the file stored on cloud
+	 * @param templateFile The template file server path
+	 * @param templateType Valid templates types are html, xml, pcl, svg, xps, jpeg and tiff 
+	 * @param dataFile The data file server path, used for XML template type only 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to document properties and pages
+	*/ 
+	public static DocumentData createPDFFromTemplate(String fileName, String templateFile, ValidTemplateTypeEnum templateType, String dataFile) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		DocumentData document = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-
+		
+		if(templateFile == null || templateFile.length() == 0) {
+			throw new IllegalArgumentException("Template file cannot be null or empty");
+		}
+		
+		if(templateType == null) {
+			throw new IllegalArgumentException("Template type cannot be null");
+		}
+		
+		//build URL
+		String strURL = PDF_URI + fileName + "?templateFile=" + templateFile + "&templateType=" + templateType;
+		if(dataFile != null && dataFile.length() !=0) {
+			strURL += ("&dataFile=" + dataFile);
+		}
+		
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		String jsonStr = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		DocumentResponse documentResponse = gson.fromJson(jsonStr, DocumentResponse.class);
+		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
+			document = documentResponse.document;
+		}
+		
+		return document;
 	}
-
-	// / <summary>
-	// / Gets list of all the fields in the PDF file
-	// / </summary>
-	// / <returns>list of the form fields</returns>
-	public List<FormField> getFormFields() {
-		try {
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/fields";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			FormFieldsResponse formFieldsResponse = gson.fromJson(strJSON,
-					FormFieldsResponse.class);
-
-			return formFieldsResponse.getFields().getList();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	
+	/**
+	 * Convert PDF to images, TIFF, DOC, HTML, and other formats
+	 * @param fileName Name of the file stored on cloud
+	 * @param designatedFormat Valid designated formats are tiff, pdf, pdfa1a, pdfa1b, xps, doc, tex, html 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Path to converted file stored on device
+	*/ 
+	public static String convertPDFDocumentToOtherFileFormats(String fileName, ValidFormatsForPresentationEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String localFilePath = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URL
+		String strURL = PDF_URI + fileName + "?format=" + designatedFormat;
+		
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+		
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		return localFilePath;
 	}
-
-	// / <summary>
-	// / Gets a particular form field
-	// / </summary>
-	// / <param name="fieldName"></param>
-	// / <returns>form field</returns>
-	public FormField getFormField(String fieldName) {
-
-		try {
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/fields/" + fieldName;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			FormFieldResponse formFieldResponse = gson.fromJson(strJSON,
-					FormFieldResponse.class);
-
-			return formFieldResponse.getFormField();
+	
+	/**
+	 * Convert PDF file stored on device to images, TIFF, DOC, HTML, and other formats
+	 * @param fileName Name of the file stored on device
+	 * @param designatedFormat Valid designated formats are tiff, pdf, pdfa1a, pdfa1b, xps, doc, tex, html 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Path to converted file stored on device
+	*/ 
+	public static String convertLocallyStoredPDFDocumentToOtherFileFormats(String localFilePath, ValidFormatsForPresentationEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String updatedFilePath = null;
+		
+		if(localFilePath == null || localFilePath.length() == 0) {
+			throw new IllegalArgumentException("Local file path cannot be null or empty");
 		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
 		}
+		
+		//build URL
+		String strURL = PDF_URI +"/convert?format=" + designatedFormat;
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		//Convert the local file to InputStream
+		InputStream fileStream = new FileInputStream(localFilePath);
+		//Process the request on server
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT", fileStream);
+		//Get fileName from localFilePath
+		String fileName;
+		int index = localFilePath.lastIndexOf("/");
+		if(index != -1) {
+			fileName = localFilePath.substring(index+1);
+		} else {
+			fileName = localFilePath;
+		}
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+				
+		//Save the stream in response to the disk
+		updatedFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		
+		return updatedFilePath;
 	}
-
-	// / <summary>
-	// / Creates a Pdf from XML
-	// / </summary>
-	// / <param name="pdfFileName"></param>
-	// / <param name="xsltFileName"></param>
-	// / <param name="xmlFileName"></param>
-	// / <returns></returns>
-	public boolean createFromXml(String pdfFileName, String xsltFileName,
-			String xmlFileName) {
-		try {
-
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + pdfFileName
-					+ "?templateFile=" + xsltFileName + "&dataFile="
-					+ xmlFileName + "&templateType=xml";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	
+	/**
+	 * Convert PDF documents uploaded at a remote server to other file formats
+	 * @param url URL where input PDF is present
+	 * @param designatedFormat Valid designated formats are tiff, pdf, pdfa1a, pdfa1b, xps, doc, tex, html 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Path to converted file stored on device
+	*/ 
+	public static String convertPDFFromRemoteServerToOtherFileFormats(String url, ValidFormatsForPresentationEnum designatedFormat, String outputPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String localFilePath = null;
+		
+		if(url == null || url.length() == 0) {
+			throw new IllegalArgumentException("URL cannot be null or empty");
 		}
-
-	}
-
-	// / <summary>
-	// / Creates a Pdf from HTML
-	// / </summary>
-	// / <param name="pdfFileName"></param>
-	// / <param name="htmlFileName"></param>
-	// / <returns></returns>
-	public boolean createFromHtml(String pdfFileName, String htmlFileName) {
-		try {
-
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + pdfFileName
-					+ "?templateFile=" + htmlFileName + "&templateType=html";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
 		}
-
-	}
-
-	// / <summary>
-	// / Creates an Empty Pdf document
-	// / </summary>
-	// / <param name="newDocumentName"></param>
-	// / <returns></returns>
-
-	public boolean createEmptyPdf(String newDocumentName) {
-
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/"
-					+ newDocumentName;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+		
+		if(outputPath == null || outputPath.length() == 0) {
+			throw new IllegalArgumentException("outputPath cannot be null or empty");
 		}
-
+		
+		//build URL
+		String strURL = PDF_URI + "convert?url=" + url + "&format=" + designatedFormat;
+		
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, outputPath);
+		return localFilePath;
 	}
-
-	// / <summary>
-	// / Merge two or more Pdf documents. A new pdf file will be generated.
-	// / </summary>
-	// / <param name="sourceFiles"></param>
-	// / <returns></returns>
-
-	public boolean mergeDocuments(List<String> sourceFiles) {
-
-		try {
-			// New PDF Filename
-			String mergedFileName = fileName;
-
-			if (sourceFiles.isEmpty())
-				throw new Exception("File to merge are not specified");
-
-			if (sourceFiles.size() < 2)
-				throw new Exception("Two or more files are requred to merge");
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/"
-					+ mergedFileName + "/merge";
-			String signedURI = Utils.sign(strURI);
-
-			Map<String, Object> mp = new HashMap<String, Object>();
-			mp.put("List", sourceFiles);
-
-			Gson jsonlist = new Gson();
-			String jsondata = jsonlist.toJson(mp);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
-					jsondata, "json");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	
+	/**
+	 * Merge multiple PDF files
+	 * @param fileName Name of the file stored on cloud
+	 * @param mergeDocumentsRequest An object that contains list of PDF files to be merged with 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to document properties and pages
+	*/
+	public static DocumentData mergeMultiplePDFFiles(String fileName, MergeDocumentsRequest mergeDocumentsRequest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		DocumentData document = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-
-	}
-
-	// / <summary>
-	// / Appends two Pdf documents. The newPdf is appended at the end of basePdf
-	// / </summary>
-	// / <param name="basePdf"></param>
-	// / <param name="newPdf"></param>
-	// / <returns></returns>
-
-	public boolean appendDocument(String basePdf, String newPdf) {
-
-		try {
-			// Saving Exisiting File name
-			String sOldFile = fileName;
-
-			// Getting Total page in PDF
-			fileName = newPdf;
-			int iPageCount = getPageCount();
-
-			// Setting Old File name again
-			fileName = sOldFile;
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + basePdf
-					+ "/appendDocument?appendFile=" + newPdf
-					+ "&startPage=1&endPage=" + Integer.toString(iPageCount);
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+		
+		if(mergeDocumentsRequest == null) {
+			throw new IllegalArgumentException("Merge documents request cannot be null");
 		}
-
-	}
-
-	// / <summary>
-	// / Appends two Pdf documents. The start and end pages number newPdf is
-	// given and it is appended at the end of basePdf
-	// / </summary>
-	// / <param name="basePdf"></param>
-	// / <param name="newPdf"></param>
-	// / <param name="startPage"></param>
-	// / <param name="endPage"></param>
-	// / <returns></returns>
-
-	public boolean appendDocument(String basePdf, String newPdf, int startPage,
-			int endPage) {
-
-		try {
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + basePdf
-					+ "/appendDocument/?appendFile=" + newPdf + "&startPage="
-					+ Integer.toString(startPage) + "&endPage="
-					+ Integer.toString(endPage);
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+		
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(mergeDocumentsRequest, MergeDocumentsRequest.class);
+        
+        //Build URI 
+      	String strURL = PDF_URI + fileName + "/merge";
+      	//Sign the request URI
+      	String signedURL = Utils.sign(strURL);	
+      		
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT", requestJSONString);
+        String responseJSONString = Utils.streamToString(responseStream);
+		
+        //Parsing JSON
+		DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
+			document = documentResponse.document;
 		}
-
+		
+		return document;
 	}
-
-	// / <summary>
-	// / Adds new page to opened Pdf document
-	// / </summary>
-	// / <returns></returns>
-
-	public boolean addNewPage() {
-
-		try {
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/pages";
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	
+	/**
+	 * Split all pages of a PDF file
+	 * @param fileName Name of the file stored on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to splitted pages
+	*/
+	public static SplitResult splitAllPagesOfAPDFFile(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		SplitResult result = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-	}
-
-	// / <summary>
-	// / Deletes selected page in Pdf document
-	// / </summary>
-	// / <param name="pageNumber"></param>
-	// / <returns></returns>
-
-	public boolean deletePage(int pageNumber) {
-		try {
-
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/pages/" + Integer.toString(pageNumber);
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+		
+		//build URL
+		String strURL = PDF_URI + fileName + "/split";
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		
+		InputStream responseStream = Utils.processCommand(signedURL, "POST");
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		SplitDocumentResponse splitDocumentResponse = gson.fromJson(responseJSONString, SplitDocumentResponse.class);
+		if(splitDocumentResponse.getCode().equals("200") && splitDocumentResponse.getStatus().equals("OK")) {
+			result = splitDocumentResponse.result;
 		}
+		
+		return result;
 	}
-
-	// / <summary>
-	// / Moves selected page in Pdf document to new location
-	// / </summary>
-	// / <param name="pageNumber"></param>
-	// / <param name="newLocation"></param>
-	// / <returns></returns>
-	public boolean movePage(int pageNumber, int newLocation) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/pages/" + Integer.toString(pageNumber)
-					+ "/movePage?newIndex=" + Integer.toString(newLocation);
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	
+	/**
+	 * Split specific pages of a PDF file
+	 * @param fileName Name of the file stored on cloud
+	 * @param from The start page number for splitting
+	 * @param to The last page number for splitting
+	 * @param designatedFormat Valid formats are pdf, pdfa1a, pdfa1b, xps, doc,	tiff, jpeg, png, emf, bmp, gif 	
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to splitted pages
+	*/
+	public static SplitResult splitSpecificPagesOfAPDFFile(String fileName, int from, int to, ValidOutputFormatsEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		SplitResult result = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-	}
-
-	// / <summary>
-	// / Replace Image in PDF File using Local Image Stream
-	// / </summary>
-	// / <param name="pageNumber"></param>
-	// / <param name="imageIndex"></param>
-	// / <param name="imageStream"></param>
-	// / <returns></returns>
-	public boolean replaceImageUsingStream(int pageNumber, int imageIndex,
-			InputStream imageStream) {
-		try {
-			// build URI to replace image
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/pages/" + pageNumber + "/images/" + imageIndex;
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", imageStream);
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+		
+		//build URL
+		String strURL = designatedFormat != null? PDF_URI + fileName + "/split?from=" + from + "&to=" + to + "&format=" + designatedFormat :
+			PDF_URI + fileName + "/split?from=" + from + "&to=" + to;
+		
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		
+		InputStream responseStream = Utils.processCommand(signedURL, "POST");
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		SplitDocumentResponse splitDocumentResponse = gson.fromJson(responseJSONString, SplitDocumentResponse.class);
+		if(splitDocumentResponse.getCode().equals("200") && splitDocumentResponse.getStatus().equals("OK")) {
+			result = splitDocumentResponse.result;
 		}
+		
+		return result;
 	}
-
-	// / <summary>
-	// / Replace Image in PDF document using Image File uploaded on Server
-	// / </summary>
-	// / <param name="pageNumber"></param>
-	// / <param name="imageIndex"></param>
-	// / <param name="fileName"></param>
-	// / <returns></returns>
-	public boolean replaceImageUsingFile(int pageNumber, int imageIndex,
-			String fileName) {
-		try {
-			// build URI to replace image
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/pdf/" + fileName
-					+ "/pages/" + pageNumber + "/images/" + imageIndex
-					+ "?imageFile=" + fileName;
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	
+	/**
+	 * Sign PDF documents
+	 * @param fileName Name of the file stored on cloud
+	 * @param signature An object that contains signature details like signature path, signature type, password, appearance etc	
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable indicated whether PDF document signed successfully
+	*/
+	public static boolean signPDFDocuments(String fileName, SignatureModel signature) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isPDFSignedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
+		
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(signature, SignatureModel.class);
+        
+		//build URL
+		String strURL = PDF_URI + fileName + "/sign";
+		
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+        String responseJSONString = Utils.streamToString(responseStream);
+		
+        //Parsing JSON
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isPDFSignedSuccessfully = true;
+		}
+		
+		return isPDFSignedSuccessfully;
 	}
-
+	
+	/**
+	 * Sign PDF documents
+	 * @param fileName Name of the file stored on cloud
+	 * @param startPage The first page to append
+	 * @param endPage The last page to append
+	 * @param appendFile The file to append server path
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URLs to document properties and pages
+	*/
+	public static DocumentData appendPDFFiles(String fileName, int startPage, int endPage, String appendFile) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		DocumentData document = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(appendFile == null || appendFile.length() <= 3) {
+			throw new IllegalArgumentException("Append file cannot be null or empty");
+		}
+        
+		//build URL
+		String strURL = PDF_URI + fileName + "/appendDocument?appendFile=" + appendFile + "&startPage=" + startPage + "&endPage=" + endPage;
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		
+		InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+		
+        //Parsing JSON
+        Gson gson = new Gson();
+        DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
+			document = documentResponse.document;
+		}
+		
+		return document;
+	}
 }

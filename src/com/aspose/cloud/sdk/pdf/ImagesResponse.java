@@ -1,20 +1,21 @@
-/**
- * 
- */
 package com.aspose.cloud.sdk.pdf;
 
+import java.util.ArrayList;
+
 import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.LinkModel;
 
-/**
- * @author Mudassir
- *
- */
-/// <summary>
-/// represents response from the images resource
-/// </summary>
-class ImagesResponse extends BaseResponse
-{
-    private ImagesEnvelop Images;
-    public ImagesEnvelop getImages(){return Images;}
-
+public class ImagesResponse extends BaseResponse {
+	public ImagesResult Images;
+	
+	public class ImagesResult {
+		public ArrayList<LinkModel> Links;
+        public ArrayList<ImageDetails> List;
+	}
+	
+	public class ImageDetails {
+		public ArrayList<LinkModel> Links;
+    	public int Height;
+    	public int Width;
+	}
 }
