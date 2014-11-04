@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 
 /**
  * OCR --- Using this class you can extract text from a BMP or TIFF image, Extract text from a specific block of an image, 
- *    Extract image text from local file  
+ *         Extract image text from local file  
  * @author   M. Sohail Ismail
  */
 public class OCR {
@@ -36,8 +36,8 @@ public class OCR {
 		}
 		
 		String strURL = BARCODE_URI + fileName + "/recognize?useDefaultDictionaries=" + useDefaultDictionaries;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -74,8 +74,8 @@ public class OCR {
 		
 		String strURL = BARCODE_URI + fileName + "/recognize?language=" + language + "&rectX=" + rectX + "&rectY=" + rectY +
 				"&rectWidth=" + rectWidth + "&rectHeight=" + rectHeight + "&useDefaultDictionaries=" + useDefaultDictionaries;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -109,13 +109,13 @@ public class OCR {
 		}
 		
 		String strURL = BARCODE_URI + "recognize?language=" + language + "&useDefaultDictionaries=" + useDefaultDictionaries;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
-        //Convert the local file to InputStream
-      	InputStream fileStream = new FileInputStream(localFilePath);
-      	//Process the request on server
-      	InputStream responseStream = Utils.processCommand(signedURL, "POST", fileStream);
+        	//Convert the local file to InputStream
+      		InputStream fileStream = new FileInputStream(localFilePath);
+      		//Process the request on server
+      		InputStream responseStream = Utils.processCommand(signedURL, "POST", fileStream);
 		String jsonStr = Utils.streamToString(responseStream);
 		
 		//Parsing JSON
