@@ -38,8 +38,8 @@ public class BarcodeRecognition {
 		}
 		
 		String strURL = BARCODE_URI + fileName + "/recognize?type=" + type;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -72,8 +72,8 @@ public class BarcodeRecognition {
 		}
 		
 		String strURL = BARCODE_URI + "recognize?type=" + type + "&url=" + url;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "POST");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -112,8 +112,8 @@ public class BarcodeRecognition {
 		
 		String strURL = BARCODE_URI + fileName + "/recognize?type=" + type+ "&rectX=" + rectX + "&rectY=" + rectY +
 				"&rectWidth=" + rectWidth + "&rectHeight=" + rectHeight;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -148,8 +148,8 @@ public class BarcodeRecognition {
 		}
 		
 		String strURL = BARCODE_URI + fileName + "/recognize?type=" + type + "&checksumValidation=" + checksumValidation;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+		//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -184,8 +184,8 @@ public class BarcodeRecognition {
 		}
 		
 		String strURL = BARCODE_URI + fileName + "/recognize?type=" + type + "&barcodesCount=" + barcodesCount;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String jsonStr = Utils.streamToString(responseStream);
