@@ -1,29 +1,29 @@
 ﻿package com.aspose.cloud.sdk.cells;
-import java.util.List;
 
 import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.LinkModel;
+import com.google.gson.annotations.SerializedName;
 
-    /// <summary>
-    ///  Represents response from the Cells resource
-    /// </summary>
-    public class CellsResponse extends BaseResponse
-    {
-        
-        private LinkResponse link ;
-        private int CellCount ;               
-        private List<LinkResponse> CellList ;
-        private int MaxRow ;
-        private int MaxColumn ;
-        private Cell Cell ;
-        private Style Style ;
-        
-        public LinkResponse getlink(){return link;}
-        public int getCellCount(){return CellCount;}               
-        public List<LinkResponse> getCellList(){return CellList;}
-        public int getMaxRow(){return MaxRow;}
-        public int getMaxColumn(){return MaxColumn;}
-        public Cell getCell(){return Cell;}
-        public Style getStyle(){return Style;}
-        
-        
+public class CellsResponse extends BaseResponse {
+	
+	@SerializedName("Cell")
+	public CellData cell;
+    
+    public class CellData {   
+    	public LinkModel link;
+    	public String Name;
+    	public String Type;
+    	public int Row;
+    	public int Column;
+    	public String Value;
+    	public String Formula;
+    	public boolean IsFormula;
+    	public boolean IsMerged;
+    	@SerializedName("Style")
+    	public Style style;
+    }   
+    
+    public class Style {
+    	public LinkModel link;
     }
+}

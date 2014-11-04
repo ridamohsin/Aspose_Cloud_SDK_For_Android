@@ -1,16 +1,6 @@
-﻿package com.aspose.cloud.sdk.cells;
-import java.lang.String;
+package com.aspose.cloud.sdk.cells;
 
-public class SortKey
-    {
-        public SortKey()
-        { 
-        
-        }
-
-        private int Key;
-        private String SortOrder;
-        
-        public int getKey(){return Key;}
-        public String getSortOrder(){return SortOrder;}
-    }
+public class SortKey {
+	public int Key;
+	public String SortOrder;
+}

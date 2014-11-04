@@ -1,1368 +1,731 @@
 ﻿package com.aspose.cloud.sdk.cells;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import android.util.Log;
-
+import com.aspose.cloud.sdk.cells.CalculateFormulaResponse.CalculateFormulaResult;
+import com.aspose.cloud.sdk.cells.SortKey;
+import com.aspose.cloud.sdk.cells.GetAutoshapeFromAWorksheetResponse.AutoShape;
+import com.aspose.cloud.sdk.cells.GetColumnFromAWorksheetResponse.Column;
+import com.aspose.cloud.sdk.cells.GetCommentFromAWorksheetResponse.Comment;
+import com.aspose.cloud.sdk.cells.GetValidationFromAWorksheetResponse.Validation;
+import com.aspose.cloud.sdk.cells.WorksheetResponse.WorksheetResult;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+/**
+ * Worksheet --- Using this class you can convert a worksheet to image, add a new worksheet, get worksheet count, hide/unhide a worksheet, 
+ * move a worksheet to a new location, remove a worksheet, get autoshape, comment or validation from a worksheet, calculate formula in a worksheet, 
+ * sort worksheet data, get a specific column from a worksheet, rename a worksheet, update properties of a worksheet, set and remove background image 
+ * and freeze/unfreeze panes in a worksheet. 
+ * @author   M. Sohail Ismail
+ */
 public class Worksheet {
 	
-	private static final String TAG = "Worksheet";
+	private static final String CELLS_URI = AsposeApp.BASE_PRODUCT_URI + "/cells/";
+	
+	private String worksheetName;
+	private String fileName;
+	
 	public Worksheet(String fileName, String worksheetName) {
 		this.fileName = fileName;
-		this.workSheetName = worksheetName;
+		this.worksheetName = worksheetName;
+	}
+	
+	/**
+	 * Convert a worksheet to image
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param designatedFormat Convert the worksheet in the specified format
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Local Path to converted file
+	*/
+	public String convertWorksheetToImage(ValidFormatsOfWorksheet designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String localFilePath = null;
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "?format=" + designatedFormat;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		String outputFileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+		
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, outputFileName);
+		
+		return localFilePath;
 	}
 
-	public LinkResponse link;
-
-	public List<LinkResponse> getCellsList(int offset, int count) {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells?offset="
-					+ offset + "&count=" + count;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorksheetResponse worksheetResponse = gson.fromJson(strJSON,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getCells().getCellList();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	/**
+	 * Add a new worksheet in a workbook
+	 * @param fileName Name of the file on cloud
+	 * @param newWorksheetName Name of new worksheet
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains hypertext references to all worksheets 
+	*/
+	public WorksheetResult addANewWorksheet(String newWorksheetName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		WorksheetResult worksheetResult = null;
+		
+		if(newWorksheetName == null || newWorksheetName.length() == 0) {
+			throw new IllegalArgumentException("New worksheet name cannot be null or empty");
 		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + newWorksheetName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+        String responseJSONString = Utils.streamToString(responseStream);
 
+		//Parsing JSON
+		Gson gson = new Gson();
+		WorksheetResponse worksheetResponse = gson.fromJson(responseJSONString, WorksheetResponse.class);
+		if (worksheetResponse.getCode().equals("201") && worksheetResponse.getStatus().equals("Created")) {
+			worksheetResult = worksheetResponse.worksheets;
+		}
+		
+		return worksheetResult;
+	}
+	
+	/**
+	 * Get worksheet count
+	 * @param fileName Name of the file on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Count of worksheets 
+	*/
+	public int getWorksheetCount() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		int worksheetCount = -1;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		Gson gson = new Gson();
+		WorksheetResponse worksheetResponse = gson.fromJson(responseJSONString, WorksheetResponse.class);
+		if (worksheetResponse.getCode().equals("200") && worksheetResponse.getStatus().equals("OK")) {
+			worksheetCount = worksheetResponse.worksheets.worksheetList.size();
+		}
+		
+		return worksheetCount;
+	}
+	
+	/**
+	 * Hide a worksheet in a workbook
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether worksheet hide successfully 
+	*/
+	public boolean hideAWorksheetInAWorkbook() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorksheetHideSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/visible?isVisible=false";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorksheetHideSuccessfully = true;
+		}
+		
+		return isWorksheetHideSuccessfully;
 	}
 
-	public List<LinkResponse> getRowsList(int offset, int count) {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells/rows?offset="
-					+ offset + "&count=" + count;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorksheetResponse worksheetResponse = gson.fromJson(strJSON,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getRows().getRowsList();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	/**
+	 * Unhide a worksheet in a workbook
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether worksheet becomes visible 
+	*/
+	public boolean unhideAWorksheetInAWorkbook() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorksheetUnHideSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/visible?isVisible=true";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorksheetUnHideSuccessfully = true;
 		}
+		
+		return isWorksheetUnHideSuccessfully;
 	}
 
-	public List<LinkResponse> getColumnsList(int offset, int count) {
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells/columns?offset="
-					+ offset + "&count=" + count;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorksheetResponse worksheetResponse = gson.fromJson(strJSON,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getColumns().getColumnsList();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	/**
+	 * Move a worksheet to a new location in a workbook
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param destinationWorsheet Destination worksheet name
+	 * @param position Relative position. Can be BEFORE or AFTER
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether worksheet moved to new location successfully
+	*/
+	public boolean moveAWorksheetToANewLocationInAWorkbook(String destinationWorsheet, PositionEnum position) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorksheetMovedSuccessfully = false;
+		
+		if(destinationWorsheet == null || destinationWorsheet.length() == 0) {
+			throw new IllegalArgumentException("Destination worsheet cannot be null or empty");
 		}
+		
+		if(position == null) {
+			throw new IllegalArgumentException("Position cannot be null");
+		}
+		
+		//Serialize the JSON request content
+		WorksheetMovingRequest worksheetMovingRequest = new WorksheetMovingRequest();
+		worksheetMovingRequest.destinationWorksheet = destinationWorsheet;
+		worksheetMovingRequest.position = position;
+					
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(worksheetMovingRequest, WorksheetMovingRequest.class);
+        
+        //build URI
+        String strURI = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/position";
+        //sign URL
+      	String signedURI = Utils.sign(strURI);
+
+		InputStream responseStream = Utils.processCommand(signedURI, "POST", requestJSONString);
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorksheetMovedSuccessfully = true;
+		}
+		
+		return isWorksheetMovedSuccessfully;
 	}
+	
+	/**
+	 * Remove a worksheet from a workbook
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether worksheet deleted successfully from a workbook 
+	*/
+	public boolean removeAWorksheetFromAWorkbook() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="offset"></param>
-	// / <param name="count"></param>
-	// / <returns></returns>
-	public int getMaxColumn(int offset, int count) {
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells?offset="
-					+ offset + "&count=" + count;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorksheetResponse worksheetResponse = gson.fromJson(strJSON,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getCells().getMaxColumn();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return 0;
+		boolean isWorksheetRemovedSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorksheetRemovedSuccessfully = true;
 		}
+		
+		return isWorksheetRemovedSuccessfully;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="offset"></param>
-	// / <param name="count"></param>
-	// / <returns></returns>
-	public int getMaxRow(int offset, int count) {
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells?offset="
-					+ offset + "&count=" + count;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorksheetResponse worksheetResponse = gson.fromJson(strJSON,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getCells().getMaxRow();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return 0;
-		}
+	
+	/**
+	 * Get autoshape from a worksheet
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param autoshapeIndex Autoshape Index
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains autoshape attributes
+	*/
+	public AutoShape getAutoshapeFromAWorksheet(int autoshapeIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		AutoShape autoShape = null;
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/autoshapes/" + autoshapeIndex;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		GetAutoshapeFromAWorksheetResponse getAutoshapeResponse = gson.fromJson(responseJSONString, GetAutoshapeFromAWorksheetResponse.class);
+  		if (getAutoshapeResponse.getCode().equals("200") && getAutoshapeResponse.getStatus().equals("OK")) {
+  			autoShape = getAutoshapeResponse.autoShape;
+  		}
+        
+  		return autoShape;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="offset"></param>
-	// / <param name="count"></param>
-	// / <returns></returns>
-	public int getCellsCount(int offset, int count) {
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells?offset="
-					+ offset + "&count=" + count;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorksheetResponse worksheetResponse = gson.fromJson(strJSON,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getCells().getCellCount();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return 0;
+	
+	/**
+	 * Get comment from a worksheet
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param cellName Cell name which defined this comment 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains comment attributes
+	*/
+	public Comment getCommentFromAWorksheet(String cellName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		Comment comment = null;
+		
+		if(cellName == null || cellName.length() == 0) {
+			throw new IllegalArgumentException("Cell name cannot be null or empty");
 		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/comments/" + cellName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		GetCommentFromAWorksheetResponse getCommentFromAWorksheetResponse = gson.fromJson(responseJSONString, GetCommentFromAWorksheetResponse.class);
+  		if (getCommentFromAWorksheetResponse.getCode().equals("200") && getCommentFromAWorksheetResponse.getStatus().equals("OK")) {
+  			comment = getCommentFromAWorksheetResponse.comment;
+  		}
+        
+  		return comment;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public int getAutoShapesCount() {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/autoshapes";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorksheetResponse worksheetResponse = gson.fromJson(strJSON,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getAutoShapes().getAuotShapeList().size();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
+	
+	/**
+	 * Get validation from a worksheet
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param validationIndex Validation index 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains validation attributes
+	*/
+	public Validation getValidationFromAWorksheet(int validationIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		Validation validation = null;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/validations/" + validationIndex;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		GetValidationFromAWorksheetResponse getValidationResponse = gson.fromJson(responseJSONString, GetValidationFromAWorksheetResponse.class);
+  		if (getValidationResponse.getCode().equals("200") && getValidationResponse.getStatus().equals("OK")) {
+  			validation = getValidationResponse.validation;
+  		}
+        
+  		return validation;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="index"></param>
-	// / <returns></returns>
-	public AutoShape getAutoShapeByIndex(int index) {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/autoshapes/" + index;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			AutoShapesResponse autoShapesResponse = gson.fromJson(strJSON,
-					AutoShapesResponse.class);
-
-			return autoShapesResponse.getAutoShape();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
+	
+	/**
+	 * Calculate formula in a worksheet
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param formula Formula e.g. formula=sum(B2:B6)  
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains formula calculation result 
+	*/
+	public CalculateFormulaResult calculateFormulaInAWorksheet(String formula) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		CalculateFormulaResult value = null;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/formulaResult?formula=" + formula;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		CalculateFormulaResponse calculateFormulaResponse = gson.fromJson(responseJSONString, CalculateFormulaResponse.class);
+  		if (calculateFormulaResponse.getCode().equals("200") && calculateFormulaResponse.getStatus().equals("OK")) {
+  			value = calculateFormulaResponse.value;
+  		}
+        
+  		return value;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="cellName"></param>
-	// / <returns></returns>
-	public Cell getCell(String cellName) {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			CellsResponse cellsResponse = gson.fromJson(strJSON,
-					CellsResponse.class);
-
-			return cellsResponse.getCell();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	
+	/**
+	 * Sort worksheet data
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param cellArea Cells area to sort
+	 * @param hasHeaders Indicate whether the range has headers
+	 * @param caseSensitive Indicate whether case sensitive when comparing string
+	 * @param sortLeftToRight Indicate whether sorting orientation is from left to right 
+	 * @param keyList Represents list of sorted column index and sort order 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether worksheet data sorted successfully 
+	*/
+	public boolean sortWorksheetData(String cellArea, boolean hasHeaders, boolean caseSensitive, boolean sortLeftToRight, List<SortKey> keyList) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		if(cellArea == null || cellArea.length() ==0) {
+			throw new IllegalArgumentException("Cell area cannot be null or empty");
 		}
+		
+		if(keyList == null) {
+			throw new IllegalArgumentException("keyList cannot be null");
+		}
+		
+		boolean isWorksheetDataSortedSuccessfully = false;
+		
+      	//Serialize the JSON request content
+      	DataSortModel dataSort = new DataSortModel();
+      	dataSort.HasHeaders = hasHeaders;
+      	dataSort.CaseSensitive = caseSensitive;
+      	dataSort.SortLeftToRight = sortLeftToRight;
+      	dataSort.KeyList =  keyList;
+      	
+      	GsonBuilder builder = new GsonBuilder();
+      	Gson gson = builder.create();
+      	String requestJSONString = gson.toJson(dataSort, DataSortModel.class);
+              
+      	//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/sort?cellArea=" + cellArea;
+        //sign URL
+        String signedURI = Utils.sign(strURL);
+
+      	InputStream responseStream = Utils.processCommand(signedURI, "POST", requestJSONString);
+      	String responseJSONString = Utils.streamToString(responseStream);
+      	
+      	//Parsing JSON
+  		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+  		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+  			isWorksheetDataSortedSuccessfully = true;
+  		}
+  		
+  		return isWorksheetDataSortedSuccessfully;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="cellName"></param>
-	// / <returns></returns>
-	public Style getCellStyle(String cellName) {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
-					+ "/style";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			CellsResponse cellsResponse = gson.fromJson(strJSON,
-					CellsResponse.class);
-
-			return cellsResponse.getStyle();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
+	
+	/**
+	 * Get a specific column from a worksheet
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param columnIndex Column Index
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains column attributes 
+	*/
+	public Column getColumnFromAWorksheet(int columnIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		Column column = null;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/columns/" + columnIndex;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		GetColumnFromAWorksheetResponse columnFromAWorksheetResponse = gson.fromJson(responseJSONString, GetColumnFromAWorksheetResponse.class);
+  		if (columnFromAWorksheetResponse.getCode().equals("200") && columnFromAWorksheetResponse.getStatus().equals("OK")) {
+  			column = columnFromAWorksheetResponse.column;
+  		}
+        
+  		return column;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="cellName"></param>
-	// / <param name="style"></param>
-	// / <returns></returns>
-	public boolean setCellStyle(String cellName, Style style) {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
-					+ "/style";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(style, Style.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
+	
+	/**
+	 * Copy source worksheet to our worksheet.
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param sourceSheetName Source worksheet name
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether source worksheet copied to our worksheet
+	*/
+	public boolean copyAWorksheet(String sourceSheetName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorksheetCopiedSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/copy?sourceSheet=" + sourceSheetName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+  		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+  			isWorksheetCopiedSuccessfully = true;
+  		}
+        
+  		return isWorksheetCopiedSuccessfully;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="index"></param>
-	// / <returns></returns>
-	public Chart getChartByIndex(int index) {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/charts/" + index;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			ChartsResponse chartsResponse = gson.fromJson(strResponse,
-					ChartsResponse.class);
-
-			return chartsResponse.getChart();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
+	
+	/**
+	 * Rename a worksheet
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param newSheetName Worksheet new name
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether worksheet renamed successfully
+	*/
+	public boolean renameAWorksheet(String newSheetName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorksheetRenamedSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/Rename?newname=" + newSheetName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+  		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+  			isWorksheetRenamedSuccessfully = true;
+  		}
+        
+  		return isWorksheetRenamedSuccessfully;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="index"></param>
-	// / <returns></returns>
-	public Hyperlink getHyperlinkByIndex(int index) {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/hyperlinks/" + index;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			HyperlinksResponse hyperlinksResponse = gson.fromJson(strResponse,
-					HyperlinksResponse.class);
-
-			return hyperlinksResponse.getHyperlink();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
+	
+	/**
+	 * Update properties of a worksheet
+	 * @param fileName Name of the file on cloud
+	 * @param worksheetName Worksheet name
+	 * @param xmlData Resquest body
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether properties of a worksheet updated successfully
+	*/
+	public boolean updatePropertiesOfAWorksheet(String xmlData) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorksheetRenamedSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "xml");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+  		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+  			isWorksheetRenamedSuccessfully = true;
+  		}
+        
+  		return isWorksheetRenamedSuccessfully;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="cellName"></param>
-	// / <returns></returns>
-	public Comment getComment(String cellName) {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/comments/" + cellName;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-			// Deserializes the JSON to a object.
-			CommentsResponse commentResponse = gson.fromJson(strResponse,
-					CommentsResponse.class);
-
-			return commentResponse.getComment();
-
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
+	
+	/**
+	 * Set a background image or watermark image for a worksheet 
+	 * @param fileName Name of the file saved on cloud
+	 * @param worksheetName Worksheet name
+	 * @param backgroundImageName Name of background image saved on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether background image set successfully updated
+	*/
+	public boolean setABackgroundImageOrWatermarkImageForAWorksheet(String backgroundImageName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isBackgroundImageSetSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/Background?imagefile=" + backgroundImageName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+  		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+  			isBackgroundImageSetSuccessfully = true;
+  		}
+        
+  		return isBackgroundImageSetSuccessfully;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="index"></param>
-	// / <returns></returns>
-	public OleObject getOleObjectByIndex(int index) {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/oleobjects/" + index;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			OleObjectsResponse oleObjectsResponse = gson.fromJson(strResponse,
-					OleObjectsResponse.class);
-
-			return oleObjectsResponse.getOleObject();
-
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
+	
+	/**
+	 * Freeze panes in a worksheet 
+	 * @param fileName Name of the file saved on cloud
+	 * @param worksheetName Worksheet name
+	 * @param rowNumber
+	 * @param columnNumber
+	 * @param freezedRows
+	 * @param freezedColumns 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether specified area of worksheet get freezed successfully
+	*/
+	public boolean freezePanesInAWorksheet(int rowNumber, int columnNumber, int freezedRows, int freezedColumns) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isPanesFreezedSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/FreezePanes?row=" + rowNumber + "&column=" + columnNumber +
+      			"&freezedRows=" + freezedRows + "&freezedColumns=" + freezedColumns;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+  		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+  			isPanesFreezedSuccessfully = true;
+  		}
+  		
+  		return isPanesFreezedSuccessfully;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="index"></param>
-	// / <returns></returns>
-	public Picture getPictureByIndex(int index) {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/pictures/" + index;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			PicturesResponse picturesResponse = gson.fromJson(strResponse,
-					PicturesResponse.class);
-
-			return picturesResponse.getPicture();
-
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
+	
+	/**
+	 * Unfreeze panes in a worksheet 
+	 * @param fileName Name of the file saved on cloud
+	 * @param worksheetName Worksheet name
+	 * @param rowNumber
+	 * @param columnNumber
+	 * @param freezedRows
+	 * @param freezedColumns 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether specified area of worksheet get unfreezed successfully
+	*/
+	public boolean unFreezePanesInAWorksheet(int rowNumber, int columnNumber, int freezedRows, int freezedColumns) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isPanesUnFreezedSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/FreezePanes?row=" + rowNumber + "&column=" + columnNumber +
+      			"&freezedRows=" + freezedRows + "&freezedColumns=" + freezedColumns;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+  		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+  			isPanesUnFreezedSuccessfully = true;
+  		}
+  		
+  		return isPanesUnFreezedSuccessfully;
 	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="index"></param>
-	// / <returns></returns>
-	public Validation getValidationByIndex(int index) {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/validations/" + index;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			ValidationsResponse validationsResponse = gson.fromJson(
-					strResponse, ValidationsResponse.class);
-
-			return validationsResponse.getValidation();
-
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="index"></param>
-	// / <returns></returns>
-	public MergedCell getMergedCellByIndex(int index) {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/mergedCells/" + index;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			MergedCellsResponse mergedCellsResponse = gson.fromJson(
-					strResponse, MergedCellsResponse.class);
-
-			return mergedCellsResponse.getMergedCell();
-
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public int getMergedCellsCount() {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/mergedCells";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getMergedCells().getCount();
-
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public int getValidationsCount() {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/validations";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getValidations().getCount();
-
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public int getPicturesCount() {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/pictures";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getPictures().getPictureList().size();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public int getOleObjectsCount() {
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/oleobjects";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getOleObjects().getOleOjectList().size();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public int getChartsCount() {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/charts";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getCharts().getChartList().size();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public int getCommentsCount() {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/comments";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getComments().getCommentList().size();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public int getHyperlinksCount() {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/hyperlinks";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getHyperlinks().getCount();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public boolean hideWorksheet() {
-
-		try {
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName
-					+ "/visible?isVisible=false";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <returns></returns>
-	public boolean unhideWorksheet() {
-
-		try {
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName
-					+ "/visible?isVisible=true";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	public boolean moveWorksheet(String worksheetName, Position position) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/worksheets/" + workSheetName + "/position";
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			MoveWorksheet moveWorksheet = new MoveWorksheet();
-			moveWorksheet.setDestinationWorksheet(worksheetName);
-			moveWorksheet.setPosition(position);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="formula"></param>
-	// / <returns></returns>
-	public String calculateFormula(String formula) {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName
-					+ "/formulaResult?formula=" + formula;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			CalculateFormulaResponse formulaResponse = gson.fromJson(
-					strResponse, CalculateFormulaResponse.class);
-
-			return formulaResponse.getValue();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-	}
-
-	public boolean setCellValue(String cellName, String valueType, String value) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/cells/" + cellName
-					+ "?value=" + value + "&type=" + valueType;
-
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="offset"></param>
-	// / <param name="count"></param>
-	// / <returns></returns>
-	public int getRowsCount(int offset, int count) {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/rows?offset=" + offset
-					+ "&count=" + count;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			WorksheetResponse worksheetResponse = gson.fromJson(strResponse,
-					WorksheetResponse.class);
-
-			return worksheetResponse.getRows().getRowCount();
-
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return -1;
-		}
-
-	}
-
-	public Row getRow(int rowIndex) {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/rows/" + rowIndex;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			Gson gson = new Gson();
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Deserializes the JSON to a object.
-			RowsResponse rowsResponse = gson.fromJson(strResponse,
-					RowsResponse.class);
-
-			return rowsResponse.getRow();
-
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
-	}
-
-	public boolean deleteRow(int rowIndex) {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/rows/" + rowIndex;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	public boolean sortData(DataSort dataSort, String cellArea) {
-		try {
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/sort?" + cellArea;
-
-			String signedURI = Utils.sign(strURI);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(dataSort, DataSort.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	public Column getColumn(int columnIndex) {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			strURI += "/worksheets/" + workSheetName + "/columns/"
-					+ columnIndex;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Deserializes the JSON to a object.
-			ColumnsResponse columnsResponse = gson.fromJson(strJSON,
-					ColumnsResponse.class);
-
-			return columnsResponse.getColumn();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-
-	}
-
-	private String workSheetName;
-	private String fileName;
-	private boolean isVisible;
-	private boolean isSelected;
-	private boolean isGridLinesVisible;
-	private boolean isProtected;
-	private int index;
-	private String name;
-
-	public String getWorkSheetName() {
-		return workSheetName;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public boolean getIsVisible() {
-		return isVisible;
-	}
-
-	public boolean getIsSelected() {
-		return isSelected;
-	}
-
-	public boolean getIsGridLinesVisible() {
-		return isGridLinesVisible;
-	}
-
-	public boolean getIsProtected() {
-		return isProtected;
-	}
-
-	public int getIndex() {
-		return index;
-	}
-
-	public String getName() {
-		return name;
+ 
+	/**
+	 * Delete a background or watermark image of a excel worksheet 
+	 * @param fileName Name of the file saved on cloud
+	 * @param worksheetName Worksheet name
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether background image deleted successfully
+	*/
+	public boolean deleteABackgroundOrWatermarkImageOfAWorksheet() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isBackgroundImageDeletedSuccessfully = false;
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/Background";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+  		Gson gson = new Gson();
+  		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+  		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+  			isBackgroundImageDeletedSuccessfully = true;
+  		}
+  		
+  		return isBackgroundImageDeletedSuccessfully;
 	}
 
 }

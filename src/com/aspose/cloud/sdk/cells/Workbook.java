@@ -1,789 +1,687 @@
 ﻿package com.aspose.cloud.sdk.cells;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
-import android.util.Log;
-
+import com.aspose.cloud.sdk.cells.NamesCountFromAWorkbookResponse.NamesCountFromAWorkbookResult;
+import com.aspose.cloud.sdk.cells.SplitWorksheetsOfAWorkbookResponse.SplitWorksheetsOfAWorkbookResult;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+/**
+ * Workbook --- Using this class you can create excel workbook, convert excel workbook to different file formats, 
+ * merge multiple workbooks, split worksheets of a workbook file, protect, unprotect, encrypt and decrypt workbook, 
+ * set and remove write protection and get names count from excel workbook
+ * @author   M. Sohail Ismail
+ */
 public class Workbook {
 
-	private static final String TAG = "Workbook";
-	// / <summary>
-	// / Workbook Constructor, set the file name and password
-	// / </summary>
-	// / <param name="fileName"> File Name</param>
-	public Workbook(String fileName) {
-		this.fileName = fileName;
+	private static final String CELLS_URI = AsposeApp.BASE_PRODUCT_URI + "/cells/";
+	
+	/**
+	 * Create an empty excel workbook
+	 * @param fileName Name of the file on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether excel workbook created successfully
+	*/
+	public static boolean createAnEmptyExcelWorkbook(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		boolean isWorkbookCreatedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorkbookCreatedSuccessfully = true;
+		}
+		
+		return isWorkbookCreatedSuccessfully;
+	}
+	
+	/**
+	 * Create excel workbook from a template file
+	 * @param fileName Name of the file on cloud
+	 * @param templateFileName Template server file (including path)
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether excel workbook created successfully from a template file
+	*/
+	public static boolean createExcelWorkbookFromATemplateFile(String fileName, String templateFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorkbookCreatedSuccessfullyFromTemplate = false;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(templateFileName == null || templateFileName.length() == 0) {
+			throw new IllegalArgumentException("Template file name cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "?templatefile=" + templateFileName;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorkbookCreatedSuccessfullyFromTemplate = true;
+		}
+		
+		return isWorkbookCreatedSuccessfullyFromTemplate;
+	}
+	
+	/**
+	 * Create excel workbook from a smartMarker template
+	 * @param fileName Name of the file on cloud
+	 * @param templateFileName Template server file (including path)
+	 * @param dataFile Smart marker data server path
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether excel workbook created successfully from a smart marker template
+	*/
+	public static boolean createExcelWorkbookFromASmartMarkerTemplate(String fileName, String templateFileName, String dataFile) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorkbookCreatedSuccesfullyFromSmartMarkerTemplate = false;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(templateFileName == null || templateFileName.length() == 0) {
+			throw new IllegalArgumentException("Template file name cannot be null or empty");
+		}
+		
+		if(dataFile == null || dataFile.length() == 0) {
+			throw new IllegalArgumentException("Data file cannot be null or empty");
+		}
+			
+		//build URL
+      	String strURL = CELLS_URI + fileName + "?templatefile=" + templateFileName 
+      			+ "&dataFile=" + dataFile;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorkbookCreatedSuccesfullyFromSmartMarkerTemplate = true;
+		}
+		
+		return isWorkbookCreatedSuccesfullyFromSmartMarkerTemplate;
+	}
+	
+	/**
+	 * Convert excel workbook to different file formats
+	 * @param fileName Name of the file on cloud
+	 * @param designatedFormat Convert the document to the specified format
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Path to converted file saved on device
+	*/
+	public static String convertExcelWorkbookToDifferentFileFormats(String fileName, ValidFormatsForPresentationEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String localFilePath = null;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "?format=" + designatedFormat; 
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+		
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		return localFilePath;
+	}
+	
+	/**
+	 * Convert workbook to different file formats without uploading to any storage 
+	 * @param localFilePath Path to file stored on device
+	 * @param designatedFormat Convert the document to the specified format
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Path to converted file saved on device
+	*/
+	public static String convertExcelWorkbookToDifferentFileFormatsWithoutUsingStorage(String localFilePath, ValidFormatsForPresentationEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String updatedFilePath = null;
+		
+		if(localFilePath == null || localFilePath.length() == 0) {
+			throw new IllegalArgumentException("Local file path cannot be null or empty");
+		}
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URL
+      	String strURL = CELLS_URI + "convert?format=" + designatedFormat; 
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        //Convert the local file to InputStream
+		InputStream fileStream = new FileInputStream(localFilePath);
+		//Process the request on server
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT", fileStream);
+		
+		//Get fileName from localFilePath
+		String fileName;
+		int index = localFilePath.lastIndexOf("/");
+		if(index != -1) {
+			fileName = localFilePath.substring(index+1);
+		} else {
+			fileName = localFilePath;
+		}
+		//Replace fileName extension with designated format 
+		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
+		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
+				
+		//Save the stream in response to the disk
+		updatedFilePath = Utils.saveStreamToFile(responseStream, fileName);
+      		
+		return updatedFilePath;
+	}
+	
+	/**
+	 * Convert a workbook to other formats with additional settings  
+	 * @param fileName Name of file stored on cloud
+	 * @param xmlData Additional save options
+	 * @param outputFileName Name use for saving converted file
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Path to converted file saved on device
+	*/
+	public static String convertExcelWorkbookWithAdditionalSettings(String fileName, String xmlData, String outputFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		String localFilePath = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(xmlData == null || xmlData.length() == 0) {
+			throw new IllegalArgumentException("XML Data cannot be null or empty");
+		}
+		
+		if(outputFileName == null || outputFileName.length() == 0) {
+			throw new IllegalArgumentException("Output file name cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/saveAs"; 
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+		
+        //Process the request on server
+      	InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "xml");
+      	
+      	//Save the stream in response to the disk
+      	localFilePath = Utils.saveStreamToFile(responseStream, outputFileName);
+            		
+      	return localFilePath;
+	}
+	
+	/**
+	 * Merge multiple workbooks into a single workbook 
+	 * @param fileName Name of file stored on cloud
+	 * @param mergeWithFileName Name of file to be merged with
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether two files merged successfully
+	*/
+	public static boolean mergeExcelWorkbooks(String fileName, String mergeWithFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		boolean isExcelFilesMergedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(mergeWithFileName == null || mergeWithFileName.length() == 0) {
+			throw new IllegalArgumentException("Merge with file name cannot be null or empty");
+		}
+		
+		//build URI
+		String strURI = CELLS_URI + fileName + "/merge?mergeWith=" + mergeWithFileName;
+		//sign URI
+		String signedURI = Utils.sign(strURI);
+
+		//Process the request on server
+		InputStream responseStream = Utils.processCommand(signedURI, "POST");
+		//Further process JSON response
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isExcelFilesMergedSuccessfully = true;
+		}
+		
+		return isExcelFilesMergedSuccessfully;
+	}
+	
+	/**
+	 * Split all or specific worksheets of a workbook file and save each worksheet as a new workbook
+	 * @param fileName Name of file stored on cloud
+	 * @param designatedFormat Convert the document to the specified format
+	 * @param fromWorksheet The start page number for splitting
+	 * @param toWorksheet The last page number for splitting
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains hypertext references to splitted worksheets
+	*/
+	public static SplitWorksheetsOfAWorkbookResult splitWorksheetsOfAWorkbook
+		(String fileName, ValidFormatsForDocumentEnum designatedFormat, int fromWorksheet, int toWorksheet) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		SplitWorksheetsOfAWorkbookResult splitWorksheetsOfAWorkbookResult = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(designatedFormat == null) {
+			throw new IllegalArgumentException("Designated format cannot be null");
+		}
+		
+		//build URI
+		String strURI;
+		if(fromWorksheet > 0 && toWorksheet > 0) {
+			strURI = CELLS_URI + fileName + "/split?from=" +  fromWorksheet + "&to=" + toWorksheet + "&format=" + designatedFormat;
+		} else {
+			strURI = CELLS_URI + fileName + "/split?format=" + designatedFormat;
+		}
+		
+		//sign URI
+		String signedURI = Utils.sign(strURI);
+
+		//Process the request on server
+		InputStream responseStream = Utils.processCommand(signedURI, "POST");
+		//Further process JSON response
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		SplitWorksheetsOfAWorkbookResponse splitWorksheetsofAWorkbookResponse = gson.fromJson(responseJSONString, SplitWorksheetsOfAWorkbookResponse.class);
+		if (splitWorksheetsofAWorkbookResponse.getCode().equals("200") && splitWorksheetsofAWorkbookResponse.getStatus().equals("OK")) {
+			splitWorksheetsOfAWorkbookResult = splitWorksheetsofAWorkbookResponse.result;
+		}
+		
+		return splitWorksheetsOfAWorkbookResult;
+	}
+	
+	/**
+	 * Protect excel workbooks
+	 * @param fileName Name of file stored on cloud
+	 * @param protectionType Represents workbook protection type.Valid values are All, Structure, Windows and None
+	 * @param password Protection password 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether a workbook protected successfully
+	*/
+	public static boolean protectAWorkbook(String fileName, ProtectionTypeEnum protectionType, String password) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorkbookProtectedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(protectionType == null) {
+			throw new IllegalArgumentException("Protection type cannot be null");
+		}
+		
+		if(password == null || password.length() == 0) {
+			throw new IllegalArgumentException("Password cannot be null or empty");
+		}
+		
+		//Serialize the JSON request content
+		ProtectionModel protectionObj = new ProtectionModel();
+		protectionObj.protectionType = protectionType;
+		protectionObj.password = password;
+
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(protectionObj, ProtectionModel.class);
+		
+        //build URI
+        String strURI = CELLS_URI + fileName + "/protection";
+        //sign URL
+      	String signedURI = Utils.sign(strURI);
+
+		InputStream responseStream = Utils.processCommand(signedURI, "POST", requestJSONString);
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorkbookProtectedSuccessfully = true;
+		}
+		
+		return isWorkbookProtectedSuccessfully;
 	}
 
-	// / <summary>
-	// / Get Document's properties
-	// / </summary>
-	// / <returns>List of document properties</returns>
-	public List<DocumentProperty> getProperties() {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/documentProperties";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorkbookResponse workbookResponse = gson.fromJson(strJSON,
-					WorkbookResponse.class);
-
-			return workbookResponse.getDocumentProperties()
-					.getDocumentPropertyList();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	/**
+	 * Unprotect excel workbooks
+	 * @param fileName Name of file stored on cloud
+	 * @param password Protection password 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether a workbook unprotected successfully
+	*/
+	public static boolean unprotectAWorkbook(String fileName, String password) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorkbookUnProtectedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
+		
+		if(password == null || password.length() == 0) {
+			throw new IllegalArgumentException("Password cannot be null or empty");
+		}
+		
+		//Serialize the JSON request content
+		ProtectionModel protectionObj = new ProtectionModel();
+		protectionObj.password = password;
+
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(protectionObj, ProtectionModel.class);
+		
+        //build URI
+        String strURI = CELLS_URI + fileName + "/protection";
+        //sign URL
+      	String signedURI = Utils.sign(strURI);
+
+		InputStream responseStream = Utils.processCommand(signedURI, "DELETE", requestJSONString);
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorkbookUnProtectedSuccessfully = true;
+		}
+		
+		return isWorkbookUnProtectedSuccessfully;
+		
+	}
+	
+	/**
+	 * Encrypt a workbook
+	 * @param fileName Name of file stored on cloud
+	 * @param encryptionType The encryption algorithm type. Valid values are XOR, EnhancedCryptographicProviderV1 and StrongCryptographicProvider.
+	 *  This parameter is only for Excel97~2003 format 
+	 * @param password Encryption password 
+	 * @param keyLength The key length. This parameter is only for Excel97~2003 format
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether a workbook encrypted successfully
+	*/
+	public static boolean encryptAWorkbook (String fileName, EncryptionTypeEnum encryptionType, String password, int keyLength) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorkbookEncryptedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(encryptionType == null) {
+			throw new IllegalArgumentException("Encryption type cannot be null");
+		}
+		
+		if(password == null || password.length() == 0) {
+			throw new IllegalArgumentException("Password cannot be null or empty");
+		}
+		
+		//Serialize the JSON request content
+		EncryptionModel encryptionObj = new EncryptionModel();
+		encryptionObj.encryptionType = encryptionType;
+		encryptionObj.password = password;
+		encryptionObj.keyLength = keyLength;
+		
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(encryptionObj, EncryptionModel.class);
+		
+        //build URI
+        String strURI = CELLS_URI + fileName + "/encryption";
+        //sign URL
+      	String signedURI = Utils.sign(strURI);
+
+		InputStream responseStream = Utils.processCommand(signedURI, "POST", requestJSONString);
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorkbookEncryptedSuccessfully = true;
+		}
+		
+		return isWorkbookEncryptedSuccessfully;
+	}
+	
+	/**
+	 * Decrypt a workbook
+	 * @param fileName Name of file stored on cloud
+	 * @param password Encryption password 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether a workbook decrypted successfully
+	*/
+	public static boolean decryptAWorkbook(String fileName, String password) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isWorkbookDecryptedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(password == null || password.length() == 0) {
+			throw new IllegalArgumentException("Password cannot be null or empty");
+		}
+		
+		//Serialize the JSON request content
+		EncryptionModel encryptionObj = new EncryptionModel();
+		encryptionObj.password = password;
+		
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(encryptionObj, EncryptionModel.class);
+		
+        //build URI
+        String strURI = CELLS_URI + fileName + "/encryption";
+        //sign URL
+      	String signedURI = Utils.sign(strURI);
+
+		InputStream responseStream = Utils.processCommand(signedURI, "DELETE", requestJSONString);
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isWorkbookDecryptedSuccessfully = true;
+		}
+		
+		return isWorkbookDecryptedSuccessfully;
+	}
+	
+	/**
+	 * Set modify password of excel workbooks (Write protection)
+	 * @param fileName Name of file stored on cloud
+	 * @param password Modify password 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether write protection set successfully on workbook
+	*/
+	public static boolean setModifyPasswordOfAWorkbook(String fileName, String password) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean modifyPasswordSetSuccessfullyOfAWorkbook = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(password == null || password.length() == 0) {
+			throw new IllegalArgumentException("Password cannot be null or empty");
+		}
+		
+		//Serialize the JSON request content
+		ProtectionModel protectionObj = new ProtectionModel();
+		protectionObj.password = password;
+
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(protectionObj, ProtectionModel.class);
+		
+        //build URI
+        String strURI = CELLS_URI + fileName + "/writeProtection";
+        //sign URL
+      	String signedURI = Utils.sign(strURI);
+
+		InputStream responseStream = Utils.processCommand(signedURI, "PUT", requestJSONString);
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			modifyPasswordSetSuccessfullyOfAWorkbook = true;
+		}
+		
+		return modifyPasswordSetSuccessfullyOfAWorkbook;
 	}
 
-	// / <summary>
-	// / Get a Particular Property
-	// / </summary>
-	// / <param name="propertyName"></param>
-	// / <returns></returns>
-	public DocumentProperty getProperty(String propertyName) {
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/documentProperties/" + propertyName;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorkbookResponse workbookResponse = gson.fromJson(strJSON,
-					WorkbookResponse.class);
-
-			return workbookResponse.getDocumentProperty();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+	/**
+	 * Clear modify password of excel workbook (Remove write protection)
+	 * @param fileName Name of file stored on cloud
+	 * @param password Modify password 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether write protection removed successfully on workbook
+	*/
+	public static boolean clearModifyPasswordOfAWorkbook(String fileName, String password) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean modifyPasswordClearedSuccessfullyOfAWorkbook = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
+		
+		if(password == null || password.length() == 0) {
+			throw new IllegalArgumentException("Password cannot be null or empty");
+		}
+		
+		//Serialize the JSON request content
+		ProtectionModel protectionObj = new ProtectionModel();
+		protectionObj.password = password;
+
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(protectionObj, ProtectionModel.class);
+		
+        //build URI
+        String strURI = CELLS_URI + fileName + "/writeProtection";
+        //sign URL
+      	String signedURI = Utils.sign(strURI);
+
+		InputStream responseStream = Utils.processCommand(signedURI, "DELETE", requestJSONString);
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			modifyPasswordClearedSuccessfullyOfAWorkbook = true;
+		}
+		
+		return modifyPasswordClearedSuccessfullyOfAWorkbook;
 	}
+	
+	/**
+	 * Get names count from excel workbooks
+	 * @param fileName Name of file stored on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains names count
+	*/
+	public static NamesCountFromAWorkbookResult getNamesCountFromAWorkbook(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException{
 
-	// / <summary>
-	// / Set document property
-	// / </summary>
-	// / <param name="propertyName">property name</param>
-	// / <param name="propertyValue">property value</param>
-	public boolean setProperty(String propertyName, String propertyValue) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName + "/documentProperties/"
-					+ propertyName;
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			DocumentProperty docProperty = new DocumentProperty();
-			docProperty.setValue(propertyValue);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(docProperty, DocumentProperty.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT",
-					strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("201")
-					&& baseResponse.getStatus().equals("Created"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
+		NamesCountFromAWorkbookResult namesCountFromAWorkbookResult = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/names";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+		Gson gson = new Gson();
+		NamesCountFromAWorkbookResponse namesCountFromAWorkbookResponse = gson.fromJson(responseJSONString, NamesCountFromAWorkbookResponse.class);
+		if (namesCountFromAWorkbookResponse.getCode().equals("200") && namesCountFromAWorkbookResponse.getStatus().equals("OK")) {
+			namesCountFromAWorkbookResult = namesCountFromAWorkbookResponse.names;
 		}
 
+		return namesCountFromAWorkbookResult;
 	}
-
-	public boolean removeAllProperties() {
-		try {
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/documentProperties";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			BaseResponse workbookResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (workbookResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	public boolean removeProperty(String propertyName) {
-		try {
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/documentProperties/" + propertyName;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			BaseResponse workbookResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (workbookResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="newWorkbookName"></param>
-	public boolean createEmptyWorkbook() {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	public boolean createWorkbookFromTemplate(String templateFileName) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "?templatefile=" + templateFileName;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="newWorkbookName"></param>
-	// / <param name="templateFileName"></param>
-	// / <param name="dataFile"></param>
-	public boolean createWorkbookFromSmartMarkerTemplate(
-			String templateFileName, String dataFile) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "?templatefile=" + templateFileName + "&dataFile="
-					+ dataFile;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	public boolean processSmartMarker(String dataFile) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/smartmarker?xmlFile=" + dataFile;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	public int getWorksheetsCount() {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/worksheets";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorkbookResponse workbookResponse = gson.fromJson(strJSON,
-					WorkbookResponse.class);
-
-			return workbookResponse.getWorksheets().getWorksheetList().size();
-		}
-
-		catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return 0;
-		}
-
-	}
-
-	public int getNamesCount() {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/names";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorkbookResponse workbookResponse = gson.fromJson(strJSON,
-					WorkbookResponse.class);
-
-			return workbookResponse.getNames().getCount();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return 0;
-		}
-
-	}
-
-	public Style getDefaultStyle() {
-
-		try {
-			// check whether file is set or not
-			if (fileName.equals(""))
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/defaultStyle";
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			WorkbookResponse workbookResponse = gson.fromJson(strJSON,
-					WorkbookResponse.class);
-
-			return workbookResponse.getStyle();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
-		}
-	}
-
-	public boolean encryptWorkbook(EncryptionType encryptionType,
-			String password, int keyLength) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/encryption";
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			Encryption encryption = new Encryption();
-			encryption.setEncryptionType(encryptionType);
-			encryption.setPassword(password);
-			encryption.setKeylength(keyLength);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(encryption, Encryption.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	public boolean protectWorkbook(ProtectionType protectionType,
-			String password) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/protection";
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			Protection protection = new Protection();
-			protection.setProtectionType(protectionType);
-			protection.setPassword(password);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(protection, Protection.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	public boolean unprotectWorkbook(String password) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/protection";
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			Protection protection = new Protection();
-			protection.setPassword(password);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(protection, Protection.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	public boolean setModifyPassword(String password) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/writeProtection";
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			Protection protection = new Protection();
-			protection.setPassword(password);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(protection, Protection.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"POST", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	public boolean clearModifyPassword(String password) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/writeProtection";
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			Protection protection = new Protection();
-			protection.setPassword(password);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(protection, Protection.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	public boolean decryptWorkbook(String password) {
-
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/encryption";
-			String signedURI = Utils.sign(strURI);
-
-			// serialize the JSON request content
-			Encryption encryption = new Encryption();
-
-			encryption.setPassword(password);
-
-			String strJSON = "";
-
-			Gson gson = new Gson();
-
-			strJSON = gson.toJson(encryption, Encryption.class);
-
-			InputStream responseStream = Utils.processCommand(signedURI,
-					"DELETE", strJSON);
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="worksheetName"></param>
-
-	public boolean addWorksheet(String worksheetName) {
-		try {
-			// build URI to get page count
-			String strURI = AsposeApp.BASE_PRODUCT_URI + "/cells/" + fileName
-					+ "/worksheets/" + worksheetName;
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("201"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// /
-	// / </summary>
-	// / <param name="worksheetName"></param>
-	// / <returns></returns>
-	public boolean removeWorksheet(String worksheetName) {
-
-		try {
-
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/worksheets/" + worksheetName;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils.processCommand(signedURI, "PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	public boolean mergeWorkbook(String mergefileName) {
-		try {
-			// check whether file is set or not
-			if (fileName == "")
-				throw new Exception("No file name specified");
-
-			// build URI
-			String strURI = AsposeApp.BASE_PRODUCT_URI
-					+ "/cells/" + fileName;
-			strURI += "/merge?mergeWith=" + mergefileName;
-
-			// sign URI
-			String signedURI = Utils.sign(strURI);
-
-			InputStream responseStream = Utils
-					.processCommand(signedURI, "POST");
-
-			// further process JSON response
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-
-			// Parse the json string to JObject and Deserializes the JSON to a
-			// object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
-		}
-	}
-
-	// / <summary>
-	// / Workbook name
-	// / </summary>
-	public String fileName;
-
 }

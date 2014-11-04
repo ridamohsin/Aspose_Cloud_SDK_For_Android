@@ -1,22 +1,253 @@
-﻿package com.aspose.cloud.sdk.cells;
-import java.lang.String;
+package com.aspose.cloud.sdk.cells;
 
-public class Hyperlink
-    {
-        public Hyperlink()
-        {
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
-        }
+import com.aspose.cloud.sdk.cells.HyperlinkResponse.HyperlinkData;
+import com.aspose.cloud.sdk.common.AsposeApp;
+import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.Utils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-        public String Address ;
-        public CellArea Area ;
-        public String ScreenTip ;
-        public String TextToDisplay ;
+/**
+ * Hyperlink --- Using this class you can get a specific hyperlink from a worksheet, Add a hyperlink to a worksheet, 
+ * Update a hyperlink in a worksheet and Delete hyperlinks from a worksheet.
+ * @author   M. Sohail Ismail
+ */
+public class Hyperlink {
+	
+	private static final String CELLS_URI = AsposeApp.BASE_PRODUCT_URI + "/cells/";
+	
+	private String fileName;
+	private String worksheetName;
+	
+	public Hyperlink(String fileName, String worksheetName) {
+		this.fileName = fileName;
+		this.worksheetName = worksheetName;
+	}
+	
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
+	public void setWorksheetName(String worksheetName) {
+		this.worksheetName = worksheetName;
+	}
+	
+	/**
+	 * Get a specific hyperlink from a worksheet 
+	 * @param workbookName Name of workbook stored on cloud
+	 * @param worksheetName Worksheet name
+	 * @param hyperlinkIndex Hyperlink index 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains attributes of hyperlink
+	*/ 
+	public HyperlinkData getHyperlinkFromExcelWorksheet(int hyperlinkIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		HyperlinkData hyperlink = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(worksheetName == null || worksheetName.length() == 0) {
+			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
+		}
+		
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + 
+				"/hyperlinks/" + hyperlinkIndex;
+						
+        //sign URL
+        String signedURL = Utils.sign(strURL);
         
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		String responseJSONString = Utils.streamToString(responseStream);
         
-        public String getAddress(){return Address;}
-        public CellArea getArea(){return Area;}
-        public String getScreenTip(){return ScreenTip;}
-        public String getTextToDisplay(){return TextToDisplay;}
-
-    }
+        //Parsing JSON
+		Gson gson = new Gson();
+		HyperlinkResponse hyperlinkResponse = gson.fromJson(responseJSONString, HyperlinkResponse.class);
+		if (hyperlinkResponse.getCode().equals("200") && hyperlinkResponse.getStatus().equals("OK")) {
+			hyperlink = hyperlinkResponse.hyperlink;
+		}
+		
+		return hyperlink;
+	}
+	
+	/**
+	 * Add a hyperlink to a worksheet 
+	 * @param workbookName Name of workbook stored on cloud
+	 * @param worksheetName Worksheet name
+	 * @param firstRow Starting row index
+	 * @param firstColumn Starting column index
+	 * @param totalRows Hyperlink area span to this number of rows 
+	 * @param totalColumns Hyperlink area span to this number of columns
+	 * @param address Hyperlink address e.g. address=www.aspose.com
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains attributes of hyperlink
+	*/ 
+	public HyperlinkData addHyperlinksToExcelWorksheet(int firstRow, int firstColumn, 
+			int totalRows, int totalColumns, String address) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		HyperlinkData hyperlink = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(worksheetName == null || worksheetName.length() == 0) {
+			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
+		}
+		
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + 
+				"/hyperlinks?firstRow=" + firstRow + "&firstColumn=" + firstColumn + "&totalRows=" + totalRows + 
+				"&totalColumns=" + totalColumns + "&address=" + address;
+						
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		Gson gson = new Gson();
+		HyperlinkResponse hyperlinkResponse = gson.fromJson(responseJSONString, HyperlinkResponse.class);
+		if (hyperlinkResponse.getCode().equals("200") && hyperlinkResponse.getStatus().equals("OK")) {
+			hyperlink = hyperlinkResponse.hyperlink;
+		}
+		
+		return hyperlink;
+	}
+	
+	/**
+	 * Update a hyperlink in a worksheet 
+	 * @param workbookName Name of workbook stored on cloud
+	 * @param worksheetName Worksheet name
+	 * @param hyperlinkIndex Hyperlink index
+	 * @param hyperlinkRequest Hyperlink request
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains updated attributes of hyperlink
+	*/ 
+	public HyperlinkData updateHyperlinksInExcelWorksheet(int hyperlinkIndex, HyperlinkResponse hyperlinkRequest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		HyperlinkData hyperlink = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(worksheetName == null || worksheetName.length() == 0) {
+			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
+		}
+		
+		GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String requestJSONString = gson.toJson(hyperlinkRequest, HyperlinkResponse.class);
+		
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + 
+				"/hyperlinks/" + hyperlinkIndex;
+						
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+		String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		HyperlinkResponse hyperlinkResponse = gson.fromJson(responseJSONString, HyperlinkResponse.class);
+		if (hyperlinkResponse.getCode().equals("200") && hyperlinkResponse.getStatus().equals("OK")) {
+			hyperlink = hyperlinkResponse.hyperlink;
+		}
+		
+		return hyperlink;
+	}
+	
+	/**
+	 * Delete all hyperlinks from excel worksheet 
+	 * @param workbookName Name of workbook stored on cloud
+	 * @param worksheetName Worksheet name
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether all hyperlinks deleted successfully from a worksheet
+	*/ 
+	public boolean deleteAllHyperlinksFromExcelWorksheet() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isAllHyperlinksDeletedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(worksheetName == null || worksheetName.length() == 0) {
+			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
+		}
+		
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + 
+				"/hyperlinks";
+						
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+		String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isAllHyperlinksDeletedSuccessfully = true;
+		}
+		
+		return isAllHyperlinksDeletedSuccessfully;
+	}
+	
+	/**
+	 * Delete a specific hyperlink from a worksheet  
+	 * @param workbookName Name of workbook stored on cloud
+	 * @param worksheetName Worksheet name
+	 * @param hyperlinkIndex Hyperlink index
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable that indicates whether a hyperlink deleted successfully from a worksheet
+	*/
+	public boolean deleteASpecificHyperlinkFromExcelWorksheet(int hyperlinkIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isAHyperlinkDeletedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(worksheetName == null || worksheetName.length() == 0) {
+			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
+		}
+		
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + 
+				"/hyperlinks/" + hyperlinkIndex;
+						
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+		String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isAHyperlinkDeletedSuccessfully = true;
+		}
+		
+		return isAHyperlinkDeletedSuccessfully;
+	}
+}

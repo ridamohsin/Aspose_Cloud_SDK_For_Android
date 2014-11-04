@@ -1,23 +1,21 @@
 ﻿package com.aspose.cloud.sdk.cells;
-import java.util.List;
+import java.util.ArrayList;
 
 import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.LinkModel;
+import com.google.gson.annotations.SerializedName;
 
-    /// <summary>
-    ///  Represents response from the Charts resource
-    /// </summary>
-    public class ChartsResponse extends BaseResponse
-    {        
-        private LinkResponse link ;
-
-        private List<LinkResponse> ChartList ;
-
-        private Chart Chart ;
-        
-        public LinkResponse getlink() {return link;}
-
-        public List<LinkResponse> getChartList(){return ChartList;}
-
-        public Chart getChart(){return Chart;}
-
-    }
+    
+public class ChartsResponse extends BaseResponse {        
+	@SerializedName("Charts")
+	public ChartsResult charts;
+	
+	public class ChartsResult {
+		public ArrayList<ChartLink> ChartList;
+		public LinkModel link;
+	}
+	
+	public class ChartLink {
+		public LinkModel link;
+	}
+}

@@ -1,18 +1,15 @@
 ﻿package com.aspose.cloud.sdk.cells;
 
 import com.aspose.cloud.sdk.common.BaseResponse;
+import com.google.gson.annotations.SerializedName;
 
-    /// <summary>
-    ///  Represents response from the calculateformula resource
-    /// </summary>
-    public class CalculateFormulaResponse extends BaseResponse
-    {
-        private int ValueType;
-
-        private String Value ;
-        
-        public int getValueType(){return ValueType;}
-
-        public String getValue(){return Value;}
-
+public class CalculateFormulaResponse extends BaseResponse
+{
+	@SerializedName("Value")
+	public CalculateFormulaResult value;
+	
+	public class CalculateFormulaResult {
+		public int ValueType;
+		public String Value;
     }
+}
