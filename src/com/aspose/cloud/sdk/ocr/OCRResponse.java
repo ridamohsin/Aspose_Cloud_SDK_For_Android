@@ -9,9 +9,9 @@ public class OCRResponse extends BaseResponse {
 	@SerializedName("PartsInfo")
 	public OCREnvelop partsInfo;
 	@SerializedName("Text")
-    public String text;
+    	public String text;
     
-	//Here is the OCREnvelop class
+    //Here is the OCREnvelop class
     public class OCREnvelop {
     	@SerializedName("Parts")
         public ArrayList<Part> parts;
