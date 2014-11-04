@@ -50,8 +50,8 @@ public class BarcodeGeneration {
 			strURL = strURL + "&format=" + format;
 		}
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		
@@ -89,8 +89,8 @@ public class BarcodeGeneration {
 			strURL = strURL + "&format=" + format;
 		}
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -138,8 +138,8 @@ public class BarcodeGeneration {
 			strURL = strURL + "&codeLocation=" + codeLocation;
 		}
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -187,8 +187,8 @@ public class BarcodeGeneration {
 			strURL = strURL + "&enableChecksum=" + enableChecksum;
 		}
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -234,8 +234,8 @@ public class BarcodeGeneration {
 		}
 		strURL = strURL + "&rotAngle=" + rotAngle;
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+		//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -285,8 +285,8 @@ public class BarcodeGeneration {
 		strURL = strURL + "&topMargin=" + topMargin + "&bottomMargin=" + bottomMargin
                 + "&leftMargin=" + leftMargin + "&rightMargin=" + rightMargin;
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -333,8 +333,8 @@ public class BarcodeGeneration {
 		}
 		strURL = strURL + "&resolutionX=" + resolutionX + "&resolutionY=" + resolutionY;
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		
@@ -376,8 +376,8 @@ public class BarcodeGeneration {
 		}
 		strURL = strURL + "&barHeight=" + barHeight + "&grUnit=" + grUnit;
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
 		String jsonStr = Utils.streamToString(responseStream);
@@ -424,8 +424,8 @@ public class BarcodeGeneration {
 		}
 		strURL = strURL + "&dimensionX=" + dimensionX + "&dimensionY=" + dimensionY;
 		
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		
