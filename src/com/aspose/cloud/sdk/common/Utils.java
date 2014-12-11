@@ -81,8 +81,7 @@ public class Utils {
 		return mUnsignedURL.toString();
 	}
 
-	public static String uploadFileBinary(File localFile, String uploadUrl,
-			String strHttpCommand) {
+	public static String uploadFileBinary(File localFile, String uploadUrl, String strHttpCommand) {
 		try {
 			Log.i(TAG, "In uploadFileBinary : " + uploadUrl);
 			System.out.println("In uploadFileBinary : " + uploadUrl);
@@ -96,10 +95,13 @@ public class Utils {
 			m_connection.setDoOutput(true);
 			m_connection.setRequestMethod("PUT");
 			m_connection.setRequestProperty("Accept", "text/json");
-			m_connection.setRequestProperty("Content-Type",
-					"MultiPart/Form-Data");
+			m_connection.setRequestProperty("Content-Type", "MultiPart/Form-Data");
 			//byte bytes[] = parameters.getBytes();
 			m_connection.setRequestProperty("Content-length", "" + buf.length);
+			
+			//Track Android SDK Usage
+			m_connection.setRequestProperty("x-saaspose-client", "AndroidSDK/v1.0");
+			
 			m_connection.connect();
 			java.io.OutputStream out = m_connection.getOutputStream();
 			out.write(buf);
@@ -126,6 +128,10 @@ public class Utils {
 		httpCon.setDoOutput(true);
 		httpCon.setRequestProperty("Content-Type", "application/json");
 		httpCon.setRequestProperty("Accept", "application/json");
+		
+		//Track Android SDK Usage
+		httpCon.setRequestProperty("x-saaspose-client", "AndroidSDK/v1.0");
+		
 		httpCon.setRequestMethod(strHttpCommand);
 		httpCon.setFixedLengthStreamingMode(strContent.length());
 		OutputStreamWriter out = new OutputStreamWriter(
@@ -143,6 +149,10 @@ public class Utils {
 		HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
 		httpCon.setDoOutput(true);
 		httpCon.setRequestProperty("Content-Type", "multipart/form-data");
+		
+		//Track Android SDK Usage
+		httpCon.setRequestProperty("x-saaspose-client", "AndroidSDK/v1.0");
+		
 		httpCon.setRequestMethod(strHttpCommand);
 		httpCon.setFixedLengthStreamingMode(bytes.length);
 
@@ -166,6 +176,9 @@ public class Utils {
 		//httpCon.setDoOutput(true);
 		httpCon.setRequestProperty("Content-Type", "application/json");
 		httpCon.setRequestProperty("Accept", "application/json");
+		//Track Android SDK Usage
+		httpCon.setRequestProperty("x-saaspose-client", "AndroidSDK/v1.0");
+		
 		httpCon.setRequestMethod(strHttpCommand);
 		if (strHttpCommand.equals("PUT") || strHttpCommand.equals("POST"))
 			httpCon.setFixedLengthStreamingMode(0);
@@ -176,36 +189,35 @@ public class Utils {
 	}
 
 	public static InputStream processCommand(String strURI,
-			String strHttpCommand, String strContent, String ContentType) {
-		try {
+			String strHttpCommand, String strContent, String ContentType) throws IOException {
+		
+		byte[] arr = strContent.getBytes("UTF-8");
+		URL address = new URL(strURI);
+		HttpURLConnection httpCon = (HttpURLConnection) address
+				.openConnection();
+		//httpCon.setDoOutput(true);
 
-			byte[] arr = strContent.getBytes("UTF-8");
-			URL address = new URL(strURI);
-			HttpURLConnection httpCon = (HttpURLConnection) address
-					.openConnection();
-			//httpCon.setDoOutput(true);
+		if (ContentType.toLowerCase(Locale.US).equals("xml"))
+			httpCon.setRequestProperty("Content-Type", "application/xml");
+		else
+			httpCon.setRequestProperty("Content-Type", "application/json");
+		
+		httpCon.setRequestProperty("Accept", "application/json");
+		//Track Android SDK Usage
+		httpCon.setRequestProperty("x-saaspose-client", "AndroidSDK/v1.0");
+		
+		httpCon.setRequestMethod(strHttpCommand);
 
-			if (ContentType.toLowerCase(Locale.US).equals("xml"))
-				httpCon.setRequestProperty("Content-Type", "application/json");
-			else
-				httpCon.setRequestProperty("Content-Type", "application/xml");
+		httpCon.setFixedLengthStreamingMode(arr.length);
 
-			httpCon.setRequestMethod(strHttpCommand);
+		java.io.OutputStream out = httpCon.getOutputStream();
+		out.write(arr);
+		out.flush();
 
-			httpCon.setFixedLengthStreamingMode(arr.length);
+		String d = httpCon.getResponseMessage();
+		Log.i(TAG, d);
 
-			java.io.OutputStream out = httpCon.getOutputStream();
-			out.write(arr);
-			out.flush();
-
-			String d = httpCon.getResponseMessage();
-			Log.i(TAG, d);
-
-			return httpCon.getInputStream();
-		} catch (Exception Ex) {
-			Ex.printStackTrace();
-			return null;
-		}
+		return httpCon.getInputStream();
 	}
 	
 	public static String streamToString(InputStream stream) {
