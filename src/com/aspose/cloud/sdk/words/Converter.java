@@ -8,9 +8,11 @@ import java.security.NoSuchAlgorithmException;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.words.ConvertWordDocumentToAnyFormatWithAdditionalSettingsResponse.SaveResult;
+import com.google.gson.Gson;
 
 /**
- * Bookmark --- Using this class you can convert a Word document to images, multipage tiff, HTML, PDF and other file formats
+ * Converter --- Using this class you can convert a Word document to images, multipage tiff, HTML, PDF and other file formats
  * on the Aspose cloud storage and without using cloud Storage.
  * @author   M. Sohail Ismail
  */
@@ -74,7 +76,7 @@ public class Converter {
 			throw new IllegalArgumentException("Designated format cannot be null");
 		}
 		
-		//Build the request URI to resize image
+		//Build the request URI
 		String strURL = WORD_URI + "convert?format=" + designatedFormat;
 		//Sign the request URI
 		String signedURL = Utils.sign(strURL);	
@@ -94,7 +96,7 @@ public class Converter {
 		String[] fileNameAndItsExtensionArray = fileName.split("\\.");
 		fileName = fileNameAndItsExtensionArray[0] + "." + designatedFormat;
 				
-		//Save the stream in response to the disk
+		//Save file on Disk
 		convertedFilePath = Utils.saveStreamToFile(responseStream, fileName);
 		
 		return convertedFilePath;
@@ -110,8 +112,8 @@ public class Converter {
 	 * @throws IOException If there is an IO error
 	 * @return A path to converted word document
 	*/
-	public static String convertWordDocumentToFormatWithAdditionalSettings(String fileName, String xmlData, String outputFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
-		String localFilePath = null;
+	public static SaveResult convertWordDocumentToFormatWithAdditionalSettings(String fileName, String xmlData) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		SaveResult saveResult = null;
 		
 		if(fileName == null || fileName.length() <= 3) {
 			throw new IllegalArgumentException("File name cannot be null or empty");
@@ -126,9 +128,15 @@ public class Converter {
 		//sign URL
 		String signedURL = Utils.sign(strURL);
 		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "xml");
+		String responseJSONString = Utils.streamToString(responseStream);
 		
-		//Save file on Disk
-		localFilePath = Utils.saveStreamToFile(responseStream, outputFileName);
-		return localFilePath;
+		//Parsing JSON
+      	Gson gson = new Gson();
+      	ConvertWordDocumentToAnyFormatWithAdditionalSettingsResponse convertWordDocResponse = gson.fromJson(responseJSONString, ConvertWordDocumentToAnyFormatWithAdditionalSettingsResponse.class);
+		if(convertWordDocResponse.getCode().equals("200") && convertWordDocResponse.getStatus().equals("OK")) {
+			saveResult = convertWordDocResponse.saveResult;
+		}
+		
+		return saveResult;
 	}
 }
