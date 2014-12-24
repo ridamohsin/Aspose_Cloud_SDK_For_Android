@@ -1,11 +1,9 @@
 package com.aspose.cloud.sdk.storage;
 
-import java.util.List;
-
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.google.gson.annotations.SerializedName;
 
-public class FolderResponse extends BaseResponse {
-	@SerializedName("Files")
-	public List<FileModel> files;
+public class DiscUsageResponse extends BaseResponse {
+	@SerializedName("DiscUsage")
+	public DiscUsageModel discUsage;
 }

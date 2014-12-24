@@ -1,292 +1,343 @@
-/**
- * 
- */
 package com.aspose.cloud.sdk.storage;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.security.SignatureException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 
-import android.os.Environment;
-import android.util.Log;
+import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Folder {
 
-	private static final String strURIFolder = AsposeApp.BASE_PRODUCT_URI + "/storage/folder/";
-	private static final String strURIFile = AsposeApp.BASE_PRODUCT_URI + "/storage/file/";
-	private static final String strURIExist = AsposeApp.BASE_PRODUCT_URI + "/storage/exist/";
-	private static final String strURIDisc = AsposeApp.BASE_PRODUCT_URI + "/storage/disc/";
+	private static final String FOLDER_URI = AsposeApp.BASE_PRODUCT_URI + "/storage/folder/";
+	private static final String FILE_URI = AsposeApp.BASE_PRODUCT_URI + "/storage/file/";
+	private static final String EXIST_URI = AsposeApp.BASE_PRODUCT_URI + "/storage/exist/";
+	private static final String DISC_URI = AsposeApp.BASE_PRODUCT_URI + "/storage/disc/";
 	
-	private static final String TAG = "Folder";
+	/**
+	 * Get a list of all files and folders under the specified folder. Use empty string to specify root folder.
+	 * @param folderPath Folder path
+	 * @return Array of File Objects
+	*/ 
+	public static List<FileModel> getFilesList(String folderPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		List<FileModel> filesList = null;
+			
+		if(folderPath == null) {
+			throw new IllegalArgumentException("Folder path cannot be null");
+		}
+		
+		//build URL
+      	String strURL = FOLDER_URI + Uri.encode(folderPath);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
+      	Gson gson = gsonBuilder.create();
+      	FolderResponse folderResponse = gson.fromJson(responseJSONString, FolderResponse.class);
+		if(folderResponse.getCode().equals("200") && folderResponse.getStatus().equals("OK")) {
+			filesList = folderResponse.files;
+		}
+		
+		return filesList;
+	}
+
+	/**
+	 * Creates a folder under the specified path. If no path specified, creates a folder under the root folder.
+	 * @param folderPath Folder path
+	 * @return Boolean variable indicates whether folder created successfully
+	*/ 
+	public static boolean createFolder(String folderPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isFolderCreatedSuccessfully = false;
+		
+		if(folderPath == null) {
+			throw new IllegalArgumentException("Folder path cannot be null");
+		}
+		
+		//build URL
+      	String strURL = FOLDER_URI + Uri.encode(folderPath);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isFolderCreatedSuccessfully = true;
+		}
+		
+		return isFolderCreatedSuccessfully;
+	}
 	
-	// / <summary>
-	// / Retrives the list of files and folders under the specified folder. Use
-	// empty string to specify root folder.
-	// / </summary>
-	// / <param name="strFolder"></param>
-	// / <returns></returns>
-	public List<com.aspose.cloud.sdk.storage.File> getFilesList(
-			String strFolder) {
-		try {
-			// StreamReader reader = new StreamReader(Common.
-			// Utils.ProcessCommand(CommonUtils.Sign(this.strURIFolder +
-			// strFolder), "GET") );
-			// further process JSON response
-			String strJSON = Utils.streamToString(Utils.processCommand(
-					Utils.sign(this.strURIFolder + strFolder), "GET"));
-
-			return FileCollection.getFilesList(strJSON);
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return null;
+	/**
+	 * Delete an empty folder from the storage. Use "FolderName/SubFolderName" for sub folders.
+	 * @param folderPath Folder path
+	 * @return Boolean variable indicates whether folder deleted successfully
+	*/ 
+	public static boolean deleteFolder(String folderPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isFolderDeletedSuccessfully = false;
+		
+		if(folderPath == null || folderPath.length() == 0) {
+			throw new IllegalArgumentException("Folder path cannot be null or empty");
 		}
+		
+		//build URL
+      	String strURL = FOLDER_URI + Uri.encode(folderPath);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isFolderDeletedSuccessfully = true;
+		}
+		
+		return isFolderDeletedSuccessfully;	
+		
+	}
+	
+	/**
+	 * Delete a file from the storage. Use "FolderName/FileName" to specify a file under specific folder
+	 * @param filePath File path
+	 * @return Boolean variable indicates whether file deleted successfully
+	*/ 
+	public static boolean deleteFile(String filePath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		boolean isFileDeletedSuccessfully = false;
+		
+		if(filePath == null || filePath.length() == 0) {
+			throw new IllegalArgumentException("File path cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = FILE_URI + Uri.encode(filePath);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isFileDeletedSuccessfully = true;
+		}
+		
+		return isFileDeletedSuccessfully;	
 	}
 
-	// / <summary>
-	// / Deletes a file from the storage. Use "FolderName/FileName" to specify a
-	// file under specific folder.
-	// / </summary>
-	// / <param name="strFileName"></param>
-	public boolean deleteFile(String strFileName) throws Exception {
-		try {
-			InputStream responseStream = Utils.processCommand(
-					Utils.sign(this.strURIFile + strFileName), "DELETE");
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			ex.printStackTrace();
-			return false;
+	/**
+	 * Upload a file from your local machine to remote folder
+	 * @param folderPath Folder path
+	 * @param filePath File path on device
+	 * @return Boolean variable that indicates whether file uploaded successfully
+	*/ 
+	public static boolean uploadFile(String localFilePath, String remoteFolderPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		Boolean isFileUploadedSuccessfully = false;
+		
+		if(localFilePath == null || localFilePath.length() == 0) {
+			throw new IllegalArgumentException("Local file path cannot be null or empty");
 		}
+		
+		if(remoteFolderPath == null) {
+			throw new IllegalArgumentException("Remote folder path cannot be null or empty");
+		}
+		
+		File localFile = new File(localFilePath);
+		String fileName = localFile.getName();
+		
+		String remoteFilePath = remoteFolderPath.length() != 0? remoteFolderPath + "/" + fileName : fileName;
+		
+		//build URL
+      	String strURL = FILE_URI + Uri.encode(remoteFilePath);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		String responseJSONString = Utils.uploadFileBinary(localFile, signedURL, "PUT");
+
+		//Parsing JSON
+      	Gson gson = new Gson();
+      	BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isFileUploadedSuccessfully = true;
+		}
+		
+		return isFileUploadedSuccessfully;
 	}
 
-	// / <summary>
-	// / Deletes an empty folder from the storage. Use
-	// "FolderName/SubFolderName" for sub folders.
-	// / </summary>
-	// / <param name="strFolderName"></param>
-	public boolean deleteFolder(String strFolderName) throws Exception {
-		try {
-			InputStream responseStream = Utils.processCommand(
-					Utils.sign(this.strURIFolder + strFolderName), "DELETE");
-
-			String strResponse = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-			// Parse the json string to JObject
-			BaseResponse baseResponse = gson.fromJson(strResponse,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	/**
+	 * Checks whether file or folder exists on the Aspose storage
+	 * @param fileName File name
+	*/ 
+	public static FileExist fileExist(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		FileExist fileExist = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
+		
+		//build URL
+      	String strURL = EXIST_URI + Uri.encode(fileName);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	FileExistResponse existResponse = gson.fromJson(responseJSONString, FileExistResponse.class);
+		if(existResponse.getCode().equals("200") && existResponse.getStatus().equals("OK")) {
+			fileExist = existResponse.fileExist;
+		}
+		
+		return fileExist;
 	}
 
-	// / <summary>
-	// / Uploads a file from your local machine to specified folder / subfolder
-	// on Aspose storage.
-	// / </summary>
-	// / <param name="strFile"></param>
-	// / <param name="strFolder"></param>
-	public boolean uploadFile(String strFile, String strFolder)
-			throws Exception 
-			{
-		try {
-			File localFile = new File(strFile);
-			String strRemoteFileName = localFile.getName();
-			String strURIRequest = this.strURIFile
-					+ (strFolder.equals("") ? "" : strFolder + "/")
-					+ strRemoteFileName;
-			String strURISigned = Utils.sign(strURIRequest);
-
-			String strResponse = Utils.uploadFileBinary(localFile,
-					strURISigned, "PUT");
-
-			if (strResponse.contains("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	/**
+	 * Provides the total and free disc size in bytes for your app
+	*/ 
+	public static DiscUsageModel getDiscUsage() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		DiscUsageModel discUsage = null;
+		
+        //sign URL
+        String signedURL = Utils.sign(DISC_URI);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	DiscUsageResponse existResponse = gson.fromJson(responseJSONString, DiscUsageResponse.class);
+		if(existResponse.getCode().equals("200") && existResponse.getStatus().equals("OK")) {
+			discUsage = existResponse.discUsage;
 		}
+		
+		return discUsage;
 	}
 
-	// / <summary>
-	// / Creates a folder under the specified folder. If no path specified,
-	// creates a folder under the root folder.
-	// / </summary>
-	// / <param name="strFolder"></param>
-	public boolean createFolder(String strFolder) throws Exception {
-		try {
-			String strURIRequest = this.strURIFolder + strFolder;
-			String strURISigned = Utils.sign(strURIRequest);
-			Utils.processCommand(strURISigned, "PUT");
-			InputStream responseStream = Utils.processCommand(strURISigned,
-					"PUT");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-			// Parse and Deserializes the JSON to a object.
-			BaseResponse baseResponse = gson.fromJson(strJSON,
-					BaseResponse.class);
-
-			if (baseResponse.getCode().equals("200")
-					&& baseResponse.getStatus().equals("OK"))
-				return true;
-			else
-				return false;
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return false;
+	/**
+	 * Get file from Aspose server
+	 * @param fileName File name
+	*/ 
+	public static InputStream getFile(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		InputStream fileStream = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
+		
+		//build URL
+      	String strURL = FILE_URI + Uri.encode(fileName);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        fileStream = Utils.processCommand(signedURL, "GET");
+        
+        return fileStream;
 	}
-
-	// / <summary>
-	// / Checks whether file or folder exists on the Aspose storage.
-	// / </summary>
-	// / <param name="strFolderOrFile"></param>
-	// / <returns></returns>
-	public FileExist fileExist(String strFolderOrFile) {
-		try {
-			String strURIRequest = this.strURIExist + strFolderOrFile;
-			String strURISigned = Utils.sign(strURIRequest);
-
-			InputStream responseStream = Utils.processCommand(strURISigned,
-					"GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-			// Parse the json string to JObject
-			ExistResponse existResponse = gson.fromJson(strJSON,
-					ExistResponse.class);
-
-			return existResponse.getFileExist();
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return null;
+	
+	/**
+	 * Move file to designated location
+	 * @param fileName File name
+	 * @param srcFolderName Source folder name
+	 * @param destFolderName Destination folder name
+	 * @return Boolean variable that indicates whether file moved successfully to designated location
+	*/ 
+	public static boolean moveFile(String fileName, String srcFolderName, String destFolderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		boolean isFileMovedToAnotherLocationSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
-	}
-
-	// / <summary>
-	// / Provides the total / free disc size in bytes for your app.
-	// / </summary>
-	// / <returns></returns>
-	public DiscUsage getDiscUsage() {
-		try {
-			InputStream responseStream = Utils.processCommand(
-					Utils.sign(this.strURIDisc), "GET");
-
-			String strJSON = Utils.streamToString(responseStream);
-
-			Gson gson = new Gson();
-			// Parse the json string to JObject
-			DiscResponse discResponse = gson.fromJson(strJSON, DiscResponse.class);
-
-			return discResponse.getDiscUsage();
-
-		} catch (Exception ex) {
-			Log.e(TAG, ex.getMessage());
-			return null;
+		
+		if(destFolderName == null || destFolderName.length() == 0) {
+			throw new IllegalArgumentException("Destination folder name cannot be null or empty");
 		}
-	}
-
-	// / <summary>
-	// / Get file from Aspose server
-	// / </summary>
-	// / <param name="fileName">file name on the server</param>
-	// / <returns></returns>
-	public static InputStream getFile(String fileName) {
-		try {
-			return Utils.processCommand(Utils.sign(Folder.strURIFile + fileName), "GET");
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			return null;
+		
+		String sourceFilePath;
+		if(srcFolderName == null || srcFolderName.length() == 0) {
+			sourceFilePath = Uri.encode(fileName);
+		} else {
+			sourceFilePath = Uri.encode(srcFolderName) + "/" + Uri.encode(fileName);
 		}
-
-	}
-
-	// / <summary>
-	// / Get file output file name and input stream as arguments and saves file
-	// on disk
-	// / </summary>
-
-	// / <returns></returns>
-
-	public static boolean saveStreamToFile(String fileNameWithPath,
-			InputStream inputStream) {
-		OutputStream out;
-		try {
-
-			File file = new File(Environment.getExternalStorageDirectory()
-					+ "/AsposeCovertedFiles");
-			if (!file.exists()) {
-				if (file.mkdir()) {
-					System.out.println("New Folder is created");
-				}
-			}
-			out = new FileOutputStream(file + "/" + fileNameWithPath);
-
-			int read = 0;
-			byte[] bytes = new byte[8192];
-
-			while ((read = inputStream.read(bytes)) != -1) {
-				out.write(bytes, 0, read);
-			}
-
-			inputStream.close();
-			out.flush();
-			out.close();
-			return true;
-//			// write the inputStream to a FileOutputStream
-//			OutputStream out = new FileOutputStream(new File(fileNameWithPath));
-//
-//			int read = 0;
-//			byte[] bytes = new byte[8192];
-//
-//			while ((read = inputStream.read(bytes)) != -1) {
-//				out.write(bytes, 0, read);
-//			}
-//
-//			inputStream.close();
-//			out.flush();
-//			out.close();
-//			return true;
-
-		} catch (IOException e) {
-			Log.e(TAG, e.getMessage());
-			return false;
+		
+		//build URL
+      	String strURL = FILE_URI + sourceFilePath + "?dest=" + Uri.encode(destFolderName) + "/" + Uri.encode(fileName);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        String responseJSONString = Utils.streamToString(responseStream);
+		
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isFileMovedToAnotherLocationSuccessfully = true;
 		}
+        
+		return isFileMovedToAnotherLocationSuccessfully;
 	}
-
+	
+	/**
+	 * Copy file to designated location
+	 * @param fileName File name
+	 * @param newDest Destination path
+	 * @return Boolean variable that indicates whether file copied successfully to designated location
+	*/ 
+	public static boolean copyFile(String fileName, String newDest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		boolean isFileCopiedToNewDestinationSuccessfully = false;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(newDest == null || newDest.length() == 0) {
+			throw new IllegalArgumentException("newDest cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = FILE_URI + Uri.encode(fileName) + "?newdest=" + Uri.encode(newDest) + "/" + Uri.encode(fileName);
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+        String responseJSONString = Utils.streamToString(responseStream);
+		
+        //Parsing JSON
+      	Gson gson = new Gson();
+      	BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isFileCopiedToNewDestinationSuccessfully = true;
+		}
+		
+		return isFileCopiedToNewDestinationSuccessfully;
+	}
+	
 }
