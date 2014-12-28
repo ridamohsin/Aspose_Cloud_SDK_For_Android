@@ -6,9 +6,9 @@ import com.aspose.cloud.sdk.words.GetTextItemsResponse.TextItem;
 
 import junit.framework.TestCase;
 
-public class TextTest extends TestCase {
+public class TextTestCase extends TestCase {
 
-	public TextTest(String name) {
+	public TextTestCase(String name) {
 		super(name);
 	}
 
@@ -21,12 +21,12 @@ public class TextTest extends TestCase {
 	}
 
 	public void testGetTextItemsFromAWordDocument() throws Exception {
-		TextItem textItems = Text.getTextItemsFromAWordDocument("TestMainAppendTemplate.doc");
+		TextItem textItems = Text.getTextItemsFromAWordDocument("myworddocument.docx");
 		assertNotNull("Failed to get text items from a Word document", textItems);
 	}
 	
 	public void testReplaceTextInAWordDocument() throws Exception {
-		ReplaceTextResponse replaceTextResponse = Text.replaceTextInAWordDocument("TestMainAppendTemplate.doc", "other" , "mine", false, true);
+		ReplaceTextResponse replaceTextResponse = Text.replaceTextInAWordDocument("myworddocument.docx", "Concepts" , "theory", false, true);
 		assertNotNull("Failed to replace text in a Word document", replaceTextResponse);
 	}
 }

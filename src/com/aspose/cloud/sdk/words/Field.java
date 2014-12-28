@@ -113,12 +113,13 @@ public class Field {
 	/**
 	 * Update all fields in the word document
 	 * @param fileName Name of the MS Word document on cloud
+	 * @param destDocumentName Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document 
 	 * @throws InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws IOException If there is an IO error
 	 * @return An document object
 	*/
-	public static Document updateAllFieldsInTheWordDocument(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static Document updateAllFieldsInTheWordDocument(String fileName, String destDocumentName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		Document document = null;
 		
@@ -127,7 +128,12 @@ public class Field {
 		}
 		
 		//build URL
-      	String strURL = WORD_URI + fileName + "/updateFields";
+      	String strURL;
+      	if(destDocumentName != null && destDocumentName.length() != 0) {
+      		strURL = WORD_URI + fileName + "/updateFields?filename=" + destDocumentName;
+      	} else {
+      		strURL = WORD_URI + fileName + "/updateFields";
+      	}
         //sign URL
         String signedURL = Utils.sign(strURL);
         

@@ -7,9 +7,9 @@ import com.aspose.cloud.sdk.words.GetDrawingObjectsResponse.DrawingObjectsData;
 
 import junit.framework.TestCase;
 
-public class DrawingObjectTest extends TestCase {
+public class DrawingObjectTestCase extends TestCase {
 
-	public DrawingObjectTest(String name) {
+	public DrawingObjectTestCase(String name) {
 		super(name);
 	}
 
@@ -22,24 +22,24 @@ public class DrawingObjectTest extends TestCase {
 	}
 
 	public void testGetAllDrawingObjects() throws Exception {
-		DrawingObjectsData drawingObjects = DrawingObject.getAllDrawingObjects("TestMainAppendTemplate.doc");
+		DrawingObjectsData drawingObjects = DrawingObject.getAllDrawingObjects("myworddocument.docx");
 		assertNotNull("Failed to get all drawing objects from a Word document", drawingObjects);
 	}
 	
 	public void testConvertDrawingObjectToImage() throws Exception {
-		String localFilePath = DrawingObject.convertDrawingObjectToImage("TestMainAppendTemplate.doc", 0, "png", "drawingObject1.png");
+		String localFilePath = DrawingObject.convertDrawingObjectToImage("myworddocument.docx", 0, "png", "circle.png");
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert drawing object to an image", true, file.exists());
 	}
 	
 	public void testGetTheImageDrawingObjectFromDocument() throws Exception {
-		String localFilePath = DrawingObject.getTheImageDrawingObjectFromDocument("TestMainAppendTemplate.doc", 1, "drawingObject2.png");
+		String localFilePath = DrawingObject.getTheImageDrawingObjectFromDocument("myworddocument.docx", 0, "piechart.png");
 		File file = new File(localFilePath);
 		assertEquals("Failed to get the image drawing object from a Word document", true, file.exists());
 	}
 	
 	public void testGetTheOLEDrawingObjectFromAWordDocument() throws Exception {
-		String localFilePath = DrawingObject.getTheOLEDrawingObjectFromAWordDocument("TestMainAppendTemplate.doc", 1, "oleFile.jpeg");
+		String localFilePath = DrawingObject.getTheOLEDrawingObjectFromAWordDocument("myworddocument.docx", 0, "oleFile.jpeg");
 		File file = new File(localFilePath);
 		assertEquals("Failed to get the OLE drawing object from a Word document", true, file.exists());
 	}

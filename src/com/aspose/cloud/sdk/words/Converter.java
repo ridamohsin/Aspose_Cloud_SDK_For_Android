@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
-import com.aspose.cloud.sdk.words.ConvertWordDocumentToAnyFormatWithAdditionalSettingsResponse.SaveResult;
 import com.google.gson.Gson;
 
 /**
@@ -105,29 +104,33 @@ public class Converter {
 	/**
 	 * Convert a Word document to other formats with additional settings
 	 * @param fileName Name of the MS Word document on cloud
-	 * @param xmlData Additional settings in XML format
-	 * @param outputFileName Converted document will save on disk with this name
+	 * @param saveOptionsRequest Particular file format save options
+	 * @param dataInterchangeFormat Can be either XML or JSON
 	 * @throws InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws IOException If there is an IO error
 	 * @return A path to converted word document
 	*/
-	public static SaveResult convertWordDocumentToFormatWithAdditionalSettings(String fileName, String xmlData) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static SaveResult convertWordDocumentToFormatWithAdditionalSettings(String fileName, String saveOptionsRequest, String dataInterchangeFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		SaveResult saveResult = null;
 		
 		if(fileName == null || fileName.length() <= 3) {
 			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
 		
-		if(xmlData == null) {
-			throw new IllegalArgumentException("XML Data cannot be null");
+		if(saveOptionsRequest == null || saveOptionsRequest.length() == 0) {
+			throw new IllegalArgumentException("Save options request cannot be null or empty");
+		}
+		
+		if(dataInterchangeFormat == null || dataInterchangeFormat.length() == 0) {
+			throw new IllegalArgumentException("Data interchange format cannot be null or empty. Either it should be XML or JSON");
 		}
 		
 		//build URL
 		String strURL = WORD_URI + fileName + "/saveAs";
 		//sign URL
 		String signedURL = Utils.sign(strURL);
-		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "xml");
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", saveOptionsRequest, dataInterchangeFormat);
 		String responseJSONString = Utils.streamToString(responseStream);
 		
 		//Parsing JSON
@@ -138,5 +141,43 @@ public class Converter {
 		}
 		
 		return saveResult;
+	}
+	
+	/**
+	 * Convert a live web page to Word document
+	 * @param loadWebDocumentDataRequest String that contains web document URL and save options
+	 * @param dataInterchangeFormat Can be either XML or JSON
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains URL to word document
+	*/
+	public static SaveResult convertWebPagesToWordDocument(String loadWebDocumentDataRequest, String dataInterchangeFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		SaveResult saveResult = null;
+		
+		if(loadWebDocumentDataRequest == null || loadWebDocumentDataRequest.length() == 0) {
+			throw new IllegalArgumentException("Load web document data request cannot be null or empty");
+		}
+		
+		if(dataInterchangeFormat == null || dataInterchangeFormat.length() == 0) {
+			throw new IllegalArgumentException("Data interchange format cannot be null or empty. Either it should be XML or JSON");
+		}
+		
+		//build URL
+		String strURL = WORD_URI + "loadWebDocument";
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", loadWebDocumentDataRequest, dataInterchangeFormat);
+		String responseJSONString = Utils.streamToString(responseStream);
+		
+		//Parsing JSON
+      	Gson gson = new Gson();
+      	ConvertWebPageToWordDocumentResponse convertWebPageToWordDocResponse = gson.fromJson(responseJSONString, ConvertWebPageToWordDocumentResponse.class);
+		if(convertWebPageToWordDocResponse.getCode().equals("200") && convertWebPageToWordDocResponse.getStatus().equals("OK")) {
+			saveResult = convertWebPageToWordDocResponse.saveResult;
+		}
+		
+		return saveResult;
+
 	}
 }

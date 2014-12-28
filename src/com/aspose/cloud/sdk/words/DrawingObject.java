@@ -116,7 +116,7 @@ public class DrawingObject {
 		}
 		
 		//build URL
-      	String strURL = WORD_URI + fileName + "/drawingObjects/" + index + "/ImageData";
+      	String strURL = WORD_URI + fileName + "/drawingObjects/" + index + "/imageData";
         //sign URL
         String signedURL = Utils.sign(strURL);
         

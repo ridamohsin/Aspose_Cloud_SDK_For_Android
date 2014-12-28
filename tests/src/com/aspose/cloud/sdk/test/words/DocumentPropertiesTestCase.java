@@ -6,9 +6,9 @@ import com.aspose.cloud.sdk.words.GetSpecificPropertyResponse.DocumentPropertyVa
 
 import junit.framework.TestCase;
 
-public class DocumentPropertiesTest extends TestCase {
+public class DocumentPropertiesTestCase extends TestCase {
 
-	public DocumentPropertiesTest(String name) {
+	public DocumentPropertiesTestCase(String name) {
 		super(name);
 	}
 
@@ -21,22 +21,22 @@ public class DocumentPropertiesTest extends TestCase {
 	}
 
 	public void testGetAllDocumentProperties() throws Exception {
-		DocumentPropertiesModel documentProperties = DocumentProperties.getAllDocumentProperties("testDocument.docx");
+		DocumentPropertiesModel documentProperties = DocumentProperties.getAllDocumentProperties("myworddocument.docx");
 		assertNotNull("Failed to get all document properties of a document", documentProperties);
 	}
 	
 	public void testGetAParticularDocumentProperty() throws Exception {
-		DocumentPropertyValue documentProperty = DocumentProperties.getAParticularDocumentProperty("testDocument.docx", "author");
+		DocumentPropertyValue documentProperty = DocumentProperties.getAParticularDocumentProperty("myworddocument.docx", "author");
 		assertNotNull("Failed to get a particular document property of a document", documentProperty);
 	}
 	
 	public void testSetASingleDocumentProperty() throws Exception {
-		DocumentPropertyValue documentProperty = DocumentProperties.setASingleDocumentProperty("testDocument.docx", "author", "James John");
+		DocumentPropertyValue documentProperty = DocumentProperties.setASingleDocumentProperty("myworddocument.docx", "author", "James John");
 		assertNotNull("Failed to set a single document property of a document", documentProperty);
 	}
 	
 	public void testRemoveAParticularDocumentProperty() throws Exception {
-		boolean isPropertyDeletedSuccessfully = DocumentProperties.removeAParticularDocumentProperty("testDocument.docx", "first_property");
+		boolean isPropertyDeletedSuccessfully = DocumentProperties.removeAParticularDocumentProperty("myworddocument.docx", "first_property");
 		assertEquals("Failed to remove a particular document property", true, isPropertyDeletedSuccessfully);
 	}
 	

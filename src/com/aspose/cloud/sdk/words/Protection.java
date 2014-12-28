@@ -132,7 +132,7 @@ public class Protection {
         //sign URL
         String signedURL = Utils.sign(strURL);
       
-        InputStream responseStream = Utils.processCommand(signedURL, "DELETE", requestJSONString);
+        InputStream responseStream = Utils.processDeleteCommandWithBody(signedURL, requestJSONString);
         String responseJSONString = Utils.streamToString(responseStream);
         
         BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
@@ -180,7 +180,7 @@ public class Protection {
         Gson gson = builder.create();
         String requestJSONString = gson.toJson(protectionRequest, ProtectionRequestModel.class);
 		
-      //build URL
+        //build URL
       	String strURL = WORD_URI + fileName + "/protection";
         //sign URL
         String signedURL = Utils.sign(strURL);

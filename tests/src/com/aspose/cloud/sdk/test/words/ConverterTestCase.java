@@ -6,14 +6,14 @@ import java.io.InputStream;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.Folder;
 import com.aspose.cloud.sdk.words.Converter;
+import com.aspose.cloud.sdk.words.SaveResult;
 import com.aspose.cloud.sdk.words.ValidFormatsEnum;
-import com.aspose.cloud.sdk.words.ConvertWordDocumentToAnyFormatWithAdditionalSettingsResponse.SaveResult;
 
 import junit.framework.TestCase;
 
-public class ConverterTest extends TestCase {
+public class ConverterTestCase extends TestCase {
 
-	public ConverterTest(String name) {
+	public ConverterTestCase(String name) {
 		super(name);
 	}
 
@@ -38,13 +38,33 @@ public class ConverterTest extends TestCase {
 	}
 	
 	public void testWordDocumentConversionToFormatWithAdditionalSettings() throws Exception {
-		String xmlData = "<RtfSaveOptions>" +
+		String rtfSaveOptionsRequest = "<RtfSaveOptions>" +
 							"<SaveFormat>rtf</SaveFormat>" +
 							"<FileName>TestSaveAs.rtf</FileName>" +
 							"<ExportImagesForOldReaders>false</ExportImagesForOldReaders>" +
 						 "</RtfSaveOptions>";
-		SaveResult saveResult = Converter.convertWordDocumentToFormatWithAdditionalSettings("myworddocument.docx", xmlData);
+		SaveResult saveResult = Converter.convertWordDocumentToFormatWithAdditionalSettings("myworddocument.docx", rtfSaveOptionsRequest, "xml");
 		assertNotNull("Failed to convert word document to designated format with additional settings", saveResult);
+		
+		//Get converted file from Aspose server
+		InputStream responseStream = Folder.getFile(saveResult.destDocument.href);
+		//Save file on Disk
+		String filePath = Utils.saveStreamToFile(responseStream, saveResult.destDocument.href);
+		File file = new File(filePath);
+		assertEquals("Failed to save convert word document to disk", true, file.exists());
+	}
+	
+	public void testConvertWebPagesToWordDocument() throws Exception {
+		String loadWebDocumentDataRequest = "<LoadWebDocumentData>" +
+												"<LoadingDocumentUrl>http://google.com</LoadingDocumentUrl>" +
+												"<DocSaveOptionsData>" +
+													"<SaveFormat>doc</SaveFormat>" +
+													"<FileName>google.doc</FileName>" +
+													"<SaveRoutingSlip>true</SaveRoutingSlip>" +
+												"</DocSaveOptionsData>" +
+											"</LoadWebDocumentData>";
+		SaveResult saveResult = Converter.convertWebPagesToWordDocument(loadWebDocumentDataRequest, "xml");
+		assertNotNull("Failed to convert web pages to Word document", saveResult);
 		
 		//Get converted file from Aspose server
 		InputStream responseStream = Folder.getFile(saveResult.destDocument.href);

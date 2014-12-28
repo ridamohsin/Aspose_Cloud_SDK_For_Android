@@ -6,9 +6,9 @@ import com.aspose.cloud.sdk.words.GetBookmarkResponse.BookmarksEnvelop;
 
 import junit.framework.TestCase;
 
-public class BookmarkTest extends TestCase {
+public class BookmarkTestCase extends TestCase {
 
-	public BookmarkTest(String name) {
+	public BookmarkTestCase(String name) {
 		super(name);
 	}
 
@@ -21,21 +21,17 @@ public class BookmarkTest extends TestCase {
 	}
 	
 	public void testGetAllBookmarksFromAWordDocument() throws Exception {
-		
-		BookmarksEnvelop bookmarks = Bookmark.getAllBookmarksFromAWordDocument("TestMainAppendTemplate.doc");
+		BookmarksEnvelop bookmarks = Bookmark.getAllBookmarksFromAWordDocument("myworddocument.docx");
 		assertNotNull("Failed to get all bookmarks from a Word document", bookmarks);
 	}
 
 	public void testGetASpecificBookmarkFromAWord() throws Exception {
-		
-		BookmarkEnvelop bookmark = Bookmark.getASpecificBookmarkFromAWord("TestMainAppendTemplate.doc", "FirstBookmark");
+		BookmarkEnvelop bookmark = Bookmark.getASpecificBookmarkFromAWord("myworddocument.docx", "IntensityBookmark");
 		assertNotNull("Failed to get a specific bookmark from a Word document", bookmark);
 	}
 	
 	public void testUpdateBookmarkTextOfAWordDocument() throws Exception {
-		
-		BookmarkEnvelop bookmark = Bookmark.updateBookmarkTextOfAWordDocument("TestMainAppendTemplate.doc", "FirstBookmark", "this is updated text");
+		BookmarkEnvelop bookmark = Bookmark.updateBookmarkTextOfAWordDocument("myworddocument.docx", "IntensityBookmark", "Laser pointers make a potent signaling tool, even in daylight, and are able to produce a bright signal for potential search and rescue vehicles using an inexpensive, small and lightweight device of the type that could be routinely carried in an emergency kit.");
 		assertNotNull("Failed to update bookmark text of a Word document", bookmark);
-		
 	}
 }

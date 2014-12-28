@@ -146,7 +146,7 @@ public class DocumentProperties {
 	}
 	
 	/**
-	 * Remove a particular document property
+	 * Delete a particular document property. Built-In Document Property resources cannot be removed and return a HTTP 404 error response.
 	 * @param fileName Name of the MS Word document stored on cloud
 	 * @param propertyName The name of the property
 	 * @throws InvalidKeyException If initialization fails because the provided key is null.

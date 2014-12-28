@@ -244,7 +244,6 @@ public class Document {
 		return rejectTrackChangesResult;
 	}
 	
-	
 	/**
 	 * Get statistical data of the document like word and paragraph count
 	 * @param fileName Name of the MS Word document stored on cloud

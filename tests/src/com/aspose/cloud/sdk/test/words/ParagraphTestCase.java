@@ -8,9 +8,9 @@ import com.aspose.cloud.sdk.words.Paragraph;
 
 import junit.framework.TestCase;
 
-public class ParagraphTest extends TestCase {
+public class ParagraphTestCase extends TestCase {
 
-	public ParagraphTest(String name) {
+	public ParagraphTestCase(String name) {
 		super(name);
 	}
 
@@ -23,22 +23,22 @@ public class ParagraphTest extends TestCase {
 	}
 	
 	public void testGetListOfAllParagraphsPresentInAWordDocument() throws Exception {
-		ParagraphsTextAndLink paragraphsList = Paragraph.getListOfAllParagraphsPresentInAWordDocument("TestMainAppendTemplate.doc");
+		ParagraphsTextAndLink paragraphsList = Paragraph.getListOfAllParagraphsPresentInAWordDocument("myworddocument.docx");
 		assertNotNull("Failed to get a list of all paragraphs present in a Word document", paragraphsList);
 	}
 	
 	public void testGetASpecificParagraphPresentInAWordDocument() throws Exception {
-		ParagraphDetail paragraph = Paragraph.getASpecificParagraphPresentInAWordDocument("TestMainAppendTemplate.doc", 1);
+		ParagraphDetail paragraph = Paragraph.getASpecificParagraphPresentInAWordDocument("myworddocument.docx", 1);
 		assertNotNull("Failed to get a specific paragraph present in a Word document", paragraph);
 	}
 	
 	public void testGetASpecificRunOfAParagraphPresentInAWordDocument() throws Exception {
-		Run run = Paragraph.getASpecificRunOfAParagraphPresentInAWordDocument("TestMainAppendTemplate.doc", 1, 1);
+		Run run = Paragraph.getASpecificRunOfAParagraphPresentInAWordDocument("myworddocument.docx", 1, 2);
 		assertNotNull("Failed to get a specific run of a paragraph present in a Word document", run);
 	}
 	
 	public void testGetFontInformationOfARunFromAWordDocument() throws Exception {
-		Font font = Paragraph.getFontInformationOfARunFromAWordDocument("TestMainAppendTemplate.doc", 1, 1);
+		Font font = Paragraph.getFontInformationOfARunFromAWordDocument("myworddocument.docx", 1, 2);
 		assertNotNull("Failed to get a font related information of a specific run of a paragraph present in a Word document", 
 				font);
 	}
@@ -50,7 +50,7 @@ public class ParagraphTest extends TestCase {
 							"<Italic>true</Italic>" +
 							"<Underline>Dash</Underline>" +
 						 "</Font>";
-		Font font = Paragraph.updateFontOfARunInAWordDocument("TestMainAppendTemplate.doc", 1, 1, xmlData);
+		Font font = Paragraph.updateFontOfARunInAWordDocument("myworddocument.docx", 1, 2, xmlData);
 		assertNotNull("Failed to update font of a specific run of a paragraph present in a Word document", font);
 	}
 }

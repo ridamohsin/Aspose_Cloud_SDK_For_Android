@@ -21,6 +21,11 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.os.Environment;
 import android.util.Log;
@@ -40,7 +45,7 @@ public class Utils {
 	 * @throws java.security.SignatureException
 	 *             when signature generation fails
 	 */
-	public static String sign (String unsignedURL) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
+	public static String sign(String unsignedURL) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
 		
 		StringBuilder mUnsignedURL = new StringBuilder(unsignedURL);
 		
@@ -81,67 +86,77 @@ public class Utils {
 		return mUnsignedURL.toString();
 	}
 
-	public static String uploadFileBinary(File localFile, String uploadUrl, String strHttpCommand) {
-		try {
-			Log.i(TAG, "In uploadFileBinary : " + uploadUrl);
-			System.out.println("In uploadFileBinary : " + uploadUrl);
+	public static String uploadFileBinary(File localFile, String uploadUrl, String strHttpCommand) throws IOException {
+		
+		URL url = new URL(uploadUrl);
+		// Returns the contents of the file in a byte array
+		byte[] buf = FileUtils.readFileToByteArray(localFile);
+		HttpURLConnection m_connection;
+		m_connection = (HttpURLConnection) url.openConnection();
+		//String parameters = "data=some_post_data";
+		m_connection.setDoOutput(true);
+		m_connection.setRequestMethod("PUT");
+		m_connection.setRequestProperty("Accept", "text/json");
+		m_connection.setRequestProperty("Content-Type", "MultiPart/Form-Data");
+		//byte bytes[] = parameters.getBytes();
+		m_connection.setRequestProperty("Content-length", "" + buf.length);
+		
+		//Track Android SDK Usage
+		m_connection.setRequestProperty("x-saaspose-client", "AndroidSDK/v1.0");
+		
+		m_connection.connect();
+		java.io.OutputStream out = m_connection.getOutputStream();
+		out.write(buf);
+		out.flush();
 
-			URL url = new URL(uploadUrl);
-			// Returns the contents of the file in a byte array.
-			byte[] buf = FileUtils.readFileToByteArray(localFile);
-			HttpURLConnection m_connection;
-			m_connection = (HttpURLConnection) url.openConnection();
-			//String parameters = "data=some_post_data";
-			m_connection.setDoOutput(true);
-			m_connection.setRequestMethod("PUT");
-			m_connection.setRequestProperty("Accept", "text/json");
-			m_connection.setRequestProperty("Content-Type", "MultiPart/Form-Data");
-			//byte bytes[] = parameters.getBytes();
-			m_connection.setRequestProperty("Content-length", "" + buf.length);
-			
-			//Track Android SDK Usage
-			m_connection.setRequestProperty("x-saaspose-client", "AndroidSDK/v1.0");
-			
-			m_connection.connect();
-			java.io.OutputStream out = m_connection.getOutputStream();
-			out.write(buf);
-			out.flush();
+		InputStream response = m_connection.getInputStream();
+		String res = streamToString(response);
 
-			InputStream response = m_connection.getInputStream();
-
-			String res = streamToString(response);
-
-			return res;
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			e.printStackTrace();
-			return null;
-		}
-
+		return res;
 	}
-
-	public static InputStream processCommand(String strURI,
-			String strHttpCommand, String strContent) throws IOException {
+	
+	public static InputStream processCommand(String strURI, String strHttpCommand, String strContent) throws IOException {
 
 		URL url = new URL(strURI);
 		HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-		httpCon.setDoOutput(true);
-		httpCon.setRequestProperty("Content-Type", "application/json");
+		
+		httpCon.setRequestMethod(strHttpCommand);
+		
 		httpCon.setRequestProperty("Accept", "application/json");
+		httpCon.setRequestProperty("Content-Type", "application/json");
 		
 		//Track Android SDK Usage
 		httpCon.setRequestProperty("x-saaspose-client", "AndroidSDK/v1.0");
-		
-		httpCon.setRequestMethod(strHttpCommand);
+				
+		httpCon.setDoOutput(true);
 		httpCon.setFixedLengthStreamingMode(strContent.length());
-		OutputStreamWriter out = new OutputStreamWriter(
-				httpCon.getOutputStream());
+		
+		OutputStreamWriter out = new OutputStreamWriter(httpCon.getOutputStream());
 		out.write(strContent);
 		out.close();
 		
 		return httpCon.getInputStream();
 	}
 
+	public static InputStream processDeleteCommandWithBody(String strURI, String strContent) throws IOException {
+		
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpEntity entity = new StringEntity(strContent);
+		HttpDeleteWithBody httpDelete = new HttpDeleteWithBody(strURI);
+		httpDelete.addHeader("Accept", "application/json");
+		httpDelete.addHeader("Content-Type", "application/json");
+		//Track Android SDK Usage
+		httpDelete.addHeader("x-saaspose-client", "AndroidSDK/v1.0");
+		
+		httpDelete.setEntity(entity);
+		
+		HttpResponse httpResponse = httpclient.execute(httpDelete);
+		
+		Log.i(TAG, httpResponse.getStatusLine().getReasonPhrase() + " SC: " + httpResponse.getStatusLine().getStatusCode());
+	    HttpEntity httpEntity = httpResponse.getEntity();
+	    return httpEntity.getContent();	
+	}
+	
 	public static InputStream processCommand(String strURI, String strHttpCommand, InputStream fileStream) throws IOException {
 		
 		byte[] bytes = IOUtils.toByteArray(fileStream);
@@ -161,14 +176,13 @@ public class Utils {
 		out.flush();
 		out.close();
 		
-		String d = httpCon.getResponseMessage();
-		Log.i(TAG, d);
+		String responseMessage = httpCon.getResponseMessage();
+		Log.i(TAG, responseMessage);
 		
 		return httpCon.getInputStream();
 	}
-
-	public static InputStream processCommand(String strURI,
-			String strHttpCommand)  throws IOException{
+	
+	public static InputStream processCommand(String strURI, String strHttpCommand)  throws IOException{
 
 		URL address = new URL(strURI);
 		HttpURLConnection httpCon = (HttpURLConnection) address
@@ -182,10 +196,9 @@ public class Utils {
 		httpCon.setRequestMethod(strHttpCommand);
 		if (strHttpCommand.equals("PUT") || strHttpCommand.equals("POST"))
 			httpCon.setFixedLengthStreamingMode(0);
-		String d = httpCon.getResponseMessage();
-		Log.i(TAG, d);
+		String responseMessage = httpCon.getResponseMessage();
+		Log.i(TAG, responseMessage);
 		return httpCon.getInputStream();
-
 	}
 
 	public static InputStream processCommand(String strURI,
@@ -197,7 +210,7 @@ public class Utils {
 				.openConnection();
 		//httpCon.setDoOutput(true);
 
-		if (ContentType.toLowerCase(Locale.US).equals("xml"))
+		if (ContentType.toLowerCase(Locale.US).equalsIgnoreCase("xml"))
 			httpCon.setRequestProperty("Content-Type", "application/xml");
 		else
 			httpCon.setRequestProperty("Content-Type", "application/json");
@@ -214,26 +227,22 @@ public class Utils {
 		out.write(arr);
 		out.flush();
 
-		String d = httpCon.getResponseMessage();
-		Log.i(TAG, d);
-
+		String responseMessage = httpCon.getResponseMessage();
+		Log.i(TAG, responseMessage);
+		
 		return httpCon.getInputStream();
 	}
 	
 	public static String streamToString(InputStream stream) {
 		try {
 			// read it with BufferedReader
-			java.io.BufferedReader br = new java.io.BufferedReader(
-					new java.io.InputStreamReader(stream));
+			java.io.BufferedReader br = new java.io.BufferedReader(new java.io.InputStreamReader(stream));
 
 			StringBuilder sb = new StringBuilder();
-
 			String line;
 			while ((line = br.readLine()) != null) {
 				sb.append(line);
 			}
-
-			// System.out.println(sb.toString());
 
 			br.close();
 			return sb.toString();
@@ -241,7 +250,6 @@ public class Utils {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 	
 	/* Checks if external storage is available for read and write */

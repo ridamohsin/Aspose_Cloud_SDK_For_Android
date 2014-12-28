@@ -6,9 +6,9 @@ import com.aspose.cloud.sdk.words.ProtectionTypeEnum;
 
 import junit.framework.TestCase;
 
-public class ProtectionTest extends TestCase {
+public class ProtectionTestCase extends TestCase {
 
-	public ProtectionTest(String name) {
+	public ProtectionTestCase(String name) {
 		super(name);
 	}
 
@@ -21,22 +21,22 @@ public class ProtectionTest extends TestCase {
 	}
 	
 	public void testProtectAWordDocument() throws Exception {
-		boolean isDocumentProtectedSuccessfully = Protection.protectAWordDocument("testProtectionDocument.docx", ProtectionTypeEnum.AllowOnlyComments, "123456");
+		boolean isDocumentProtectedSuccessfully = Protection.protectAWordDocument("myworddocument.docx", ProtectionTypeEnum.ReadOnly, "123456");
 		assertEquals("Failed to protect a Word document", true, isDocumentProtectedSuccessfully);
 	}
 	
 	public void testUnProtectAWordDocument() throws Exception {
-		boolean isDocumentUnProtectedSuccessfully = Protection.unprotectAWordDocument("testProtectionDocument.docx", "123456");
+		boolean isDocumentUnProtectedSuccessfully = Protection.unprotectAWordDocument("myworddocument.docx", "123456");
 		assertEquals("Failed to unprotect a Word document", true, isDocumentUnProtectedSuccessfully);
 	}
 	
 	public void testGetTheCurrentProtectionOfTheWordDocument() throws Exception {
-		GetProtectionOfTheWordDocumentResponse documentProtectionResponse = Protection.getTheCurrentProtectionOfTheWordDocument("testProtectionDocument.docx");
+		GetProtectionOfTheWordDocumentResponse documentProtectionResponse = Protection.getTheCurrentProtectionOfTheWordDocument("myworddocument.docx");
 		assertNotNull("Failed to get the current protection of the Word document ", documentProtectionResponse);
 	}
 	
 	public void testModifyProtectionOfTheWordDocument() throws Exception {
-		GetProtectionOfTheWordDocumentResponse modifyDocumentProtectionResponse = Protection.modifyProtectionOfTheWordDocument("testProtectionDocument.docx", ProtectionTypeEnum.ReadOnly, "123456", "654321");
+		GetProtectionOfTheWordDocumentResponse modifyDocumentProtectionResponse = Protection.modifyProtectionOfTheWordDocument("myworddocument.docx", ProtectionTypeEnum.ReadOnly, "123456", "654321");
 		assertNotNull("Failed to modify protection of the Word document", modifyDocumentProtectionResponse);
 	}
 }

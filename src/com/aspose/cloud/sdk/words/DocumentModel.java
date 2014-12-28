@@ -1,5 +1,8 @@
 package com.aspose.cloud.sdk.words;
 
+import java.util.ArrayList;
+
+import com.aspose.cloud.sdk.common.LinkModel;
 import com.google.gson.annotations.SerializedName;
 
 public class DocumentModel {
@@ -11,4 +14,6 @@ public class DocumentModel {
 	public boolean isEncrypted;
 	@SerializedName("IsSigned")
 	public boolean isSigned;
+	@SerializedName("Links")
+	public ArrayList<LinkModel> links;
 }

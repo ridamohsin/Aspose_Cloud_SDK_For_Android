@@ -17,6 +17,7 @@ public class GetTextItemsResponse extends BaseResponse {
 	}
 	
 	public class TextAndLink {
+		@SerializedName("Text")
 		public String text;
 		public LinkModel link;
 	}

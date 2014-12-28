@@ -5,9 +5,9 @@ import com.aspose.cloud.sdk.words.DocumentResponse.Document;
 
 import junit.framework.TestCase;
 
-public class WatermarkTest extends TestCase {
+public class WatermarkTestCase extends TestCase {
 
-	public WatermarkTest(String name) {
+	public WatermarkTestCase(String name) {
 		super(name);
 	}
 
@@ -20,17 +20,17 @@ public class WatermarkTest extends TestCase {
 	}
 	
 	public void testAddWatermarkTextToAWordDocument() throws Exception {
-		Document document = Watermark.addWatermarkTextToAWordDocument("testDocument.docx", "Watermark text", 45.0);
+		Document document = Watermark.addWatermarkTextToAWordDocument("myworddocument.docx", "Watermark text", 45.0);
 		assertNotNull("Failed to add watermark text to a Word document", document);
 	}
 	
 	public void testAddWatermarkImageToAWordDocument() throws Exception {
-		Document document = Watermark.addWatermarkImageToAWordDocument("testDocument.docx", "bookmark.png", -60.0);
-		assertNotNull("Failed to add watermark text to a Word document", document);
+		Document document = Watermark.addWatermarkImageToAWordDocument("myworddocument.docx", "bookmark.png", -60.0);
+		assertNotNull("Failed to add watermark image to a Word document", document);
 	}
 	
 	public void testRemoveWatermarkFromAWordDocument() throws Exception {
-		Document document = Watermark.removeWatermarkFromAWordDocument("testDocument.docx");
+		Document document = Watermark.removeWatermarkFromAWordDocument("myworddocument.docx");
 		assertNotNull("Failed to remove watermark from a Word Document", document);
 	}
 }

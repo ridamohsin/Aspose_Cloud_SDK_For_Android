@@ -107,7 +107,7 @@ public class Watermark {
 	}
 	
 	/**
-	 * Remove Watermark from a Word Document
+	 * Deletes the last watermark (if it exists) from a Word Document
 	 * @param fileName Name of the MS Word document on cloud
 	 * @throws InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
