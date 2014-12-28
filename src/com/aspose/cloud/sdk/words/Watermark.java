@@ -50,15 +50,15 @@ public class Watermark {
 		String requestJSONString = gson.toJson(watermarkTextObj, WatermarkTextModel.class);
 		
 		//build URL
-      	String strURL = WORD_URI + fileName + "/watermark/insertText";
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+      		String strURL = WORD_URI + fileName + "/watermark/insertText";
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
-        InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
-        String responseJSONString = Utils.streamToString(responseStream);
+        	InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+        	String responseJSONString = Utils.streamToString(responseStream);
         
-        //Parsing JSON
-        DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+        	//Parsing JSON
+        	DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
 		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
 			document = documentResponse.document;
 		}
@@ -89,16 +89,16 @@ public class Watermark {
 		}
 	
 		//build URL
-      	String strURL = WORD_URI + fileName + "/watermark/insertImage?image=" + imagePath + "&rotationAngle=" + rotationAngle;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+      		String strURL = WORD_URI + fileName + "/watermark/insertImage?image=" + imagePath + "&rotationAngle=" + rotationAngle;
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
-        InputStream responseStream = Utils.processCommand(signedURL, "POST");
-        String responseJSONString = Utils.streamToString(responseStream);
+        	InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        	String responseJSONString = Utils.streamToString(responseStream);
         
-        //Parsing JSON
-        Gson gson = new Gson();
-        DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+        	//Parsing JSON
+        	Gson gson = new Gson();
+        	DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
 		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
 			document = documentResponse.document;
 		}
@@ -123,16 +123,16 @@ public class Watermark {
 		}
 		
 		//build URL
-      	String strURL = WORD_URI + fileName + "/watermark";
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+      		String strURL = WORD_URI + fileName + "/watermark";
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
-        InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
-        String responseJSONString = Utils.streamToString(responseStream);
+        	InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+        	String responseJSONString = Utils.streamToString(responseStream);
         
-        //Parsing JSON
-        Gson gson = new Gson();
-        DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+        	//Parsing JSON
+        	Gson gson = new Gson();
+        	DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
 		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
 			document = documentResponse.document;
 		}
