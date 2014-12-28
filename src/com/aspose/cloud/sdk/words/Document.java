@@ -43,31 +43,31 @@ public class Document {
 		}
 	
 		//check whether required information is complete
-        if (appendDocs.length != importFormatsModes.length) {
-            throw new IllegalArgumentException("Please specify complete documents and import format modes");
-        }
+        	if (appendDocs.length != importFormatsModes.length) {
+            		throw new IllegalArgumentException("Please specify complete documents and import format modes");
+        	}
         
-        DocumentEntryListModel documentEntryList = new DocumentEntryListModel();
-        //Create DocumentEntryList object
-        for(int i=0; i<appendDocs.length; i++) {
-        	String appendDoc = appendDocs[i];
-        	String docServerPath = (folderName != null  && folderName.length() != 0) ? folderName+"\\"+appendDoc : appendDoc;
-        	documentEntryList.documentEntries.add(new DocumentEntryModel(docServerPath, importFormatsModes[i]));
-        }
+	        DocumentEntryListModel documentEntryList = new DocumentEntryListModel();
+	        //Create DocumentEntryList object
+	        for(int i=0; i<appendDocs.length; i++) {
+	        	String appendDoc = appendDocs[i];
+	        	String docServerPath = (folderName != null  && folderName.length() != 0) ? folderName+"\\"+appendDoc : appendDoc;
+	        	documentEntryList.documentEntries.add(new DocumentEntryModel(docServerPath, importFormatsModes[i]));
+	        }
         
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        String requestJSONString = gson.toJson(documentEntryList, DocumentEntryListModel.class);
+	        GsonBuilder builder = new GsonBuilder();
+	        Gson gson = builder.create();
+	        String requestJSONString = gson.toJson(documentEntryList, DocumentEntryListModel.class);
+	        
+	        //build URL
+	      	String strURL = WORD_URI + fileName + "/appendDocument";
+	        //sign URL
+	        String signedURL = Utils.sign(strURL);
+	        
+	        InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+	        String responseJSONString = Utils.streamToString(responseStream);
         
-        //build URL
-      	String strURL = WORD_URI + fileName + "/appendDocument";
-        //sign URL
-        String signedURL = Utils.sign(strURL);
-        
-        InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
-        String responseJSONString = Utils.streamToString(responseStream);
-        
-        AppendDocumentResponse appendDocumentResponse = gson.fromJson(responseJSONString, AppendDocumentResponse.class);
+        	AppendDocumentResponse appendDocumentResponse = gson.fromJson(responseJSONString, AppendDocumentResponse.class);
 		if(appendDocumentResponse.getCode().equals("200") && appendDocumentResponse.getStatus().equals("OK")) {
 			isDocumentAppendedSuccessfully = true;
 		}
@@ -91,28 +91,27 @@ public class Document {
 		}
 		
 		//build URL
-      	String strURL = WORD_URI + fileName + "/split?format=pdf";
-        //sign URL
-        String signedURL = Utils.sign(strURL);
-        
-        InputStream responseStream = Utils.processCommand(signedURL, "POST");
-        String responseJSONString = Utils.streamToString(responseStream);
-        
-        //Parsing JSON
-      	Gson gson = new Gson();
-      	SplitDocumentResponse splitDocumentResponse = gson.fromJson(responseJSONString, SplitDocumentResponse.class);
+	      	String strURL = WORD_URI + fileName + "/split?format=pdf";
+	        //sign URL
+	        String signedURL = Utils.sign(strURL);
+	        
+	        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+	        String responseJSONString = Utils.streamToString(responseStream);
+	        
+	        //Parsing JSON
+	      	Gson gson = new Gson();
+	      	SplitDocumentResponse splitDocumentResponse = gson.fromJson(responseJSONString, SplitDocumentResponse.class);
 		if(splitDocumentResponse.getCode().equals("200") && splitDocumentResponse.getStatus().equals("OK")) {
 			localFilesPaths = new ArrayList<String>();
 			for(LinkModel page : splitDocumentResponse.splitResult.pages)
-            {
-                //build URI to download a particular file
+            		{
+                		//build URI to download a particular file
 				responseStream = Folder.getFile(page.href);
 				String filePath = Utils.saveStreamToFile(responseStream, page.href);
 				localFilesPaths.add(filePath);
-                responseStream.close();
-            }
+                		responseStream.close();
+            		}
 		}
-		
 		return localFilesPaths;
 	}
 	
@@ -141,27 +140,27 @@ public class Document {
 		}
 		
 		//build URL
-      	String strURL = WORD_URI + fileName + "/split?format=" + designatedFormat + 
+      		String strURL = WORD_URI + fileName + "/split?format=" + designatedFormat + 
       			"&from=" + fromPage + "&to=" + toPage;
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
-        InputStream responseStream = Utils.processCommand(signedURL, "POST");
-        String responseJSONString = Utils.streamToString(responseStream);
+        	InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        	String responseJSONString = Utils.streamToString(responseStream);
         
-        //Parsing JSON
-      	Gson gson = new Gson();
-      	SplitDocumentResponse splitDocumentResponse = gson.fromJson(responseJSONString, SplitDocumentResponse.class);
+        	//Parsing JSON
+      		Gson gson = new Gson();
+      		SplitDocumentResponse splitDocumentResponse = gson.fromJson(responseJSONString, SplitDocumentResponse.class);
 		if(splitDocumentResponse.getCode().equals("200") && splitDocumentResponse.getStatus().equals("OK")) {
 			localFilesPaths = new ArrayList<String>();
 			for(LinkModel page : splitDocumentResponse.splitResult.pages)
-            {
-                //build URI to download a particular file
+            		{
+                		//build URI to download a particular file
 				responseStream = Folder.getFile(page.href);
 				String filePath = Utils.saveStreamToFile(responseStream, page.href);
 				localFilesPaths.add(filePath);
-                responseStream.close();
-            }
+                		responseStream.close();
+            		}
 		}
 		return localFilesPaths;
 	}
@@ -190,15 +189,15 @@ public class Document {
 		} else {
 			strURL = WORD_URI + srcfileName + "/revisions/acceptAll?filename=" + destFileName;
 		}
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
-        InputStream responseStream = Utils.processCommand(signedURL, "POST");
-        String responseJSONString = Utils.streamToString(responseStream);
+        	InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        	String responseJSONString = Utils.streamToString(responseStream);
         
-        //Parsing JSON
-      	Gson gson = new Gson();
-      	TrackingChangesResponse acceptTrackingChangesResponse = gson.fromJson(responseJSONString, TrackingChangesResponse.class);
+        	//Parsing JSON
+      		Gson gson = new Gson();
+      		TrackingChangesResponse acceptTrackingChangesResponse = gson.fromJson(responseJSONString, TrackingChangesResponse.class);
 		if(acceptTrackingChangesResponse.getCode().equals("200") && acceptTrackingChangesResponse.getStatus().equals("OK")) {
 			acceptTrackChangesResult = acceptTrackingChangesResponse.result;
 		}
@@ -229,15 +228,15 @@ public class Document {
 		} else {
 			strURL = WORD_URI + srcfileName + "/revisions/rejectAll?filename=" + destFileName;
 		}
-        //sign URL
-        String signedURL = Utils.sign(strURL);
+        	//sign URL
+        	String signedURL = Utils.sign(strURL);
         
-        InputStream responseStream = Utils.processCommand(signedURL, "POST");
-        String responseJSONString = Utils.streamToString(responseStream);
+        	InputStream responseStream = Utils.processCommand(signedURL, "POST");
+        	String responseJSONString = Utils.streamToString(responseStream);
         
-        //Parsing JSON
-      	Gson gson = new Gson();
-      	TrackingChangesResponse acceptTrackingChangesResponse = gson.fromJson(responseJSONString, TrackingChangesResponse.class);
+        	//Parsing JSON
+      		Gson gson = new Gson();
+      		TrackingChangesResponse acceptTrackingChangesResponse = gson.fromJson(responseJSONString, TrackingChangesResponse.class);
 		if(acceptTrackingChangesResponse.getCode().equals("200") && acceptTrackingChangesResponse.getStatus().equals("OK")) {
 			rejectTrackChangesResult = acceptTrackingChangesResponse.result;
 		}
@@ -263,14 +262,14 @@ public class Document {
 		//build URL
 		String strURL = WORD_URI + fileName + "/statistics";
 		//sign URL
-        String signedURL = Utils.sign(strURL);
+        	String signedURL = Utils.sign(strURL);
         
-        InputStream responseStream = Utils.processCommand(signedURL, "GET");
-        String responseJSONString = Utils.streamToString(responseStream);
+        	InputStream responseStream = Utils.processCommand(signedURL, "GET");
+        	String responseJSONString = Utils.streamToString(responseStream);
         
-        //Parsing JSON
-      	Gson gson = new Gson();
-      	statisticsOfDocument = gson.fromJson(responseJSONString, StatisticsOfDocumentResponse.class);
+        	//Parsing JSON
+      		Gson gson = new Gson();
+      		statisticsOfDocument = gson.fromJson(responseJSONString, StatisticsOfDocumentResponse.class);
 		if(statisticsOfDocument.getCode().equals("200") && statisticsOfDocument.getStatus().equals("OK")) {
 			return statisticsOfDocument;
 		} else {
