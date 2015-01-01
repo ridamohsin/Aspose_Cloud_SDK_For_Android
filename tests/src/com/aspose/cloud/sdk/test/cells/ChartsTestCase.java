@@ -10,7 +10,6 @@ import com.aspose.cloud.sdk.cells.ChartTitleResource.ChartTitleData;
 import com.aspose.cloud.sdk.cells.ChartsResponse.ChartsResult;
 import com.aspose.cloud.sdk.cells.ColorModel;
 import com.aspose.cloud.sdk.cells.FillFormatResponse.FillFormatResult;
-import com.aspose.cloud.sdk.cells.ChartTitleResource;
 import com.aspose.cloud.sdk.cells.FontModel;
 import com.aspose.cloud.sdk.cells.LegendPositionEnum;
 import com.aspose.cloud.sdk.cells.LegendResponse;
@@ -19,11 +18,11 @@ import com.aspose.cloud.sdk.cells.ValidFormatsOfWorksheet;
 
 import junit.framework.TestCase;
 
-public class ChartsTest extends TestCase {
+public class ChartsTestCase extends TestCase {
 
 	private Charts charts;
 	
-	public ChartsTest(String name) {
+	public ChartsTestCase(String name) {
 		super(name);
 	}
 
@@ -37,7 +36,7 @@ public class ChartsTest extends TestCase {
 	}
 
 	public void testAddAChartInAWorksheet() throws Exception {
-		ChartsResult chartsResult = charts.addAChartInAWorksheet(ChartTypeEnum.Bar, 12, 12, 20, 20, "B1:F2", true, "A1:A2", true, "SalesState");
+		ChartsResult chartsResult = charts.addAChartInAWorksheet(ChartTypeEnum.Bar, 11, 1, 31, 11, "A1:B10", true, "A1:A10", false, "Sales State");
 		assertNotNull("Failed to add a chart in a worksheet", chartsResult);
 	}
 	
@@ -47,7 +46,7 @@ public class ChartsTest extends TestCase {
 	}
 	
 	public void testConvertChartToImage() throws Exception {
-		String localFilePath = charts.convertChartToImage(0, ValidFormatsOfWorksheet.jpeg, "salesChart.jpeg");
+		String localFilePath = charts.convertChartToImage(0, ValidFormatsOfWorksheet.png, "salesChart.png");
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert chart to image", true, file.exists());
 	}
@@ -103,8 +102,8 @@ public class ChartsTest extends TestCase {
 		font.Color = color;
 		font.DoubleSize = 10;
 		font.IsBold = true;
-		font.IsItalic = false;
-		font.IsStrikeout = false;
+		font.IsItalic = true;
+		font.IsStrikeout = true;
 		font.IsSubscript = false;
 		font.IsSuperscript = false;
 		font.Name = "Arial";
@@ -117,21 +116,12 @@ public class ChartsTest extends TestCase {
 		assertNotNull("Failed to update chart legend in a worksheet", legendResult);
 	}
 	
-	public void testSetChartTitleInExcelWorksheet() throws Exception {
-		ChartTitleResource chartTitleRequest = new ChartTitleResource();
-		chartTitleRequest.chartTitleData = chartTitleRequest.new ChartTitleData();
-		chartTitleRequest.chartTitleData.Text = "Sales Chart";
-		
-		ChartTitleData chartTitleData = charts.setChartTitleInExcelWorksheet(0, chartTitleRequest);
-		assertNotNull("Failed to set chart title in excel worksheet", chartTitleData);
-	}
-	
 	public void testUpdateChartTitleInExcelWorksheet() throws Exception {
-		ChartTitleResource chartTitleRequest = new ChartTitleResource();
-		chartTitleRequest.chartTitleData = chartTitleRequest.new ChartTitleData();
-		chartTitleRequest.chartTitleData.Text = "New Sales Chart";
+		String xmlChartTitleRequest = "<Title>" +
+										"<Text>New Sales Chart</Text>" +
+									  "</Title>";
 		
-		ChartTitleData chartTitleData = charts.setChartTitleInExcelWorksheet(0, chartTitleRequest);
+		ChartTitleData chartTitleData = charts.updateChartTitleInExcelWorksheet(0, xmlChartTitleRequest);
 		assertNotNull("Failed to update chart title in excel worksheet", chartTitleData);
 	}
 	

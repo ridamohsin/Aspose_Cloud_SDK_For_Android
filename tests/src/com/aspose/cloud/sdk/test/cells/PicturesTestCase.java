@@ -9,11 +9,11 @@ import com.aspose.cloud.sdk.cells.ValidFormatsOfWorksheet;
 
 import junit.framework.TestCase;
 
-public class PicturesTest extends TestCase {
+public class PicturesTestCase extends TestCase {
 
 	private Pictures pictures;
 	
-	public PicturesTest(String name) {
+	public PicturesTestCase(String name) {
 		super(name);
 	}
 
@@ -27,18 +27,18 @@ public class PicturesTest extends TestCase {
 	}
 	
 	public void testGetPictureFromAWorksheet() throws Exception {
-		PictureData pictureData = pictures.getPictureFromAWorksheet(0);
+		PictureData pictureData = pictures.getPictureFromAWorksheet(1);
 		assertNotNull("Failed to get picture from a worksheet",  pictureData);
 	}
 
 	public void testConvertPictureToImage() throws Exception {
-		String localFilePath = pictures.convertPictureToImage(0, ValidFormatsOfWorksheet.tiff, "convertedImage.tiff");
+		String localFilePath = pictures.convertPictureToImage(1, ValidFormatsOfWorksheet.png, "convertedImage.png");
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert picture to designated format", true, file.exists());
 	}
 	
 	public void testAddPicturesToExcelWorksheet() throws Exception {
-		PictureData pictureData = pictures.addPicturesToExcelWorksheet(5, 5, 20, 20, "IMG_0004.PNG");
+		PictureData pictureData = pictures.addPicturesToExcelWorksheet(5, 5, 10, 32, "sample.png");
 		assertNotNull("Failed to add pictures to excel worksheet",  pictureData);
 	}
 	

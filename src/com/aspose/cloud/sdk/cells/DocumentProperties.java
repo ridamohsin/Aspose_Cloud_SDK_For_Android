@@ -138,7 +138,7 @@ public class DocumentProperties {
         
         //Parsing JSON
         GetSpecificPropertyResponse docPropertyResponse = gson.fromJson(responseJSONString, GetSpecificPropertyResponse.class);
-		if(docPropertyResponse.getCode().equals("200") && docPropertyResponse.getStatus().equals("OK")) {
+		if(docPropertyResponse.getCode().equals("201") && docPropertyResponse.getStatus().equals("Created")) {
 			documentProperty = docPropertyResponse.documentProperty;
 		}
 		
@@ -182,5 +182,39 @@ public class DocumentProperties {
 		}
 		
 		return isPropertyDeletedSuccessfully;
+	}
+	
+	/**
+	 * Deletes all custom and resets built-in properties to default values
+	 * @param fileName Name of the MS Excel document stored on cloud
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return Boolean variable indicated whether all custom properties deleted successfully
+	*/
+	public static boolean deleteAllCustomAndResetBuiltInPropertiesToDefaultValues(String fileName) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
+		
+		boolean isAllCustomPropertiesDeletedSuccessfully = false;
+		
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		//build URL
+      	String strURL = CELLS_URI + fileName + "/documentProperties";
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+        InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+        String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+        Gson gson = new Gson();
+        BaseResponse removePropertyResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if(removePropertyResponse.getCode().equals("200") && removePropertyResponse.getStatus().equals("OK")) {
+			isAllCustomPropertiesDeletedSuccessfully = true;
+		}
+		
+		return isAllCustomPropertiesDeletedSuccessfully;
 	}
 }

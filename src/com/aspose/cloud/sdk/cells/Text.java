@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.cells.TextItemsResponse.TextItemsData;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
@@ -39,7 +41,7 @@ public class Text {
 			throw new IllegalArgumentException("Text to find cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + workbookName + "/findText?text=" + textToFind;
+		String strURL = CELLS_URI + Uri.encode(workbookName) + "/findText?text=" + Uri.encode(textToFind);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -82,7 +84,7 @@ public class Text {
 			throw new IllegalArgumentException("Text to find cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + workbookName + "/worksheets/" + worksheetName + "/findText?text=" + textToFind;
+		String strURL = CELLS_URI + Uri.encode(workbookName) + "/worksheets/" + Uri.encode(worksheetName) + "/findText?text=" + Uri.encode(textToFind);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -115,7 +117,7 @@ public class Text {
 			throw new IllegalArgumentException("Workbook name cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + workbookName + "/textItems";
+		String strURL = CELLS_URI + Uri.encode(workbookName) + "/textItems";
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -153,7 +155,7 @@ public class Text {
 			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + workbookName + "/worksheets/" + worksheetName + "/textItems";
+		String strURL = CELLS_URI + Uri.encode(workbookName) + "/worksheets/" + Uri.encode(worksheetName) + "/textItems";
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -196,7 +198,7 @@ public class Text {
 			throw new IllegalArgumentException("New value cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + workbookName + "/replaceText?oldValue=" + oldValue + "&newValue=" + newValue;
+		String strURL = CELLS_URI + Uri.encode(workbookName) + "/replaceText?oldValue=" + Uri.encode(oldValue) + "&newValue=" + Uri.encode(newValue);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -244,7 +246,7 @@ public class Text {
 			throw new IllegalArgumentException("New value cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + workbookName + "/worksheets/" + worksheetName + "/replaceText?oldValue=" + oldValue + "&newValue=" + newValue;
+		String strURL = CELLS_URI + Uri.encode(workbookName) + "/worksheets/" + Uri.encode(worksheetName) + "/replaceText?oldValue=" + Uri.encode(oldValue) + "&newValue=" + Uri.encode(newValue);
         //sign URL
         String signedURL = Utils.sign(strURL);
         

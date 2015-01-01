@@ -17,17 +17,17 @@ import com.aspose.cloud.sdk.cells.WorksheetResponse.WorksheetResult;
 
 import junit.framework.TestCase;
 
-public class WorksheetTest extends TestCase {
+public class WorksheetTestCase extends TestCase {
 	
 	private Worksheet worksheet;
 	
-	public WorksheetTest(String name) {
+	public WorksheetTestCase(String name) {
 		super(name);
 	}
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		worksheet = new Worksheet("myworkbook.xlsx", "Sheet1");
+		worksheet = new Worksheet("myworkbook.xlsx", "First Sheet");
 	}
 
 	protected void tearDown() throws Exception {
@@ -35,7 +35,7 @@ public class WorksheetTest extends TestCase {
 	}
 	
 	public void testConvertWorksheetToImage() throws Exception {
-		String localFilePath = worksheet.convertWorksheetToImage(ValidFormatsOfWorksheet.jpeg);
+		String localFilePath = worksheet.convertWorksheetToImage(ValidFormatsOfWorksheet.png);
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert a worksheet to designated image format", true, file.exists());
 	}
@@ -62,7 +62,7 @@ public class WorksheetTest extends TestCase {
 	}
 	
 	public void testMoveAWorksheetToANewLocationInAWorkbook() throws Exception {
-		boolean isWorksheetMovedSuccessfully = worksheet.moveAWorksheetToANewLocationInAWorkbook("Feb", PositionEnum.AFTER);
+		boolean isWorksheetMovedSuccessfully = worksheet.moveAWorksheetToANewLocationInAWorkbook("newWorksheet", PositionEnum.AFTER);
 		assertEquals("Failed to move a worksheet to a new location in a workbook", true, isWorksheetMovedSuccessfully);
 	}
 	
@@ -72,7 +72,7 @@ public class WorksheetTest extends TestCase {
 	}
 	
 	public void testGetAutoshapeFromAWorksheet() throws Exception {
-		AutoShape autoShape = worksheet.getAutoshapeFromAWorksheet(0);
+		AutoShape autoShape = worksheet.getAutoshapeFromAWorksheet(1);
 		assertNotNull("Failed to get autoshape from a worksheet", autoShape);
 	}
 	
@@ -87,17 +87,17 @@ public class WorksheetTest extends TestCase {
 	}
 	
 	public void testCalculateFormulaInAWorksheet() throws Exception {
-		CalculateFormulaResult value = worksheet.calculateFormulaInAWorksheet("sum(b2:b6)");
+		CalculateFormulaResult value = worksheet.calculateFormulaInAWorksheet("AVERAGE(B1:B18)");
 		assertNotNull("Failed to calculate formula in a worksheet", value);
 	}
 	
 	public void testSortWorksheetData() throws Exception {
 		List<SortKey> keyList = new ArrayList<SortKey>();
 		SortKey sort = new SortKey();
-		sort.Key = 4;
-		sort.SortOrder = "descending";
+		sort.Key = 0;
+		sort.SortOrder = "Ascending";
 		keyList.add(sort);
-		boolean isWorksheetDataSortedSuccessfully = worksheet.sortWorksheetData("A1:C13", false, false, true, keyList);
+		boolean isWorksheetDataSortedSuccessfully = worksheet.sortWorksheetData("A1:A10", false, false, false, keyList);
 		assertEquals("Failed to sort worksheet data", true, isWorksheetDataSortedSuccessfully);
 	}
 	
@@ -107,12 +107,12 @@ public class WorksheetTest extends TestCase {
 	}
 	
 	public void testCopyAWorksheet() throws Exception {
-		boolean isWorksheetCopiedSuccessfully = worksheet.copyAWorksheet("srcSheetName");
+		boolean isWorksheetCopiedSuccessfully = worksheet.copyAWorksheet("Second Sheet");
 		assertEquals("Failed to copy a worksheet", true, isWorksheetCopiedSuccessfully);
 	}
 	
 	public void testRenameAWorksheet() throws Exception {
-		boolean isWorksheetRenamedSuccessfully = worksheet.renameAWorksheet("newSheetName");
+		boolean isWorksheetRenamedSuccessfully = worksheet.renameAWorksheet("Last Sheet");
 		assertEquals("Failed to rename a worksheet", true, isWorksheetRenamedSuccessfully);
 	}
 	
@@ -120,31 +120,20 @@ public class WorksheetTest extends TestCase {
 		String xmlData = 
 				"<Worksheet>" +
 					"<Type>Worksheet</Type>" +
-					"<Name>sheet1</Name>" +
-					"<IsGridlinesVisible>True</IsGridlinesVisible>" +
-					"<IsRowColumnHeadersVisible>True</IsRowColumnHeadersVisible>" +
-					"<DisplayZeros>True</DisplayZeros>" +
-					"<DisplayRightToLeft>True</DisplayRightToLeft>" +
-					"<IsOutlineShown>True</IsOutlineShown>" +
-					"<IsSelected>True</IsSelected>" +
-					"<HasAutofilter>True</HasAutofilter>" +
-					"<TransitionEvaluation>True</TransitionEvaluation>" +
-					"<TransitionEntry>True</TransitionEntry>" +
+					"<Name>Last Sheet</Name>" +
+					"<Zoom>80</Zoom>" +
+					"<IsGridlinesVisible>False</IsGridlinesVisible>" +
+					"<ViewType>PageLayoutView</ViewType>" +
 					"<VisibilityType>Visible</VisibilityType>" +
 					"<IsVisible>True</IsVisible>" +
-					"<Index>0</Index>" +
-					"<FirstVisibleRow>1</FirstVisibleRow>" +
-					"<FirstVisibleColumn>1</FirstVisibleColumn>" +
-					"<Zoom>80</Zoom>" +
-					"<ViewType>PageBreakPreview</ViewType>" +
-					"<IsPageBreakPreview>True</IsPageBreakPreview>" +
-					"<IsRulerVisible>True</IsRulerVisible>" +
 				"</Worksheet>";
-		worksheet.updatePropertiesOfAWorksheet(xmlData);
+		
+		boolean isWorksheetPropertiesUpdatedSuccessfully = worksheet.updatePropertiesOfAWorksheet(xmlData);
+		assertEquals("Failed to update properties of a worksheet", true, isWorksheetPropertiesUpdatedSuccessfully);
 	}
 	
 	public void testSetABackgroundImageOrWatermarkImageForAWorksheet() throws Exception {
-		boolean isBackgroundImageSetSuccessfully = worksheet.setABackgroundImageOrWatermarkImageForAWorksheet("IMG_0004.PNG");
+		boolean isBackgroundImageSetSuccessfully = worksheet.setABackgroundImageOrWatermarkImageForAWorksheet("sample.png");
 		assertEquals("Failed to set a background image or watermark image for a worksheet", true, isBackgroundImageSetSuccessfully);
 	}
 	

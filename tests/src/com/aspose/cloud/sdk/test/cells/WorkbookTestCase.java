@@ -12,9 +12,9 @@ import com.aspose.cloud.sdk.cells.SplitWorksheetsOfAWorkbookResponse.SplitWorksh
 
 import junit.framework.TestCase;
 
-public class WorkbookTest extends TestCase {
+public class WorkbookTestCase extends TestCase {
 
-	public WorkbookTest(String name) {
+	public WorkbookTestCase(String name) {
 		super(name);
 	}
 
@@ -27,13 +27,13 @@ public class WorkbookTest extends TestCase {
 	}
 
 	public void testCreateAnEmptyExcelWorkbook() throws Exception {
-		boolean isWorkbookCreatedSuccessfully = Workbook.createAnEmptyExcelWorkbook("newworkbook.xlsx");
+		boolean isWorkbookCreatedSuccessfully = Workbook.createAnEmptyExcelWorkbook("myworkbook.xlsx");
 		assertEquals("Failed to create an empty excel workbook", true, isWorkbookCreatedSuccessfully);
 	}
 	
 	public void testCreateExcelWorkbookFromATemplateFile() throws Exception {
 		boolean isWorkbookCreatedSuccessfullyFromTemplate = 
-				Workbook.createExcelWorkbookFromATemplateFile("newworkbook.xlsx", "2014-calendar.xlsx");
+				Workbook.createExcelWorkbookFromATemplateFile("myworkbooktemp.xlsx", "ie_data.xls");
 		assertEquals("Failed to create excel workbook from a template file", true, isWorkbookCreatedSuccessfullyFromTemplate);
 	}
 	
@@ -43,13 +43,13 @@ public class WorkbookTest extends TestCase {
 	}
 	
 	public void testConvertExcelWorkbookToDifferentFileFormats() throws Exception {
-		String localFilePath = Workbook.convertExcelWorkbookToDifferentFileFormats("newworkbook.xlsx", ValidFormatsForPresentationEnum.pdf);
+		String localFilePath = Workbook.convertExcelWorkbookToDifferentFileFormats("myworkbook.xls", ValidFormatsForPresentationEnum.pdf);
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert excel workbook to designated file format", true, file.exists());
 	}
 	
 	public void testConvertExcelWorkbookToDifferentFileFormatsWithoutUsingStorage() throws Exception {
-		String localFilePath = Workbook.convertExcelWorkbookToDifferentFileFormatsWithoutUsingStorage("/storage/emulated/0/AsposeFiles/myworkbook.xlsx", ValidFormatsForPresentationEnum.pdf);
+		String localFilePath = Workbook.convertExcelWorkbookToDifferentFileFormatsWithoutUsingStorage("/storage/emulated/0/AsposeFiles/myworkbook.xls", ValidFormatsForPresentationEnum.pdf);
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert excel workbook to designated file format without using storage", 
 				true, file.exists());
@@ -63,19 +63,18 @@ public class WorkbookTest extends TestCase {
 	            			"<SaveFormat>Pdf</SaveFormat>" +
 	            		 "</PdfSaveOptions>";
      
-		String localFilePath = Workbook.convertExcelWorkbookWithAdditionalSettings("newworkbook.xlsx", xmlData, "convertedworkbook.xlsx");
+		String localFilePath = Workbook.convertExcelWorkbookWithAdditionalSettings("myworkbook.xlsx", xmlData, "convertedworkbook.pdf");
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert excel workbook with additional settings", true, file.exists());
 	}
 	
 	public void testMergeExcelWorkbooks() throws Exception {
-		boolean isExcelFilesMergedSuccessfully = Workbook.mergeExcelWorkbooks("newworkbook.xlsx", "myworkbook.xlsx");
+		boolean isExcelFilesMergedSuccessfully = Workbook.mergeExcelWorkbooks("myworkbook.xlsx", "myworkbook2.xlsx");
 		assertEquals("Failed to merge multiple workbooks into a single workbook", true, isExcelFilesMergedSuccessfully);
 	}
 	
 	public void testSplitWorksheetsOfAWorkbook() throws Exception {
-		SplitWorksheetsOfAWorkbookResult splitWorksheetsOfAWorkbookResult = Workbook.splitWorksheetsOfAWorkbook("myworkbook.xlsx", ValidFormatsForDocumentEnum.pdf, 
-				1, 5);
+		SplitWorksheetsOfAWorkbookResult splitWorksheetsOfAWorkbookResult = Workbook.splitWorksheetsOfAWorkbook("myworkbook.xls", ValidFormatsForDocumentEnum.pdf, 0, 0);
 		assertNotNull("Failed to split worksheets of a workbook file", splitWorksheetsOfAWorkbookResult);
 	}
 	
@@ -110,7 +109,7 @@ public class WorkbookTest extends TestCase {
 	}
 	
 	public void testGetNamesCountFromAWorkbook() throws Exception {
-		NamesCountFromAWorkbookResult namesCountFromAWorkbookResult = Workbook.getNamesCountFromAWorkbook("myworkbook.xlsx");
+		NamesCountFromAWorkbookResult namesCountFromAWorkbookResult = Workbook.getNamesCountFromAWorkbook("myworkbook.xls");
 		assertNotNull("Failed to get names count from a workbook", namesCountFromAWorkbookResult);
 	}
 }

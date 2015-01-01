@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.cells.HyperlinkResponse.HyperlinkData;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
@@ -25,8 +27,8 @@ public class Hyperlink {
 	private String worksheetName;
 	
 	public Hyperlink(String fileName, String worksheetName) {
-		this.fileName = fileName;
-		this.worksheetName = worksheetName;
+		this.fileName = Uri.encode(fileName);
+		this.worksheetName = Uri.encode(worksheetName);
 	}
 	
 	public void setFileName(String fileName) {
@@ -107,7 +109,7 @@ public class Hyperlink {
 		
 		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + 
 				"/hyperlinks?firstRow=" + firstRow + "&firstColumn=" + firstColumn + "&totalRows=" + totalRows + 
-				"&totalColumns=" + totalColumns + "&address=" + address;
+				"&totalColumns=" + totalColumns + "&address=" + Uri.encode(address);
 						
         //sign URL
         String signedURL = Utils.sign(strURL);

@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.cells.NamesCountFromAWorkbookResponse.NamesCountFromAWorkbookResult;
 import com.aspose.cloud.sdk.cells.SplitWorksheetsOfAWorkbookResponse.SplitWorksheetsOfAWorkbookResult;
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -41,7 +43,7 @@ public class Workbook {
 		}
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName;
+      	String strURL = CELLS_URI + Uri.encode(fileName);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -80,7 +82,7 @@ public class Workbook {
 		}
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "?templatefile=" + templateFileName;
+      	String strURL = CELLS_URI + Uri.encode(fileName) + "?templatefile=" + Uri.encode(templateFileName);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -124,8 +126,8 @@ public class Workbook {
 		}
 			
 		//build URL
-      	String strURL = CELLS_URI + fileName + "?templatefile=" + templateFileName 
-      			+ "&dataFile=" + dataFile;
+      	String strURL = CELLS_URI + Uri.encode(fileName) + "?templatefile=" + Uri.encode(templateFileName) 
+      			+ "&dataFile=" + Uri.encode(dataFile);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -255,7 +257,7 @@ public class Workbook {
 		}
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "/saveAs"; 
+      	String strURL = CELLS_URI + Uri.encode(fileName) + "/saveAs"; 
         //sign URL
         String signedURL = Utils.sign(strURL);
 		
@@ -290,7 +292,7 @@ public class Workbook {
 		}
 		
 		//build URI
-		String strURI = CELLS_URI + fileName + "/merge?mergeWith=" + mergeWithFileName;
+		String strURI = CELLS_URI + Uri.encode(fileName) + "/merge?mergeWith=" + Uri.encode(mergeWithFileName);
 		//sign URI
 		String signedURI = Utils.sign(strURI);
 
@@ -336,14 +338,14 @@ public class Workbook {
 		//build URI
 		String strURI;
 		if(fromWorksheet > 0 && toWorksheet > 0) {
-			strURI = CELLS_URI + fileName + "/split?from=" +  fromWorksheet + "&to=" + toWorksheet + "&format=" + designatedFormat;
+			strURI = CELLS_URI + Uri.encode(fileName) + "/split?from=" +  fromWorksheet + "&to=" + toWorksheet + "&format=" + designatedFormat;
 		} else {
-			strURI = CELLS_URI + fileName + "/split?format=" + designatedFormat;
+			strURI = CELLS_URI + Uri.encode(fileName) + "/split?format=" + designatedFormat;
 		}
 		
 		//sign URI
 		String signedURI = Utils.sign(strURI);
-
+		
 		//Process the request on server
 		InputStream responseStream = Utils.processCommand(signedURI, "POST");
 		//Further process JSON response
@@ -395,7 +397,7 @@ public class Workbook {
         String requestJSONString = gson.toJson(protectionObj, ProtectionModel.class);
 		
         //build URI
-        String strURI = CELLS_URI + fileName + "/protection";
+        String strURI = CELLS_URI + Uri.encode(fileName) + "/protection";
         //sign URL
       	String signedURI = Utils.sign(strURI);
 
@@ -441,11 +443,11 @@ public class Workbook {
         String requestJSONString = gson.toJson(protectionObj, ProtectionModel.class);
 		
         //build URI
-        String strURI = CELLS_URI + fileName + "/protection";
+        String strURI = CELLS_URI + Uri.encode(fileName) + "/protection";
         //sign URL
       	String signedURI = Utils.sign(strURI);
 
-		InputStream responseStream = Utils.processCommand(signedURI, "DELETE", requestJSONString);
+		InputStream responseStream = Utils.processDeleteCommandWithBody(signedURI, requestJSONString);
 		String responseJSONString = Utils.streamToString(responseStream);
 
 		//Parsing JSON
@@ -497,7 +499,7 @@ public class Workbook {
         String requestJSONString = gson.toJson(encryptionObj, EncryptionModel.class);
 		
         //build URI
-        String strURI = CELLS_URI + fileName + "/encryption";
+        String strURI = CELLS_URI + Uri.encode(fileName) + "/encryption";
         //sign URL
       	String signedURI = Utils.sign(strURI);
 
@@ -543,11 +545,11 @@ public class Workbook {
         String requestJSONString = gson.toJson(encryptionObj, EncryptionModel.class);
 		
         //build URI
-        String strURI = CELLS_URI + fileName + "/encryption";
+        String strURI = CELLS_URI + Uri.encode(fileName) + "/encryption";
         //sign URL
       	String signedURI = Utils.sign(strURI);
 
-		InputStream responseStream = Utils.processCommand(signedURI, "DELETE", requestJSONString);
+		InputStream responseStream = Utils.processDeleteCommandWithBody(signedURI, requestJSONString);
 		String responseJSONString = Utils.streamToString(responseStream);
 
 		//Parsing JSON
@@ -589,7 +591,7 @@ public class Workbook {
         String requestJSONString = gson.toJson(protectionObj, ProtectionModel.class);
 		
         //build URI
-        String strURI = CELLS_URI + fileName + "/writeProtection";
+        String strURI = CELLS_URI + Uri.encode(fileName) + "/writeProtection";
         //sign URL
       	String signedURI = Utils.sign(strURI);
 
@@ -635,11 +637,11 @@ public class Workbook {
         String requestJSONString = gson.toJson(protectionObj, ProtectionModel.class);
 		
         //build URI
-        String strURI = CELLS_URI + fileName + "/writeProtection";
+        String strURI = CELLS_URI + Uri.encode(fileName) + "/writeProtection";
         //sign URL
       	String signedURI = Utils.sign(strURI);
 
-		InputStream responseStream = Utils.processCommand(signedURI, "DELETE", requestJSONString);
+		InputStream responseStream = Utils.processDeleteCommandWithBody(signedURI, requestJSONString);
 		String responseJSONString = Utils.streamToString(responseStream);
 
 		//Parsing JSON
@@ -668,7 +670,7 @@ public class Workbook {
 		}
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "/names";
+      	String strURL = CELLS_URI + Uri.encode(fileName) + "/names";
         //sign URL
         String signedURL = Utils.sign(strURL);
         

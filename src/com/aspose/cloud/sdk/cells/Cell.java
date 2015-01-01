@@ -7,6 +7,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.cells.CellsResponse.CellData;
 import com.aspose.cloud.sdk.cells.MergedCellResponse.MergedCell;
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -34,8 +36,8 @@ public class Cell {
 	private String worksheetName;
 	
 	public Cell(String fileName, String worksheetName) {
-		this.fileName = fileName;
-		this.worksheetName = worksheetName;
+		this.fileName = Uri.encode(fileName);
+		this.worksheetName = Uri.encode(worksheetName);
 	}
 	
 	public void setFileName(String fileName) {
@@ -68,7 +70,7 @@ public class Cell {
 			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/" + cellName;
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/" + Uri.encode(cellName);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -456,7 +458,7 @@ public class Cell {
 		}
 		
 		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/" + 
-							cellName + "?value=" + cellValue + "&type=" + type;
+				Uri.encode(cellName) + "?value=" + Uri.encode(cellValue) + "&type=" + type;
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -505,7 +507,7 @@ public class Cell {
 		}
 		
 		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/" + 
-							cellName + "?formula=" + formula;
+				Uri.encode(cellName) + "?formula=" + Uri.encode(formula);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -549,7 +551,7 @@ public class Cell {
 		}
 		
 		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/" + 
-							cellName + "style";
+				Uri.encode(cellName) + "/style";
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -577,9 +579,9 @@ public class Cell {
 	 * @throws IOException If there is an IO error
 	 * @return An object that contains cell's updated style attributes  
 	*/
-	public Style changeCellStyleInExcelWorksheet(String range, Style style) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public boolean changeCellStyleInExcelWorksheet(String range, Style style) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
-		Style updatedStyle = null;
+		boolean isCellStyleChanged = false;
 		
 		if(fileName == null || fileName.length() == 0) {
 			throw new IllegalArgumentException("File name cannot be null or empty");
@@ -601,7 +603,7 @@ public class Cell {
         Gson gson = builder.create();
         String requestJSONString = gson.toJson(style, Style.class);
 		
-		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/style?range=" + range;
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/style?range=" + Uri.encode(range);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -611,10 +613,10 @@ public class Cell {
         //Parsing JSON
 		CellStyleResponse cellStyleResponse = gson.fromJson(responseJSONString, CellStyleResponse.class);
 		if (cellStyleResponse.getCode().equals("200") && cellStyleResponse.getStatus().equals("OK")) {
-			updatedStyle = cellStyleResponse.style;
+			isCellStyleChanged = true;
 		}
 		
-		return updatedStyle;
+		return isCellStyleChanged;
 	}
 	
 	/**
@@ -807,8 +809,8 @@ public class Cell {
 			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/?cellarea=" + 
-				cellArea + "&value=" + value + "&type=" + type;
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells?cellarea=" + 
+				Uri.encode(cellArea) + "&value=" + Uri.encode(value) + "&type=" + Uri.encode(type);
         //sign URL
         String signedURL = Utils.sign(strURL);
         

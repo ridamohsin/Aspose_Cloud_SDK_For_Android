@@ -7,11 +7,11 @@ import com.aspose.cloud.sdk.cells.HyperlinkResponse.HyperlinkData;
 
 import junit.framework.TestCase;
 
-public class HyperlinkTest extends TestCase {
+public class HyperlinkTestCase extends TestCase {
 
 	private Hyperlink hyperlink;
 	
-	public HyperlinkTest(String name) {
+	public HyperlinkTestCase(String name) {
 		super(name);
 	}
 
@@ -62,6 +62,6 @@ public class HyperlinkTest extends TestCase {
 	
 	public void testDeleteASpecificHyperlinkFromExcelWorksheet() throws Exception {
 		boolean isAHyperlinkDeletedSuccessfully = hyperlink.deleteASpecificHyperlinkFromExcelWorksheet(0);
-		assertEquals("Failed to delete a specifi hyperlink from excel worksheet", true, isAHyperlinkDeletedSuccessfully);
+		assertEquals("Failed to delete a specific hyperlink from excel worksheet", true, isAHyperlinkDeletedSuccessfully);
 	}
 }

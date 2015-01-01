@@ -6,6 +6,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.cells.CalculateFormulaResponse.CalculateFormulaResult;
 import com.aspose.cloud.sdk.cells.SortKey;
 import com.aspose.cloud.sdk.cells.GetAutoshapeFromAWorksheetResponse.AutoShape;
@@ -34,8 +36,8 @@ public class Worksheet {
 	private String fileName;
 	
 	public Worksheet(String fileName, String worksheetName) {
-		this.fileName = fileName;
-		this.worksheetName = worksheetName;
+		this.fileName = Uri.encode(fileName);
+		this.worksheetName = Uri.encode(worksheetName);
 	}
 	
 	/**
@@ -91,7 +93,7 @@ public class Worksheet {
 		}
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "/worksheets/" + newWorksheetName;
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + Uri.encode(newWorksheetName);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -330,7 +332,7 @@ public class Worksheet {
 		}
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/comments/" + cellName;
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/comments/" + Uri.encode(cellName);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -394,7 +396,7 @@ public class Worksheet {
 		CalculateFormulaResult value = null;
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/formulaResult?formula=" + formula;
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/formulaResult?formula=" + Uri.encode(formula);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -449,7 +451,7 @@ public class Worksheet {
       	String requestJSONString = gson.toJson(dataSort, DataSortModel.class);
               
       	//build URL
-      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/sort?cellArea=" + cellArea;
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/sort?cellArea=" + Uri.encode(cellArea);
         //sign URL
         String signedURI = Utils.sign(strURL);
 
@@ -512,7 +514,7 @@ public class Worksheet {
 		boolean isWorksheetCopiedSuccessfully = false;
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/copy?sourceSheet=" + sourceSheetName;
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/copy?sourceSheet=" + Uri.encode(sourceSheetName);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -544,7 +546,7 @@ public class Worksheet {
 		boolean isWorksheetRenamedSuccessfully = false;
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/Rename?newname=" + newSheetName;
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/Rename?newname=" + Uri.encode(newSheetName);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -608,7 +610,7 @@ public class Worksheet {
 		boolean isBackgroundImageSetSuccessfully = false;
 		
 		//build URL
-      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/Background?imagefile=" + backgroundImageName;
+      	String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/Background?imagefile=" + Uri.encode(backgroundImageName);
         //sign URL
         String signedURL = Utils.sign(strURL);
         

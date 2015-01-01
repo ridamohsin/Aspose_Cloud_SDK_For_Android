@@ -5,7 +5,10 @@ import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.cells.RowResponse.RowData;
+import com.aspose.cloud.sdk.cells.RowsResponse.RowsData;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
@@ -25,8 +28,8 @@ public class Row {
 	private String worksheetName;
 	
 	public Row(String fileName, String worksheetName) {
-		this.fileName = fileName;
-		this.worksheetName = worksheetName;
+		this.fileName = Uri.encode(fileName);
+		this.worksheetName = Uri.encode(worksheetName);
 	}
 	
 	public void setFileName(String fileName) {
@@ -59,7 +62,7 @@ public class Row {
 			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/rows/" + rowID;
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/rows/" + rowID;
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -74,6 +77,46 @@ public class Row {
 		}
 		
 		return row;
+	}
+	
+	/**
+	 * Get rows from a worksheet
+	 * @param fileName Name of the file stored on cloud
+	 * @param worksheetName Worksheet name
+	 * @param offset Offset of the first cell to return, default value is 0 
+	 * @param count The maximum number of rows to return, default value is 25 
+	 * @throws InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws IOException If there is an IO error
+	 * @return An object that contains requested rows' attributes
+	*/
+	public RowsData getRowsFromAWorksheet(int offset, int count) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		
+		RowsData rows = null;
+		
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+		
+		if(worksheetName == null || worksheetName.length() == 0) {
+			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
+		}
+		
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/rows?offset=" + offset + "&count=" + count;
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		String responseJSONString = Utils.streamToString(responseStream);
+        
+        //Parsing JSON
+		Gson gson = new Gson();
+		RowsResponse rowsResponse = gson.fromJson(responseJSONString, RowsResponse.class);
+		if (rowsResponse.getCode().equals("200") && rowsResponse.getStatus().equals("OK")) {
+			rows = rowsResponse.rows;
+		}
+		
+		return rows;
 	}
 	
 	/**
@@ -361,17 +404,15 @@ public class Row {
 	}
 
 	/**
-	 * Automatically fit rows' height and width  
+	 * Automatically fit rows' height and width of a Workbook 
 	 * @param fileName Name of the file stored on cloud
-	 * @param worksheetName Worksheet name
-	 * @param firstIndex The first row index to be operated
-	 * @param lastIndex The last row index to be operated
+	 * @param isAutoFit
 	 * @throws InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws IOException If there is an IO error
-	 * @return Boolean variable that indicates whether selected rows' height and width fit successfully
+	 * @return Boolean variable that indicates whether Workbook rows' height and width fit successfully
 	*/
-	public boolean autoFitRowsInAWorksheet(int firstIndex, int lastIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public boolean autoFitRowsInAWorkbook(boolean isAutoFit) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		boolean isRowsAutoFitSuccessfully = false;
 		
@@ -383,12 +424,11 @@ public class Row {
 			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
 		}
 		
-		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/cells/rows/autofit?firstIndex=" + firstIndex +
-				"&lastIndex=" + lastIndex;
+		String strURL = CELLS_URI + fileName + "?isAutoFit=" + isAutoFit;
         //sign URL
         String signedURL = Utils.sign(strURL);
         
-		InputStream responseStream = Utils.processCommand(signedURL, "POST");
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String responseJSONString = Utils.streamToString(responseStream);
         
         //Parsing JSON

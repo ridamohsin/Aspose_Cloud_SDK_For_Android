@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.cells.ChartAreaResponse.ChartAreaResult;
 import com.aspose.cloud.sdk.cells.ChartResponse.ChartResult;
 import com.aspose.cloud.sdk.cells.ChartTitleResource.ChartTitleData;
@@ -32,8 +34,8 @@ public class Charts {
 	private String worksheetName;
 	
 	public Charts(String fileName, String worksheetName) {
-		this.fileName = fileName;
-		this.worksheetName = worksheetName;
+		this.fileName = Uri.encode(fileName);
+		this.worksheetName = Uri.encode(worksheetName);
 	}
 	
 	public void setFileName(String fileName) {
@@ -78,8 +80,8 @@ public class Charts {
 		
 		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName +
 				"/charts?chartType=" + chartType + "&upperLeftRow=" + upperLeftRow + "&upperLeftColumn=" + upperLeftColumn + 
-				"&lowerRightRow=" + lowerRightRow + "&lowerRightColumn=" + lowerRightColumn + "&area=" + area + 
-				"&isVertical=" + isVertical + "&categoryData=" + categoryData + "&isAutoGetSerialName=" + isAutoGetSerialName + "&title=" + chartTitle;
+				"&lowerRightRow=" + lowerRightRow + "&lowerRightColumn=" + lowerRightColumn + "&area=" + Uri.encode(area) + 
+				"&isVertical=" + isVertical + "&categoryData=" + Uri.encode(categoryData) + "&isAutoGetSerialName=" + isAutoGetSerialName + "&title=" + Uri.encode(chartTitle);
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -175,7 +177,7 @@ public class Charts {
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		//Save the stream in response to the disk
-		localFilePath = Utils.saveStreamToFile(responseStream, fileName);
+		localFilePath = Utils.saveStreamToFile(responseStream, outputFileName);
 		
 		return localFilePath;
 	}
@@ -506,54 +508,6 @@ public class Charts {
 	}
 	
 	/**
-	 * Set chart title in excel worksheet
-	 * @param fileName Name of file saved on cloud
-	 * @param worksheetName Worksheet name
-	 * @param chartIndex Chart Index
-	 * @param chartTitleRequest Request for title
-	 * @throws InvalidKeyException If initialization fails because the provided key is null.
-	 * @throws NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
-	 * @throws IOException If there is an IO error
-	 * @return An object that contains attributes of chart title
-	*/
-	public ChartTitleData setChartTitleInExcelWorksheet(int chartIndex, ChartTitleResource chartTitleRequest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
-		
-		ChartTitleData chartTitleData = null;
-		
-		if(fileName == null || fileName.length() == 0) {
-			throw new IllegalArgumentException("File name cannot be null or empty");
-		}
-		
-		if(worksheetName == null || worksheetName.length() == 0) {
-			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
-		}
-        
-		if(chartTitleRequest == null) {
-			throw new IllegalArgumentException("Chart title request cannot be null");
-		}
-		
-		GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        String requestJSONString = gson.toJson(chartTitleRequest, ChartTitleResource.class);
-        
-		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName +
-				"/charts/" + chartIndex + "/title";
-        //sign URL
-        String signedURL = Utils.sign(strURL);
-        
-		InputStream responseStream = Utils.processCommand(signedURL, "PUT", requestJSONString);
-		String responseJSONString = Utils.streamToString(responseStream);
-        
-        //Parsing JSON
-		ChartTitleResource chartTitleResponse = gson.fromJson(responseJSONString, ChartTitleResource.class);
-		if (chartTitleResponse.getCode().equals("200") && chartTitleResponse.getStatus().equals("OK")) {
-			chartTitleData = chartTitleResponse.chartTitleData;
-		}
-		
-		return chartTitleData;
-	}
-	
-	/**
 	 * Update chart title in excel worksheet
 	 * @param fileName Name of file saved on cloud
 	 * @param worksheetName Worksheet name
@@ -564,7 +518,7 @@ public class Charts {
 	 * @throws IOException If there is an IO error
 	 * @return An object that contains updated attributes of chart title
 	*/
-	public ChartTitleData updateChartTitleInExcelWorksheet(int chartIndex, ChartTitleResource chartTitleRequest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public ChartTitleData updateChartTitleInExcelWorksheet(int chartIndex, String xmlChartTitleRequest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		ChartTitleData chartTitleData = null;
 		
@@ -576,23 +530,20 @@ public class Charts {
 			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
 		}
         
-		if(chartTitleRequest == null) {
+		if(xmlChartTitleRequest == null) {
 			throw new IllegalArgumentException("Chart title request cannot be null");
 		}
-		
-		GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        String requestJSONString = gson.toJson(chartTitleRequest, ChartTitleResource.class);
         
 		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName +
 				"/charts/" + chartIndex + "/title";
         //sign URL
         String signedURL = Utils.sign(strURL);
         
-		InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlChartTitleRequest, "xml");
 		String responseJSONString = Utils.streamToString(responseStream);
         
         //Parsing JSON
+		Gson gson = new Gson();
 		ChartTitleResource chartTitleResponse = gson.fromJson(responseJSONString, ChartTitleResource.class);
 		if (chartTitleResponse.getCode().equals("200") && chartTitleResponse.getStatus().equals("OK")) {
 			chartTitleData = chartTitleResponse.chartTitleData;

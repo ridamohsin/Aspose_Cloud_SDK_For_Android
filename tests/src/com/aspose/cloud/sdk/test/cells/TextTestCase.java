@@ -5,9 +5,9 @@ import com.aspose.cloud.sdk.cells.TextItemsResponse.TextItemsData;
 
 import junit.framework.TestCase;
 
-public class TextTest extends TestCase {
+public class TextTestCase extends TestCase {
 
-	public TextTest(String name) {
+	public TextTestCase(String name) {
 		super(name);
 	}
 
@@ -20,12 +20,12 @@ public class TextTest extends TestCase {
 	}
 	
 	public void testFindTextInAWorkbook() throws Exception {
-		TextItemsData textItems = Text.findTextInAWorkbook("myworkbook.xlsx", "According");
+		TextItemsData textItems = Text.findTextInAWorkbook("myworkbook.xlsx", "Weather");
 		assertNotNull("Failed to find text in a workbook", textItems);
 	}
 	
 	public void testFindTextInAWorksheet() throws Exception {
-		TextItemsData textItems = Text.findTextInAWorksheet("myworkbook.xlsx", "Sheet1", "According");
+		TextItemsData textItems = Text.findTextInAWorksheet("myworkbook.xlsx", "Sheet1", "Weather");
 		assertNotNull("Failed to find text in a worksheet", textItems);
 	}
 	
@@ -40,12 +40,12 @@ public class TextTest extends TestCase {
 	}
 	
 	public void testReplaceTextInAWorkbook() throws Exception {
-		int matchesCount = Text.replaceTextInAWorkbook("myworkbook.xlsx", "According", "accordance");
+		int matchesCount = Text.replaceTextInAWorkbook("myworkbook.xlsx", "Celsius", "Fahrenheit");
 		assertEquals("Failed to replace text in a workbook", true, matchesCount >= 0);
 	}
 	
 	public void testReplaceTextInAWorksheet() throws Exception {
-		int matchesCount = Text.replaceTextInAWorksheet("myworkbook.xlsx", "Sheet1", "According", "accordance");
+		int matchesCount = Text.replaceTextInAWorksheet("myworkbook.xlsx", "Sheet1", "Celsius", "Fahrenheit");
 		assertEquals("Failed to replace text in a worksheet", true, matchesCount >= 0);
 	}
 }

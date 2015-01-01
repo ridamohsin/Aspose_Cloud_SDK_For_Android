@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.cells.PicturesResponse.PictureData;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
@@ -23,8 +25,8 @@ public class Pictures {
 	private String worksheetName;
 	
 	public Pictures(String fileName, String worksheetName) {
-		this.fileName = fileName;
-		this.worksheetName = worksheetName;
+		this.fileName = Uri.encode(fileName);
+		this.worksheetName = Uri.encode(worksheetName);
 	}
 	
 	public void setFileName(String fileName) {
@@ -151,8 +153,8 @@ public class Pictures {
 		}
 		
 		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/pictures?" + 
-				"?upperLeftRow=" + upperLeftRow + "&upperLeftColumn=" + upperLeftColumn + "&lowerRightRow=" + lowerRightRow + 
-				"&lowerRightColumn=" + lowerRightColumn + "&picturePath=" + picturePath;
+				"upperLeftRow=" + upperLeftRow + "&upperLeftColumn=" + upperLeftColumn + "&lowerRightRow=" + lowerRightRow + 
+				"&lowerRightColumn=" + lowerRightColumn + "&picturePath=" + Uri.encode(picturePath);
 		
         //sign URL
         String signedURL = Utils.sign(strURL);

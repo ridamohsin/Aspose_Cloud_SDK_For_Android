@@ -1,15 +1,17 @@
 package com.aspose.cloud.sdk.test.cells;
 
+import java.io.File;
+
 import com.aspose.cloud.sdk.cells.ValidFormatsOfWorksheet;
 import com.aspose.cloud.sdk.cells.Images;
 
 import junit.framework.TestCase;
 
-public class ImagesTest extends TestCase {
+public class ImagesTestCase extends TestCase {
 
 	private Images images;
 	
-	public ImagesTest(String name) {
+	public ImagesTestCase(String name) {
 		super(name);
 	}
 
@@ -23,7 +25,9 @@ public class ImagesTest extends TestCase {
 	}
 	
 	public void testConvertAutoShapeToImage() throws Exception {
-		images.convertAutoShapeToImage(0, ValidFormatsOfWorksheet.jpeg);
+		String localFilePath = images.convertAutoShapeToImage(0, ValidFormatsOfWorksheet.jpeg, "autoshape.jpeg");
+		File file = new File(localFilePath);
+		assertEquals("Failed to convert an autoshape to image", true, file.exists());
 	}
 
 }

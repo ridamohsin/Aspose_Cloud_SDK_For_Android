@@ -7,9 +7,9 @@ import com.aspose.cloud.sdk.cells.GetSpecificPropertyResponse.DocumentPropertyVa
 
 import junit.framework.TestCase;
 
-public class DocumentPropertiesTest extends TestCase {
+public class DocumentPropertiesTestCase extends TestCase {
 
-	public DocumentPropertiesTest(String name) {
+	public DocumentPropertiesTestCase(String name) {
 		super(name);
 	}
 
@@ -41,4 +41,8 @@ public class DocumentPropertiesTest extends TestCase {
 		assertEquals("Failed to remove a particular document property", true, isPropertyDeletedSuccessfully);
 	}
 	
+	public void testDeleteAllCustomAndResetBuiltInPropertiesToDefaultValues() throws Exception {
+		boolean isAllCustomPropertiesDeletedSuccessfully = DocumentProperties.deleteAllCustomAndResetBuiltInPropertiesToDefaultValues("myworkbook.xlsx");
+		assertEquals("Failed to delete all custom properties", true, isAllCustomPropertiesDeletedSuccessfully);
+	}
 }

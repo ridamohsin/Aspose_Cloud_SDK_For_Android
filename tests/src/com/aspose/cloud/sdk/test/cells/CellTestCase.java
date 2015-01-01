@@ -9,11 +9,11 @@ import com.aspose.cloud.sdk.cells.Style;
 
 import junit.framework.TestCase;
 
-public class CellTest extends TestCase {
+public class CellTestCase extends TestCase {
 
 	private Cell cell;
 	
-	public CellTest(String name) {
+	public CellTestCase(String name) {
 		super(name);
 	}
 
@@ -73,12 +73,12 @@ public class CellTest extends TestCase {
 	
 	public void testGetMinColumnFromExcelWorksheet() throws Exception {
 		int minColumnIndex = cell.getMinColumnFromExcelWorksheet();
-		assertEquals("Failed to ", true, minColumnIndex>= 0);
+		assertEquals("Failed to get MinColumn from excel worksheet", true, minColumnIndex>= 0);
 	}
 	
 	public void testGetMinDataColumnFromExcelWorksheet() throws Exception {
 		int minDataColumnIndex = cell.getMinDataColumnFromExcelWorksheet();	
-		assertEquals("", true, minDataColumnIndex>= 0);
+		assertEquals("Failed to get MinDataColumn from excel worksheet", true, minDataColumnIndex>= 0);
 	}
 	
 	public void testSetValueOfACellInAWorksheet() throws Exception {
@@ -87,12 +87,12 @@ public class CellTest extends TestCase {
 	}
 	
 	public void testSetFormulaForACellInAWorksheet() throws Exception {
-		CellData cellData = cell.setFormulaForACellInAWorksheet("A3", "sum(a1,a2)");
+		CellData cellData = cell.setFormulaForACellInAWorksheet("A4", "sum(A1:A2)");
 		assertNotNull("Failed to set formula for a cell in a worksheet", cellData);
 	}
 	
 	public void testGetCellStyleFromAWorksheet() throws Exception {
-		Style style = cell.getCellStyleFromAWorksheet("E35");
+		Style style = cell.getCellStyleFromAWorksheet("E11");
 		assertNotNull("Failed to get cell style from a worksheet", style);
 	}
 	
@@ -114,8 +114,8 @@ public class CellTest extends TestCase {
 		color.B = 25;
 		style.BackgroundColor = color; 
 		
-		Style updatedStyle = cell.changeCellStyleInExcelWorksheet("A1:C4", style);
-		assertNotNull("Failed to set the styles of selected cells in a worksheet", updatedStyle);
+		boolean isCellStyleChanged = cell.changeCellStyleInExcelWorksheet("A1:C4", style);
+		assertEquals("Failed to set the styles of selected cells in a worksheet", true, isCellStyleChanged);
 	}
 	
 	public void testGetMergedCellsFromAWorksheet() throws Exception {
@@ -139,12 +139,12 @@ public class CellTest extends TestCase {
 	}
 	
 	public void testSetValueForSelectedRangeInAWorksheet() throws Exception {
-		boolean isValueSetSuccessfullyForRangeInAWorksheet = cell.setValueForSelectedRangeInAWorksheet("A10:B20", "1234", "string");
+		boolean isValueSetSuccessfullyForRangeInAWorksheet = cell.setValueForSelectedRangeInAWorksheet("A1:E5", "1234", "string");
 		assertEquals("Failed to set value for selected range in a worksheet", true, isValueSetSuccessfullyForRangeInAWorksheet);
 	}
 	
 	public void testClearCellsFormattingInExcelWorksheet() throws Exception {
-		boolean isCellFormattingClearedSuccessfully = cell.clearCellsFormattingInExcelWorksheet(0, 0, 255, 255);
+		boolean isCellFormattingClearedSuccessfully = cell.clearCellsFormattingInExcelWorksheet(0, 0, 10, 10);
 		assertEquals("Failed to clear cells' formatting in a worksheet", true, isCellFormattingClearedSuccessfully);
 	}
 	

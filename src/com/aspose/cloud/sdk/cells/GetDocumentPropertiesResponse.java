@@ -11,7 +11,7 @@ public class GetDocumentPropertiesResponse extends BaseResponse {
 	public DocumentPropertiesModel documentProperties;
 	
 	public class DocumentPropertiesModel {
-		@SerializedName("List")
+		@SerializedName("DocumentPropertyList")
 		public ArrayList<DocumentPropertiesValues> documentPropertiesList;
 		public LinkModel link;
 	}

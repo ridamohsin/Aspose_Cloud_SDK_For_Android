@@ -5,10 +5,10 @@ import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-import com.aspose.cloud.sdk.cells.CellsResponse.CellData;
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
-import com.google.gson.Gson;
 
 /**
  * Images --- Using this class you can convert an autoshape to image.
@@ -21,8 +21,8 @@ public class Images {
 	private String worksheetName;
 	
 	public Images(String fileName, String worksheetName) {
-		this.fileName = fileName;
-		this.worksheetName = worksheetName;
+		this.fileName = Uri.encode(fileName);
+		this.worksheetName = Uri.encode(worksheetName);
 	}
 	
 	public void setFileName(String fileName) {
@@ -44,9 +44,9 @@ public class Images {
 	 * @throws IOException If there is an IO error
 	 * @return An object that contains cell attributes
 	*/ 
-	public CellData convertAutoShapeToImage(int autoShapeIndex, ValidFormatsOfWorksheet designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public String convertAutoShapeToImage(int autoShapeIndex, ValidFormatsOfWorksheet designatedFormat, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
-		CellData cell = null;
+		String localFilePath = null;
 		
 		if(fileName == null || fileName.length() == 0) {
 			throw new IllegalArgumentException("File name cannot be null or empty");
@@ -62,15 +62,9 @@ public class Images {
         String signedURL = Utils.sign(strURL);
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
-		String responseJSONString = Utils.streamToString(responseStream);
         
-        //Parsing JSON
-		Gson gson = new Gson();
-		CellsResponse cellResponse = gson.fromJson(responseJSONString, CellsResponse.class);
-		if (cellResponse.getCode().equals("200") && cellResponse.getStatus().equals("OK")) {
-			cell = cellResponse.cell;
-		}
-		
-		return cell;
+		//Save file on Disk
+		localFilePath = Utils.saveStreamToFile(responseStream, outFileName);
+		return localFilePath;
 	}
 }
