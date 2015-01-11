@@ -1,3 +1,7 @@
+<p align="center" >
+  <img src="https://cloud.githubusercontent.com/assets/8667577/5695121/1b955b8e-99b3-11e4-928f-5c5a27cd6249.png" alt="AsposeCloudSDK" title="Aspose">
+</p>
+
 #Aspose Cloud SDK for Android
 
 This repository contains Aspose Cloud SDK for Android source code. This SDK allows you to use cloud based REST API in your applications quickly and easily.  
