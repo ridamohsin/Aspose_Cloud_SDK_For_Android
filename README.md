@@ -2,9 +2,25 @@
   <img src="https://cloud.githubusercontent.com/assets/8667577/5695121/1b955b8e-99b3-11e4-928f-5c5a27cd6249.png" alt="AsposeCloudSDK" title="Aspose">
 </p>
 
-#Aspose Cloud SDK for Android
+This SDK makes it easy for Android app developers to work with Microsoft Word documents, Microsoft Excel spreadsheets, Microsoft PowerPoint presentations, Adobe PDFs, OpenDocument formats, barcodes, OCR and email formats and protocols in their apps.
 
-This repository contains Aspose Cloud SDK for Android source code. This SDK allows you to use cloud based REST API in your applications quickly and easily.  
+## Common Uses
+* Convert Microsoft Word, Excel, PowerPoint, Acrobat PDF, OpenDocument and many other formats
+* Convert documents to images
+* Perform mail merge
+* Generate reports using mail merge
+* Excel reporting - build dynamic Excel reports on the fly
+* High-fidelity Excel rendering
+* Create new PDF documents using the product API
+* Transform an XML document into PDF file
+* Convert an image file to PDF
+* Create new slides
+* Add text to shapes
+* Replace or extract text from PDF files
+* Remove, replace or extract images from PDF files
+* Generate barcode images and save to stream or image file
+* Recognize barcodes from stream or image file
+* Extract text from images
 
 
 
