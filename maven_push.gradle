@@ -48,14 +48,15 @@ afterEvaluate { project ->
                         license {
                             name POM_LICENCE_NAME
                             url POM_LICENCE_URL
-                            distribution POM_LICENCE_DIST
                         }
                     }
 
                     developers {
                         developer {
-                            id POM_DEVELOPER_ID
+                            email POM_DEVELOPER_EMAIL
                             name POM_DEVELOPER_NAME
+                            organization POM_DEVELOPER_ORGANIZATION
+                            organizationUrl POM_DEVELOPER_ORGANIZATION_URL
                         }
                     }
                 }
@@ -69,19 +70,19 @@ afterEvaluate { project ->
     }
 
     task androidJavadocs(type: Javadoc) {
-        source = android.sourceSets.main.java.sourceFiles
+        source = android.sourceSets.main.java.srcDirs
     }
 
     task androidJavadocsJar(type: Jar) {
         classifier = 'javadoc'
-        //basename = artifact_id
+        //baseName = artifact_id
         from androidJavadocs.destinationDir
     }
 
     task androidSourcesJar(type: Jar) {
         classifier = 'sources'
-        //basename = artifact_id
-        from android.sourceSets.main.java.sourceFiles
+        //baseName = artifact_id
+        from android.sourceSets.main.java.srcDirs
     }
 
     artifacts {
