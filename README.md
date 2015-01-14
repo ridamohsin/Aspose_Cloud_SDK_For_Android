@@ -110,6 +110,9 @@ packagingOptions {
 
 Now you are ready to work with Aspose REST APIs.
 
+## Unit Tests
+AsposeCloudSDK includes a suite of unit tests within the [androidTest](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android/tree/master/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk) subdirectory. 
+
 ## Documentation
 
 Check out the documentation of each module for a comprehensive look at all of the APIs available in AsposeCloudSDK.
@@ -124,25 +127,5 @@ Check out the documentation of each module for a comprehensive look at all of th
 - [Aspose.Email for Cloud](http://www.aspose.com/docs/display/emailcloud/Home)
 - [Aspose.OCR for Cloud](http://www.aspose.com/docs/display/ocrcloud/Home)
 
-
-###Data
-
-In order to manipulate any files, you first need to upload them to the Aspose storage using storage manipulation code.
-
-###Output
-
-The Aspose Cloud SDK for Android allows you to save the output files at your specified location.
-
-###Prerequisites
-
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-###Help Material
-
-You may get help regarding Aspose API or Aspose Cloud SDK for Android on [www.aspose.com/cloud](http://www.aspose.com/cloud).
-
-##How to use Aspose Cloud SDK for Android?
-
-Please see the Aspose Cloud SDK for Android Examples sections in the [Documentation](http://www.aspose.com/docs).
-
+## License
+AsposeCloudSDK is available under the MIT license. See the [LICENSE](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android/blob/master/LICENSE) file for more info.
