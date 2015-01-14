@@ -22,6 +22,90 @@ This SDK makes it easy for Android app developers to work with Microsoft Word do
 - Recognize barcodes from stream or image file
 - Extract text from images
 
+## How To Get Started
+You can add AsposeCloudSDK to your Android Studio project as an external Aspose Cloud Maven dependency or as an external library via Gradle files.
+
+#### 1. Aspose Cloud Maven Dependency
+You can add AsposeCloudSDK to your Android Studio project by adding following lines of code in your app/build.gradle file. (Please note that these modifications go in the build.gradle file in your module’s directory, not the build file in the project root directory).
+
+First, set up the repository where it can find the dependency.
+```ruby
+repositories {
+    maven {  url 'http://maven.aspose.com/artifactory/simple/ext-release-local/'  }
+}
+```
+and then add the dependency itself by adding this line to your dependencies block:
+```ruby
+dependencies {
+    ...
+    compile 'com.aspose:aspose-cloud-android:1.0.0'
+}
+```
+This is a recommended approach because it won’t mess in your project structure.
+
+#### 2. Adding the library via Gradle files
+As an alternative approach, following is the complete process  of adding AsposeCloudSDK as an external library to your project.
+
+1. Create new project via Android Studio creator and name it HelloWorld
+2. Here is the original project structure created by Android Studio:
+```ruby
+HelloWorld/
+    app/
+        - build.gradle  // local gradle config (for app only)
+        ...
+    - build.gradle // global gradle config (for whole project)
+    - settings.gradle 
+    - gradle.properties
+    ...
+``` 
+3. In root directory (HelloWorld/) create new folder: /libs in which we’ll place our external libraries (this step is not required – only for keeping cleaner project structure).
+4. Download AsposeCloudSDK from [Github](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android), unzip it and paste asposecloudsdk folder in newly created /libs folder. Here is the new structure of our project:
+```ruby
+HelloWorld/
+    app/
+        - build.gradle  // local gradle config (for app only)
+        ...
+    libs/
+        asposecloudsdk/
+            - build.gradle // local gradle config (for library only)
+    - build.gradle // global gradle config (for whole project)
+    - settings.gradle 
+    - gradle.properties
+    ... 
+``` 
+5. Edit settings.gradle by adding your library to include. Whole settings.gradle should look like below:
+```ruby
+include ':app', ':asposecloudsdk'
+project(':asposecloudsdk').projectDir = new File('libs/asposecloudsdk')
+```
+6. In app/build.gradle add our library project as an dependency:
+```ruby
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile project(":asposecloudsdk")
+}
+```
+7. That’s all.  asposecloudsdk library should be available in your project.
+
+#### Error:duplicate files during packaging of APK
+In case you face this error, just add the following lines of code in your app/build.gradle file under android block.
+```ruby
+packagingOptions {
+    exclude 'META-INF/LICENSE.txt'
+    exclude 'META-INF/NOTICE.txt'
+    exclude 'META-INF/DEPENDENCIES'
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/NOTICE'
+}
+```
+#### Working with Aspose APIs
+1. Sign up with Aspose for Cloud service at: [https://cloud.aspose.com/SignUp](https://cloud.aspose.com/SignUp)
+2. [Create a new App and get your App SID and App Key].(www.aspose.com/docs/display/rest/Creating+a+New+App+and+Getting+App+Key)
+3. Call the AsposeApp.setAppKeyAndAppSID(String appKey, String appSID) method in the onCreate() method of your Main Activity and pass your App SID and App Key as arguments to this method.
+
+Now you are ready to work with Aspose REST APIs.
+
 ## Documentation
 
 Check out the documentation of each module for a comprehensive look at all of the APIs available in AsposeCloudSDK.
