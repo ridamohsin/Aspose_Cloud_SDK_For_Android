@@ -48,16 +48,17 @@ As an alternative approach, following is the complete process  of adding AsposeC
 
 1. Create new project via Android Studio creator and name it HelloWorld
 2. Here is the original project structure created by Android Studio:
-```ruby
-HelloWorld/
-    app/
-        - build.gradle  // local gradle config (for app only)
+
+    ```ruby
+    HelloWorld/
+        app/
+            - build.gradle  // local gradle config (for app only)
+            ...
+        - build.gradle // global gradle config (for whole project)
+        - settings.gradle 
+        - gradle.properties
         ...
-    - build.gradle // global gradle config (for whole project)
-    - settings.gradle 
-    - gradle.properties
-    ...
-``` 
+    ```
 3. In root directory (HelloWorld/) create new folder: /libs in which we’ll place our external libraries (this step is not required – only for keeping cleaner project structure).
 4. Download AsposeCloudSDK from [Github](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android), unzip it and paste asposecloudsdk folder in newly created /libs folder. Here is the new structure of our project:
 ```ruby
