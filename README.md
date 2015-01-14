@@ -111,7 +111,7 @@ packagingOptions {
 Now you are ready to work with Aspose REST APIs.
 
 ## Unit Tests
-AsposeCloudSDK includes a suite of unit tests within the [androidTest](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android/tree/master/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk) subdirectory. 
+AsposeCloudSDK includes a suite of unit tests within the [androidTest](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android/tree/master/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk) subdirectory. These Unit Tests also serves as examples of how to use the AsposeCloudSDK.
 
 ## Documentation
 
