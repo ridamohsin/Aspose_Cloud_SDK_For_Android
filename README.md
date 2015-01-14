@@ -127,5 +127,9 @@ Check out the documentation of each module for a comprehensive look at all of th
 - [Aspose.Email for Cloud](http://www.aspose.com/docs/display/emailcloud/Home)
 - [Aspose.OCR for Cloud](http://www.aspose.com/docs/display/ocrcloud/Home)
 
+## Contact
+
+Your feedback is very important to us. Please email us all your queries and feedback at marketplace@aspose.com.
+
 ## License
 AsposeCloudSDK is available under the MIT license. See the [LICENSE](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android/blob/master/LICENSE) file for more info.
