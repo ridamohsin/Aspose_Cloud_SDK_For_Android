@@ -60,7 +60,7 @@ As an alternative approach, following is the complete process  of adding AsposeC
       ...
   ```
 3. In root directory (HelloWorld/) create new folder: /libs in which we’ll place our external libraries (this step is not required – only for keeping cleaner project structure).
-4. Download AsposeCloudSDK from [Github](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android), unzip it and paste asposecloudsdk folder in newly created /libs folder. Here is the new structure of our project:
+4. Download AsposeCloudSDK from [Github](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Android), unzip it and paste **asposecloudsdk** folder in newly created /libs folder. Here is the new structure of our project:
 
   ```ruby
   HelloWorld/
@@ -90,7 +90,7 @@ As an alternative approach, following is the complete process  of adding AsposeC
       compile project(":asposecloudsdk")
   }
   ```
-7. That’s all.  asposecloudsdk library should be available in your project.
+7. That’s all. **asposecloudsdk** library should be available in your project.
 
 #### Error:duplicate files during packaging of APK
 In case you face this error, just add the following lines of code in your app/build.gradle file under android block.
@@ -105,8 +105,8 @@ packagingOptions {
 ```
 #### Working with Aspose APIs
 1. Sign up with Aspose for Cloud service at: [https://cloud.aspose.com/SignUp](https://cloud.aspose.com/SignUp)
-2. [Create a new App and get your App SID and App Key].(www.aspose.com/docs/display/rest/Creating+a+New+App+and+Getting+App+Key)
-3. Call the AsposeApp.setAppKeyAndAppSID(String appKey, String appSID) method in the onCreate() method of your Main Activity and pass your App SID and App Key as arguments to this method.
+2. [Create a new App and get your App SID and App Key](www.aspose.com/docs/display/rest/Creating+a+New+App+and+Getting+App+Key)
+3. Call the **AsposeApp.setAppKeyAndAppSID(String appKey, String appSID)** method in the onCreate() method of your Main Activity and pass your App SID and App Key as arguments to this method.
 
 Now you are ready to work with Aspose REST APIs.
 
