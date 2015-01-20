@@ -115,17 +115,7 @@ AsposeCloudSDK includes a suite of unit tests within the [androidTest](https://g
 
 ## Documentation
 
-Check out the documentation of each module for a comprehensive look at all of the APIs available in AsposeCloudSDK.
-- [Aspose REST API](http://www.aspose.com/docs/display/rest/Home)
-- [Aspose.Cells for Cloud](http://www.aspose.com/docs/display/cellscloud/Home)
-- [Aspose.Words for Cloud](http://www.aspose.com/docs/display/wordscloud/Home)
-- [Aspose.Pdf for Cloud](http://www.aspose.com/docs/display/pdfcloud/Home)
-- [Aspose.Slides for Cloud](http://www.aspose.com/docs/display/slidescloud/Home)
-- [Aspose.Barcode for Cloud](http://www.aspose.com/docs/display/barcodecloud/Home)
-- [Aspose.Tasks for Cloud](http://www.aspose.com/docs/display/taskscloud/Home)
-- [Aspose.Imaging for Cloud](http://www.aspose.com/docs/display/imagingcloud/Home)
-- [Aspose.Email for Cloud](http://www.aspose.com/docs/display/emailcloud/Home)
-- [Aspose.OCR for Cloud](http://www.aspose.com/docs/display/ocrcloud/Home)
+Check out the [documentation](http://asposeforcloud.github.io/android-sdk-docs/) for a comprehensive look at all of the APIs available in AsposeCloudSDK.
 
 ## Contact
 
