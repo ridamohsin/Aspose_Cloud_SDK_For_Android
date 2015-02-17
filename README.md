@@ -2,7 +2,7 @@
   <img src="https://cloud.githubusercontent.com/assets/8667577/5695121/1b955b8e-99b3-11e4-928f-5c5a27cd6249.png" alt="AsposeCloudSDK" title="Aspose">
 </p>
 
-This SDK makes it easy for Android app developers to work with Microsoft Word documents, Microsoft Excel spreadsheets, Microsoft PowerPoint presentations, Adobe PDFs, OpenDocument formats, barcodes, OCR and email formats and protocols in their apps.
+This SDK makes it easy for Android app developers to work with Word documents, Spreadsheets, Presentations, Adobe PDFs, OpenDocument formats, barcodes, OCR and email formats and protocols in their apps.
 
 ## Common Uses
 - Convert Microsoft Word, Excel, PowerPoint, Acrobat PDF, OpenDocument and many other formats
