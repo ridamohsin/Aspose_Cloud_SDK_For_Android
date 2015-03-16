@@ -105,7 +105,7 @@ packagingOptions {
 ```
 #### Working with Aspose APIs
 1. Sign up with Aspose for Cloud service at: [https://cloud.aspose.com/SignUp](https://cloud.aspose.com/SignUp)
-2. [Create a new App and get your App SID and App Key](www.aspose.com/docs/display/rest/Creating+a+New+App+and+Getting+App+Key)
+2. [Create a new App and get your App SID and App Key](http://www.aspose.com/docs/display/totalcloud/Creating+a+New+App+and+Getting+App+Key)
 3. Call the **AsposeApp.setAppKeyAndAppSID(String appKey, String appSID)** method in the onCreate() method of your Main Activity and pass your App SID and App Key as arguments to this method.
 
 Now you are ready to work with Aspose REST APIs.
