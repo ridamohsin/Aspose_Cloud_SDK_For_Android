@@ -24,7 +24,7 @@ public class ImagesTest extends TestCase {
 	}
 	
 	public void testGetNumberOfImagesInASlide() throws Exception {
-		int imagesCount = Images.getNumberOfImagesInAPresentation("Effective_presentation.ppt");
+		int imagesCount = Images.getNumberOfImagesInASlide("Effective_presentation.ppt", 1);
 		assertEquals("Failed to get total number of images in a slide", true, imagesCount>=0);
 	}
 

@@ -28,7 +28,7 @@ public class AttachmentsTest extends TestCase {
 	}
 
 	public void testDownloadASpecificAttachmentFromAPDF() throws Exception {
-		String localFilePath = Attachments.downloadASpecificAttachmentFromAPDF("Bitcoin.pdf", 1, "/storage/emulated/0/AsposeFiles/");
+		String localFilePath = Attachments.downloadASpecificAttachmentFromAPDF("Bitcoin.pdf", 1);
 		File file = new File(localFilePath);
 		assertEquals("Failed to download a specific attachment from a PDF", true, file.exists());
 	}

@@ -1,5 +1,7 @@
 package com.aspose.cloud.sdk.slides.api;
 
+import android.net.Uri;
+
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.slides.model.DocumentPropertiesResponse;
@@ -36,7 +38,7 @@ public class DocumentProperties {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + fileName + "/documentProperties";
+		String strURL = SLIDES_URI + Uri.encode(fileName) + "/documentProperties";
 		//sign URL
 		String signedURL = Utils.sign(strURL);
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
@@ -69,7 +71,7 @@ public class DocumentProperties {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + fileName + "/documentProperties";
+		String strURL = SLIDES_URI + Uri.encode(fileName) + "/documentProperties";
 		//sign URL
 		String signedURL = Utils.sign(strURL);
 		InputStream responseStream = Utils.processCommand(signedURL, "DELETE");

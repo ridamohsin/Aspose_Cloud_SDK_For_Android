@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -16,6 +11,11 @@ import com.aspose.cloud.sdk.words.model.GetBookmarkResponse;
 import com.aspose.cloud.sdk.words.model.GetBookmarkResponse.BookmarksEnvelop;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Bookmark --- Using this class you can get all Bookmarks from a Word document, a specific Bookmark from a Word document

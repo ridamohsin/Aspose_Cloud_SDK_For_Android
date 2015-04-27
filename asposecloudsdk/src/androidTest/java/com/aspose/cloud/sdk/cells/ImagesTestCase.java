@@ -1,11 +1,11 @@
 package com.aspose.cloud.sdk.cells;
 
-import java.io.File;
-
-import com.aspose.cloud.sdk.cells.model.ValidFormatsOfWorksheet;
 import com.aspose.cloud.sdk.cells.api.Images;
+import com.aspose.cloud.sdk.cells.model.ValidFormatsOfWorksheet;
 
 import junit.framework.TestCase;
+
+import java.io.File;
 
 public class ImagesTestCase extends TestCase {
 

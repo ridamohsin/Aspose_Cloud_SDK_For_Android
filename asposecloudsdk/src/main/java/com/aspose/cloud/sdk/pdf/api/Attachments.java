@@ -62,13 +62,12 @@ public class Attachments {
 	 * Download a specific attachment from a PDF
 	 * @param fileName Name of the file on cloud
 	 * @param attachmentIndex Index of attachment starting from 1
-	 * @param outputFilePath Downloaded attachment will be saved at this path
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
 	 * @return Path to downloaded attachment 
 	*/ 
-	public static String downloadASpecificAttachmentFromAPDF(String fileName, int attachmentIndex, String outputFilePath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static String downloadASpecificAttachmentFromAPDF(String fileName, int attachmentIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		String localFilePath = null;
 		
@@ -87,7 +86,7 @@ public class Attachments {
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		
 		//Save file on Disk
-		localFilePath = Utils.saveStreamToFile(responseStream, outputFilePath + attachment.Name);
+		localFilePath = Utils.saveStreamToFile(responseStream, attachment.Name);
 		return localFilePath;
 	}
 	

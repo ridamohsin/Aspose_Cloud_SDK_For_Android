@@ -1,13 +1,13 @@
 package com.aspose.cloud.sdk.barcode;
 
-import java.util.ArrayList;
-
 import com.aspose.cloud.sdk.barcode.api.BarcodeRecognition;
 import com.aspose.cloud.sdk.barcode.model.BarcodeTypeEnum;
 import com.aspose.cloud.sdk.barcode.model.EnableChecksumEnum;
 import com.aspose.cloud.sdk.barcode.model.RecognitionResponse.RecognizedBarCode;
 
 import junit.framework.TestCase;
+
+import java.util.ArrayList;
 
 public class BarcodeRecognitionTest extends TestCase {
 
@@ -24,7 +24,7 @@ public class BarcodeRecognitionTest extends TestCase {
 	}
 
 	public void testReadBarcodeFromAsposeCloudStorage() throws Exception {
-		ArrayList<RecognizedBarCode> barcodes = BarcodeRecognition.readBarcodeFromAsposeCloudStorage("test.png", BarcodeTypeEnum.AllSupportedTypes);
+		ArrayList<RecognizedBarCode> barcodes = BarcodeRecognition.readBarcodeFromAsposeCloudStorage("test.png", BarcodeTypeEnum.QR);
 		assertNotNull("Failed to read barcode from Aspose Cloud Storage", barcodes);
 	}
 	
@@ -35,19 +35,19 @@ public class BarcodeRecognitionTest extends TestCase {
 	
 	public void testReadBarcodeFromSpecificRegionOfImage() throws Exception {
 		ArrayList<RecognizedBarCode> barcodes = BarcodeRecognition.readBarcodeFromSpecificRegionOfImage("test.png", 
-				BarcodeTypeEnum.AllSupportedTypes, 10, 10, 200, 100);
+				BarcodeTypeEnum.QR, 10, 10, 200, 100);
 		assertNotNull("Failed to read barcode from specific region of image", barcodes);
 	}
 	
 	public void testRecognizeBarcodeWithChecksumOptionFromStorage() throws Exception {
 		ArrayList<RecognizedBarCode> barcodes = BarcodeRecognition.recognizeBarcodeWithChecksumOptionFromStorage("test.png", 
-				BarcodeTypeEnum.AllSupportedTypes, EnableChecksumEnum.Default);
+				BarcodeTypeEnum.QR, EnableChecksumEnum.Default);
 		assertNotNull("Failed to recognize barcode with checksum option from storage", barcodes);
 	}
 	
 	public void testRecognizeSpecifiedCountOfBarcodes() throws Exception {
 		ArrayList<RecognizedBarCode> barcodes = BarcodeRecognition.recognizeSpecifiedCountOfBarcodes("test.png", 
-				BarcodeTypeEnum.AllSupportedTypes, 2);
+				BarcodeTypeEnum.QR, 2);
 		assertNotNull("Failed to recognize specified count of barcodes", barcodes);
 	}
 }

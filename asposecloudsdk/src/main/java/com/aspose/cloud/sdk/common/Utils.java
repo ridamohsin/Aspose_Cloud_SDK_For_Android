@@ -36,14 +36,10 @@ public class Utils {
 	private static final String TAG = "Utils";
 	
 	/**
-	 * Computes RFC 2104-compliant HMAC signature. * @param data The data to be
-	 * signed.
-	 * 
-	 * @param key
-	 *            The signing key.
+	 * Computes RFC 2104-compliant HMAC signature.
+     * @param unsignedURL The URL to be signed.
 	 * @return The Base64-encoded RFC 2104-compliant HMAC signature.
-	 * @throws java.security.SignatureException
-	 *             when signature generation fails
+	 * @throws java.security.SignatureException when signature generation fails
 	 */
 	public static String sign(String unsignedURL) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
 		

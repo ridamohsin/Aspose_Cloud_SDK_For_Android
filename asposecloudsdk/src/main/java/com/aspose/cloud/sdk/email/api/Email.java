@@ -1,5 +1,13 @@
 package com.aspose.cloud.sdk.email.api;
 
+import android.net.Uri;
+
+import com.aspose.cloud.sdk.common.AsposeApp;
+import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.email.model.EmailProperty;
+import com.aspose.cloud.sdk.email.model.EmailPropertyResponse;
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
@@ -7,13 +15,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-
-import android.net.Uri;
-
-import com.aspose.cloud.sdk.common.AsposeApp;
-import com.aspose.cloud.sdk.common.Utils;
-import com.aspose.cloud.sdk.email.model.*;
-import com.google.gson.Gson;
 
 /**
  * Email --- Using this class you can convert email to other formats, read/update message properties 

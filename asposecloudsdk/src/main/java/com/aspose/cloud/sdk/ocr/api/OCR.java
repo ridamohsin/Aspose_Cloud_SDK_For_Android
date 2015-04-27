@@ -20,7 +20,7 @@ import java.security.NoSuchAlgorithmException;
  * @author   M. Sohail Ismail
  */
 public class OCR {
-	private static final String BARCODE_URI = AsposeApp.BASE_PRODUCT_URI + "/ocr/";
+	private static final String OCR_URI = AsposeApp.BASE_PRODUCT_URI + "/ocr/";
 	
 	/**
 	 * Extract text from a BMP or TIFF image 
@@ -39,7 +39,7 @@ public class OCR {
 			throw new IllegalArgumentException("Filename cannot be null or empty");
 		}
 		
-		String strURL = BARCODE_URI + Uri.encode(fileName) + "/recognize?useDefaultDictionaries=" + useDefaultDictionaries;
+		String strURL = OCR_URI + Uri.encode(fileName) + "/recognize?language=" + language + "&useDefaultDictionaries=" + useDefaultDictionaries;
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -59,8 +59,11 @@ public class OCR {
 	/**
 	 * Extract text from a specific block of an image 
 	 * @param fileName Name of file stored on Aspose Cloud Storage
-	 * @param language Language of document to recogniize. English, french, russian and spanish are supported now
-	 * @param rectX, rectY, rectWidth, rectHeight Recognition of text inside specified Rectangle region
+	 * @param language Language of document to recognize. English, french, russian and spanish are supported now
+	 * @param rectX Rectangular region X position
+     * @param rectY Rectangular region Y position
+     * @param rectWidth Rectangular region Width
+     * @param rectHeight Rectangular region Height
 	 * @param useDefaultDictionaries Allows to correct text after recognition using default dictionaries
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -76,7 +79,7 @@ public class OCR {
 			throw new IllegalArgumentException("Filename cannot be null or empty");
 		}
 		
-		String strURL = BARCODE_URI + Uri.encode(fileName) + "/recognize?language=" + language + "&rectX=" + rectX + "&rectY=" + rectY +
+		String strURL = OCR_URI + Uri.encode(fileName) + "/recognize?language=" + language + "&rectX=" + rectX + "&rectY=" + rectY +
 				"&rectWidth=" + rectWidth + "&rectHeight=" + rectHeight + "&useDefaultDictionaries=" + useDefaultDictionaries;
         //sign URL
         String signedURL = Utils.sign(strURL);
@@ -112,7 +115,7 @@ public class OCR {
 			throw new IllegalArgumentException("Local file path cannot be null or empty");
 		}
 		
-		String strURL = BARCODE_URI + "recognize?language=" + language + "&useDefaultDictionaries=" + useDefaultDictionaries;
+		String strURL = OCR_URI + "recognize?language=" + language + "&useDefaultDictionaries=" + useDefaultDictionaries;
         //sign URL
         String signedURL = Utils.sign(strURL);
         

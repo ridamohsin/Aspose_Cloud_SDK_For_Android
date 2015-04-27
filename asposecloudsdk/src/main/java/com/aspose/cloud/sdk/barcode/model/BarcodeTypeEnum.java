@@ -1,7 +1,6 @@
 package com.aspose.cloud.sdk.barcode.model;
 
 public enum BarcodeTypeEnum {
-	AllSupportedTypes,
 	australiapost, 
 	australianposteparcel, 
 	aztec, 

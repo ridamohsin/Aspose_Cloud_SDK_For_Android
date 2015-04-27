@@ -1,11 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -22,6 +16,12 @@ import com.aspose.cloud.sdk.words.model.TrackingChangesResponse.TrackChangesResu
 import com.aspose.cloud.sdk.words.model.ValidFormatsEnum;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 /**
  * Document --- Using this class you can append documents to source document, convert individual page to new format, 
@@ -246,9 +246,9 @@ public class Document {
         
         //Parsing JSON
       	Gson gson = new Gson();
-      	TrackingChangesResponse acceptTrackingChangesResponse = gson.fromJson(responseJSONString, TrackingChangesResponse.class);
-		if(acceptTrackingChangesResponse.getCode().equals("200") && acceptTrackingChangesResponse.getStatus().equals("OK")) {
-			rejectTrackChangesResult = acceptTrackingChangesResponse.result;
+      	TrackingChangesResponse rejectTrackingChangesResponse = gson.fromJson(responseJSONString, TrackingChangesResponse.class);
+		if(rejectTrackingChangesResponse.getCode().equals("200") && rejectTrackingChangesResponse.getStatus().equals("OK")) {
+			rejectTrackChangesResult = rejectTrackingChangesResponse.result;
 		}
 		return rejectTrackChangesResult;
 	}

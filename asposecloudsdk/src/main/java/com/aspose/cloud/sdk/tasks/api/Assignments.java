@@ -23,12 +23,12 @@ public class Assignments {
 	private static final String TASKS_URI = AsposeApp.BASE_PRODUCT_URI + "/tasks/";
 	
 	/**
-	 * Get all calendar items in a project
+	 * Get all assignment items in a project
 	 * @param srcProjectName Name of the MS Project Binary File
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
-	 * @return An array of calendar items in a project
+	 * @return An array of assignment items in a project
 	*/
 	public static ArrayList<AssignmentItemModel> getAllAssignmentItemsInProject(String srcProjectName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		ArrayList<AssignmentItemModel> assignmentsArray = null;

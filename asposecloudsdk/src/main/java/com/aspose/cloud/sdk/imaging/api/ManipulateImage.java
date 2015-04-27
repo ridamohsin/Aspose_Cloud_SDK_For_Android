@@ -1,19 +1,21 @@
 package com.aspose.cloud.sdk.imaging.api;
 
+import android.net.Uri;
+
+import com.aspose.cloud.sdk.common.AsposeApp;
+import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.imaging.model.UpdatedImageKeys;
+import com.google.gson.Gson;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-
-import android.net.Uri;
-
-import com.aspose.cloud.sdk.common.AsposeApp;
-import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Utils;
-import com.google.gson.Gson;
 
 /**
  * ManipulateImage --- This class helps you in performing manipulation operations on image like Resize, Crop,
@@ -455,4 +457,66 @@ public class ManipulateImage {
 		
 		return faxCompatibleFilePath;
 	}
+
+    public static String performSeveralOperationsOnImage(String fileName, HashMap<String, String> updateImageParameters) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+        String outFilePath = null;
+
+        if(fileName == null || fileName.length() == 0) {
+            throw new IllegalArgumentException("File name cannot be null or empty");
+        }
+
+        //Build the request URI
+        Uri.Builder uriBuilder = Uri.parse(IMAGING_URI + fileName + "/updateImage?").buildUpon();
+
+        if(updateImageParameters.containsKey(UpdatedImageKeys.newWidth)) {
+            String newWidth = updateImageParameters.get(UpdatedImageKeys.newWidth);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.newWidth, newWidth);
+        }
+        if(updateImageParameters.containsKey(UpdatedImageKeys.newHeight)) {
+            String newHeight = updateImageParameters.get(UpdatedImageKeys.newHeight);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.newHeight, newHeight);
+        }
+        if(updateImageParameters.containsKey(UpdatedImageKeys.x)) {
+            String x = updateImageParameters.get(UpdatedImageKeys.x);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.x, x);
+        }
+        if(updateImageParameters.containsKey(UpdatedImageKeys.y)) {
+            String y = updateImageParameters.get(UpdatedImageKeys.y);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.y, y);
+        }
+        if(updateImageParameters.containsKey(UpdatedImageKeys.rectWidth)) {
+            String rectWidth = updateImageParameters.get(UpdatedImageKeys.rectWidth);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.rectWidth, rectWidth);
+        }
+        if(updateImageParameters.containsKey(UpdatedImageKeys.rectHeight)) {
+            String rectHeight = updateImageParameters.get(UpdatedImageKeys.rectHeight);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.rectHeight, rectHeight);
+        }
+        if(updateImageParameters.containsKey(UpdatedImageKeys.rotateFlipMethod)) {
+            String rotateFlipMethod = updateImageParameters.get(UpdatedImageKeys.rotateFlipMethod);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.rotateFlipMethod, rotateFlipMethod);
+        }
+        if(updateImageParameters.containsKey(UpdatedImageKeys.format)) {
+            String format = updateImageParameters.get(UpdatedImageKeys.format);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.format, format);
+        }
+        if(updateImageParameters.containsKey(UpdatedImageKeys.outPath)) {
+            String outPath = updateImageParameters.get(UpdatedImageKeys.outPath);
+            uriBuilder.appendQueryParameter(UpdatedImageKeys.outPath, outPath);
+        }
+
+        String strURL = uriBuilder.build().toString();
+
+        //Sign the request URI
+        String signedURL = Utils.sign(strURL);
+        //Process the request on server
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+
+        //Save the stream in response to the disk
+        outFilePath = Utils.saveStreamToFile(responseStream, fileName);
+
+        return outFilePath;
+
+    }
 }

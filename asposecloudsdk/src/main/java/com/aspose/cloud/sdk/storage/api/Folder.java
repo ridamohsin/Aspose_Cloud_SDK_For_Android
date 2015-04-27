@@ -1,13 +1,5 @@
 package com.aspose.cloud.sdk.storage.api;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.List;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -22,6 +14,14 @@ import com.aspose.cloud.sdk.storage.model.FileModel;
 import com.aspose.cloud.sdk.storage.model.FolderResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
+import java.util.List;
 
 public class Folder {
 
@@ -157,8 +157,8 @@ public class Folder {
 
 	/**
 	 * Upload a file from your local machine to remote folder
-	 * @param folderPath Folder path
-	 * @param filePath File path on device
+	 * @param localFilePath Path to file stored on device
+	 * @param remoteFolderPath Store file at this path on cloud
 	 * @return Boolean variable that indicates whether file uploaded successfully
 	*/ 
 	public static boolean uploadFile(String localFilePath, String remoteFolderPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {

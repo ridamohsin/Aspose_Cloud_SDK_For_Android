@@ -1,10 +1,12 @@
 package com.aspose.cloud.sdk.imaging;
 
-import java.io.File;
-
 import com.aspose.cloud.sdk.imaging.api.ManipulateImage;
+import com.aspose.cloud.sdk.imaging.model.UpdatedImageKeys;
 
 import junit.framework.TestCase;
+
+import java.io.File;
+import java.util.HashMap;
 
 public class ManipulateImageTest extends TestCase {
 
@@ -21,7 +23,7 @@ public class ManipulateImageTest extends TestCase {
 	}
 
 	public void testResizeLocallyStoredImageAndChangeFormat() throws Exception {
-		String updatedFilePath = ManipulateImage.resizeLocallyStoredImageAndChangeFormat("/storage/emulated/0/AsposeFiles/sample.jpg", 200, 200, "png");
+		String updatedFilePath = ManipulateImage.resizeLocallyStoredImageAndChangeFormat("/storage/emulated/0/AsposeFiles/Barcode.png", 200, 200, "png");
 		File file = new File(updatedFilePath);
 		assertEquals("Failed to resize image stored on device", true, file.exists());
 	}
@@ -78,4 +80,19 @@ public class ManipulateImageTest extends TestCase {
 		File file = new File(faxCompatibleFilePath);
 		assertEquals("Failed to convert tiff image to Fax Compatible Format", true, file.exists());
 	}
+
+    public void testPerformSeveralOperationsOnImage() throws Exception {
+
+        HashMap<String, String> updateImageParameters = new HashMap<String, String>();
+
+        updateImageParameters.put(UpdatedImageKeys.newWidth, String.valueOf(200));
+        updateImageParameters.put(UpdatedImageKeys.newHeight, String.valueOf(200));
+        updateImageParameters.put(UpdatedImageKeys.format, "png");
+        updateImageParameters.put(UpdatedImageKeys.outPath, "updatedImage.png");
+
+        String outFilePath = ManipulateImage.performSeveralOperationsOnImage("sample.jpg", updateImageParameters);
+        File file = new File(outFilePath);
+        assertEquals("Failed to perform crop, resize, rotation & export operations on an image", true, file.exists());
+    }
+
 }

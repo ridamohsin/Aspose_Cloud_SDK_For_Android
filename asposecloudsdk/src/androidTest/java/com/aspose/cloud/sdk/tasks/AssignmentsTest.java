@@ -21,7 +21,7 @@ public class AssignmentsTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testAssignments() throws Exception {
+	public void testGetAllAssignmentItemsInProject() throws Exception {
 		ArrayList<AssignmentItemModel> assignmentsArray = Assignments.getAllAssignmentItemsInProject("NewProductDev.mpp");
 		assertNotNull("Failed to retrieve assignments information from Project", assignmentsArray);
 	}

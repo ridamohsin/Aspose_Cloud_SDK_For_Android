@@ -1,14 +1,11 @@
 package com.aspose.cloud.sdk.storage;
 
-import java.io.InputStream;
-import java.util.List;
+import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.storage.api.Folder;
 
 import junit.framework.TestCase;
-import com.aspose.cloud.sdk.common.Utils;
-import com.aspose.cloud.sdk.storage.model.DiscUsageModel;
-import com.aspose.cloud.sdk.storage.model.FileExist;
-import com.aspose.cloud.sdk.storage.model.FileModel;
-import com.aspose.cloud.sdk.storage.api.Folder;
+
+import java.io.InputStream;
 
 public class FolderTest extends TestCase {
 	
@@ -26,13 +23,13 @@ public class FolderTest extends TestCase {
 
 	public void testGetFileAndSaveToDevice() throws Exception {
 		
-		InputStream fileStream = Folder.getFile("myworkbook.xlsx");
+		InputStream fileStream = Folder.getFile("updatedImage.bmp");
 		assertNotNull("Failed to get file from Aspose server", fileStream);
-		String filePath = Utils.saveStreamToFile(fileStream, "myworkbook.xlsx");
+		String filePath = Utils.saveStreamToFile(fileStream, "updatedImage.bmp");
 		assertNotNull("Failed to save file to local device", filePath);
 	}
 
-	public void testGetDiscUsage() throws Exception {
+	/*public void testGetDiscUsage() throws Exception {
 		DiscUsageModel discUsage = Folder.getDiscUsage();
 		assertNotNull("Failed to get disk usage from the Aspose cloud Storage", discUsage);
 	}
@@ -58,11 +55,11 @@ public class FolderTest extends TestCase {
 	}
 
 	public void testCreateFolder() throws Exception {
-		boolean isFolderCreatedSuccessfully = Folder.createFolder("OSX");
+		boolean isFolderCreatedSuccessfully = Folder.createFolder("New Photos");
 		assertTrue("Failed to create folder under the specified path", isFolderCreatedSuccessfully);
-	}
+	}*/
 
-	public void testGetFilesList() throws Exception {
+	/*public void testGetFilesList() throws Exception {
 		List<FileModel> filesList = Folder.getFilesList("colleges");
 		assertNotNull("Failed to get a list of all files and folders under the specified folder", filesList);
 	}
@@ -75,5 +72,5 @@ public class FolderTest extends TestCase {
 	public void testMoveFileToAnotherLocation() throws Exception {
 		boolean isFileMovedToAnotherLocationSuccessfully = Folder.moveFile("bookmark.png", "colleges", "universities");
 		assertTrue("Failed to move file to another location", isFileMovedToAnotherLocationSuccessfully);
-	}
+	}*/
 }

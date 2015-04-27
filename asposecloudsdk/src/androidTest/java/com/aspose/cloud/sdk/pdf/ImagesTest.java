@@ -23,14 +23,14 @@ public class ImagesTest extends TestCase {
 
 	public void testExtractAParticularImageFromAPDFPageWithDefaultSize() throws Exception {
 		String localFilePath = Images.extractAParticularImageFromAPDFPageWithDefaultSize("Bitcoin.pdf", 1, 1, 
-				ValidImageFormatsEnum.png, "/storage/emulated/0/AsposeFiles/output.png");
+				ValidImageFormatsEnum.png, "output.png");
 		File file = new File(localFilePath);
 		assertEquals("Failed to extract a particular image from a PDF page with default size", true, file.exists());
 	}
 	
 	public void testExtractAParticularImageFromAPDFPageWithSpecifiedSize() throws Exception {
 		String localFilePath = Images.extractAParticularImageFromAPDFPageWithSpecifiedSize("Bitcoin.pdf", 1, 1, 
-				ValidImageFormatsEnum.png, 500, 500, "/storage/emulated/0/AsposeFiles/output.png");
+				ValidImageFormatsEnum.png, 500, 500, "output.png");
 		File file = new File(localFilePath);
 		assertEquals("Failed to extract a particular image from a PDF page with specified size", true, file.exists());
 	}
