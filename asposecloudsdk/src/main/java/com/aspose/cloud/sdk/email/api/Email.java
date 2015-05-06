@@ -74,7 +74,6 @@ public class Email {
 		return localFilePath;
 	}
 
-
 	/**
 	 * Download attachment from Message
 	 * @param fileName Name of the file on cloud
@@ -106,66 +105,66 @@ public class Email {
 		return localAttachmentPath;
 	}
 
-    public static AddEmailAttachmentResponse addEmailAttachment(String fileName, String attachmentName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
-        AddEmailAttachmentResponse addEmailAttachmentResponse = null;
+    	public static AddEmailAttachmentResponse addEmailAttachment(String fileName, String attachmentName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	        AddEmailAttachmentResponse addEmailAttachmentResponse = null;
+	
+	        if(fileName == null || fileName.length() == 0) {
+	            throw new IllegalArgumentException("File name cannot be null or empty");
+	        }
+	
+	        if(attachmentName == null || attachmentName.length() == 0) {
+	            throw new IllegalArgumentException("Attachment name cannot be null or empty");
+	        }
+	
+	        //build URL
+	        String strURL = EMAIL_URI + Uri.encode(fileName) + "/attachments/" + Uri.encode(attachmentName);
+	        //sign URL
+	        String signedURL = Utils.sign(strURL);
+	        InputStream responseStream = Utils.processCommand(signedURL, "POST");
+	        String jsonStr = Utils.streamToString(responseStream);
+	
+	        //Parsing JSON
+	        Gson gson = new Gson();
+	        addEmailAttachmentResponse = gson.fromJson(jsonStr, AddEmailAttachmentResponse.class);
+	        if(addEmailAttachmentResponse.getCode().equals("200") && addEmailAttachmentResponse.getStatus().equals("OK")) {
+	            return addEmailAttachmentResponse;
+	        }
+	
+	        return addEmailAttachmentResponse;
+    	}
 
-        if(fileName == null || fileName.length() == 0) {
-            throw new IllegalArgumentException("File name cannot be null or empty");
-        }
+    	public static AddNewEmailResponse addNewEmail(String emailName, EmailDocument emailData) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
-        if(attachmentName == null || attachmentName.length() == 0) {
-            throw new IllegalArgumentException("Attachment name cannot be null or empty");
-        }
-
-        //build URL
-        String strURL = EMAIL_URI + Uri.encode(fileName) + "/attachments/" + Uri.encode(attachmentName);
-        //sign URL
-        String signedURL = Utils.sign(strURL);
-        InputStream responseStream = Utils.processCommand(signedURL, "POST");
-        String jsonStr = Utils.streamToString(responseStream);
-
-        //Parsing JSON
-        Gson gson = new Gson();
-        addEmailAttachmentResponse = gson.fromJson(jsonStr, AddEmailAttachmentResponse.class);
-        if(addEmailAttachmentResponse.getCode().equals("200") && addEmailAttachmentResponse.getStatus().equals("OK")) {
-            return addEmailAttachmentResponse;
-        }
-
-        return addEmailAttachmentResponse;
-    }
-
-    public static AddNewEmailResponse addNewEmail(String emailName, EmailDocument emailData) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
-
-        AddNewEmailResponse addNewEmailResponse = null;
-
-        if(emailName == null || emailName.length() == 0) {
-            throw new IllegalArgumentException("Email name cannot be null or empty");
-        }
-
-        if(emailData == null) {
-            throw new IllegalArgumentException("Email data cannot be null");
-        }
-
-        //build URL
-        String strURL = EMAIL_URI + Uri.encode(emailName);
-        //sign URL
-        String signedURL = Utils.sign(strURL);
-
-        //Encoding to JSON
-        Gson gson = new Gson();
-        String jsonStr = gson.toJson(emailData);
-
-        InputStream responseStream = Utils.processCommand(signedURL, "PUT", jsonStr);
-        String responseStr = Utils.streamToString(responseStream);
-
-        //Parsing JSON
-        addNewEmailResponse = gson.fromJson(responseStr, AddNewEmailResponse.class);
-        if(addNewEmailResponse.getCode().equals("200") && addNewEmailResponse.getStatus().equals("OK")) {
-            return addNewEmailResponse;
-        }
-
-        return addNewEmailResponse;
-    }
+	        AddNewEmailResponse addNewEmailResponse = null;
+	
+	        if(emailName == null || emailName.length() == 0) {
+	            throw new IllegalArgumentException("Email name cannot be null or empty");
+	        }
+	
+	        if(emailData == null) {
+	            throw new IllegalArgumentException("Email data cannot be null");
+	        }
+	
+	        //build URL
+	        String strURL = EMAIL_URI + Uri.encode(emailName);
+	        //sign URL
+	        String signedURL = Utils.sign(strURL);
+	
+	        //Encoding to JSON
+	        Gson gson = new Gson();
+	        String jsonStr = gson.toJson(emailData);
+	
+	        InputStream responseStream = Utils.processCommand(signedURL, "PUT", jsonStr);
+	        String responseStr = Utils.streamToString(responseStream);
+	
+	        //Parsing JSON
+	        addNewEmailResponse = gson.fromJson(responseStr, AddNewEmailResponse.class);
+	        if(addNewEmailResponse.getCode().equals("200") && addNewEmailResponse.getStatus().equals("OK")) {
+	            return addNewEmailResponse;
+	        }
+	
+	        return addNewEmailResponse;
+    	}
 
 	/**
 	 * Retrieve Message Properties like From, To, Subject, Bcc, CC, Body, Date, Priority and Attachments

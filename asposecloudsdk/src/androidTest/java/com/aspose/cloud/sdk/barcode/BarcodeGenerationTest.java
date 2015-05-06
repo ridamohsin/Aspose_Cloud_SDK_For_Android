@@ -39,25 +39,25 @@ public class BarcodeGenerationTest extends TestCase {
 	}
 	
 	public void testGenerateBarcodeWithAppropriateCodeTextLocation() throws Exception {
-		boolean isBarcodeCreatedSuccessfully = BarcodeGeneration.generateBarcodeWithAppropriateCodeTextLocation("QR_Code.png", 
+		boolean isBarcodeCreatedSuccessfully = BarcodeGeneration.generateBarcodeWithAppropriateCodeTextLocation("QR_Code.png",
 				"Code text here", BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, CodeLocationEnum.Above);
 		assertEquals("Failed to generate barcode with appropriate code text location", true, isBarcodeCreatedSuccessfully);
 	}
 	
 	public void testGenerateBarcodeWithChecksumOption() throws Exception {
-		boolean isBarcodeGeneratedSuccessfully = BarcodeGeneration.generateBarcodeWithChecksumOption("QR_Code.png", 
+		boolean isBarcodeGeneratedSuccessfully = BarcodeGeneration.generateBarcodeWithChecksumOption("QR_Code.png",
 				"Code text here", BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, EnableChecksumEnum.Default);
 		assertEquals("Failed to generate barcode with checksum option", true, isBarcodeGeneratedSuccessfully);
 	}
 	
 	public void testRotateBarcodeImageWithSuitableAngle() throws Exception {
-		boolean isBarcodeRotatedSuccessfully = BarcodeGeneration.rotateBarcodeImageWithSuitableAngle("QR_Code.png", 
+		boolean isBarcodeRotatedSuccessfully = BarcodeGeneration.rotateBarcodeImageWithSuitableAngle("QR_Code.png",
 				"Code text here", BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, 90);
 		assertEquals("Failed to rotate barcode image with suitable angle", true, isBarcodeRotatedSuccessfully);
 	}
 	
 	public void testSetBarcodeImageMargin() throws Exception {
-		boolean isBarcodeImageMarginSetSuccessfully = BarcodeGeneration.setBarcodeImageMargin("QR_Code.png", "Code text here", 
+		boolean isBarcodeImageMarginSetSuccessfully = BarcodeGeneration.setBarcodeImageMargin("QR_Code.png", "Code text here",
 				BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, 2, 2, 2, 2);
 		assertEquals("Failed to set barcode image margins", true, isBarcodeImageMarginSetSuccessfully);
 	}
@@ -80,5 +80,13 @@ public class BarcodeGenerationTest extends TestCase {
 				BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, 1.0, 0.5, "Barcode.png");
 		File file = new File(outputFilePath);
 		assertEquals("Failed to set X and Y dimensions of a barcode", true, file.exists());
+	}
+
+	public void testGenerateBarcodeAndSaveOnServer() throws Exception {
+		boolean isBarcodeGeneratedSuccessfully = BarcodeGeneration.generateBarcodeAndSaveOnServer("barcode.png", "Apose Cloud",
+				BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, 30, 50, 40, 90,
+				CodeLocationEnum.Above, GRUnitEnum.px, true, 30, 100, 100, "default", 90, 2, 2, 2, 2,
+				EnableChecksumEnum.Default, "MyDropboxStorage", null);
+
 	}
 }

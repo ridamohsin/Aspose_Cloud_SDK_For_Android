@@ -2,10 +2,14 @@ package com.aspose.cloud.sdk.storage;
 
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.api.Folder;
+import com.aspose.cloud.sdk.storage.model.DiscUsageModel;
+import com.aspose.cloud.sdk.storage.model.FileExist;
+import com.aspose.cloud.sdk.storage.model.FileModel;
 
 import junit.framework.TestCase;
 
 import java.io.InputStream;
+import java.util.List;
 
 public class FolderTest extends TestCase {
 	
@@ -29,7 +33,7 @@ public class FolderTest extends TestCase {
 		assertNotNull("Failed to save file to local device", filePath);
 	}
 
-	/*public void testGetDiscUsage() throws Exception {
+	public void testGetDiscUsage() throws Exception {
 		DiscUsageModel discUsage = Folder.getDiscUsage();
 		assertNotNull("Failed to get disk usage from the Aspose cloud Storage", discUsage);
 	}
@@ -54,12 +58,13 @@ public class FolderTest extends TestCase {
 		assertTrue("Failed to delete folder from the storage", isFolderDeletedSuccessfully);
 	}
 
-	public void testCreateFolder() throws Exception {
-		boolean isFolderCreatedSuccessfully = Folder.createFolder("New Photos");
+	public void testCreateFolderOnThirdPartyStorage() throws Exception {
+        String storageName = "MyDropboxStorage";
+		boolean isFolderCreatedSuccessfully = Folder.createFolder(storageName, "newFolder");
 		assertTrue("Failed to create folder under the specified path", isFolderCreatedSuccessfully);
-	}*/
+	}
 
-	/*public void testGetFilesList() throws Exception {
+	public void testGetFilesList() throws Exception {
 		List<FileModel> filesList = Folder.getFilesList("colleges");
 		assertNotNull("Failed to get a list of all files and folders under the specified folder", filesList);
 	}
@@ -72,5 +77,5 @@ public class FolderTest extends TestCase {
 	public void testMoveFileToAnotherLocation() throws Exception {
 		boolean isFileMovedToAnotherLocationSuccessfully = Folder.moveFile("bookmark.png", "colleges", "universities");
 		assertTrue("Failed to move file to another location", isFileMovedToAnotherLocationSuccessfully);
-	}*/
+	}
 }

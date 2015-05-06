@@ -1,15 +1,15 @@
 package com.aspose.cloud.sdk.words;
 
-import java.io.File;
-import java.io.InputStream;
-
 import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.storage.api.Folder;
 import com.aspose.cloud.sdk.words.api.Converter;
 import com.aspose.cloud.sdk.words.model.SaveResult;
 import com.aspose.cloud.sdk.words.model.ValidFormatsEnum;
-import com.aspose.cloud.sdk.storage.api.Folder;
 
 import junit.framework.TestCase;
+
+import java.io.File;
+import java.io.InputStream;
 
 public class ConverterTestCase extends TestCase {
 
@@ -36,6 +36,12 @@ public class ConverterTestCase extends TestCase {
 		File file = new File(filePath);
 		assertEquals("Failed to convert locally stored word document to designated format", true, file.exists());
 	}
+
+    public void testConvertWordDocumentToOtherFileFormatUsingThirdPartyStorage() throws Exception {
+        String filePath = Converter.convertWordDocumentToOtherFileFormatUsingThirdPartyStorage("myworddocument.doc", ValidFormatsEnum.pdf, "MyDropboxStorage", null, "wordToPDF.pdf");
+        File file = new File(filePath);
+        assertEquals("Failed to convert a Word document to other file format using third party Storage", true, file.exists());
+    }
 	
 	public void testWordDocumentConversionToFormatWithAdditionalSettings() throws Exception {
 		String rtfSaveOptionsRequest = "<RtfSaveOptions>" +

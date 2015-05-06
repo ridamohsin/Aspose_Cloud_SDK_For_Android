@@ -1,18 +1,23 @@
 package com.aspose.cloud.sdk.barcode.api;
 
+import android.net.Uri;
+
+import com.aspose.cloud.sdk.barcode.model.BarcodeTypeEnum;
+import com.aspose.cloud.sdk.barcode.model.BinarizationHintsEnum;
+import com.aspose.cloud.sdk.barcode.model.EnableChecksumEnum;
+import com.aspose.cloud.sdk.barcode.model.RecognitionResponse;
+import com.aspose.cloud.sdk.barcode.model.RecognitionResponse.RecognizedBarCode;
+import com.aspose.cloud.sdk.common.AsposeApp;
+import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.storage.api.Folder;
+import com.google.gson.Gson;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-
-import android.net.Uri;
-
-import com.aspose.cloud.sdk.barcode.model.RecognitionResponse.RecognizedBarCode;
-import com.aspose.cloud.sdk.barcode.model.*;
-import com.aspose.cloud.sdk.common.AsposeApp;
-import com.aspose.cloud.sdk.common.Utils;
-import com.google.gson.Gson;
 
 /**
  * BarcodeRecognition --- Using this class you can read barcode from Aspose Cloud Storage, Read barcode from external image URL, 
@@ -200,6 +205,88 @@ public class BarcodeRecognition {
 			barcodes = recognitionResponse.barcodes;
 		}
 		
+		return barcodes;
+	}
+
+	public static ArrayList<RecognizedBarCode>
+					readBarcodesByApplyingImageProcessingAlgorithm(String fileName, BarcodeTypeEnum type,
+																   BinarizationHintsEnum binarizationHints,
+																   String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		ArrayList<RecognizedBarCode> barcodes = null;
+
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("Filename cannot be null or empty");
+		}
+
+		if(binarizationHints == null) {
+			throw new IllegalArgumentException("BinarizationHints cannot be null");
+		}
+
+		StringBuilder strURL = new StringBuilder(BARCODE_URI + Uri.encode(fileName) + "/recognize?type=" + type + "&BinarizationHints=" + binarizationHints);
+		//In case third party storage is used
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append("&storage=" + Uri.encode(storageName));
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append("&folder=" + Uri.encode(folderName));
+		}
+		//sign URL
+		String signedURL = Utils.sign(strURL.toString());
+
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		String jsonStr = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		RecognitionResponse recognitionResponse = gson.fromJson(jsonStr, RecognitionResponse.class);
+		if(recognitionResponse.getCode().equals("200") && recognitionResponse.getStatus().equals("OK")) {
+			barcodes = recognitionResponse.barcodes;
+		}
+
+		return barcodes;
+	}
+
+	public static ArrayList<RecognizedBarCode> readBarcodeFromLocalImage(String localFilePath,
+																		 String remoteFolderPath, BarcodeTypeEnum type,
+																		 String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		ArrayList<RecognizedBarCode> barcodes = null;
+
+		if(localFilePath == null || localFilePath.length() == 0) {
+			throw new IllegalArgumentException("Local file path cannot be null or empty");
+		}
+
+		File file = new File(localFilePath);
+		String fileName = file.getName();
+
+		boolean isFileUploadedSuccessfully = Folder.uploadFile(localFilePath, remoteFolderPath);
+
+		if(isFileUploadedSuccessfully) {
+			StringBuilder strURL = new StringBuilder(BARCODE_URI + Uri.encode(fileName) + "/recognize?type=" + type);
+			//In case third party storage is used
+			if(storageName != null && storageName.length() != 0) {
+				strURL.append("&storage=" + Uri.encode(storageName));
+			}
+			//In case if file is not at root folder
+			if(folderName != null && folderName.length() != 0) {
+				strURL.append("&folder=" + Uri.encode(folderName));
+			}
+			//sign URL
+			String signedURL = Utils.sign(strURL.toString());
+
+			InputStream responseStream = Utils.processCommand(signedURL, "GET");
+			String jsonStr = Utils.streamToString(responseStream);
+
+			//Parsing JSON
+			Gson gson = new Gson();
+			RecognitionResponse recognitionResponse = gson.fromJson(jsonStr, RecognitionResponse.class);
+			if(recognitionResponse.getCode().equals("200") && recognitionResponse.getStatus().equals("OK")) {
+				barcodes = recognitionResponse.barcodes;
+			}
+		}
+
 		return barcodes;
 	}
 }

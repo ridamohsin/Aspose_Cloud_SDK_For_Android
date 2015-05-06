@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -16,6 +11,11 @@ import com.aspose.cloud.sdk.words.model.GetMailMergeFieldNamesResponse.FieldName
 import com.aspose.cloud.sdk.words.model.InsertPageNumberFieldModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Field --- Using this class you can get all merge field names from a word document, insert page number field into the Word document
@@ -72,7 +72,7 @@ public class Field {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return An document object
 	*/
-	public static Document insertPageNumberFieldIntoTheWordDocument(String fileName, String format, String alignment, Boolean isTop, Boolean setPageNumberOnFirstPage) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static Document insertPageNumberFieldIntoTheWordDocument(String fileName, String format, String alignment, Boolean isTop, Boolean setPageNumberOnFirstPage, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		Document document = null;
 		
@@ -100,6 +100,15 @@ public class Field {
         
 		//build URL
       	String strURL = WORD_URI + Uri.encode(fileName) + "/insertPageNumbers";
+		//If document is uploaded at third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL+= "?storage=" + storageName;
+		}
+		//In case file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL += "&folder=" + folderName;
+		}
+
         //sign URL
         String signedURL = Utils.sign(strURL);
         

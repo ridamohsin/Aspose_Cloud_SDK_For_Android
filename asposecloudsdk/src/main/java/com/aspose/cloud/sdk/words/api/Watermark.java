@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -14,6 +9,11 @@ import com.aspose.cloud.sdk.words.model.DocumentResponse.Document;
 import com.aspose.cloud.sdk.words.model.WatermarkTextModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Watermark --- Using this class you can add watermark text and image to a word document and remove watermark from a word document.
@@ -69,7 +69,54 @@ public class Watermark {
 		
 		return document;
 	}
-	
+
+    public static Document addWatermarkTextToAWordDocumentUploadedAtThirdPartyStorage(String fileName, String watermarkText, double rotationAngle, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+        Document document = null;
+
+        if(fileName == null || fileName.length() <= 3) {
+            throw new IllegalArgumentException("File name cannot be null or empty");
+        }
+
+        if(watermarkText == null || watermarkText.length() == 0) {
+            throw new IllegalArgumentException("watermarkText cannot be null or empty");
+        }
+
+		if(storageName == null || storageName.length() == 0) {
+			throw new IllegalArgumentException("storageName cannot be null or empty");
+		}
+
+        WatermarkTextModel watermarkTextObj = new WatermarkTextModel();
+        watermarkTextObj.text = watermarkText;
+        watermarkTextObj.rotationAngle = rotationAngle;
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+        String requestJSONString = gson.toJson(watermarkTextObj, WatermarkTextModel.class);
+
+        //build URL
+        String strURL = WORD_URI + Uri.encode(fileName) + "/insertWatermarkText?text=" + Uri.encode(watermarkText) + "&rotationAngle=" + rotationAngle
+				+ "&storage=" + Uri.encode(storageName);
+        //In case file is not at root folder
+        if(folderName != null && folderName.length() != 0) {
+            strURL += "&folder=" + folderName;
+        }
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+
+        InputStream responseStream = Utils.processCommand(signedURL, "POST", requestJSONString);
+        String responseJSONString = Utils.streamToString(responseStream);
+
+        //Parsing JSON
+        DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+        if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
+            document = documentResponse.document;
+        }
+
+        return document;
+    }
+
+
 	/**
 	 * Add watermark image to a word document
 	 * @param fileName Name of the MS Word document on cloud
@@ -94,6 +141,8 @@ public class Watermark {
 	
 		//build URL
       	String strURL = WORD_URI + Uri.encode(fileName) + "/watermark/insertImage?image=" + Uri.encode(imagePath) + "&rotationAngle=" + rotationAngle;
+
+
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -109,7 +158,47 @@ public class Watermark {
 		
 		return document;
 	}
-	
+
+	public static Document addWatermarkImageToAWordDocumentUploadedAtThirdPartyStorage(String fileName, String imageFile, double rotationAngle, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		Document document = null;
+
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		if(imageFile == null || imageFile.length() == 0) {
+			throw new IllegalArgumentException("imageFile cannot be null or empty");
+		}
+
+		if(storageName == null || storageName.length() == 0) {
+			throw new IllegalArgumentException("storageName cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = WORD_URI + Uri.encode(fileName) + "/insertWatermarkImage?image=" + Uri.encode(imageFile) +
+				"&rotationAngle=" + rotationAngle + "&storage=" + Uri.encode(storageName);
+		//In case file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL += "&folder=" + folderName;
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "POST");
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		DocumentResponse documentResponse = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(documentResponse.getCode().equals("200") && documentResponse.getStatus().equals("OK")) {
+			document = documentResponse.document;
+		}
+
+		return document;
+	}
+
 	/**
 	 * Deletes the last watermark (if it exists) from a Word Document
 	 * @param fileName Name of the MS Word document on cloud

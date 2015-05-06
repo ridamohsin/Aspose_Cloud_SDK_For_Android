@@ -1,14 +1,14 @@
 package com.aspose.cloud.sdk.words;
 
-import java.io.InputStream;
-
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.storage.api.Folder;
-import com.aspose.cloud.sdk.words.model.CleanupOptionEnum;
 import com.aspose.cloud.sdk.words.api.MailMerge;
+import com.aspose.cloud.sdk.words.model.CleanupOptionEnum;
 import com.aspose.cloud.sdk.words.model.DocumentResponse.Document;
 
 import junit.framework.TestCase;
+
+import java.io.InputStream;
 
 public class MailMergeTestCase extends TestCase {
 
@@ -109,4 +109,54 @@ public class MailMergeTestCase extends TestCase {
 		String filePath = Utils.saveStreamToFile(fileStream, document.fileName);
 		assertNotNull("Failed to save file to local device", filePath);
 	}
+
+	public void testExecuteMailMergeWithoutRegionAndPopulateAWordDocumentFromXMLData() throws Exception {
+
+		String xmlData = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+							"<CollectionName>" +
+								"<FirstName>Michael</FirstName>" +
+								"<LastName>Jordan</LastName>" +
+				            "</CollectionName>";
+
+		Document document = MailMerge.executeMailMergeWithoutRegionAndPopulateAWordDocumentFromXMLData("myworddocument.doc", xmlData, CleanupOptionEnum.None);
+		assertNotNull("Failed to execute mail merge without regions and populate a Word document from XML data", document);
+	}
+
+	public void testExecuteMailMergeWithRegionsAndPopulateAWordDocumentFromXMLData() throws Exception {
+
+		String xmlData = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" +
+				"<root>" +
+					"<Items>" +
+						"<Item>" +
+							"<Field1>Value1</Field1>" +
+							"<Field2>Value2</Field2>" +
+							"<Field3>Value3</Field3>" +
+							"<Field4>Value4</Field4>" +
+						"</Item>" +
+						"<Item>" +
+							"<Field1>Value5</Field1>" +
+							"<Field2>Value6</Field2>" +
+							"<Field3>Value7</Field3>" +
+							"<Field4>Value8</Field4>" +
+						"</Item>" +
+					"</Items>" +
+				"</root>";
+
+		Document document = MailMerge.executeMailMergeWithRegionsAndPopulateAWordDocumentFromXMLData("myworddocument.doc", xmlData, CleanupOptionEnum.None);
+		assertNotNull("Failed to execute mail merge with regions and populate a Word document from XML data", document);
+	}
+
+	public void testExecuteMailMergeWithRegionsAndInsertDynamicImagesOnTheMergeFields() throws Exception {
+
+		String xmlData = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" +
+				"<root>" +
+					"<Items>" +
+						"<Img>sample.png</Img>" +
+					"</Items>" +
+				"</root>";
+
+		Document document = MailMerge.executeMailMergeWithRegionsAndInsertDynamicImagesOnTheMergeFields("myworddocument.doc", xmlData, CleanupOptionEnum.None);
+		assertNotNull("Failed to execute mail merge with regions and insert dynamic images on the merge fields", document);
+	}
+
 }

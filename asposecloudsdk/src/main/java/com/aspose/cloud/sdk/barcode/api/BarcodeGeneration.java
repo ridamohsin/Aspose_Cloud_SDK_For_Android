@@ -1,18 +1,23 @@
 package com.aspose.cloud.sdk.barcode.api;
 
+import android.net.Uri;
+
+import com.aspose.cloud.sdk.barcode.model.BarcodeTypeEnum;
+import com.aspose.cloud.sdk.barcode.model.CodeLocationEnum;
+import com.aspose.cloud.sdk.barcode.model.EnableChecksumEnum;
+import com.aspose.cloud.sdk.barcode.model.GRUnitEnum;
+import com.aspose.cloud.sdk.barcode.model.ValidFormatsEnum;
+import com.aspose.cloud.sdk.common.AsposeApp;
+import com.aspose.cloud.sdk.common.BaseResponse;
+import com.aspose.cloud.sdk.common.Utils;
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-
-import android.net.Uri;
-
-import com.aspose.cloud.sdk.common.AsposeApp;
-import com.aspose.cloud.sdk.common.BaseResponse;
-import com.aspose.cloud.sdk.common.Utils;
-import com.aspose.cloud.sdk.barcode.model.*;
-
-import com.google.gson.Gson;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * BarcodeGeneration --- Using this class you can generate image with barcode of specified type and parameters, Create barcode on the Aspose Cloud Storage, 
@@ -24,7 +29,8 @@ import com.google.gson.Gson;
 public class BarcodeGeneration {
 	
 	private static final String BARCODE_URI = AsposeApp.BASE_PRODUCT_URI + "/barcode/";
-	
+	private static final List<String> validImageQualityValues = Arrays.asList("default", "antialias");
+
 	/**
 	 * Generate image with barcode of specified type and parameters
 	 * @param text Text to encode inside barcode
@@ -436,5 +442,78 @@ public class BarcodeGeneration {
 		outputFilePath = Utils.saveStreamToFile(responseStream, outputFileName);
 		
 		return outputFilePath;
+	}
+
+	public static boolean generateBarcodeAndSaveOnServer(String imageName, String text, BarcodeTypeEnum type,
+														ValidFormatsEnum format, float resolutionX,
+														float resolutionY, float dimensionX, float dimensionY,
+														CodeLocationEnum codeLocation, GRUnitEnum grUnit, boolean autoSize,
+														float barHeight, float imageHeight, float imageWidth,
+														String imageQuality, float rotAngle, float topMargin, float bottomMargin,
+														float leftMargin, float rightMargin, EnableChecksumEnum enableChecksum,
+														 String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		boolean isBarcodeGeneratedSuccessfully = false;
+
+		if(imageName == null || imageName.length() == 0) {
+			throw new IllegalArgumentException("Image name cannot be null or empty");
+		}
+
+		if(text == null || text.length() == 0) {
+			throw new IllegalArgumentException("Text to encode cannot be null or empty");
+		}
+
+		if(imageQuality != null && !validImageQualityValues.contains(imageQuality)) {
+			throw new IllegalArgumentException("Valid image quality values are default and antialias");
+		}
+
+		StringBuilder strURL = new StringBuilder(BARCODE_URI + Uri.encode(imageName) + "/generate?text=" + Uri.encode(text));
+		if(type != null) {
+			strURL.append("&type=" + type);
+		}
+		if(format != null) {
+			strURL.append("&format=" + format);
+		}
+
+		strURL.append("&resolutionX=" + resolutionX + "&resolutionY=" + resolutionY);
+		strURL.append("&dimensionX=" + dimensionX + "&dimensionY=" + dimensionY);
+		if(codeLocation != null) {
+			strURL.append("&codeLocation=" + codeLocation);
+		}
+		if(grUnit != null) {
+			strURL.append("&grUnit=" + grUnit);
+		}
+
+		strURL.append("&autoSize=" + autoSize + "&barHeight=" + barHeight + "&imageHeight=" + imageHeight + "&imageWidth=" + imageWidth);
+		if(imageQuality != null) {
+			strURL.append("&imageQuality=" + imageQuality);
+		}
+
+		strURL.append("&rotAngle=" + rotAngle + "&topMargin=" + topMargin + "&bottomMargin=" + bottomMargin + "&leftMargin=" + leftMargin + "&rightMargin=" + rightMargin);
+		if(enableChecksum != null) {
+			strURL.append("&enableChecksum=" + enableChecksum);
+		}
+		//In case third party storage is used
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append("&storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append("&folder=" + folderName);
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL.toString());
+
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT");
+		String jsonStr = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(jsonStr, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isBarcodeGeneratedSuccessfully = true;
+		}
+
+		return isBarcodeGeneratedSuccessfully;
 	}
 }

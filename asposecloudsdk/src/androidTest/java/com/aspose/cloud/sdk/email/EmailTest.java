@@ -2,6 +2,7 @@ package com.aspose.cloud.sdk.email;
 
 import com.aspose.cloud.sdk.common.LinkModel;
 import com.aspose.cloud.sdk.email.api.Email;
+import com.aspose.cloud.sdk.email.model.AddEmailAttachmentResponse;
 import com.aspose.cloud.sdk.email.model.AddNewEmailResponse;
 import com.aspose.cloud.sdk.email.model.EmailDocument;
 import com.aspose.cloud.sdk.email.model.EmailDocumentProperties;
@@ -9,6 +10,7 @@ import com.aspose.cloud.sdk.email.model.EmailProperty;
 
 import junit.framework.TestCase;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class EmailTest extends TestCase {
@@ -25,7 +27,7 @@ public class EmailTest extends TestCase {
 		super.tearDown();
 	}
 
-	/*public void testConvertEmailToFormat() throws Exception {
+	public void testConvertEmailToFormat() throws Exception {
 		String localFilePath = Email.convertEmailToFormat("Message.msg", "eml");
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert email messages back and forth between EML, MSG and MHT formats", true, file.exists());
@@ -36,11 +38,11 @@ public class EmailTest extends TestCase {
 		File file = new File(localAttachmentPath);
 		assertEquals("Failed to download attachment from Message", true, file.exists());
 	}
-
+	
     public void testAddEmailAttachment() throws Exception {
         AddEmailAttachmentResponse addEmailAttachmentResponse = Email.addEmailAttachment("Leaves.eml", "facebook.png");
         assertNotNull("Failed to add attachment to a message", addEmailAttachmentResponse);
-    }*/
+    }
 
     public void testAddNewEmail() throws Exception {
 
@@ -80,7 +82,7 @@ public class EmailTest extends TestCase {
         assertNotNull("Failed to add new email", addNewEmailResponse);
     }
 
-	/*public void testGetEmailProperty() throws Exception {
+	public void testGetEmailProperty() throws Exception {
 		String propertyName = "Body";
 		String propertyValue = Email.getEmailProperty("Message.msg", propertyName);
 		assertNotNull("Failed to retrieve value of message property " + propertyName, propertyValue);
@@ -90,5 +92,5 @@ public class EmailTest extends TestCase {
 		String propertyName = "Body";
 		boolean isPropertyUpdated = Email.setEmailProperty("Message.msg", propertyName, "New body text");
 		assertEquals("Failed to set value of message property " + propertyName, true, isPropertyUpdated);
-	}*/
+	}
 }

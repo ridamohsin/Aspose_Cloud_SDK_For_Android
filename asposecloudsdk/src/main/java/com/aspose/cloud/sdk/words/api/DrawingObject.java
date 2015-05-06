@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -12,6 +7,11 @@ import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.words.model.GetDrawingObjectsResponse;
 import com.aspose.cloud.sdk.words.model.GetDrawingObjectsResponse.DrawingObjectsData;
 import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * DrawingObject --- Using this class you can get all drawing objects from a Word document, convert drawing object to 
@@ -163,4 +163,147 @@ public class DrawingObject {
         
         return localFilePath;
 	}
+
+	public static String getTheOLEDrawingObjectFromDocumentUsingThirdPartyStorage(String fileName, int objectIndex, String outFileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		String localFilePath = null;
+
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		if(outFileName == null || outFileName.length() == 0) {
+			throw new IllegalArgumentException("outFileName cannot be null or empty");
+		}
+
+		if(storageName == null || storageName.length() == 0) {
+			throw new IllegalArgumentException("storageName cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = WORD_URI + Uri.encode(fileName) + "/drawingObjects/" + objectIndex + "/oleData?storage=" + storageName;
+		//In case file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL += "&folder=" + folderName;
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+
+		//Save the stream in response to the disk
+		localFilePath = Utils.saveStreamToFile(responseStream, outFileName);
+
+		return localFilePath;
+	}
+
+	public static String readDrawingObjectImageDataUsingThirdPartyStorage(String fileName, int objectIndex, String outFileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		String localFilePath = null;
+
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		if(outFileName == null || outFileName.length() == 0) {
+			throw new IllegalArgumentException("outFileName cannot be null or empty");
+		}
+
+		if(storageName == null || storageName.length() == 0) {
+			throw new IllegalArgumentException("storageName cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = WORD_URI + Uri.encode(fileName) + "/drawingObjects/" + objectIndex + "/imageData?storage=" + storageName;
+		//In case file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL += "&folder=" + folderName;
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+
+		//Save the stream in response to the disk
+		localFilePath = Utils.saveStreamToFile(responseStream, outFileName);
+
+		return localFilePath;
+
+	}
+
+	public static DrawingObjectsData getAllDrawingObjectsUsingThirdPartyStorage(String fileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		DrawingObjectsData drawingObjects = null;
+
+		if(fileName == null || fileName.length() <= 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		if(storageName == null || storageName.length() == 0) {
+			throw new IllegalArgumentException("storageName cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = WORD_URI + Uri.encode(fileName) + "/drawingObjects?storage=" + storageName;
+		//In case file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL += "&folder=" + folderName;
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		GetDrawingObjectsResponse drawingObjectsResponse = gson.fromJson(responseJSONString, GetDrawingObjectsResponse.class);
+		if(drawingObjectsResponse.getCode().equals("200") && drawingObjectsResponse.getStatus().equals("OK")) {
+			drawingObjects = drawingObjectsResponse.drawingObjects;
+		}
+
+		return drawingObjects;
+	}
+
+	public static String convertDrawingObjectToImageUsingThirdPartyStorage(String fileName, int objectIndex, String format, String storageName, String folderName, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		String localFilePath = null;
+
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		if(format == null || format.length() == 0) {
+			throw new IllegalArgumentException("format cannot be null or empty");
+		}
+
+		if(storageName == null || storageName.length() == 0) {
+			throw new IllegalArgumentException("storageName cannot be null or empty");
+		}
+
+		if(outFileName == null || outFileName.length() <= 3) {
+			throw new IllegalArgumentException("outFileName cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = WORD_URI + Uri.encode(fileName) + "/drawingObjects/" + objectIndex + "?format=" + format + "&storage=" + storageName;
+		//In case file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL += "&folder=" + folderName;
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+
+		//Save the stream in response to the disk
+		localFilePath = Utils.saveStreamToFile(responseStream, outFileName);
+
+		return localFilePath;
+	}
+
 }

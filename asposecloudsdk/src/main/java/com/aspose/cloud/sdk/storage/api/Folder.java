@@ -64,10 +64,11 @@ public class Folder {
 
 	/**
 	 * Creates a folder under the specified path. If no path specified, creates a folder under the root folder.
+     * @param storageName The document storage
 	 * @param folderPath Folder path
 	 * @return Boolean variable indicates whether folder created successfully
 	*/ 
-	public static boolean createFolder(String folderPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static boolean createFolder(String storageName, String folderPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		boolean isFolderCreatedSuccessfully = false;
 		
@@ -77,6 +78,12 @@ public class Folder {
 		
 		//build URL
       	String strURL = FOLDER_URI + Uri.encode(folderPath);
+
+        //If we want to create a new folder on third party storage
+        if(storageName != null && storageName.length() != 0) {
+            strURL += "?storage=" + storageName;
+        }
+
         //sign URL
         String signedURL = Utils.sign(strURL);
         
@@ -163,20 +170,16 @@ public class Folder {
 	*/ 
 	public static boolean uploadFile(String localFilePath, String remoteFolderPath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
-		Boolean isFileUploadedSuccessfully = false;
+		boolean isFileUploadedSuccessfully = false;
 		
 		if(localFilePath == null || localFilePath.length() == 0) {
 			throw new IllegalArgumentException("Local file path cannot be null or empty");
 		}
 		
-		if(remoteFolderPath == null) {
-			throw new IllegalArgumentException("Remote folder path cannot be null or empty");
-		}
-		
 		File localFile = new File(localFilePath);
 		String fileName = localFile.getName();
 		
-		String remoteFilePath = remoteFolderPath.length() != 0? remoteFolderPath + "/" + fileName : fileName;
+		String remoteFilePath = (remoteFolderPath != null && remoteFolderPath.length() != 0)? remoteFolderPath + "/" + fileName : fileName;
 		
 		//build URL
       	String strURL = FILE_URI + Uri.encode(remoteFilePath);
@@ -229,7 +232,7 @@ public class Folder {
 	*/ 
 	public static DiscUsageModel getDiscUsage() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		DiscUsageModel discUsage = null;
-		
+
         //sign URL
         String signedURL = Utils.sign(DISC_URI);
         

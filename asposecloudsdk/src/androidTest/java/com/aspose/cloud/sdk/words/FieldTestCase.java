@@ -26,7 +26,7 @@ public class FieldTestCase extends TestCase {
 	}
 	
 	public void testInsertPageNumberFieldIntoTheWordDocument() throws Exception {
-		Document document = Field.insertPageNumberFieldIntoTheWordDocument("myworddocument.docx", "{PAGE} of {NUMPAGES}", "right", false, true);
+		Document document = Field.insertPageNumberFieldIntoTheWordDocument("myworddocument.doc", "{PAGE} of {NUMPAGES}", "right", false, true, "MyDropboxStorage", "myFolder");
 		assertNotNull("Failed to insert page number field into the word document", document);
 	}
 	

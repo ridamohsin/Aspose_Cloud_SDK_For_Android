@@ -1,9 +1,8 @@
 package com.aspose.cloud.sdk.words;
 
-import com.aspose.cloud.sdk.words.model.ReplaceTextResponse;
 import com.aspose.cloud.sdk.words.api.Text;
+import com.aspose.cloud.sdk.words.model.ReplaceTextResponse;
 import com.aspose.cloud.sdk.words.model.GetTextItemsResponse.TextItem;
-
 import junit.framework.TestCase;
 
 public class TextTestCase extends TestCase {
@@ -26,7 +25,7 @@ public class TextTestCase extends TestCase {
 	}
 	
 	public void testReplaceTextInAWordDocument() throws Exception {
-		ReplaceTextResponse replaceTextResponse = Text.replaceTextInAWordDocument("myworddocument.docx", "Concepts" , "theory", false, true);
+		ReplaceTextResponse replaceTextResponse = Text.replaceTextInAWordDocument("myworddocument.doc", "Concepts", "theory", false, true, "MyDropboxStorage", "myFolder");
 		assertNotNull("Failed to replace text in a Word document", replaceTextResponse);
 	}
 }

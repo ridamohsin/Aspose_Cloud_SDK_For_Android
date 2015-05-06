@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -13,6 +8,11 @@ import com.aspose.cloud.sdk.words.model.CleanupOptionEnum;
 import com.aspose.cloud.sdk.words.model.DocumentResponse;
 import com.aspose.cloud.sdk.words.model.DocumentResponse.Document;
 import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * MailMerge --- Using this class you can execute mail merge template and populate a word document from XML data 
@@ -36,7 +36,7 @@ public class MailMerge {
 		
 		Document document = null;
 		
-		if(fileName == null || fileName.length() <= 3) {
+		if(fileName == null || fileName.length() == 3) {
 			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
 		
@@ -66,5 +66,133 @@ public class MailMerge {
 		
 		return document;
 	}
-	
+
+	public static Document executeMailMergeWithoutRegionAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		Document document = null;
+
+		if(fileName == null || fileName.length() == 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL;
+		if(cleanupOption != null) {
+			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?cleanup=" + cleanupOption;
+		} else {
+			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge";
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "XML");
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		DocumentResponse executeTemplateRes = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(executeTemplateRes.getCode().equals("200") && executeTemplateRes.getStatus().equals("OK")) {
+			document = executeTemplateRes.document;
+		}
+
+		return document;
+	}
+
+	public static Document executeMailMergeWithRegionsAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		Document document = null;
+
+		if(fileName == null || fileName.length() == 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL;
+		if(cleanupOption != null) {
+			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?withRegions=true&cleanup=" + cleanupOption;
+		} else {
+			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?withRegions=true";
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "XML");
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		DocumentResponse executeTemplateRes = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(executeTemplateRes.getCode().equals("200") && executeTemplateRes.getStatus().equals("OK")) {
+			document = executeTemplateRes.document;
+		}
+
+		return document;
+	}
+
+	public static Document executeMailMergeWithRegionsAndInsertDynamicImagesOnTheMergeFields(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		Document document = null;
+
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL;
+		if(cleanupOption != null) {
+			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?withRegions=true&cleanup=" + cleanupOption;
+		} else {
+			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?withRegions=true";
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "XML");
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		DocumentResponse executeTemplateRes = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(executeTemplateRes.getCode().equals("200") && executeTemplateRes.getStatus().equals("OK")) {
+			document = executeTemplateRes.document;
+		}
+
+		return document;
+	}
+
+	public static Document executeMailMergeWithoutRegionWithoutUsingTheCloudStorage(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		Document document = null;
+
+		if(fileName == null || fileName.length() == 3) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL;
+		if(cleanupOption != null) {
+			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?cleanup=" + cleanupOption;
+		} else {
+			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge";
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "XML");
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		DocumentResponse executeTemplateRes = gson.fromJson(responseJSONString, DocumentResponse.class);
+		if(executeTemplateRes.getCode().equals("200") && executeTemplateRes.getStatus().equals("OK")) {
+			document = executeTemplateRes.document;
+		}
+
+		return document;
+	}
+
 }

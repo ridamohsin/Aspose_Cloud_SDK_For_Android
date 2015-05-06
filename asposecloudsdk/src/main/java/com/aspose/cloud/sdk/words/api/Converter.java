@@ -1,11 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -15,6 +9,12 @@ import com.aspose.cloud.sdk.words.model.ConvertWordDocumentToAnyFormatWithAdditi
 import com.aspose.cloud.sdk.words.model.SaveResult;
 import com.aspose.cloud.sdk.words.model.ValidFormatsEnum;
 import com.google.gson.Gson;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Converter --- Using this class you can convert a Word document to images, multipage tiff, HTML, PDF and other file formats
@@ -106,7 +106,39 @@ public class Converter {
 		
 		return convertedFilePath;
 	}
-	
+
+    public static String convertWordDocumentToOtherFileFormatUsingThirdPartyStorage(String fileName, ValidFormatsEnum designatedFormat, String storageName, String folderName, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+        String localFilePath = null;
+
+        if(fileName == null || fileName.length() == 0) {
+            throw new IllegalArgumentException("File name cannot be null or empty");
+        }
+
+        if(designatedFormat == null) {
+            throw new IllegalArgumentException("Designated format cannot be null");
+        }
+
+        if(storageName == null || storageName.length() == 0) {
+            throw new IllegalArgumentException("Storage name cannot be null or empty");
+        }
+
+        //build URL
+        String strURL = WORD_URI + Uri.encode(fileName) + "?format=" + designatedFormat + "&storage=" + storageName;
+        //In case if file is not at root folder
+        if(folderName != null && folderName.length() != 0) {
+            strURL += "&folder=" + folderName;
+        }
+
+        //sign URL
+        String signedURL = Utils.sign(strURL);
+        InputStream responseStream = Utils.processCommand(signedURL, "GET");
+
+        //Save file on Disk
+        localFilePath = Utils.saveStreamToFile(responseStream, outFileName);
+        return localFilePath;
+    }
+
 	/**
 	 * Convert a Word document to other formats with additional settings
 	 * @param fileName Name of the MS Word document on cloud
