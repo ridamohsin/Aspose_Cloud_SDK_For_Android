@@ -21,7 +21,7 @@ public class FieldTestCase extends TestCase {
 	}
 
 	public void testGetAllMergeFieldNamesFromAWordDocument() throws Exception {
- 		FieldName fieldName = Field.getAllMergeFieldNamesFromAWordDocument("Envelope3.docx");
+ 		FieldName fieldName = Field.getAllMergeFieldNamesFromAWordDocument("myworddocument.doc");
 		assertNotNull("Failed to get all merge field names from a word document", fieldName);
 	}
 	
@@ -34,4 +34,5 @@ public class FieldTestCase extends TestCase {
 		Document document = Field.updateAllFieldsInTheWordDocument("myworddocument.docx", "updatefieldsworddocument.docx");
 		assertNotNull("Failed to update all fields in the word document", document);
 	}
+
 }

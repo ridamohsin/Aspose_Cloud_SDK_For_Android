@@ -79,16 +79,18 @@ public class Document {
 	 * Convert PowerPoint document to other File formats 
 	 * @param fileName Name of the file stored on cloud
 	 * @param designatedFormat Valid formats are tiff, pdf, xps, odp, ppsx, pptm, ppsm, potx, potm and html
+	 * @param storageName If file is stored at third party storage e.g. Amazon S3, Azure, Dropbox, Google Drive or FTP
+	 * @param folderName Path to file if file is not stored at root
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
 	 * @return A path to converted document
 	*/ 
-	public static String convertPowerPointDocumentToOtherFileFormats(String fileName, ValidFormatsEnum designatedFormat) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static String convertPowerPointDocumentToOtherFileFormats(String fileName, ValidFormatsEnum designatedFormat, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		String localFilePath = null;
 		
-		if(fileName == null || fileName.length() <= 3) {
+		if(fileName == null || fileName.length() == 0) {
 			throw new IllegalArgumentException("File name cannot be null or empty");
 		}
 		
@@ -97,9 +99,18 @@ public class Document {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "?format=" + designatedFormat;
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "?format=" + designatedFormat);
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append("&storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append("&folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		
 		//Replace fileName extension with designated format 

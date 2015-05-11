@@ -32,7 +32,7 @@ public class MailMerge {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return A document object
 	*/
-	public static Document executeTemplateAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static Document executeTemplateAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		Document document = null;
 		
@@ -45,14 +45,24 @@ public class MailMerge {
 		}
 		
 		//build URL
-		String strURL;
+		StringBuilder strURL = new StringBuilder(WORD_URI + Uri.encode(fileName) + "/executeTemplate");
 		if(cleanupOption != null) {
-			strURL = WORD_URI + Uri.encode(fileName) + "/executeTemplate?cleanup=" + cleanupOption;
-		} else {
-			strURL = WORD_URI + Uri.encode(fileName) + "/executeTemplate";
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("cleanup=" + cleanupOption);
 		}
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
         //sign URL
-        String signedURL = Utils.sign(strURL);
+        String signedURL = Utils.sign(strURL.toString());
         
         InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "xml");
         String responseJSONString = Utils.streamToString(responseStream);
@@ -67,7 +77,7 @@ public class MailMerge {
 		return document;
 	}
 
-	public static Document executeMailMergeWithoutRegionAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static Document executeMailMergeWithoutRegionAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		Document document = null;
 
@@ -76,15 +86,20 @@ public class MailMerge {
 		}
 
 		//build URL
-		String strURL;
+		StringBuilder strURL = new StringBuilder(WORD_URI + Uri.encode(fileName) + "/executeMailMerge?withRegions=false");
 		if(cleanupOption != null) {
-			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?cleanup=" + cleanupOption;
-		} else {
-			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge";
+			strURL.append("&cleanup=" + cleanupOption);
 		}
-
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append("&storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append("&folder=" + folderName);
+		}
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 
 		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "XML");
 		String responseJSONString = Utils.streamToString(responseStream);
@@ -99,7 +114,7 @@ public class MailMerge {
 		return document;
 	}
 
-	public static Document executeMailMergeWithRegionsAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static Document executeMailMergeWithRegionsAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		Document document = null;
 
@@ -108,15 +123,20 @@ public class MailMerge {
 		}
 
 		//build URL
-		String strURL;
+		StringBuilder strURL = new StringBuilder(WORD_URI + Uri.encode(fileName) + "/executeMailMerge?withRegions=true");
 		if(cleanupOption != null) {
-			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?withRegions=true&cleanup=" + cleanupOption;
-		} else {
-			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?withRegions=true";
+			strURL.append("&cleanup=" + cleanupOption);
 		}
-
+        //If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append("&storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append("&folder=" + folderName);
+		}
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 
 		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "XML");
 		String responseJSONString = Utils.streamToString(responseStream);
@@ -163,26 +183,24 @@ public class MailMerge {
 		return document;
 	}
 
-	public static Document executeMailMergeWithoutRegionWithoutUsingTheCloudStorage(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static Document executeMailMergeWithoutRegionWithoutUsingTheCloudStorage(String docFileType, String docFilePath, String xmlFileType, String xmlFilePath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		Document document = null;
 
-		if(fileName == null || fileName.length() == 3) {
-			throw new IllegalArgumentException("File name cannot be null or empty");
+		if(docFilePath == null || docFilePath.length() == 3) {
+			throw new IllegalArgumentException("Doc file path cannot be null or empty");
+		}
+
+		if(xmlFilePath == null || xmlFilePath.length() == 3) {
+			throw new IllegalArgumentException("XML file path cannot be null or empty");
 		}
 
 		//build URL
-		String strURL;
-		if(cleanupOption != null) {
-			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge?cleanup=" + cleanupOption;
-		} else {
-			strURL = WORD_URI + Uri.encode(fileName) + "/executeMailMerge";
-		}
-
+		String strURL = WORD_URI + "executeMailMerge?withRegions=false";
 		//sign URL
 		String signedURL = Utils.sign(strURL);
 
-		InputStream responseStream = Utils.processCommand(signedURL, "POST", xmlData, "XML");
+		InputStream responseStream = Utils.processCommand(signedURL, docFileType, docFilePath, xmlFileType, xmlFilePath);
 		String responseJSONString = Utils.streamToString(responseStream);
 
 		//Parsing JSON

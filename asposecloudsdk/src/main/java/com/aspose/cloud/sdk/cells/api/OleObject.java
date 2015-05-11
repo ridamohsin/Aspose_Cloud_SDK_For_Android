@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.cells.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.cells.model.OleObjectResponse;
@@ -14,6 +9,11 @@ import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * OleObject --- Using this class you can get a specific OLEObject from a worksheet, convert an OLE object to image, 
@@ -117,7 +117,82 @@ public class OleObject {
 				
 		return localFilePath;
 	}
-	
+
+	public OleObjectData addOleObjectsToExcelWorksheet(String oleObjectData, String contentType) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		OleObjectData oleObject = null;
+
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		if(worksheetName == null || worksheetName.length() == 0) {
+			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
+		}
+
+		if(oleObjectData == null || oleObjectData.length() == 0) {
+			throw new IllegalArgumentException("Ole object data cannot be null or empty");
+		}
+
+		if(contentType == null || contentType.length() == 0) {
+			throw new IllegalArgumentException("Content type cannot be null or empty");
+		}
+
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/oleobjects";
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "PUT", oleObjectData, contentType);
+
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		OleObjectResponse oleObjectResponse = gson.fromJson(responseJSONString, OleObjectResponse.class);
+		if (oleObjectResponse.getCode().equals("200") && oleObjectResponse.getStatus().equals("OK")) {
+			oleObject = oleObjectResponse.oleObject;
+		}
+
+		return oleObject;
+	}
+
+	public boolean updateOLEObject(int oleObjectIndex, String oleObjectData, String contentType) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		boolean isOLEObjectUpdatedSuccessfully = false;
+
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		if(worksheetName == null || worksheetName.length() == 0) {
+			throw new IllegalArgumentException("Worksheet name cannot be null or empty");
+		}
+
+		if(oleObjectData == null || oleObjectData.length() == 0) {
+			throw new IllegalArgumentException("Ole object data cannot be null or empty");
+		}
+
+		if(contentType == null || contentType.length() == 0) {
+			throw new IllegalArgumentException("Content type cannot be null or empty");
+		}
+
+		String strURL = CELLS_URI + fileName + "/worksheets/" + worksheetName + "/oleobjects/" + oleObjectIndex;
+		//sign URL
+		String signedURL = Utils.sign(strURL);
+
+		InputStream responseStream = Utils.processCommand(signedURL, "POST", oleObjectData, contentType);
+
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(responseJSONString, BaseResponse.class);
+		if (baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isOLEObjectUpdatedSuccessfully = true;
+		}
+
+		return isOLEObjectUpdatedSuccessfully;
+	}
 	/**
 	 * Delete all OleObjects from Excel Worksheet
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.

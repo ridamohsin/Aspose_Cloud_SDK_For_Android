@@ -30,6 +30,20 @@
         <dex dex="/Users/muhammadsohailismail/Dropbox/Aspose/AndroidStudioProjects/AsposeAndroidCloudSDK/asposecloudsdk/build/intermediates/pre-dexed/test/debug/internal_impl-21.0.3-7414af3f8c5f4e3ef04bf32614f5d955c7e1cc3d.jar" />
     </item>
     <item
+        jar="/Users/muhammadsohailismail/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient-android/4.3.5.1/eecbb0b998e77629862a13d957d552b3be58fc4e/httpclient-android-4.3.5.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="eecbb0b998e77629862a13d957d552b3be58fc4e">
+        <dex dex="/Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/build/intermediates/pre-dexed/test/debug/httpclient-android-4.3.5.1-b2220ad73d75ad2955b8b29bbb4f28c007e2bc5d.jar" />
+    </item>
+    <item
+        jar="/Users/muhammadsohailismail/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3.6/cf8bacbf0d476c7f2221f861269365b66447f7ec/httpmime-4.3.6.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="cf8bacbf0d476c7f2221f861269365b66447f7ec">
+        <dex dex="/Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/build/intermediates/pre-dexed/test/debug/httpmime-4.3.6-a81084a008e3b67570478f5143dd6ab9ecc4d116.jar" />
+    </item>
+    <item
         jar="/Users/muhammadsohailismail/.gradle/caches/modules-2/files-2.1/org.apache.directory.studio/org.apache.commons.io/2.4/b98d592c582262b3da8a871c7317f4902d98e996/org.apache.commons.io-2.4.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -89,7 +103,7 @@
         jar="/Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/build/intermediates/bundles/debug/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="8ae00919795c50318c1f7e3a5be8a244b1bdd43f">
+        sha1="8b45910aab3a3fdcefbf33934beafc58676eae4f">
         <dex dex="/Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/build/intermediates/pre-dexed/test/debug/classes-998f89e1f553cf193f95ce195c35558acfaf5401.jar" />
     </item>
     <item

@@ -1,6 +1,23 @@
 
 package com.aspose.cloud.sdk.common;
 
+import android.os.Environment;
+import android.util.Log;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,18 +34,6 @@ import java.util.Locale;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.os.Environment;
-import android.util.Log;
 
 public class Utils {
 	
@@ -228,7 +233,36 @@ public class Utils {
 		
 		return httpCon.getInputStream();
 	}
-	
+
+	public static InputStream processCommand(String strURI, String firstName, String firstFilePath,
+											 String secondName, String secondFilePath) throws IOException {
+
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		HttpPut uploadFile = new HttpPut(strURI);
+
+		uploadFile.addHeader("x-saaspose-client", "AndroidSDK/v1.0");
+		//uploadFile.addHeader("Accept", "application/json");
+		uploadFile.addHeader("Content-Type", "multipart/form-data");
+
+		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+		builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+		FileBody firstFileBody = new FileBody(new File(firstFilePath));
+		FileBody secondFileBody = new FileBody(new File(secondFilePath));
+		builder.addPart(firstName, firstFileBody);
+		builder.addPart(secondName, secondFileBody);
+
+		HttpEntity multipart = builder.build();
+		uploadFile.setEntity(multipart);
+		HttpResponse response = httpClient.execute(uploadFile);
+
+		HttpEntity responseEntity = response.getEntity();
+
+		InputStream objStream = responseEntity.getContent();
+
+		return objStream;
+	}
+
 	public static String streamToString(InputStream stream) {
 		try {
 			// read it with BufferedReader

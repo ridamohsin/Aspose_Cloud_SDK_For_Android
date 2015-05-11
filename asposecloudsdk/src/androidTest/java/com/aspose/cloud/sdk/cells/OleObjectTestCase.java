@@ -1,12 +1,12 @@
 package com.aspose.cloud.sdk.cells;
 
-import java.io.File;
-
 import com.aspose.cloud.sdk.cells.api.OleObject;
 import com.aspose.cloud.sdk.cells.model.ValidOleObjectConversionFormats;
 import com.aspose.cloud.sdk.cells.model.OleObjectResponse.OleObjectData;
 
 import junit.framework.TestCase;
+
+import java.io.File;
 
 public class OleObjectTestCase extends TestCase {
 
@@ -35,7 +35,39 @@ public class OleObjectTestCase extends TestCase {
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert OLE Object to Image", true, file.exists());
 	}
-	
+
+	public void testAddOleObjectsToExcelWorksheet() throws Exception {
+		String oleObjectData = "<OleObject>" +
+				               		"<SourceFullName>OLEDoc2.docx</SourceFullName>" +
+									"<ImageSourceFullName>sample.jpg</ImageSourceFullName>" +
+									"<UpperLeftRow>10</UpperLeftRow>" +
+									"<UpperLeftColumn>10</UpperLeftColumn>" +
+									"<Top>20</Top>" +
+									"<Left>20</Left>" +
+									"<Height>20</Height>" +
+									"<Width>20</Width>" +
+								"</OleObject>";
+		OleObjectData myOLEObject = oleObject.addOleObjectsToExcelWorksheet(oleObjectData, "xml");
+		assertNotNull("Failed to add OleObject to Excel Worksheet", myOLEObject);
+	}
+
+	public void testUpdateOLEObject() throws Exception {
+
+		String oleObjectData = "<OleObject>" +
+									"<SourceFullName>OLEDoc1.docx</SourceFullName>" +
+									"<ImageSourceFullName>sample.jpg</ImageSourceFullName>" +
+									"<UpperLeftRow>5</UpperLeftRow>" +
+									"<UpperLeftColumn>5</UpperLeftColumn>" +
+									"<Top>10</Top>" +
+									"<Left>10</Left>" +
+									"<Height>20</Height>" +
+									"<Width>20</Width>" +
+								"</OleObject>";
+
+		boolean isOLEObjectUpdatedSuccessfully = oleObject.updateOLEObject(0, oleObjectData, "xml");
+		assertEquals("Failed to update a specific OleObject from a worksheet", isOLEObjectUpdatedSuccessfully);
+	}
+
 	public void testDeleteAllOleObjectsFromExcelWorksheet() throws Exception {
 		boolean isAllOleObjectsDeletedSuccessfully = oleObject.deleteAllOleObjectsFromExcelWorksheet();
 		assertEquals("Failed to delete all OLE objects from a worksheet", true, isAllOleObjectsDeletedSuccessfully);

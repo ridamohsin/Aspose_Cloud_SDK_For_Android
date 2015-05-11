@@ -34,7 +34,7 @@ public class DocumentTest extends TestCase {
 	}
 	
 	public void testConvertPowerPointDocumentsToOtherFileFormats() throws Exception {
-		String localFilePath = Document.convertPowerPointDocumentToOtherFileFormats("Effective_presentation.ppt", ValidFormatsEnum.pdf);
+		String localFilePath = Document.convertPowerPointDocumentToOtherFileFormats("Effective_presentation.ppt", ValidFormatsEnum.pdf, "MyDropboxStorage", null);
 		File file = new File(localFilePath);
 		assertEquals("Failed to convert powerpoint document to designated format", true, file.exists());
 	}

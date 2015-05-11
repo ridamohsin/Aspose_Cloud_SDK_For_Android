@@ -76,7 +76,7 @@ public class MailMergeTestCase extends TestCase {
 					"</Orders>"; 
 
 		Document document = MailMerge.executeTemplateAndPopulateAWordDocumentFromXMLData("TestExecuteTemplate.doc", 
-														xmlData, CleanupOptionEnum.None);
+														xmlData, CleanupOptionEnum.None, "MyDropboxStorage", null);
 		assertNotNull("Mail merge failed to execute template and populate a Word document from XML data", document);
 		
 		//Save resultant document on device
@@ -100,7 +100,7 @@ public class MailMergeTestCase extends TestCase {
 				"</Items>"; 
 		
 		Document document = MailMerge.executeTemplateAndPopulateAWordDocumentFromXMLData("ImageandDataTemplate.docx", 
-				xmlData, CleanupOptionEnum.None);
+				xmlData, CleanupOptionEnum.None, "MyDropboxStorage", null);
 		assertNotNull("Mail merge failed to execute template and populate a Word document with data and images", document);
 		
 		//Save resultant document on device
@@ -118,7 +118,7 @@ public class MailMergeTestCase extends TestCase {
 								"<LastName>Jordan</LastName>" +
 				            "</CollectionName>";
 
-		Document document = MailMerge.executeMailMergeWithoutRegionAndPopulateAWordDocumentFromXMLData("myworddocument.doc", xmlData, CleanupOptionEnum.None);
+		Document document = MailMerge.executeMailMergeWithoutRegionAndPopulateAWordDocumentFromXMLData("myworddocument.doc", xmlData, CleanupOptionEnum.None, "MyDropboxStorage", null);
 		assertNotNull("Failed to execute mail merge without regions and populate a Word document from XML data", document);
 	}
 
@@ -142,7 +142,7 @@ public class MailMergeTestCase extends TestCase {
 					"</Items>" +
 				"</root>";
 
-		Document document = MailMerge.executeMailMergeWithRegionsAndPopulateAWordDocumentFromXMLData("myworddocument.doc", xmlData, CleanupOptionEnum.None);
+		Document document = MailMerge.executeMailMergeWithRegionsAndPopulateAWordDocumentFromXMLData("myworddocument.doc", xmlData, CleanupOptionEnum.None, "MyDropboxStorage", null);
 		assertNotNull("Failed to execute mail merge with regions and populate a Word document from XML data", document);
 	}
 
@@ -159,4 +159,10 @@ public class MailMergeTestCase extends TestCase {
 		assertNotNull("Failed to execute mail merge with regions and insert dynamic images on the merge fields", document);
 	}
 
+	public void testExecuteMailMergeWithoutRegionWithoutUsingTheCloudStorage() throws Exception {
+
+		Document document = MailMerge.executeMailMergeWithoutRegionWithoutUsingTheCloudStorage("application/msword", "/storage/emulated/0/AsposeFiles/myworddocument.doc",
+				"text/xml", "/storage/emulated/0/AsposeFiles/myXMLFile.xml");
+		assertNotNull("Failed to execute mail merge without regions without using the Cloud Storage", document);
+	}
 }
