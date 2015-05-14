@@ -31,7 +31,7 @@ public class Text {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return An object that contains collection of text items
 	*/ 
-	public static TextItemsData getAllTextItemsFromAPresentation(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static TextItemsData getAllTextItemsFromAPresentation(String fileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		TextItemsData textItems = null;
 		
@@ -40,9 +40,20 @@ public class Text {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/textItems";
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/textItems");
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//If file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String responseJSONString = Utils.streamToString(responseStream);
 		
@@ -65,7 +76,7 @@ public class Text {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return An object that contains collection of text items
 	*/ 
-	public static TextItemsData getAllTextItemsFromASlide(String fileName, int slideIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static TextItemsData getAllTextItemsFromASlide(String fileName, int slideIndex, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		TextItemsData textItems = null;
 		
@@ -74,9 +85,20 @@ public class Text {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex + "/textItems";
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex + "/textItems");
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//If file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String responseJSONString = Utils.streamToString(responseStream);
 		

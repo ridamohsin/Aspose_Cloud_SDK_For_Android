@@ -19,12 +19,12 @@ public class ImagesTest extends TestCase {
 	}
 	
 	public void testGetNumberOfImagesInAPresentation() throws Exception {
-		int imagesCount = Images.getNumberOfImagesInAPresentation("Effective_presentation.ppt");
+		int imagesCount = Images.getNumberOfImagesInAPresentation("Effective_presentation.pptx", "MyDropboxStorage", null);
 		assertEquals("Failed to get total number of images in a presentation", true, imagesCount>=0);
 	}
 	
 	public void testGetNumberOfImagesInASlide() throws Exception {
-		int imagesCount = Images.getNumberOfImagesInASlide("Effective_presentation.ppt", 1);
+		int imagesCount = Images.getNumberOfImagesInASlide("Effective_presentation.pptx", 1, "MyDropboxStorage", null);
 		assertEquals("Failed to get total number of images in a slide", true, imagesCount>=0);
 	}
 

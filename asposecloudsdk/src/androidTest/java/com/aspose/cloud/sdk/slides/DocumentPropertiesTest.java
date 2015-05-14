@@ -18,7 +18,7 @@ public class DocumentPropertiesTest extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
-	
+
 	public void testGetDocumentProperties() throws Exception {
 		DocumentPropertiesResult documentProperties = DocumentProperties.getDocumentProperties("Effective_presentation.ppt");
 		assertNotNull("Failed to get properties of a powerpoint document", documentProperties);
@@ -26,6 +26,19 @@ public class DocumentPropertiesTest extends TestCase {
 
 	public void testRemoveAllProperties() throws Exception {
 		DocumentPropertiesResult documentProperties = DocumentProperties.removeAllProperties("Effective_presentation.ppt");
+		assertNotNull("Failed to delete all document properties", documentProperties);
+	}
+
+	public void testSetDocumentProperties() throws Exception {
+
+		String xmlRequest = "<DocumentProperties>" +
+								"<DocumentProperty>" +
+									"<Name>Author</Name>" +
+									"<Value>James John</Value>" +
+								"</DocumentProperty>" +
+							"</DocumentProperties>";
+
+		DocumentPropertiesResult documentProperties = DocumentProperties.setDocumentProperties("Effective_presentation.pptx", xmlRequest, "xml");
 		assertNotNull("Failed to delete all document properties", documentProperties);
 	}
 }

@@ -32,7 +32,7 @@ public class Shapes {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return An object that contains URLs to shapes
 	*/ 
-	public static ShapeList extractShapesFromASlide(String fileName, int slideIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static ShapeList extractShapesFromASlide(String fileName, int slideIndex, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		ShapeList shapeList = null;
 		
@@ -41,9 +41,20 @@ public class Shapes {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex +  "/shapes";
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex +  "/shapes");
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String responseJSONString = Utils.streamToString(responseStream);
 		
@@ -67,7 +78,7 @@ public class Shapes {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return An object that contains shapes data
 	*/ 
-	public static ShapeData getAParticularShapeFromTheSlide(String fileName, int slideIndex, int shapeIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static ShapeData getAParticularShapeFromTheSlide(String fileName, int slideIndex, int shapeIndex, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		ShapeData shape = null;
 		
@@ -76,9 +87,20 @@ public class Shapes {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex +  "/shapes/" + shapeIndex;
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex +  "/shapes/" + shapeIndex);
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String responseJSONString = Utils.streamToString(responseStream);
 		

@@ -1,13 +1,14 @@
 package com.aspose.cloud.sdk.slides;
 
-import com.aspose.cloud.sdk.slides.model.ValidFormatsEnum;
 import com.aspose.cloud.sdk.slides.api.Document;
-import com.aspose.cloud.sdk.slides.model.DocumentResponse.DocumentModel;
 import com.aspose.cloud.sdk.slides.model.MergePresentationsRequest;
 import com.aspose.cloud.sdk.slides.model.MergeSelectedSlidesOfPowerPointPresentationsRequest;
 import com.aspose.cloud.sdk.slides.model.MergeSelectedSlidesOfPowerPointPresentationsRequest.PathAndSlides;
-import com.aspose.cloud.sdk.slides.model.SplitPowerPointPresentationsResponse.SplitResult;
+import com.aspose.cloud.sdk.slides.model.ValidFormatsEnum;
 import com.aspose.cloud.sdk.slides.model.ValidSlidesFormats;
+import com.aspose.cloud.sdk.slides.model.DocumentResponse.DocumentModel;
+import com.aspose.cloud.sdk.slides.model.SplitPowerPointPresentationsResponse.SplitResult;
+
 
 import junit.framework.TestCase;
 

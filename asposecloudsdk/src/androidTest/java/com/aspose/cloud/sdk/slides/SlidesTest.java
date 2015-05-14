@@ -1,13 +1,13 @@
 package com.aspose.cloud.sdk.slides;
 
-import com.aspose.cloud.sdk.slides.model.ValidSlidesFormats;
 import com.aspose.cloud.sdk.slides.api.Slides;
+import com.aspose.cloud.sdk.slides.model.ValidSlidesFormats;
+import com.aspose.cloud.sdk.slides.model.SlidesResponse.SlidesResult;
+import com.aspose.cloud.sdk.slides.model.PlaceholderResponse.PlaceholderResult;
 import com.aspose.cloud.sdk.slides.model.ColorSchemeResponse.ColorScheme;
 import com.aspose.cloud.sdk.slides.model.FontSchemeResponse.FontScheme;
-import com.aspose.cloud.sdk.slides.model.PlaceholderResponse.PlaceholderResult;
 import com.aspose.cloud.sdk.slides.model.PowerPointSlideBackgroundResponse.BackgroundResult;
 import com.aspose.cloud.sdk.slides.model.SlideCommentsResponse.SlideComments;
-import com.aspose.cloud.sdk.slides.model.SlidesResponse.SlidesResult;
 
 import junit.framework.TestCase;
 
@@ -28,14 +28,14 @@ public class SlidesTest extends TestCase {
 	}
 	
 	public void testSaveAPowerPointSlideAsImageWithDefaultSize() throws Exception {
-		String localFilePath = Slides.saveAPowerPointSlideAsImageWithDefaultSize("Sales.pptx", 1, ValidSlidesFormats.png, "Credits");
+		String localFilePath = Slides.saveAPowerPointSlideAsImageWithDefaultSize("Effective_presentation.ppt", 1, ValidSlidesFormats.png, "Credits.png", "MyDropboxStorage", null);
 		File file = new File(localFilePath);
 		assertEquals("Failed to save a powerpoint slide as image with default size", true, file.exists());
 	}
 
 	public void testSaveAPowerPointSlideAsImageWithSpecifiedSize() throws Exception {
-		String localFilePath = Slides.saveAPowerPointSlideAsImageWithSpecifiedSize("Sales.pptx", 1, ValidSlidesFormats.png, 
-				800, 600, "Credits");
+		String localFilePath = Slides.saveAPowerPointSlideAsImageWithSpecifiedSize("Effective_presentation.ppt", 1, ValidSlidesFormats.png,
+				800, 600, "Credits.png", "MyDropboxStorage", null);
 		File file = new File(localFilePath);
 		assertEquals("Failed to save a powerpoint slide as image with specified size", true, file.exists());
 	}
@@ -61,7 +61,7 @@ public class SlidesTest extends TestCase {
 	}
 	
 	public void testDeleteAllSlidesFromAPowerPointPresentation() throws Exception {
-		boolean isAllSlidesDeletedSuccessfully = Slides.deleteAllSlidesFromAPowerPointPresentation("Effective_presentation.ppt");
+		boolean isAllSlidesDeletedSuccessfully = Slides.deleteAllSlidesFromAPowerPointPresentation("Effective_presentation.ppt", "MyDropboxStorage", null);
 		assertEquals("Failed to delete all slides from a powerpoint presentation", true, isAllSlidesDeletedSuccessfully);
 	}
 	
@@ -76,7 +76,7 @@ public class SlidesTest extends TestCase {
 	}
 	
 	public void testGetPowerPointDocumentSlideCount() throws Exception {
-		int slideCount = Slides.getPowerPointDocumentSlideCount("Effective_presentation.ppt");
+		int slideCount = Slides.getPowerPointDocumentSlideCount("Effective_presentation.ppt", "MyDropboxStorage", null);
 		assertEquals("Failed to get powerpoint document slide count", true, slideCount >= 0);
 	}
 	
@@ -109,4 +109,10 @@ public class SlidesTest extends TestCase {
 		SlideComments slideComments = Slides.getCommentsOfAPowerPointSlide("Effective_presentation.ppt", 1);
 		assertNotNull("Failed to get comments of a powerpoint slide", slideComments);
 	}
+
+	public void testGetAspectRatioOfAPowerPointSlide() throws Exception {
+		float aspsectRatio = Slides.getAspectRatioOfAPowerPointSlide("Effective_presentation.ppt", 1, "MyDropboxStorage", null);
+		assertEquals("Failed to get aspect ratio of a powerPoint slide", true, aspsectRatio >= 0.0f);
+	}
+
 }

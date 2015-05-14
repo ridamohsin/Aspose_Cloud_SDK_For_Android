@@ -21,12 +21,12 @@ public class ShapesTest extends TestCase {
 	}
 	
 	public void testExtractShapesFromASlide() throws Exception {
-		ShapeList shapeList = Shapes.extractShapesFromASlide("Effective_presentation.ppt", 1);
+		ShapeList shapeList = Shapes.extractShapesFromASlide("Effective_presentation.pptx", 1, "MyDropboxStorage", null);
 		assertNotNull("Failed to extract shapes from a particular slide", shapeList);
 	}
 	
 	public void testGetAParticularShapeFromTheSlide() throws Exception {
-		ShapeData shape = Shapes.getAParticularShapeFromTheSlide("Effective_presentation.ppt", 1, 1);
+		ShapeData shape = Shapes.getAParticularShapeFromTheSlide("Effective_presentation.pptx", 1, 1, "MyDropboxStorage", null);
 		assertNotNull("Failed to get a particular shape from the slide", shape);
 	}
 }

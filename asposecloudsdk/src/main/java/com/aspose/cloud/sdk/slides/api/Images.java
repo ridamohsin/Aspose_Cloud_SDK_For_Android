@@ -28,7 +28,7 @@ public class Images {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return Images count
 	*/ 
-	public static int getNumberOfImagesInAPresentation(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static int getNumberOfImagesInAPresentation(String fileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		int imagesCount = -1;
 		
@@ -37,9 +37,20 @@ public class Images {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/images";
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/images");
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String responseJSONString = Utils.streamToString(responseStream);
 		
@@ -62,7 +73,7 @@ public class Images {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return Images count
 	*/ 
-	public static int getNumberOfImagesInASlide(String fileName, int slideIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static int getNumberOfImagesInASlide(String fileName, int slideIndex, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		int imagesCount = -1;
 		
@@ -71,9 +82,20 @@ public class Images {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex +  "/images";
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex +  "/images");
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//If file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String responseJSONString = Utils.streamToString(responseStream);
 		

@@ -15,6 +15,7 @@ import com.aspose.cloud.sdk.slides.model.PowerPointSlideBackgroundResponse;
 import com.aspose.cloud.sdk.slides.model.PowerPointSlideBackgroundResponse.BackgroundResult;
 import com.aspose.cloud.sdk.slides.model.SlideCommentsResponse;
 import com.aspose.cloud.sdk.slides.model.SlideCommentsResponse.SlideComments;
+import com.aspose.cloud.sdk.slides.model.SlideResponse;
 import com.aspose.cloud.sdk.slides.model.SlidesResponse;
 import com.aspose.cloud.sdk.slides.model.SlidesResponse.SlidesResult;
 import com.aspose.cloud.sdk.slides.model.ValidSlidesFormats;
@@ -46,7 +47,7 @@ public class Slides {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return Path to file stored on device
 	*/ 
-	public static String saveAPowerPointSlideAsImageWithDefaultSize(String fileName, int slideIndex, ValidSlidesFormats designatedFormat, String outputSlideName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static String saveAPowerPointSlideAsImageWithDefaultSize(String fileName, int slideIndex, ValidSlidesFormats designatedFormat, String outputSlideName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		String localFilePath = null;
 		
@@ -63,9 +64,17 @@ public class Slides {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex + "?format=" + designatedFormat;
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex + "?format=" + designatedFormat);
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append("&storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append("&folder=" + folderName);
+		}
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		//Save file on Disk
 		localFilePath = Utils.saveStreamToFile(responseStream, outputSlideName);
@@ -86,7 +95,7 @@ public class Slides {
 	 * @return Path to file stored on device
 	*/ 
 	public static String saveAPowerPointSlideAsImageWithSpecifiedSize(String fileName, int slideIndex, 
-			ValidSlidesFormats designatedFormat, int width, int height, String outputSlideName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+			ValidSlidesFormats designatedFormat, int width, int height, String outputSlideName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		String localFilePath = null;
 		
@@ -103,10 +112,18 @@ public class Slides {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex + "?format=" + designatedFormat +
-				"&width=" + width + "&height=" + height;
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex + "?format=" + designatedFormat +
+				"&width=" + width + "&height=" + height);
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append("&storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append("&folder=" + folderName);
+		}
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		//Save file on Disk
 		localFilePath = Utils.saveStreamToFile(responseStream, outputSlideName);
@@ -258,7 +275,7 @@ public class Slides {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return boolean variable indicates whether all slides deleted successfully 
 	*/ 
-	public static boolean deleteAllSlidesFromAPowerPointPresentation(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static boolean deleteAllSlidesFromAPowerPointPresentation(String fileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		boolean isAllSlidesDeletedSuccessfully = false;
 		
@@ -267,9 +284,20 @@ public class Slides {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/slides";
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides");
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
 		String responseJSONString = Utils.streamToString(responseStream);
 		
@@ -359,7 +387,7 @@ public class Slides {
 	 * @throws java.io.IOException If there is an IO error
 	 * @return Slide count 
 	*/ 
-	public static int getPowerPointDocumentSlideCount(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	public static int getPowerPointDocumentSlideCount(String fileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
 		int slideCount = -1;
 		
@@ -368,9 +396,20 @@ public class Slides {
 		}
 		
 		//build URL
-		String strURL = SLIDES_URI + Uri.encode(fileName) + "/slides";
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides");
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
 		//sign URL
-		String signedURL = Utils.sign(strURL);
+		String signedURL = Utils.sign(strURL.toString());
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		String responseJSONString = Utils.streamToString(responseStream);
 		
@@ -587,5 +626,41 @@ public class Slides {
 		}
 		
 		return slideComments;
+	}
+
+	public static float getAspectRatioOfAPowerPointSlide(String fileName, int slideIndex, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		float aspsectRatio = -1.0f;
+
+		if(fileName == null || fileName.length() == 0) {
+			throw new IllegalArgumentException("File name cannot be null or empty");
+		}
+
+		//build URL
+		StringBuilder strURL = new StringBuilder(SLIDES_URI + Uri.encode(fileName) + "/slides/" + slideIndex);
+		//If document is on the third party storage
+		if(storageName != null && storageName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("storage=" + storageName);
+		}
+		//In case if file is not at root folder
+		if(folderName != null && folderName.length() != 0) {
+			strURL.append((strURL.indexOf("?") == -1) ? "?" : "&");
+			strURL.append("folder=" + folderName);
+		}
+
+		//sign URL
+		String signedURL = Utils.sign(strURL.toString());
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		String responseJSONString = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		SlideResponse slideResponse = gson.fromJson(responseJSONString, SlideResponse.class);
+		if(slideResponse.getCode().equals("200") && slideResponse.getStatus().equals("OK")) {
+			aspsectRatio = slideResponse.slide.Width/slideResponse.slide.Height;
+		}
+
+		return aspsectRatio;
 	}
 }

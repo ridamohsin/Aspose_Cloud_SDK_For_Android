@@ -20,12 +20,12 @@ public class TextTest extends TestCase {
 	}
 	
 	public void testGetAllTextItemsFromAPresentation() throws Exception {
-		TextItemsData textItems = Text.getAllTextItemsFromAPresentation("Effective_presentation.ppt");
+		TextItemsData textItems = Text.getAllTextItemsFromAPresentation("Effective_presentation.ppt", "MyDropboxStorage", null);
 		assertNotNull("Failed to get all text items from a presentation", textItems);
 	}
 	
 	public void testGetAllTextItemsFromASlide() throws Exception {
-		TextItemsData textItems = Text.getAllTextItemsFromASlide("Effective_presentation.ppt", 1);
+		TextItemsData textItems = Text.getAllTextItemsFromASlide("Effective_presentation.ppt", 1, "MyDropboxStorage", null);
 		assertNotNull("Failed to get all text items from a Slide", textItems);
 	}
 	

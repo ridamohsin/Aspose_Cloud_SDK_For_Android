@@ -2,40 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="522cb475-0735-4e2c-bf2b-c6fa6f2bb428" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/AllFormFieldsExceptCheckboxExclusionStrategy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/AllFormFieldsExceptDropDownExclusionStrategy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/AllFormFieldsExceptTextInputExclusionStrategy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldProperties.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldPropertiesResponse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldTypeEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/ParagraphLevelFormFields.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ParagraphLevelFormFieldsTestCase.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/model/StampModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/model/StampRotateEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/model/StampTypeEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/model/TextAlignmentEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/model/TextStateModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/model/VerticalAlignmentEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Watermark.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/WatermarkTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/httpclient_android_4_3_5_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/httpmime_4_3_6.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlideResponse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlidesUri.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Document.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Document.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentPropertiesTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentPropertiesTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/FieldTestCase.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/FieldTestCase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/MailMergeTestCase.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/MailMergeTestCase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/OleObject.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/OleObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/cells/OleObjectTestCase.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/cells/OleObjectTestCase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/Utils.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/asposecloudsdk.iml" afterPath="$PROJECT_DIR$/asposecloudsdk/asposecloudsdk.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/build.gradle" afterPath="$PROJECT_DIR$/asposecloudsdk/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Images.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Images.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ImagesTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ImagesTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Shapes.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Shapes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ShapesTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ShapesTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/SlidesTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/SlidesTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Text.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Text.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/TextTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/TextTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -103,14 +86,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ParagraphLevelFormFields.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/ParagraphLevelFormFields.java">
+      <file leaf-file-name="DocumentProperties.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.65876776">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="91" column="132" selection-start-line="91" selection-start-column="65" selection-end-line="91" selection-end-column="132" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Shapes.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Shapes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="9" selection-start-line="44" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Slides.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="199" selection-start-line="49" selection-start-column="160" selection-end-line="49" selection-end-column="199" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Text.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Text.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="90" column="36" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Document.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Document.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8483415">
+              <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Images.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Images.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="84" column="51" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1328,14 +1359,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Watermark.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/WatermarkTestCase.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DrawingObject.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/DrawingObjectTestCase.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Text.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/TextTestCase.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/model/ImageQualityEnum.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeGeneration.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/model/BinarizationHintsEnum.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/model/RecognitionResponse.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/storage/api/Folder.java" />
@@ -1356,7 +1379,6 @@
         <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/WatermarkTest.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/build.gradle" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/Utils.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentTest.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Document.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/MailMergeTestCase.java" />
@@ -1373,6 +1395,21 @@
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldProperties.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldPropertiesResponse.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/ParagraphLevelFormFields.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentTest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/Uri.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlidesUri.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlidesResponse.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlideResponse.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/SlidesTest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Images.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ImagesTest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Shapes.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ShapesTest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/TextTest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Text.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentPropertiesTest.java" />
       </list>
     </option>
   </component>
@@ -1387,9 +1424,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="42" />
+    <option name="x" value="44" />
     <option name="y" value="23" />
-    <option name="width" value="1238" />
+    <option name="width" value="1237" />
     <option name="height" value="777" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -1418,116 +1455,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asposecloudsdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asposecloudsdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asposecloudsdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="words" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asposecloudsdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="words" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asposecloudsdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -1538,6 +1465,133 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="asposecloudsdk" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="slides" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="slides" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="slides" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1576,6 +1630,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1599,13 +1654,13 @@
     <property name="ToolWindowDocumentation.ShowToolbar" value="false" />
     <property name="TODO_SCOPE" value="Project Files" />
   </component>
-  <component name="RunManager" selected="Android Tests.ParagraphLevelFormFi...">
-    <configuration default="false" name="MailMergeTestCase" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Android Tests.DocumentPropertiesTe...">
+    <configuration default="false" name="DocumentTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.words.MailMergeTestCase" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.slides.DocumentTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1625,12 +1680,12 @@
       <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
       <method />
     </configuration>
-    <configuration default="false" name="OleObjectTestCase" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="SlidesTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.cells.OleObjectTestCase" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.slides.SlidesTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1650,12 +1705,12 @@
       <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
       <method />
     </configuration>
-    <configuration default="false" name="WatermarkTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="ImagesTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.pdf.WatermarkTest" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.slides.ImagesTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1675,12 +1730,12 @@
       <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
       <method />
     </configuration>
-    <configuration default="false" name="FieldTestCase" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="ShapesTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.words.FieldTestCase" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.slides.ShapesTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1700,12 +1755,12 @@
       <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
       <method />
     </configuration>
-    <configuration default="false" name="ParagraphLevelFormFi..." type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="DocumentPropertiesTe..." type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.words.ParagraphLevelFormFieldsTestCase" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.slides.DocumentPropertiesTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1868,19 +1923,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Android Tests.MailMergeTestCase" />
-      <item index="1" class="java.lang.String" itemvalue="Android Tests.OleObjectTestCase" />
-      <item index="2" class="java.lang.String" itemvalue="Android Tests.WatermarkTest" />
-      <item index="3" class="java.lang.String" itemvalue="Android Tests.FieldTestCase" />
-      <item index="4" class="java.lang.String" itemvalue="Android Tests.ParagraphLevelFormFi..." />
+      <item index="0" class="java.lang.String" itemvalue="Android Tests.DocumentTest" />
+      <item index="1" class="java.lang.String" itemvalue="Android Tests.SlidesTest" />
+      <item index="2" class="java.lang.String" itemvalue="Android Tests.ImagesTest" />
+      <item index="3" class="java.lang.String" itemvalue="Android Tests.ShapesTest" />
+      <item index="4" class="java.lang.String" itemvalue="Android Tests.DocumentPropertiesTe..." />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Android Tests.ParagraphLevelFormFi..." />
-        <item index="1" class="java.lang.String" itemvalue="Android Tests.FieldTestCase" />
-        <item index="2" class="java.lang.String" itemvalue="Android Tests.MailMergeTestCase" />
-        <item index="3" class="java.lang.String" itemvalue="Android Tests.WatermarkTest" />
-        <item index="4" class="java.lang.String" itemvalue="Android Tests.OleObjectTestCase" />
+        <item index="0" class="java.lang.String" itemvalue="Android Tests.DocumentPropertiesTe..." />
+        <item index="1" class="java.lang.String" itemvalue="Android Tests.ShapesTest" />
+        <item index="2" class="java.lang.String" itemvalue="Android Tests.ImagesTest" />
+        <item index="3" class="java.lang.String" itemvalue="Android Tests.SlidesTest" />
+        <item index="4" class="java.lang.String" itemvalue="Android Tests.DocumentTest" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
@@ -1923,14 +1978,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="23" width="1238" height="777" extended-state="6" />
+    <frame x="44" y="23" width="1237" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32970712" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="143" y="123" width="1037" height="577" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49037656" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4054463" sideWeight="0.54393303" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4054463" sideWeight="0.45271966" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4054463" sideWeight="0.5472803" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48702928" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1942,17 +1999,15 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24916388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32970712" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="143" y="123" width="1037" height="577" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24769874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48033473" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24937238" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48033473" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49707112" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4054463" sideWeight="0.45606694" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1990,237 +2045,15 @@
           <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="70" />
+      <option name="time" value="96" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/maven_push.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3222749">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17061612">
-          <caret line="9" column="82" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Converter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="16" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/OleObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73459715">
-          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="124" column="25" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3412323">
-          <caret line="251" column="36" selection-start-line="251" selection-start-column="36" selection-end-line="251" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.521327">
-          <caret line="36" column="77" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Watermark.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8056872">
-          <caret line="49" column="9" selection-start-line="40" selection-start-column="8" selection-end-line="49" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21327014">
-          <caret line="116" column="193" selection-start-line="116" selection-start-column="90" selection-end-line="116" selection-end-column="193" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Text.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="64" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/AllFormFieldsExceptTextInputExclusionStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="58" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/AllFormFieldsExceptCheckboxExclusionStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18957347">
-          <caret line="8" column="57" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/AllFormFieldsExceptDropDownExclusionStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18957347">
-          <caret line="8" column="57" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/Cell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325301">
-          <caret line="577" column="32" selection-start-line="577" selection-start-column="15" selection-end-line="577" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldTypeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20821919">
-          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Field.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81042653">
-          <caret line="164" column="5" selection-start-line="164" selection-start-column="5" selection-end-line="164" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Paragraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37914693">
-          <caret line="56" column="31" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/DocumentResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldPropertiesResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16587678">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11848341">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DrawingObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49921012">
-          <caret line="166" column="173" selection-start-line="166" selection-start-column="82" selection-end-line="166" selection-end-column="173" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Watermark.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26540285">
-          <caret line="72" column="184" selection-start-line="72" selection-start-column="86" selection-end-line="72" selection-end-column="184" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/BookmarkTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ConverterTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="157" selection-start-line="40" selection-start-column="139" selection-end-line="40" selection-end-column="157" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/DocumentPropertiesTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/DocumentTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/DrawingObjectTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="183" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="183" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/FieldTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2228,7 +2061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2236,7 +2068,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="136" column="20" selection-start-line="136" selection-start-column="20" selection-end-line="136" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2244,7 +2075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2252,9 +2082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="114" selection-start-line="26" selection-start-column="114" selection-end-line="26" selection-end-column="114" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2262,7 +2089,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2270,7 +2096,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2278,7 +2103,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2286,7 +2110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="171" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="171" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2294,7 +2117,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4549763">
           <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2302,7 +2124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2310,7 +2131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="93" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2318,7 +2138,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2326,7 +2145,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2334,7 +2152,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="55" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2342,7 +2159,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2350,7 +2166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="15" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2358,7 +2173,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2366,7 +2180,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2374,7 +2187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2382,7 +2194,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.9810426">
           <caret line="179" column="140" selection-start-line="179" selection-start-column="116" selection-end-line="179" selection-end-column="140" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2390,17 +2201,232 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.09478673">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/ParagraphLevelFormFields.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65876776">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.2985782">
+          <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/MergeSelectedSlidesOfPowerPointPresentationsRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18957347">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/DocumentResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07582939">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/FontSchemeResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Bookmark.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.127962">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Converter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.199052">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3325301">
+          <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Text.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3325301">
+          <caret line="112" column="33" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Watermark.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21800947">
+          <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlidesUri.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18957347">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlideCommentsResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11848341">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlideResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35545024">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/LinkModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16438356">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/SlidesResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5479452">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/ShapeResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.12328767">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21484992">
+          <caret line="204" column="30" selection-start-line="204" selection-start-column="30" selection-end-line="204" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/model/DocumentPropertiesResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23696682">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentPropertiesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2890995">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3744076">
+          <caret line="37" column="160" selection-start-line="37" selection-start-column="136" selection-end-line="37" selection-end-column="160" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ImagesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30805686">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ShapesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49763033">
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/SlidesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6635071">
+          <caret line="30" column="177" selection-start-line="30" selection-start-column="151" selection-end-line="30" selection-end-column="177" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/TextTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18957347">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="132" selection-start-line="91" selection-start-column="65" selection-end-line="91" selection-end-column="132" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Images.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="84" column="51" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Shapes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="9" selection-start-line="44" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="199" selection-start-line="49" selection-start-column="160" selection-end-line="49" selection-end-column="199" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Text.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="90" column="36" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Document.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8483415">
+          <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
