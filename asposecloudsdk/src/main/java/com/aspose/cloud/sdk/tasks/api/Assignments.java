@@ -3,7 +3,9 @@ package com.aspose.cloud.sdk.tasks.api;
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
+import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
+import com.aspose.cloud.sdk.tasks.model.AddAssignmentToProjectResponse;
 import com.aspose.cloud.sdk.tasks.model.AssignmentItemModel;
 import com.aspose.cloud.sdk.tasks.model.GetProjectAssignmentsResponseModel;
 import com.google.gson.Gson;
@@ -52,5 +54,51 @@ public class Assignments {
 		
 		return assignmentsArray;
 	}
-	
+
+	public static AddAssignmentToProjectResponse addAssignmentToProject(String projectName, int taskUid, int resourceUid, double units) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		if(projectName == null || projectName.length() == 0) {
+			throw new IllegalArgumentException("Project name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = TASKS_URI + Uri.encode(projectName) + "/assignments?taskUid=" + taskUid + "&resourceUid=" + resourceUid + "&units=" + units;
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "POST");
+		String jsonStr = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		AddAssignmentToProjectResponse addAssignmentToProjectRes = gson.fromJson(jsonStr, AddAssignmentToProjectResponse.class);
+		if(addAssignmentToProjectRes.getCode().equals("200") && addAssignmentToProjectRes.getStatus().equals("OK")) {
+			return addAssignmentToProjectRes;
+		}
+
+		return null;
+	}
+
+	public static boolean deleteAnAssignmentFromAProject(String projectName, int assignmentUid) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+
+		boolean isAssignmentDeletedSuccessfullyFromAProject = false;
+
+		if(projectName == null || projectName.length() == 0) {
+			throw new IllegalArgumentException("Project name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = TASKS_URI + Uri.encode(projectName) + "/assignments/" + assignmentUid;
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+		String jsonStr = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(jsonStr, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isAssignmentDeletedSuccessfullyFromAProject = true;
+		}
+
+		return isAssignmentDeletedSuccessfullyFromAProject;
+	}
+
 }

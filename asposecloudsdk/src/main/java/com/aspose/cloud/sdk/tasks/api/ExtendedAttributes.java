@@ -3,8 +3,11 @@ package com.aspose.cloud.sdk.tasks.api;
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
+import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.tasks.model.ExtendedAttributeItemModel;
+import com.aspose.cloud.sdk.tasks.model.GetOutlineCodesInformationResponse;
+import com.aspose.cloud.sdk.tasks.model.GetOutlineCodesInformationResponse.OutlineCodes;
 import com.aspose.cloud.sdk.tasks.model.ProjectExtendedAttributesResponseModel;
 import com.google.gson.Gson;
 
@@ -52,5 +55,74 @@ public class ExtendedAttributes {
 		
 		return extendedAttributesArray;
 	}
-	
+
+	public static OutlineCodes getOutlineCodesInformation(String projectName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		OutlineCodes outlineCodes = null;
+
+		if(projectName == null || projectName.length() == 0) {
+			throw new IllegalArgumentException("Project name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = TASKS_URI + Uri.encode(projectName) + "/outlineCodes";
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "GET");
+		String jsonStr = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		GetOutlineCodesInformationResponse getOutlineCodesInformation = gson.fromJson(jsonStr, GetOutlineCodesInformationResponse.class);
+		if(getOutlineCodesInformation.getCode().equals("200") && getOutlineCodesInformation.getStatus().equals("OK")) {
+			outlineCodes = getOutlineCodesInformation.outlineCodes;
+		}
+
+		return outlineCodes;
+	}
+
+	public static boolean  deleteExtendedAttributes(String projectName, int index) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		boolean isExtendedAttributeDeletedSuccessfully = false;
+
+		if(projectName == null || projectName.length() == 0) {
+			throw new IllegalArgumentException("Project name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = TASKS_URI + Uri.encode(projectName) + "/extendedAttributes/" + index;
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+		String jsonStr = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(jsonStr, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isExtendedAttributeDeletedSuccessfully = true;
+		}
+
+		return isExtendedAttributeDeletedSuccessfully;
+	}
+
+	public static boolean deleteOutlineCodes(String projectName, int index) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+		boolean isOutlineCodeDeletedSuccessfully = false;
+
+		if(projectName == null || projectName.length() == 0) {
+			throw new IllegalArgumentException("Project name cannot be null or empty");
+		}
+
+		//build URL
+		String strURL = TASKS_URI + Uri.encode(projectName) + "/outlineCodes/" + index;
+		String signedURL = Utils.sign(strURL);
+		InputStream responseStream = Utils.processCommand(signedURL, "DELETE");
+		String jsonStr = Utils.streamToString(responseStream);
+
+		//Parsing JSON
+		Gson gson = new Gson();
+		BaseResponse baseResponse = gson.fromJson(jsonStr, BaseResponse.class);
+		if(baseResponse.getCode().equals("200") && baseResponse.getStatus().equals("OK")) {
+			isOutlineCodeDeletedSuccessfully = true;
+		}
+
+		return isOutlineCodeDeletedSuccessfully;
+	}
+
 }
