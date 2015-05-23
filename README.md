@@ -115,7 +115,7 @@ AsposeCloudSDK includes a suite of unit tests within the [androidTest](https://g
 
 ## Documentation
 
-Check out the [documentation](http://asposeforcloud.github.io/android-sdk-docs/) for a comprehensive look at all of the APIs available in AsposeCloudSDK.
+Check out the [documentation](http://asposeforcloud.github.io/android-sdk-docs/) for a comprehensive look at all of the APIs available in AsposeCloudSDK. For SDK Usage Examples, please go through [wiki](http://www.aspose.com/docs). For Aspose Cloud APIs related help, please go through [Aspose.Total for Cloud](http://www.aspose.com/cloud/total-api.aspx).
 
 ## Contact
 
