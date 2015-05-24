@@ -1,31 +1,31 @@
 package com.aspose.cloud.sdk.cells.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
-import com.aspose.cloud.sdk.cells.model.ChartTitleResource;
-import com.aspose.cloud.sdk.cells.model.ChartTypeEnum;
-import com.aspose.cloud.sdk.cells.model.ChartsResponse;
-import com.aspose.cloud.sdk.cells.model.FillFormatResponse;
-import com.aspose.cloud.sdk.cells.model.LegendResponse;
-import com.aspose.cloud.sdk.cells.model.ValidFormatsOfWorksheet;
 import com.aspose.cloud.sdk.cells.model.ChartAreaResponse;
 import com.aspose.cloud.sdk.cells.model.ChartAreaResponse.ChartAreaResult;
 import com.aspose.cloud.sdk.cells.model.ChartResponse;
 import com.aspose.cloud.sdk.cells.model.ChartResponse.ChartResult;
+import com.aspose.cloud.sdk.cells.model.ChartTitleResource;
 import com.aspose.cloud.sdk.cells.model.ChartTitleResource.ChartTitleData;
+import com.aspose.cloud.sdk.cells.model.ChartTypeEnum;
+import com.aspose.cloud.sdk.cells.model.ChartsResponse;
 import com.aspose.cloud.sdk.cells.model.ChartsResponse.ChartsResult;
+import com.aspose.cloud.sdk.cells.model.FillFormatResponse;
 import com.aspose.cloud.sdk.cells.model.FillFormatResponse.FillFormatResult;
+import com.aspose.cloud.sdk.cells.model.LegendResponse;
 import com.aspose.cloud.sdk.cells.model.LegendResponse.LegendData;
+import com.aspose.cloud.sdk.cells.model.ValidFormatsOfWorksheet;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Charts --- Using this class you can Add a chart in a worksheet, Get a chart from a worksheet, Convert a chart to image, 
@@ -106,8 +106,6 @@ public class Charts {
 	
 	/**
 	 * Get a chart from a worksheet
-	 
-	 
 	 * @param chartIndex Chart Index
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -537,8 +535,7 @@ public class Charts {
 		
 		return chartTitleData;
 	}
-	
-	
+
 	/**
 	 * Delete chart title in a worksheet
 	 * @param chartIndex Chart Index

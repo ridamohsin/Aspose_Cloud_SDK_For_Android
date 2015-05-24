@@ -25,7 +25,7 @@ public class Watermark {
 	
 	/**
 	 * Add watermark text to a word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document on cloud
 	 * @param watermarkText Watermark text
 	 * @param rotationAngle Watermark rotation angle in degrees
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -70,6 +70,18 @@ public class Watermark {
 		return document;
 	}
 
+	/**
+	 * Add Watermark text to a Word document uploaded at third party storage
+	 * @param fileName Name of the word document
+	 * @param watermarkText Watermark text
+	 * @param rotationAngle Watermark rotation angle in degrees
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName In case file is not at root folder (Optional)
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A document object
+	 */
     public static Document addWatermarkTextToAWordDocumentUploadedAtThirdPartyStorage(String fileName, String watermarkText, double rotationAngle, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         Document document = null;
@@ -119,7 +131,7 @@ public class Watermark {
 
 	/**
 	 * Add watermark image to a word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param imagePath Server side image file path
 	 * @param rotationAngle Watermark rotation angle in degrees
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -159,6 +171,18 @@ public class Watermark {
 		return document;
 	}
 
+	/**
+	 * Add watermark image to a Word document uploaded at third party storage
+	 * @param fileName Name of the Word document
+	 * @param imageFile Server side image file path
+	 * @param rotationAngle Watermark rotation angle in degrees
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName In case file is not at root folder (Optional)
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A document object
+	 */
 	public static Document addWatermarkImageToAWordDocumentUploadedAtThirdPartyStorage(String fileName, String imageFile, double rotationAngle, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		Document document = null;
@@ -201,7 +225,7 @@ public class Watermark {
 
 	/**
 	 * Deletes the last watermark (if it exists) from a Word Document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the Word document on cloud
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error

@@ -26,7 +26,7 @@ public class Text {
 	
 	/**
 	 * Get Text Items from a Word Document 
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -60,11 +60,13 @@ public class Text {
 	
 	/**
 	 * Replace Text in a Word Document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param oldValue Old string to replace
 	 * @param newValue New string to replace
 	 * @param isMatchCase True indicates case-sensitive comparison, false indicates case-insensitive comparison
 	 * @param isMatchWholeWord True indicates the oldValue must be a stand-alone word
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName //In case file is not at root folder (Optional)
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error

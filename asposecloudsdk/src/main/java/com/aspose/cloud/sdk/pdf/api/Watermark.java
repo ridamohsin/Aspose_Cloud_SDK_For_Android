@@ -20,6 +20,18 @@ import java.security.NoSuchAlgorithmException;
 public class Watermark {
     private static final String PDF_URI = AsposeApp.BASE_PRODUCT_URI + "/pdf/";
 
+    /**
+     * Add text stamp (watermark) to a PDF page
+     * @param fileName The document name.
+     * @param pageNumber The page number.
+     * @param stampData Stamp data
+     * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+     * @param folderName If file is not at root folder (optional)
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Boolean variable that indicates whether text stamp (watermark) added successfully to a PDF page
+     */
     public static boolean addTextStampToAPDFPage(String fileName, int pageNumber, StampModel stampData, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         boolean isTextStampAddedSuccessfully = false;
@@ -63,6 +75,18 @@ public class Watermark {
         return isTextStampAddedSuccessfully;
     }
 
+    /**
+     * Add image stamp (Watermark) to a PDF page
+     * @param fileName The document name.
+     * @param pageNumber The page number.
+     * @param stampData Stamp data
+     * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+     * @param folderName If file is not at root folder (optional)
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Boolean variable that indicates whether image stamp (watermark) added successfully to a PDF page
+     */
     public static boolean addImageStampToAPDFPage(String fileName, int pageNumber, StampModel stampData, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         boolean isImageStampAddedSuccessfully = false;
@@ -106,6 +130,18 @@ public class Watermark {
         return isImageStampAddedSuccessfully;
     }
 
+    /**
+     * Add PDF page as stamp (Watermark) to a PDF page
+     * @param fileName The document name.
+     * @param pageNumber The page number.
+     * @param stampData Stamp data
+     * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+     * @param folderName If file is not at root folder (optional)
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Boolean variable that indicates whether PDF page added successfully as stamp (Watermark) to a PDF page
+     */
     public static boolean addPDFPageAsStampToAPDFPage(String fileName, int pageNumber, StampModel stampData, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         boolean isPDFPageAsStampAddedSuccessfully = false;
@@ -149,6 +185,18 @@ public class Watermark {
         return isPDFPageAsStampAddedSuccessfully;
     }
 
+    /**
+     * Insert page number stamp to a PDF page
+     * @param fileName The document name.
+     * @param pageNumber The page number.
+     * @param stampData Stamp data
+     * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+     * @param folderName If file is not at root folder (optional)
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Boolean variable that indicates whether page number inserted successfully as stamp (Watermark) to a PDF page
+     */
     public static boolean addPageNumberStampToAPDFPage(String fileName, int pageNumber, StampModel stampData, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         boolean isPageNumberStampAddedSuccessfully = false;

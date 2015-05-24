@@ -17,8 +17,8 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * OleObject --- Using this class you can get a specific OLEObject from a worksheet, convert an OLE object to image, 
- * delete all or specific OleObject from Excel Worksheet.
- * @author   M. Sohail Ismail
+ * add OLE Object to excel worksheet, Update OLE object and delete all or specific OLEObject from excel worksheet.
+ * @author M. Sohail Ismail
  */
 public class OleObject {
 	private static final String CELLS_URI = AsposeApp.BASE_PRODUCT_URI + "/cells/";
@@ -45,7 +45,7 @@ public class OleObject {
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
-	 * @return An object that OLE Object attributes
+	 * @return An object that contains OLE Object attributes
 	*/ 
 	public OleObjectData getOleObjectFromAWorksheet(int oleObjectIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		
@@ -118,6 +118,15 @@ public class OleObject {
 		return localFilePath;
 	}
 
+	/**
+	 * Add OleObjects to excel worksheet
+	 * @param oleObjectData An Ole Object
+	 * @param contentType Can be either XML or JSON
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return An object that contains OLE Object attributes
+	 */
 	public OleObjectData addOleObjectsToExcelWorksheet(String oleObjectData, String contentType) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		OleObjectData oleObject = null;
@@ -156,6 +165,16 @@ public class OleObject {
 		return oleObject;
 	}
 
+	/**
+	 * Update OLE object
+	 * @param oleObjectIndex Ole object index
+	 * @param oleObjectData An Ole Object
+	 * @param contentType Can be either XML or JSON
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Boolean variable that indicates whether OLE object updated successfully
+	 */
 	public boolean updateOLEObject(int oleObjectIndex, String oleObjectData, String contentType) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		boolean isOLEObjectUpdatedSuccessfully = false;
@@ -193,6 +212,7 @@ public class OleObject {
 
 		return isOLEObjectUpdatedSuccessfully;
 	}
+
 	/**
 	 * Delete all OleObjects from Excel Worksheet
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.

@@ -1,17 +1,10 @@
 package com.aspose.cloud.sdk.cells.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
-
 import android.net.Uri;
 
-import com.aspose.cloud.sdk.cells.model.WorksheetMovingRequest;
-import com.aspose.cloud.sdk.cells.model.WorksheetResponse;
 import com.aspose.cloud.sdk.cells.model.CalculateFormulaResponse;
 import com.aspose.cloud.sdk.cells.model.CalculateFormulaResponse.CalculateFormulaResult;
+import com.aspose.cloud.sdk.cells.model.DataSortModel;
 import com.aspose.cloud.sdk.cells.model.GetAutoshapeFromAWorksheetResponse;
 import com.aspose.cloud.sdk.cells.model.GetAutoshapeFromAWorksheetResponse.AutoShape;
 import com.aspose.cloud.sdk.cells.model.GetColumnFromAWorksheetResponse;
@@ -20,16 +13,23 @@ import com.aspose.cloud.sdk.cells.model.GetCommentFromAWorksheetResponse;
 import com.aspose.cloud.sdk.cells.model.GetCommentFromAWorksheetResponse.Comment;
 import com.aspose.cloud.sdk.cells.model.GetValidationFromAWorksheetResponse;
 import com.aspose.cloud.sdk.cells.model.GetValidationFromAWorksheetResponse.Validation;
-import com.aspose.cloud.sdk.cells.model.WorksheetResponse.WorksheetResult;
-import com.aspose.cloud.sdk.cells.model.DataSortModel;
 import com.aspose.cloud.sdk.cells.model.PositionEnum;
 import com.aspose.cloud.sdk.cells.model.SortKey;
 import com.aspose.cloud.sdk.cells.model.ValidFormatsOfWorksheet;
+import com.aspose.cloud.sdk.cells.model.WorksheetMovingRequest;
+import com.aspose.cloud.sdk.cells.model.WorksheetResponse;
+import com.aspose.cloud.sdk.cells.model.WorksheetResponse.WorksheetResult;
 import com.aspose.cloud.sdk.common.AsposeApp;
 import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 /**
  * Worksheet --- Using this class you can convert a worksheet to image, add a new worksheet, get worksheet count, hide/unhide a worksheet, 

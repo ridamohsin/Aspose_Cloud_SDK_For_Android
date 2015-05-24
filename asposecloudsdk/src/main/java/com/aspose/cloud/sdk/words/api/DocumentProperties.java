@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -18,6 +13,11 @@ import com.aspose.cloud.sdk.words.model.GetSpecificPropertyResponse.DocumentProp
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * DocumentProperties --- Using this class you can get all document properties or a particular document property,
  * you can also update and remove document property.
@@ -29,7 +29,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Get all document properties
-	 * @param fileName Name of the MS Word document stored on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -63,7 +63,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Get a particular document property
-	 * @param fileName Name of the MS Word document stored on cloud
+	 * @param fileName Name of the word document
 	 * @param propertyName The name of the property
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -102,7 +102,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Set a single document property
-	 * @param fileName Name of the MS Word document stored on cloud
+	 * @param fileName Name of the word document
 	 * @param propertyName The name of the property
 	 * @param propertyValue The value of the property
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -152,7 +152,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Delete a particular document property. Built-In Document Property resources cannot be removed and return a HTTP 404 error response.
-	 * @param fileName Name of the MS Word document stored on cloud
+	 * @param fileName Name of the word document
 	 * @param propertyName The name of the property
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.

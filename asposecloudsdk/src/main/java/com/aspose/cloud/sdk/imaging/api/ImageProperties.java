@@ -21,12 +21,26 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 /**
- * Created by muhammadsohailismail on 4/22/15.
+ * ImageProperties --- Using this class you can get properties of an image and update properties of BMP, GIF, TIFF, JPG, PNG and PSD image.
+ * @author   M. Sohail Ismail
  */
 public class ImageProperties {
     private static final String IMAGING_URI = AsposeApp.BASE_PRODUCT_URI + "/imaging/";
 
-
+    /**
+     * Update parameters of bmp image.
+     * @param fileName Filename of image
+     * @param bmpImageProperties HashMap of BMP image properties. Values could be following
+     *                           bitsPerPixel Color depth
+     *                           horizontalResolution New horizontal resolution
+     *                           verticalResolution New vertical resolution
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated BMP image saved on device
+     */
     public static String updateBMPImageProperties(String fileName, HashMap<String, String> bmpImageProperties) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
         String localFilePath = null;
 
@@ -71,6 +85,21 @@ public class ImageProperties {
         return localFilePath;
     }
 
+    /**
+     * Update parameters of bmp image stored on device
+     * @param localFilePath Path to file stored on device
+     * @param bmpImageProperties HashMap of BMP image properties. Values could be following
+     *                           bitsPerPixel Color depth
+     *                           horizontalResolution New horizontal resolution
+     *                           verticalResolution New vertical resolution
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @param outFileName Updated BMP image save on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated BMP image saved on device
+     */
     public static String updateBMPImagePropertiesWithoutStorage(String localFilePath, HashMap<String, String> bmpImageProperties, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
         String outFilePath = null;
 
@@ -121,6 +150,23 @@ public class ImageProperties {
         return outFilePath;
     }
 
+    /**
+     * Update parameters of GIF image.
+     * @param fileName Filename of image
+     * @param gifImageProperties HashMap of GIF image properties. Values could be following
+     *                           backgroundColorIndex Index of the background color.
+     *                           colorResolution Color resolution.
+     *                           hasTrailer Specifies if image has trailer.
+     *                           interlaced Specifies if image is interlaced.
+     *                           isPaletteSorted Specifies if palette is sorted.
+     *                           pixelAspectRatio Pixel aspect ratio.
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated GIF image saved on device
+     */
     public static String updateGIFImageProperties(String fileName, HashMap<String, String> gifImageProperties) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String localFilePath = null;
@@ -178,6 +224,24 @@ public class ImageProperties {
         return localFilePath;
     }
 
+    /**
+     * Update parameters of GIF image stored on device
+     * @param localFilePath Path to file stored on device
+     * @param gifImageProperties HashMap of GIF image properties. Values could be following
+     *                           backgroundColorIndex Index of the background color.
+     *                           colorResolution Color resolution.
+     *                           hasTrailer Specifies if image has trailer.
+     *                           interlaced Specifies if image is interlaced.
+     *                           isPaletteSorted Specifies if palette is sorted.
+     *                           pixelAspectRatio Pixel aspect ratio.
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @param outFileName Updated GIF image save on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated GIF image saved on device
+     */
     public static String updateGIFImagePropertiesWithoutStorage(String localFilePath, HashMap<String, String> gifImageProperties, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
         String outFilePath = null;
 
@@ -240,8 +304,23 @@ public class ImageProperties {
         return outFilePath;
     }
 
-    
-
+    /**
+     * Update parameters of TIFF image stored on device
+     * @param localFilePath Path to file stored on device
+     * @param tiffImageProperties HashMap of TIFF image properties. Values could be following
+     *                           compression New compression.
+     *                           resolutionUnit New resolution unit.
+     *                           bitDepth New bit depth.
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           horizontalResolution New horizontal resolution.
+     *                           verticalResolution New vertical resolution.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @param outFileName Updated TIFF image save on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated TIFF image saved on device
+     */
     public static String updateTIFFImagePropertiesWithoutStorage(String localFilePath, HashMap<String, String> tiffImageProperties, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
         String outFilePath = null;
 
@@ -304,6 +383,19 @@ public class ImageProperties {
         return outFilePath;
     }
 
+    /**
+     * Update parameters of JPG image.
+     * @param fileName Filename of image
+     * @param jpgImageProperties HashMap of JPG image properties. Values could be following
+     *                           quality Quality of image. From 0 to 100. Default is 75
+     *                           compressionType Compression type.
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated JPG image saved on device
+     */
     public static String updateJPGImageProperties(String fileName, HashMap<String, String> jpgImageProperties) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String localFilePath = null;
@@ -345,6 +437,20 @@ public class ImageProperties {
         return localFilePath;
     }
 
+    /**
+     * Update parameters of JPG image stored on device
+     * @param localFilePath Path to file stored on device
+     * @param jpgImageProperties HashMap of JPG image properties. Values could be following
+     *                           quality Quality of image. From 0 to 100. Default is 75
+     *                           compressionType Compression type.
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @param outFileName        Updated JPG image save on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated JPG image saved on device
+     */
     public static String updateJPGImagePropertiesWithoutStorage(String localFilePath, HashMap<String, String> jpgImageProperties, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
         String outFilePath = null;
 
@@ -391,6 +497,17 @@ public class ImageProperties {
         return outFilePath;
     }
 
+    /**
+     * Update parameters of PNG image.
+     * @param fileName Filename of image
+     * @param pngImageProperties HashMap of PNG image properties. Values could be following
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated PNG image saved on device
+     */
     public static String updatePNGImageProperties(String fileName, HashMap<String, String> pngImageProperties) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String localFilePath = null;
@@ -424,6 +541,18 @@ public class ImageProperties {
         return localFilePath;
     }
 
+    /**
+     * Update parameters of PNG image stored on device
+     * @param localFilePath Path to file stored on device
+     * @param pngImageProperties HashMap of PNG image properties. Values could be following
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @param outFileName        Updated PNG image save on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated PNG image saved on device
+     */
     public static String updatePNGImagePropertiesWithoutStorage(String localFilePath, HashMap<String, String> pngImageProperties, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
         String outFilePath = null;
 
@@ -462,6 +591,19 @@ public class ImageProperties {
         return outFilePath;
     }
 
+    /**
+     * Update parameters of PSD image.
+     * @param fileName Filename of image
+     * @param psdImageProperties HashMap of PSD image properties. Values could be following
+     *                           channelsCount Count of channels.
+     *                           compressionMethod Compression method.
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated PSD image saved on device
+     */
     public static String updatePSDImageProperties(String fileName, HashMap<String, String> psdImageProperties) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String localFilePath = null;
@@ -503,6 +645,20 @@ public class ImageProperties {
         return localFilePath;
     }
 
+    /**
+     * Update parameters of PSD image stored on device
+     * @param localFilePath Path to file stored on device
+     * @param psdImageProperties HashMap of PSD image properties. Values could be following
+     *                           channelsCount Count of channels.
+     *                           compressionMethod Compression method.
+     *                           fromScratch Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+     *                           outPath Path to updated file, if this is empty, response contains streamed image
+     * @param outFileName        Updated PSD image save on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return A path to updated PSD image saved on device
+     */
     public static String updatePSDImagePropertiesWithoutStorage(String localFilePath, HashMap<String, String> psdImageProperties, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
         String outFilePath = null;
 
@@ -549,6 +705,14 @@ public class ImageProperties {
         return outFilePath;
     }
 
+    /**
+     * Get image properties
+     * @param fileName The image name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return An object that contains image properties
+     */
     public static ImagePropertiesResponse getImageProperties(String fileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         ImagePropertiesResponse imgPropertiesResponse = null;

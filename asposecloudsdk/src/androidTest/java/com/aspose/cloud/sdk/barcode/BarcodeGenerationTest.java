@@ -87,6 +87,6 @@ public class BarcodeGenerationTest extends TestCase {
 				BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, 30, 50, 40, 90,
 				CodeLocationEnum.Above, GRUnitEnum.px, true, 30, 100, 100, "default", 90, 2, 2, 2, 2,
 				EnableChecksumEnum.Default, "MyDropboxStorage", null);
-
+		assertTrue("Failed to generate barcode and save on server", isBarcodeGeneratedSuccessfully);
 	}
 }

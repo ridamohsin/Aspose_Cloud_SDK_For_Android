@@ -15,7 +15,11 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * MailMerge --- Using this class you can execute mail merge template and populate a word document from XML data 
+ * MailMerge --- Using this class you can execute mail merge template and populate a word document from XML data,
+ * execute simple mail merge or mail merge without regions and populate a Word document from XML data,
+ * execute mail merge with regions and populate a word document from XML data,
+ * execute mail merge with regions and insert dynamic images on the merge fields and
+ * execute simple mail merge or mail merge without regions and populate a Word document from XML data online without using the Aspose Cloud Storage.
  * @author   M. Sohail Ismail
  */
 public class MailMerge {
@@ -24,9 +28,9 @@ public class MailMerge {
 	
 	/**
 	 * Execute template and populate a word document from XML data
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param xmlData An XML data used to populate a word document
-	 * @param cleanupOption If cleanup parameter is omitted/null, cleanup options will be None
+	 * @param cleanupOption Clean up options. If cleanup parameter is omitted/null, cleanup options will be None
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -77,6 +81,18 @@ public class MailMerge {
 		return document;
 	}
 
+	/**
+	 * Execute simple mail merge or mail merge without regions and populate a Word document from XML data
+	 * @param fileName Name of the word document
+	 * @param xmlData An XML data used to populate a word document
+	 * @param cleanupOption Clean up options. If cleanup parameter is omitted/null, cleanup options will be None
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName If file is not at root folder (optional)
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A document object
+	 */
 	public static Document executeMailMergeWithoutRegionAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		Document document = null;
@@ -114,6 +130,18 @@ public class MailMerge {
 		return document;
 	}
 
+	/**
+	 * Execute mail merge with regions and populate a word document from XML data
+	 * @param fileName Name of the word document
+	 * @param xmlData An XML data used to populate a word document
+	 * @param cleanupOption Clean up options. If cleanup parameter is omitted/null, cleanup options will be None
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName If file is not at root folder (optional)
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A document object
+	 */
 	public static Document executeMailMergeWithRegionsAndPopulateAWordDocumentFromXMLData(String fileName, String xmlData, CleanupOptionEnum cleanupOption, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		Document document = null;
@@ -151,6 +179,16 @@ public class MailMerge {
 		return document;
 	}
 
+	/**
+	 * Execute mail merge with regions and insert dynamic images on the merge fields
+	 * @param fileName Name of the word document
+	 * @param xmlData An XML data used to populate a word document
+	 * @param cleanupOption Clean up options. If cleanup parameter is omitted/null, cleanup options will be None
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A document object
+	 */
 	public static Document executeMailMergeWithRegionsAndInsertDynamicImagesOnTheMergeFields(String fileName, String xmlData, CleanupOptionEnum cleanupOption) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		Document document = null;
@@ -183,6 +221,17 @@ public class MailMerge {
 		return document;
 	}
 
+	/**
+	 * Execute simple mail merge or mail merge without regions and populate a Word document from XML data online without using the Aspose Cloud Storage
+	 * @param docFileType MIME type of word document
+	 * @param docFilePath Path to word document stored on device
+	 * @param xmlFileType MIME type of XML document
+	 * @param xmlFilePath Path to XML file stored on device
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A document object
+	 */
 	public static Document executeMailMergeWithoutRegionWithoutUsingTheCloudStorage(String docFileType, String docFilePath, String xmlFileType, String xmlFilePath) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		Document document = null;

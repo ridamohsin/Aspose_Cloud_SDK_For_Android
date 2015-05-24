@@ -21,7 +21,8 @@ import java.util.ArrayList;
 
 /**
  * BarcodeRecognition --- Using this class you can read barcode from Aspose Cloud Storage, Read barcode from external image URL, 
- * Read barcode from specific region of image, Recognize barcode with checksum option from storage and Recognize specified count of barcodes
+ * Read barcode from specific region of image, Recognize barcode with checksum option from storage, Recognize specified count of barcodes,
+ * Read barcodes by applying image processing algorithm, Read Barcode from local image
  * @author   M. Sohail Ismail
  */
 public class BarcodeRecognition {
@@ -208,6 +209,18 @@ public class BarcodeRecognition {
 		return barcodes;
 	}
 
+	/**
+	 * Read barcodes by applying image processing algorithm
+	 * @param fileName Name of file stored on Aspose Cloud Storage
+	 * @param type Type of barcode. See class BarcodeTypeEnum for valid values. If this parameter is empty, autodetection of all supported types is used.
+	 * @param binarizationHints Sets special mode of barcode binarization. See class BinarizationHintsEnum for valid values.
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName If file is not at root folder. Folder with barcode image.
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return List of recognized barcode objects
+	 */
 	public static ArrayList<RecognizedBarCode>
 					readBarcodesByApplyingImageProcessingAlgorithm(String fileName, BarcodeTypeEnum type,
 																   BinarizationHintsEnum binarizationHints,
@@ -248,6 +261,18 @@ public class BarcodeRecognition {
 		return barcodes;
 	}
 
+	/**
+	 * Read Barcode from local image
+	 * @param localFilePath Path to file stored on device
+	 * @param remoteFolderPath Store file at this path on cloud
+	 * @param type If this parameter is empty, autodetection of all supported types is used. Please check BarcodeTypeEnum class for valid values
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName If file is not at root folder.
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return List of recognized barcode objects
+	 */
 	public static ArrayList<RecognizedBarCode> readBarcodeFromLocalImage(String localFilePath,
 																		 String remoteFolderPath, BarcodeTypeEnum type,
 																		 String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {

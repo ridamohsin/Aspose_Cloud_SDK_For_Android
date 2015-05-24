@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -15,8 +10,13 @@ import com.aspose.cloud.sdk.words.model.GetSpecificHyperlinkResponse;
 import com.aspose.cloud.sdk.words.model.GetSpecificHyperlinkResponse.HyperlinkDetail;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 /**
- * Hyperlink --- Using this class you can get all Hyperlinks from a Word document or or a particular Hyperlink from a Word document  
+ * Hyperlink --- Using this class you can get all Hyperlinks from a Word document or a particular Hyperlink from a Word document.
  * @author   M. Sohail Ismail
  */
 public class Hyperlink {
@@ -25,7 +25,7 @@ public class Hyperlink {
 	
 	/**
 	 * Get all Hyperlinks from a Word document 
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -58,7 +58,7 @@ public class Hyperlink {
 	
 	/**
 	 * Get a particular Hyperlink from a Word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param hyperlinkIndex Index of the Hyperlink
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.

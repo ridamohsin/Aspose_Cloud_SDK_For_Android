@@ -23,7 +23,7 @@ import java.util.List;
  * BarcodeGeneration --- Using this class you can generate image with barcode of specified type and parameters, Create barcode on the Aspose Cloud Storage, 
  * Generate barcode with appropriate code text location, Generate barcode with checksum option, 
  * Rotate barcode image with suitable angle, Set barcode image margin, Set barcode image resolution, \
- * Set height of the bars in the barcode image, Set X and Y dimensions of a barcode.
+ * Set height of the bars in the barcode image, Set X and Y dimensions of a barcode and, Generate barcode and save on server.
  * @author   M. Sohail Ismail
  */
 public class BarcodeGeneration {
@@ -444,6 +444,36 @@ public class BarcodeGeneration {
 		return outputFilePath;
 	}
 
+	/**
+	 * Generate barcode and save on server.
+	 * @param imageName The image name.
+	 * @param text Text to encode inside barcode.
+	 * @param type The barcode type. See class BarcodeTypeEnum for valid values.
+	 * @param format Returns an image in specified format. See class ValidFormatsEnum for valid formats.
+	 * @param resolutionX Horizontal resolution (in dpi)
+	 * @param resolutionY Vertical resolution (in dpi)
+	 * @param dimensionX  Smallest width of barcode unit (bar or space).
+	 * @param dimensionY Smallest height of barcode unit (for 2D barcodes).
+	 * @param codeLocation Location of the code. See class CodeLocationEnum for valid values.
+	 * @param grUnit Measurement of basic barcode parameters. See class GRUnitEnum for valid values.
+	 * @param autoSize Sets if barcode's size will be updated automatically.
+	 * @param barHeight Height of the bar.
+	 * @param imageHeight Sets height of the image.
+	 * @param imageWidth Sets width of the image.
+	 * @param imageQuality Sets quality of image.
+	 * @param rotAngle Angle of barcode orientation.
+	 * @param topMargin Margin between barcode and top image border.
+	 * @param bottomMargin Margin between barcode and bottom image border.
+	 * @param leftMargin Margin between barcode and left image border.
+	 * @param rightMargin Margin between barcode and right image border.
+	 * @param enableChecksum Sets if checksum will be added to barcode image. See class EnableChecksumEnum for valid values.
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName Folder with barcode image.
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Boolean variable indicates whether barcode generated and saved on server successfully
+	 */
 	public static boolean generateBarcodeAndSaveOnServer(String imageName, String text, BarcodeTypeEnum type,
 														ValidFormatsEnum format, float resolutionX,
 														float resolutionY, float dimensionX, float dimensionY,

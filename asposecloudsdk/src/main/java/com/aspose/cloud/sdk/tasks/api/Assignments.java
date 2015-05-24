@@ -17,7 +17,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
- * Assignments --- Using this class you can retrieve all calendar items in a project 
+ * Assignments --- Using this class you can retrieve all calendar items in a project, add an assignment to a project and
+ * deletes a project assignment with all references to it.
  * @author   M. Sohail Ismail
  */
 public class Assignments {
@@ -55,6 +56,17 @@ public class Assignments {
 		return assignmentsArray;
 	}
 
+	/**
+	 * Add an assignment to a project
+	 * @param projectName Name of the MS Project Binary File
+	 * @param taskUid The unique id of the task to be assigned.
+	 * @param resourceUid The unique id of the resource to be assigned.
+	 * @param units The units for the new assignment. Default value is 1.
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return An object that contains add assignment to project response
+	 */
 	public static AddAssignmentToProjectResponse addAssignmentToProject(String projectName, int taskUid, int resourceUid, double units) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		if(projectName == null || projectName.length() == 0) {
@@ -77,6 +89,15 @@ public class Assignments {
 		return null;
 	}
 
+	/**
+	 * Deletes a project assignment with all references to it
+	 * @param projectName Name of the MS Project Binary File
+	 * @param assignmentUid Assignment Uid
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Boolean variable that indicates whether assignment deleted successfully from a project
+	 */
 	public static boolean deleteAnAssignmentFromAProject(String projectName, int assignmentUid) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		boolean isAssignmentDeletedSuccessfullyFromAProject = false;

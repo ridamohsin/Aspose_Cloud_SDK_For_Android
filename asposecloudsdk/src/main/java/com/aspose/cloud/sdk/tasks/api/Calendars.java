@@ -18,10 +18,23 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+/**
+ * Calendars --- Using this class you can read project calendar items, adds a new calendar to project file and
+ * deletes a project calendar.
+ * @author   M. Sohail Ismail
+ */
 public class Calendars {
 	
 	private static final String TASKS_URI = AsposeApp.BASE_PRODUCT_URI + "/tasks/";
-	
+
+	/**
+	 * Read project calendar items.
+	 * @param srcProjectName The name of the file.
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return An array of calendar items in a project
+	 */
 	public static ArrayList<CalendarItemModel> getAllCalendarItemsInProject(String srcProjectName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		ArrayList<CalendarItemModel> calendarItemsArray = null;
 		
@@ -45,6 +58,15 @@ public class Calendars {
 		return calendarItemsArray;
 	}
 
+	/**
+	 * Adds a new calendar to project file.
+	 * @param projectName The name of the file.
+	 * @param calendarData Calendar data
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return An object that contains add calendar to project response
+	 */
 	public static AddCalendarToProjectResponse addCalendarToProject(String projectName, CalendarData calendarData) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		if(projectName == null || projectName.length() == 0) {
@@ -71,6 +93,15 @@ public class Calendars {
 		return null;
 	}
 
+	/**
+	 * Deletes a project calendar
+	 * @param projectName The name of the file.
+	 * @param calendarUid Calendar Uid
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Boolean variable that indicates whether calendar deleted successfully from a project
+	 */
 	public static boolean deleteCalendarFromAProject(String projectName, int calendarUid) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		boolean isCalendarDeletedSuccessfullyFromAProject = false;
@@ -95,6 +126,5 @@ public class Calendars {
 
 		return isCalendarDeletedSuccessfullyFromAProject;
 	}
-
 
 }

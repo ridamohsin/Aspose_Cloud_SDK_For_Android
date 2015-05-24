@@ -17,7 +17,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
- * TaskLinks --- Using this class you can retrieve all task links in a project.
+ * TaskLinks --- Using this class you can retrieve all task links in a project, adds a new task link to a project and
+ * delete a task link.
  * @author   M. Sohail Ismail
  */
 public class TaskLinks {
@@ -55,6 +56,15 @@ public class TaskLinks {
 		return taskLinksArray;
 	}
 
+	/**
+	 * Adds a new task link to a project
+	 * @param projectName The name of the file.
+	 * @param taskLinkRequest Task link data
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Boolean variable that indicates whether task link added successfully to a project
+	 */
 	public static boolean  addsANewTaskLinkToAProject(String projectName, TaskLinksModel taskLinkRequest) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		boolean isNewTaskLinkAddedSuccessfully = false;
 
@@ -86,6 +96,15 @@ public class TaskLinks {
 		return isNewTaskLinkAddedSuccessfully;
 	}
 
+	/**
+	 * Delete a task link
+	 * @param projectName The name of the file.
+	 * @param taskLinkIndex Task link index
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Boolean variable that indicates whether task link deleted successfully from project
+	 */
 	public static boolean  deleteATaskLink(String projectName, int taskLinkIndex) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		boolean isTaskLinkDeletedSuccessfully = false;
 

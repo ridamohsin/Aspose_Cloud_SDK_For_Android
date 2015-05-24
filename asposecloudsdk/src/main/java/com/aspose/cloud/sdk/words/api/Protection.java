@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -15,6 +10,11 @@ import com.aspose.cloud.sdk.words.model.ProtectionRequestModel;
 import com.aspose.cloud.sdk.words.model.ProtectionTypeEnum;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Protection --- Using this class you can get current protection of the word document, can protect/unprotect a word document and 
@@ -27,7 +27,7 @@ public class Protection {
 	
 	/**
 	 * Get the Current Protection of the Word
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -61,7 +61,7 @@ public class Protection {
 	
 	/**
 	 * Protect a Word Document 
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param protectionType Document protection type. Valid values are AllowOnlyComments, AllowOnlyFormFields, AllowOnlyRevisions, ReadOnly, NoProtection.
 	 * @param password Current document protection password
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -107,7 +107,7 @@ public class Protection {
 	
 	/**
 	 * Unprotect a Word Document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param password Current document protection password
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -150,7 +150,7 @@ public class Protection {
 	
 	/**
 	 * Modify Protection of the Word Document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param protectionType Document protection type. Valid values are AllowOnlyComments, AllowOnlyFormFields, AllowOnlyRevisions, ReadOnly, NoProtection.
 	 * @param oldPassword Current document protection password
 	 * @param newPassword New document protection password

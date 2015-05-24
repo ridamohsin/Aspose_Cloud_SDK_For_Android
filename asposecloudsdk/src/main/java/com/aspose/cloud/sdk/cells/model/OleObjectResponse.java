@@ -7,8 +7,7 @@ import com.google.gson.annotations.SerializedName;
 public class OleObjectResponse extends BaseResponse {
 	@SerializedName("OleObject")
 	public OleObjectData oleObject;
-	
-	
+
 	public class OleObjectData {
 		public String Name; //The name of the oleobject
 	    public String Placement; //The way the drawing object is attached to the cells below it

@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -15,6 +10,11 @@ import com.aspose.cloud.sdk.words.model.GetSectionListResponse.SectionList;
 import com.aspose.cloud.sdk.words.model.GetSpecificSectionResponse;
 import com.aspose.cloud.sdk.words.model.GetSpecificSectionResponse.SectionDetails;
 import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Section --- Using this class you can get a list of sections from a word document or a specific section from a word document.
@@ -27,7 +27,7 @@ public class Section {
 	
 	/**
 	 * Get a List of Sections from a Word Document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -61,7 +61,7 @@ public class Section {
 	
 	/**
 	 * Get a specific Section from a Word Document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param sectionIndex Index of the section in a word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -96,7 +96,7 @@ public class Section {
 	
 	/**
 	 * Remove all headers and footers of a Word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document on cloud
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error

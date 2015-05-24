@@ -19,7 +19,8 @@ import java.util.List;
 
 /**
  * ManipulateImage --- This class helps you in performing manipulation operations on image like Resize, Crop,
- * Rotate, Flip, Convert Image Format, Merge Tiff Images and Converts Tiff Image to Fax Compatible Format   
+ * Rotate, Flip, Convert Image Format, Merge Tiff Images, Converts Tiff Image to Fax Compatible Format and
+ * Perform several operations on image in single request
  * @author   M. Sohail Ismail
  */
 public class ManipulateImage {
@@ -458,6 +459,24 @@ public class ManipulateImage {
 		return faxCompatibleFilePath;
 	}
 
+	/**
+	 * Perform crop, resize, rotation and export operations on an image in a single call
+	 * @param fileName Filename of image
+	 * @param updateImageParameters HashMap of operations to perform. Values could be following
+	 *                              newWidth New Width of the scaled image.
+	 *                              newHeight New height of the scaled image.
+	 *                              x X position of start point for cropping rectangle
+	 *                              y Y position of start point for cropping rectangle
+	 *                              rectWidth Width of cropping rectangle
+	 *                              rectHeight Height of cropping rectangle
+	 *                              rotateFlipMethod RotateFlip method. Default is RotateNoneFlipNone.
+	 *                              format Save image in another format. By default format remains the same
+	 *                              outPath Path to updated file, if this is empty, response contains streamed image.
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Path to updated image saved on device
+	 */
     public static String performSeveralOperationsOnImage(String fileName, HashMap<String, String> updateImageParameters) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String outFilePath = null;

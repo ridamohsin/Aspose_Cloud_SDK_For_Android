@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -12,6 +7,11 @@ import com.aspose.cloud.sdk.common.Utils;
 import com.aspose.cloud.sdk.words.model.PageSetupProperties;
 import com.aspose.cloud.sdk.words.model.PageSetupResponse;
 import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * PageSetup --- Using this class you can get and update Page Setup information of a section in a Word document
@@ -23,7 +23,7 @@ public class PageSetup {
 	
 	/**
 	 * Get Page Setup information of a section in a Word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param sectionIndex Section index starting from 0
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -58,7 +58,7 @@ public class PageSetup {
 	
 	/**
 	 * Update page setup of a section in a Word document.
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param sectionIndex Section index starting from 0
 	 * @param pageSetupRequest Page setup properties to update
 	 * @param contentType Can be either XML or JSON

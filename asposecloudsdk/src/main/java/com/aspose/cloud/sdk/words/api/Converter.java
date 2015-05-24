@@ -27,7 +27,7 @@ public class Converter {
 	
 	/**
 	 * Convert a Word document to images, multipage tiff, HTML, PDF and other file formats.
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param designatedFormat A format to which word docuemnt will be converted
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -107,7 +107,19 @@ public class Converter {
 		return convertedFilePath;
 	}
 
-    public static String convertWordDocumentToOtherFileFormatUsingThirdPartyStorage(String fileName, ValidFormatsEnum designatedFormat, String storageName, String folderName, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	/**
+	 * Convert Word to images, multipage TIFF, HTML, PDF and other File Format using third party storage
+	 * @param fileName The file name.
+	 * @param designatedFormat Format to convert.
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+ 	 * @param folderName If file is not at root folder (Optional)
+	 * @param outFileName Converted file will save on device with this name
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A path to converted word document saved on device
+	 */
+	public static String convertWordDocumentToOtherFileFormatUsingThirdPartyStorage(String fileName, ValidFormatsEnum designatedFormat, String storageName, String folderName, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String localFilePath = null;
 
@@ -141,7 +153,7 @@ public class Converter {
 
 	/**
 	 * Convert a Word document to other formats with additional settings
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param saveOptionsRequest Particular file format save options
 	 * @param dataInterchangeFormat Can be either XML or JSON
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.

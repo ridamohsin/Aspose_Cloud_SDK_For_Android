@@ -14,8 +14,10 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * DrawingObject --- Using this class you can get all drawing objects from a Word document, convert drawing object to 
- * an image and get image and OLE data of a particular drawing object of the document.
+ * DrawingObject --- Using this class you can get all drawing objects from a word document, convert drawing object to
+ * an image, get image data of a particular drawing object of the document, get embedded OLE file of the drawing object of the document,
+ * get the OLE Drawing Object from Document using third party storage, read drawing object image data using third party storage,
+ * read document drawing objects common info and convert drawing object to image Using third party storage.
  * accept/reject revisions in source document and get statistical data of the document.
  * @author   M. Sohail Ismail
  */
@@ -25,7 +27,7 @@ public class DrawingObject {
 	 
 	/**
 	 * Get all drawing objects from a Word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -59,7 +61,7 @@ public class DrawingObject {
 	
 	/**
 	 * Convert drawing object to an image
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param index Index of drawing object
 	 * @param outputFileFormat The format in which drawing object will be saved
 	 * @param outputFileName Name of the output file
@@ -98,7 +100,7 @@ public class DrawingObject {
 	
 	/**
 	 * Get image data of a particular drawing object of the document.
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param index Index of drawing object
 	 * @param outputFileName Name of the output file
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -132,7 +134,7 @@ public class DrawingObject {
 	
 	/**
 	 * Get embedded OLE file of the drawing object of the document. Returns an error if the drawing object does not have embedded OLE file.
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param index Index of drawing object
 	 * @param outputFileName Name of the output file
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -164,6 +166,18 @@ public class DrawingObject {
         return localFilePath;
 	}
 
+	/**
+	 * Get the OLE Drawing Object from Document Using Third Party Storage
+	 * @param fileName Name of the word document
+	 * @param objectIndex Drawing object index
+	 * @param outFileName Name of the output file
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName In case file is not at root folder (Optional)
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A path to output file saved on device
+	 */
 	public static String getTheOLEDrawingObjectFromDocumentUsingThirdPartyStorage(String fileName, int objectIndex, String outFileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		String localFilePath = null;
@@ -198,6 +212,18 @@ public class DrawingObject {
 		return localFilePath;
 	}
 
+	/**
+	 * Read drawing object image data using third party storage
+	 * @param fileName The document name.
+	 * @param objectIndex The drawing object index.
+	 * @param outFileName Name of the output file
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName In case file is not at root folder (Optional)
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A path to output file saved on device
+	 */
 	public static String readDrawingObjectImageDataUsingThirdPartyStorage(String fileName, int objectIndex, String outFileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		String localFilePath = null;
@@ -233,6 +259,16 @@ public class DrawingObject {
 
 	}
 
+	/**
+	 * Read document drawing objects common info
+	 * @param fileName The document name.
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName In case file is not at root folder (Optional)
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return An object that contains drawing objects data
+	 */
 	public static DrawingObjectsData getAllDrawingObjectsUsingThirdPartyStorage(String fileName, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		DrawingObjectsData drawingObjects = null;
@@ -268,6 +304,19 @@ public class DrawingObject {
 		return drawingObjects;
 	}
 
+	/**
+	 * Convert drawing object to image Using third party storage
+	 * @param fileName The document name.
+	 * @param objectIndex The drawing object index.
+	 * @param format Format to convert.
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName In case file is not at root folder (Optional)
+	 * @param outFileName Name of the output file
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return A path to output file saved on device
+	 */
 	public static String convertDrawingObjectToImageUsingThirdPartyStorage(String fileName, int objectIndex, String format, String storageName, String folderName, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		String localFilePath = null;

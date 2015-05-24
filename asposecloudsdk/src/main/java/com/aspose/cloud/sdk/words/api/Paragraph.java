@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.words.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import android.net.Uri;
 
 import com.aspose.cloud.sdk.common.AsposeApp;
@@ -19,6 +14,11 @@ import com.aspose.cloud.sdk.words.model.GetSpecificParagraphResponse;
 import com.aspose.cloud.sdk.words.model.GetSpecificParagraphResponse.ParagraphDetail;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Paragraph --- Using this class you can get a list of all paragraphs from a word document, get a specific paragraph from a word document, 
  * get a specific run of a paragraph from a word document, get font information of a Run from a word document and update 
@@ -31,7 +31,7 @@ public class Paragraph {
 	
 	/**
 	 * Get a list of all paragraphs present in a Word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -65,7 +65,7 @@ public class Paragraph {
 	
 	/**
 	 * Get a specific paragraph present in a Word document.
-	 * @param fileName Name of the MS word document on cloud
+	 * @param fileName Name of the word document
 	 * @param paragraphIndex Index of the paragraph in a document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -100,7 +100,7 @@ public class Paragraph {
 	
 	/**
 	 * Get a specific run of a paragraph present in a Word document
-	 * @param fileName Name of the MS word document on cloud
+	 * @param fileName Name of the word document
 	 * @param paragraphIndex Index of the paragraph in a document
 	 * @param runIndex Index of run
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -135,7 +135,7 @@ public class Paragraph {
 	
 	/**
 	 * Get a font related information of a specific run of a paragraph present in a Word document
-	 * @param fileName Name of the MS word document on cloud
+	 * @param fileName Name of the word document
 	 * @param paragraphIndex Index of the paragraph in a document
 	 * @param runIndex Index of run
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -170,7 +170,7 @@ public class Paragraph {
 	
 	/**
 	 * Update font of a specific run of a paragraph present in a Word document
-	 * @param fileName Name of the MS word document on cloud
+	 * @param fileName Name of the word document
 	 * @param paragraphIndex Index of the paragraph in a document
 	 * @param runIndex Index of run
 	 * @param xmlData Font data in XML format used to update font of a specific run

@@ -18,7 +18,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
- * ExtendedAttributes --- Using this class you can retrieve all extended attributes in a project
+ * ExtendedAttributes --- Using this class you can retrieve all extended attributes in a project, read outline codes,
+ * delete a project extended attribute and delete a project outline code.
  * @author   M. Sohail Ismail
  */
 public class ExtendedAttributes {
@@ -56,6 +57,14 @@ public class ExtendedAttributes {
 		return extendedAttributesArray;
 	}
 
+	/**
+	 * Read outline codes
+	 * @param projectName The name of the file.
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return An object that contains outlines codes
+	 */
 	public static OutlineCodes getOutlineCodesInformation(String projectName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		OutlineCodes outlineCodes = null;
 
@@ -79,7 +88,16 @@ public class ExtendedAttributes {
 		return outlineCodes;
 	}
 
-	public static boolean  deleteExtendedAttributes(String projectName, int index) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+	/**
+	 * Delete a project extended attribute
+	 * @param projectName The name of the file.
+	 * @param index Index of extended attribute
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Boolean variable that indicates whether extended attribute deleted successfully
+	 */
+	public static boolean  deleteExtendedAttribute(String projectName, int index) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		boolean isExtendedAttributeDeletedSuccessfully = false;
 
 		if(projectName == null || projectName.length() == 0) {
@@ -102,6 +120,15 @@ public class ExtendedAttributes {
 		return isExtendedAttributeDeletedSuccessfully;
 	}
 
+	/**
+	 * Deletes a project outline code
+	 * @param projectName The name of the file.
+	 * @param index Outline code index.
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Boolean variable that indicates whether outline code deleted successfully
+	 */
 	public static boolean deleteOutlineCodes(String projectName, int index) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 		boolean isOutlineCodeDeletedSuccessfully = false;
 

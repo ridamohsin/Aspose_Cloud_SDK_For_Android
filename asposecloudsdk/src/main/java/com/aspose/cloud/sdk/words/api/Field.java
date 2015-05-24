@@ -18,7 +18,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Field --- Using this class you can get all merge field names from a word document, insert page number field into the Word document
+ * Field --- Using this class you can get all merge field names from a word document, insert page number field into the word document
  * and update all fields in the word document. 
  * @author   M. Sohail Ismail
  */
@@ -28,7 +28,7 @@ public class Field {
 	
 	/**
 	 * Get all merge field names from a word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document on cloud
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -62,7 +62,7 @@ public class Field {
 	
 	/**
 	 * Insert page number field into the Word document 
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document on cloud
 	 * @param format Field text format {PAGE} of {NUMPAGES}
 	 * @param alignment Alignment of the field
 	 * @param isTop Field position
@@ -126,7 +126,7 @@ public class Field {
 	
 	/**
 	 * Update all fields in the word document
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document on cloud
 	 * @param destDocumentName Result name of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document 
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.

@@ -16,12 +16,22 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 /**
- * Created by muhammadsohailismail on 4/24/15.
+ * TIFFFrames --- Using this class you can get properties of a tiff frame, extract frame from tiff image and perform operations on it like resize, crop and RotateFlip.
+ * @author   M. Sohail Ismail
  */
 public class TIFFFrames {
 
     private static final String IMAGING_URI = AsposeApp.BASE_PRODUCT_URI + "/imaging/";
 
+    /**
+     * Get properties of a tiff frame.
+     * @param fileName Filename with image.
+     * @param frameID Number of frame.
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return An object that contains image properties
+     */
     public static ImagePropertiesResponse getTIFFFrameProperties(String fileName, int frameID) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         ImagePropertiesResponse imgPropertiesResponse = null;
@@ -50,6 +60,16 @@ public class TIFFFrames {
         return imgPropertiesResponse;
     }
 
+    /**
+     * Get separate frame of tiff image.
+     * @param fileName Filename with image.
+     * @param frameID Number of frame.
+     * @param outFileName Save file on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Path to extracted Tiff frame saved on device
+     */
     public static String extractFrameFromAMultiFrameTIFFImage(String fileName, int frameID, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String outFilePath = null;
@@ -76,6 +96,18 @@ public class TIFFFrames {
         return outFilePath;
     }
 
+    /**
+     * Extract a frame from a Tiff image, resize it and save separately on device
+     * @param fileName Filename with image.
+     * @param frameID Number of frame.
+     * @param newWidth New width of the scaled image.
+     * @param newHeight New height of the scaled image.
+     * @param outFileName Save file on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Path to resized Tiff frame saved on device
+     */
     public static String resizeATIFFFrame(String fileName, int frameID, int newWidth, int newHeight, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String outFilePath = null;
@@ -103,6 +135,20 @@ public class TIFFFrames {
 
     }
 
+    /**
+     * Extract a frame from a Tiff image, crop it and save separately on device
+     * @param fileName Filename with image.
+     * @param frameID Number of frame.
+     * @param x X position of start point for cropping rectangle
+     * @param y Y position of start point for cropping rectangle
+     * @param rectWidth Width of cropping rectangle
+     * @param rectHeight Height of cropping rectangle
+     * @param outFileName Save file on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Path to cropped Tiff frame saved on device
+     */
     public static String cropATIFFFrame(String fileName, int frameID, int x, int y, int rectWidth, int rectHeight, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String outFilePath = null;
@@ -130,6 +176,17 @@ public class TIFFFrames {
 
     }
 
+    /**
+     * Perform RotateFlip operation on a frame of Tiff image and save it separately on the device
+     * @param fileName Filename with image.
+     * @param frameID Number of frame.
+     * @param rotateFlipMethod RotateFlip method. Please see class TIFFFrameRotateFlipMethodEnum for valid values.
+     * @param outFileName Save file on device with this name
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Path to rotateflipped Tiff frame saved on device
+     */
     public static String rotateFlipATIFFFrame(String fileName, int frameID, TIFFFrameRotateFlipMethodEnum rotateFlipMethod, String outFileName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String outFilePath = null;
@@ -157,6 +214,25 @@ public class TIFFFrames {
 
     }
 
+    /**
+     * Perform several operations such as RotateFlip, Resize and Crop on a frame of Tiff image and save the updated multi-frame TIFF image on the device
+     * @param fileName Filename with image.
+     * @param frameID Number of frame.
+     * @param manipulateTIFFFrameParameters HashMap contains operations to perform on a frame of Tiff image. Values could be following
+     *                                      newWidth New width of the scaled image.
+     *                                      newHeight New height of the scaled image.
+     *                                      x X position of start point for cropping rectangle
+     *                                      y Y position of start point for cropping rectangle
+     *                                      rectWidth Width of cropping rectangle
+     *                                      rectHeight Height of cropping rectangle
+     *                                      rotateFlipMethod RotateFlip method. Please see class TIFFFrameRotateFlipMethodEnum for valid values.
+     *                                      saveOtherFrames Include all other frames or just specified frame in response.
+     *                                      outPath Path to updated file, if this is empty, response contains streamed image.
+     * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+     * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+     * @throws java.io.IOException If there is an IO error
+     * @return Path to updated Tiff image saved on device
+     */
     public static String manipulateATIFFFrame(String fileName, int frameID, HashMap<String, String> manipulateTIFFFrameParameters) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
         String outFilePath = null;

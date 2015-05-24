@@ -86,7 +86,7 @@ public class Document {
 	
 	/**
 	 * Split all pages to new PDFs
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -127,7 +127,7 @@ public class Document {
 	
 	/**
 	 * Split specific pages to any supported format
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param designatedFormat A format to which word document will be converted
 	 * @param fromPage The start page number for splitting, if is not specified splitting starts from the first page of the document.
 	 * @param toPage The last page number for splitting, if is not specified splitting ends at the last page of the document.
@@ -177,7 +177,7 @@ public class Document {
 	
 	/**
 	 * Accept all revisions in source document
-	 * @param srcfileName Name of the MS Word document on cloud
+	 * @param srcfileName Name of the word document on cloud
 	 * @param destFileName Result name of the document after the operation. If this parameter is omitted 
 	 * then result of the operation will be saved as the source document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -216,7 +216,7 @@ public class Document {
 	
 	/**
 	 * Reject all revisions in source document
-	 * @param srcfileName Name of the source MS Word document stored on the cloud
+	 * @param srcfileName Name of the source word document
 	 * @param destFileName Result name of the document after the operation. If this parameter is omitted 
 	 * then result of the operation will be saved as the source document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -255,7 +255,7 @@ public class Document {
 	
 	/**
 	 * Get statistical data of the document like word and paragraph count
-	 * @param fileName Name of the MS Word document stored on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error

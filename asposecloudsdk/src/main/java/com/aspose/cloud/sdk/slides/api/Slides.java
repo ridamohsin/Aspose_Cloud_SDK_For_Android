@@ -628,6 +628,17 @@ public class Slides {
 		return slideComments;
 	}
 
+	/**
+	 * Get aspect ratio of a PowerPoint slide
+	 * @param fileName Name of the file stored on cloud
+	 * @param slideIndex Index of slide starting from 1
+	 * @param storageName Third party cloud storage name. For details please visit http://www.aspose.com/docs/display/totalcloud/How+to+Configure+3rd+Party+Cloud+Storages
+	 * @param folderName If file is not at root folder
+	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException If there is an IO error
+	 * @return Aspect ratio of a powerpoint slide
+	 */
 	public static float getAspectRatioOfAPowerPointSlide(String fileName, int slideIndex, String storageName, String folderName) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		float aspsectRatio = -1.0f;

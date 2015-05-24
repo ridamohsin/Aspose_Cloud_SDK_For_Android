@@ -28,7 +28,7 @@ public class ExtendedAttributesTest extends TestCase {
 	}
 
 	public void testDeleteExtendedAttributes() throws Exception {
-		boolean isExtendedAttributeDeletedSuccessfully = ExtendedAttributes.deleteExtendedAttributes("myMSProject.mpp", 1);
+		boolean isExtendedAttributeDeletedSuccessfully = ExtendedAttributes.deleteExtendedAttribute("myMSProject.mpp", 1);
 		assertTrue("Failed to delete extended attributes", isExtendedAttributeDeletedSuccessfully);
 	}
 

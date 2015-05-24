@@ -28,7 +28,7 @@ public class Bookmark {
 	
 	/**
 	 * Get all Bookmarks from a Word document.
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -61,7 +61,7 @@ public class Bookmark {
 	
 	/**
 	 * Get a specific Bookmark from a Word document.
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param bookmarkName Name of the Bookmark
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -99,7 +99,7 @@ public class Bookmark {
 	
 	/**
 	 * Update Bookmark text of a Word document.
-	 * @param fileName Name of the MS Word document on cloud
+	 * @param fileName Name of the word document
 	 * @param bookmarkName Name of the Bookmark
 	 * @param bookmarkText New value of Bookmark Text
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.

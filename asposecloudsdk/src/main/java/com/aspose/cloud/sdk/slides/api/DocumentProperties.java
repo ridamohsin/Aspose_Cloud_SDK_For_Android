@@ -89,6 +89,17 @@ public class DocumentProperties {
 		return documentProperties;
 	}
 
+	/**
+	 * Set document properties
+	 *
+	 * @param fileName The document name.
+	 * @param documentPropertyRequest New properties.
+	 * @param contentType Can be either XML or JSON
+	 * @return An object that contains document properties
+	 * @throws java.security.InvalidKeyException      If initialization fails because the provided key is null.
+	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
+	 * @throws java.io.IOException                    If there is an IO error
+	 */
 	public static DocumentPropertiesResult setDocumentProperties(String fileName, String documentPropertyRequest, String contentType) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
 
 		DocumentPropertiesResult documentProperties = null;

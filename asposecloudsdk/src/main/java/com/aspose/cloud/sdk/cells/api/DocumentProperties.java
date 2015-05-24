@@ -1,10 +1,5 @@
 package com.aspose.cloud.sdk.cells.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import com.aspose.cloud.sdk.cells.model.DocumentPropertyModel;
 import com.aspose.cloud.sdk.cells.model.GetDocumentPropertiesResponse;
 import com.aspose.cloud.sdk.cells.model.GetDocumentPropertiesResponse.DocumentPropertiesModel;
@@ -15,6 +10,11 @@ import com.aspose.cloud.sdk.common.BaseResponse;
 import com.aspose.cloud.sdk.common.Utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * DocumentProperties --- Using this class you can get all document properties or a particular document property,
@@ -27,7 +27,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Get all document properties
-	 * @param fileName Name of the MS Excel document stored on cloud
+	 * @param fileName Name of the spreadsheet document stored on cloud
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
@@ -61,7 +61,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Get a particular document property
-	 * @param fileName Name of the MS Excel document stored on cloud
+	 * @param fileName Name of the spreadsheet document
 	 * @param propertyName The name of the property
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -100,7 +100,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Set a single document property
-	 * @param fileName Name of the MS Excel document stored on cloud
+	 * @param fileName Name of the spreadsheet document
 	 * @param propertyName The name of the property
 	 * @param propertyValue The value of the property
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
@@ -150,7 +150,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Remove a particular document property
-	 * @param fileName Name of the MS Excel document stored on cloud
+	 * @param fileName Name of the spreadsheet document
 	 * @param propertyName The name of the property
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
@@ -189,7 +189,7 @@ public class DocumentProperties {
 	
 	/**
 	 * Deletes all custom and resets built-in properties to default values
-	 * @param fileName Name of the MS Excel document stored on cloud
+	 * @param fileName Name of the Spreadsheet document stored on cloud
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
