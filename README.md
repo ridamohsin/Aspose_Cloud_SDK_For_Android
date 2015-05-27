@@ -38,11 +38,30 @@ and then add the dependency itself by adding this line to your dependencies bloc
 ```ruby
 dependencies {
     ...
-    compile 'com.aspose:aspose-cloud-android:1.0.0'
+    compile 'com.aspose:aspose-cloud-android:1.1.0'
+}
+```
+AsposeCloudSDK library itself has following dependencies:  
+1. **google-gson** A Java library to convert JSON to Java objects and vice-versa.  
+2. **org.apache.commons.io** Commons IO is a library of utilities to assist with developing IO functionality.  
+3. **org.apache.commons.codec** Apache Commons Codec (TM) software provides implementations of common encoders and decoders such as Base64, Hex, Phonetic and URLs.  
+4. **httpclient-android** This project represents an effort to provide an implementation of Apache HttpClient, which can be deployed on Google Android in parallel to the outdated version shipped with the platform while remaining partially API compatible with Apache HttpClient 4.3.  
+5. **httpmime** Apache HttpComponents - MIME coded entities   
+
+You can add these dependencies by adding following lines to your dependencies block:  
+```ruby
+dependencies {
+   ...
+   compile 'com.google.code.gson:gson:2.3.1'
+   compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
+   compile 'org.apache.directory.studio:org.apache.commons.codec:1.8'
+   compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
+   compile ('org.apache.httpcomponents:httpmime:4.3.6') {
+     exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+   }
 }
 ```
 This is a recommended approach because it won’t mess in your project structure.
-
 #### 2. Adding the library via Gradle files
 As an alternative approach, following is the complete process  of adding AsposeCloudSDK as an external library to your project.
 
