@@ -25,7 +25,7 @@ public class BarcodeRecognitionTest extends TestCase {
 	}
 
 	public void testReadBarcodeFromAsposeCloudStorage() throws Exception {
-		ArrayList<RecognizedBarCode> barcodes = BarcodeRecognition.readBarcodeFromAsposeCloudStorage("test.png", BarcodeTypeEnum.QR);
+		ArrayList<RecognizedBarCode> barcodes = BarcodeRecognition.readBarcodeFromAsposeCloudStorage("barcode.png", BarcodeTypeEnum.QR);
 		assertNotNull("Failed to read barcode from Aspose Cloud Storage", barcodes);
 	}
 	

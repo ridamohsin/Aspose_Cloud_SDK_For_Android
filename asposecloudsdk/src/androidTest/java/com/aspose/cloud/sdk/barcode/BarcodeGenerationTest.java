@@ -63,8 +63,8 @@ public class BarcodeGenerationTest extends TestCase {
 	}
 	
 	public void testSetBarcodeImageResolution() throws Exception {
-		String outputFilePath = BarcodeGeneration.setBarcodeImageResolution("Text of the new barcode", 
-				BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, 200.0, 200.0, "Barcode.png");
+		String outputFilePath = BarcodeGeneration.setBarcodeImageResolution("Barcode Text",
+				BarcodeTypeEnum.QR, ValidFormatsEnum.PNG, 100.0, 100.0, "Barcode.png");
 		File file = new File(outputFilePath);
 		assertEquals("Failed to set barcode image resolution", true, file.exists());
 	}

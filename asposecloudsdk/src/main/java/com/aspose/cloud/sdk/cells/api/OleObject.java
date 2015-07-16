@@ -112,7 +112,7 @@ public class OleObject {
         
 		InputStream responseStream = Utils.processCommand(signedURL, "GET");
 		
-		//Save the stream in response to the disk
+		//Save stream to the disk
 		localFilePath = Utils.saveStreamToFile(responseStream, outputFileName);
 				
 		return localFilePath;

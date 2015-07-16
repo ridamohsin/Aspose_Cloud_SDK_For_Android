@@ -272,7 +272,7 @@ public class BarcodeGeneration {
 	 * @throws java.security.InvalidKeyException If initialization fails because the provided key is null.
 	 * @throws java.security.NoSuchAlgorithmException If the specified algorithm (HmacSHA1) is not available by any provider.
 	 * @throws java.io.IOException If there is an IO error
-	 * @return Boolean variable that indicates whether barcode rotated successfully with suitable angle
+	 * @return Boolean variable that indicates whether barcode rotated successfully
 	*/
 	public static boolean setBarcodeImageMargin(String fileName, String text, BarcodeTypeEnum type, ValidFormatsEnum format, 
 			int topMargin, int bottomMargin, int leftMargin, int rightMargin) throws InvalidKeyException, NoSuchAlgorithmException, IOException {

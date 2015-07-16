@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/muhammadsohailismail/Dropbox/Aspose/AndroidStudioProjects/AsposeAndroidCloudSDK/asposecloudsdk/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/muhammadsohailismail/Dropbox/Aspose/AndroidStudioProjects/AsposeAndroidCloudSDK/asposecloudsdk/build/intermediates/pre-dexed/test/debug/classes-881c1a772e2bf6ba3645beaa2f897d0bd6bb10f6.jar" />
-    </item>
-    <item
         jar="/Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
         <dex dex="/Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/build/intermediates/pre-dexed/test/debug/classes-16219a956a8d9185f64fdb6562472d215666e561.jar" />
+    </item>
+    <item
+        jar="/Users/muhammadsohailismail/Dropbox/Aspose/AndroidStudioProjects/AsposeAndroidCloudSDK/asposecloudsdk/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/muhammadsohailismail/Dropbox/Aspose/AndroidStudioProjects/AsposeAndroidCloudSDK/asposecloudsdk/build/intermediates/pre-dexed/test/debug/classes-881c1a772e2bf6ba3645beaa2f897d0bd6bb10f6.jar" />
     </item>
     <item
         jar="/Users/muhammadsohailismail/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar"
@@ -103,7 +103,7 @@
         jar="/Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/build/intermediates/bundles/debug/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="fb6cb6d06f2d02e7903ece83c194f33aca870705">
+        sha1="1db4208da3946d7b49098e1d1901d046642ba800">
         <dex dex="/Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/build/intermediates/pre-dexed/test/debug/classes-998f89e1f553cf193f95ce195c35558acfaf5401.jar" />
     </item>
     <item

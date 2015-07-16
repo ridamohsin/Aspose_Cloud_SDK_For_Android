@@ -2,45 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="522cb475-0735-4e2c-bf2b-c6fa6f2bb428" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/ParagraphLevelFormFieldResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/email/model/AddEmailAttachmentResponse.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/email/model/AddEmailAttachmentResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Assignments.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Assignments.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/AutoFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/BaseField.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/ColorFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/ColumnRange.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/CreatePivotTableRequest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/CustomFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/DynamicFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/FilterColumn.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/GetPivotTableInfoByIndexRespose.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/GetWorksheetPivotTablesInfoResponse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/IconFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/MultipleFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/MultipleFilters.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotItem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableBorder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableData.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableFieldRequest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableLink.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableStyleRequest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/PivotTables.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTablesInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/cells/PivotTablesTestCase.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/Sorter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/SorterKey.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/Top10Filter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/AsposeApp.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/AsposeApp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeGeneration.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeGeneration.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/barcode/BarcodeGenerationTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/barcode/BarcodeGenerationTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeRecognition.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeRecognition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Bookmark.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Bookmark.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Calendars.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Calendars.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/Charts.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/Charts.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Converter.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Converter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Document.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Document.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/DocumentProperties.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/DocumentProperties.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DocumentProperties.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DocumentProperties.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DrawingObject.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DrawingObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/email/api/Email.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/email/api/Email.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/ExtendedAttributes.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/ExtendedAttributes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/ExtendedAttributesTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/ExtendedAttributesTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Field.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Field.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Hyperlink.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Hyperlink.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/ImageProperties.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/ImageProperties.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/ManipulateImage.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/ManipulateImage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/barcode/BarcodeRecognitionTest.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/barcode/BarcodeRecognitionTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/OleObject.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/OleObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/OleObjectResponse.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/OleObjectResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/PageSetup.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/PageSetup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Paragraph.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Paragraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/ParagraphLevelFormFields.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/ParagraphLevelFormFields.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ParagraphLevelFormFieldsTestCase.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ParagraphLevelFormFieldsTestCase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Protection.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Protection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Section.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Section.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/TIFFFrames.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/TIFFFrames.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/TaskLinks.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/TaskLinks.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Text.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Text.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Watermark.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Watermark.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Watermark.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Watermark.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/Worksheet.java" afterPath="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/Worksheet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asposecloudsdk/build.gradle" afterPath="$PROJECT_DIR$/asposecloudsdk/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Aspose_Cloud_SDK_For_Android.iws" />
@@ -160,20 +161,167 @@
           <value>
             <list>
               <ExternalTaskPojo>
+                <option name="description" value="Displays the Android dependencies of the project" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="androidDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all variants of all applications and secondary packages." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all Debug builds" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assembleDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the Test build for the Debug build" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assembleDebugTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assembleDefault" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all Release builds" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assembleRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a bundle containing the library in Debug." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="bundleDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a bundle containing the library in Release." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="bundleRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="checkDebugManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="checkReleaseManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileDebugAidl" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="compileDebugJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateReleaseAssets" />
+                <option name="name" value="compileDebugNdk" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugTestSources" />
+                <option name="name" value="compileDebugRenderscript" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="preReleaseBuild" />
+                <option name="name" value="compileDebugSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileDebugTestAidl" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileDebugTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileDebugTestNdk" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileDebugTestRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileDebugTestSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileLint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileReleaseAidl" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileReleaseJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileReleaseNdk" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileReleaseRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileReleaseSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs and runs the tests for Build 'debug' on connected devices." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="connectedAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all device checks on currently connected devices." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="connectedCheck" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="copyDebugLint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="copyReleaseLint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all device checks using Device Providers and Test Servers." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="deviceCheck" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dexDebugTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Extracts Android annotations for the debug variant into the archive file" />
@@ -181,12 +329,21 @@
                 <option name="name" value="extractDebugAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateReleaseBuildConfig" />
+                <option name="name" value="extractReleaseAnnotations" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processDebugManifest" />
+                <option name="name" value="generateDebugAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateDebugBuildConfig" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateDebugResValues" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -194,7 +351,87 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugTestJava" />
+                <option name="name" value="generateDebugSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateDebugTestAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateDebugTestBuildConfig" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateDebugTestResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateDebugTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateDebugTestSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateReleaseAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateReleaseBuildConfig" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateReleaseResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="generateReleaseSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs the Test build for the Debug build" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="installDebugTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on all variants." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="lint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on the Debug build" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="lintDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on the Release build" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="lintRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="mergeDebugAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="mergeDebugProguardFiles" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="mergeDebugResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="mergeDebugTestAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="mergeDebugTestResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -205,220 +442,28 @@
                 <option name="name" value="mergeReleaseProguardFiles" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Extracts Android annotations for the release variant into the archive file" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="extractReleaseAnnotations" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles all variants of all applications and secondary packages." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="assemble" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareReleaseDependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="dexDebugTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="buildDependents" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileReleaseSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileReleaseRenderscript" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Installs and runs the tests for Build 'debug' on connected devices." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="connectedAndroidTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="checkReleaseManifest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareDebugDependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processDebugTestManifest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processReleaseManifest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="mergeDebugResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="packageReleaseLocalJar" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the Android dependencies of the project" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="androidDependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="preDebugBuild" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugTestResValues" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs lint on the Debug build" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="lintDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugResValues" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugTestNdk" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugAssets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processDebugJavaRes" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateReleaseResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="packageReleaseRenderscript" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="mergeDebugAssets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles all Debug builds" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="assembleDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles all Release builds" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="assembleRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:appcompat-v7:21.0.3" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportAppcompatV72103Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="validateDebugSigning" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateReleaseSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processDebugResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processReleaseResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs lint on the Release build" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="lintRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="copyDebugLint" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugTestResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="mergeReleaseResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles a bundle containing the library in Release." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="bundleRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="packageReleaseJar" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Uninstall all applications." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="uninstallAll" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugTestAidl" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugTestAssets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles the Test build for the Debug build" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="assembleDebugTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processDebugTestJavaRes" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="packageDebugRenderscript" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs all checks." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="check" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="packageDebugJar" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Runs all device checks on currently connected devices." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="connectedCheck" />
+                <option name="name" value="packageDebugJniLibs" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Deletes the build directory." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="clean" />
+                <option name="name" value="packageDebugLocalJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="packageDebugRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="packageDebugResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -426,96 +471,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="packageDebugLocalJar" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="build" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="copyReleaseLint" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="packageDebugJniLibs" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs all device checks using Device Providers and Test Servers." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="deviceCheck" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugTestBuildConfig" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileLint" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project and all projects it depends on." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="buildNeeded" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Installs the Test build for the Debug build" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="installDebugTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileReleaseNdk" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugAidl" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="mergeDebugProguardFiles" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="mergeDebugTestResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugNdk" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processDebugTestResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugTestSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileReleaseAidl" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugRenderscript" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Uninstalls the Test build for the Debug build" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="uninstallDebugTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="preBuild" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileReleaseJava" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateReleaseResValues" />
+                <option name="name" value="packageReleaseJar" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -523,7 +479,40 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="generateDebugBuildConfig" />
+                <option name="name" value="packageReleaseLocalJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="packageReleaseRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="packageReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="preBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="preDebugBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="preDebugTestBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="preDexDebugTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="preReleaseBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:appcompat-v7:21.0.3" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportAppcompatV72103Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support:support-v4:21.0.3" />
@@ -532,50 +521,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="mergeDebugTestAssets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="preDexDebugTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="checkDebugManifest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processReleaseJavaRes" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the signing info for each variant" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="signingReport" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs lint on all variants." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="lint" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles a bundle containing the library in Debug." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="bundleDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="assembleDefault" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileDebugTestRenderscript" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="packageDebugResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="preDebugTestBuild" />
+                <option name="name" value="prepareDebugDependencies" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -583,7 +529,62 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="packageReleaseResources" />
+                <option name="name" value="prepareReleaseDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processDebugJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processDebugManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processDebugResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processDebugTestJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processDebugTestManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processDebugTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processReleaseJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processReleaseManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the signing info for each variant" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="signingReport" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Uninstall all applications." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="uninstallAll" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Uninstalls the Test build for the Debug build" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="uninstallDebugTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="validateDebugSigning" />
               </ExternalTaskPojo>
             </list>
           </value>
@@ -1024,7 +1025,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="5693531311000" />
+        <entry key="$PROJECT_DIR$" value="5695207897000" />
         <entry key="$USER_HOME$/Dropbox/Freelancing/PPP_Android/PPP_Android" value="8548527855000" />
         <entry key="$USER_HOME$/PPP_Android" value="5699051657000" />
       </map>
@@ -1189,10 +1190,7 @@
                             <option value="/Volumes/HD2/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-v4/21.0.3/support-v4-21.0.3.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.8/af3be3f74d25fc5163b54f56a0d394b462dafafd/commons-codec-1.8.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.6/4c47155e3e6c9a41a28db36680b828ced53b8af4/httpclient-4.3.6.jar" />
                             <option value="/Volumes/HD2/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.3/f91b7a4aadc5cf486df6e4634748d7dd7a73f06d/httpcore-4.3.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f/commons-logging-1.1.3.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/asposecloudsdk" />
@@ -1319,44 +1317,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Text.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentPropertiesTest.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/TaskLinksTest.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/AssignmentsTest.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/CalendarDetails.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/AddCalendarToProjectResponse.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/CalendarData.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/DayModel.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/WorkingTimeModel.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/AddAssignmentToProjectResponse.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/CalendarsTest.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/GetOutlineCodesInformationResponse.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/barcode/BarcodeGenerationTest.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeGeneration.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeRecognition.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/Charts.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/OleObjectResponse.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/OleObject.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/Worksheet.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/email/model/AddEmailAttachmentResponse.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/email/api/Email.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/ImageProperties.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/ManipulateImage.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/imaging/api/TIFFFrames.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Watermark.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/ExtendedAttributesTest.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/ExtendedAttributes.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Assignments.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Calendars.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/TaskLinks.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/DocumentProperties.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Bookmark.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Converter.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Document.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DocumentProperties.java" />
-        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DrawingObject.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Field.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Hyperlink.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java" />
@@ -1370,6 +1331,43 @@
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/ParagraphLevelFormFieldResponse.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ParagraphLevelFormFieldsTestCase.java" />
         <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/ParagraphLevelFormFields.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/proguard-rules.pro" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/build.gradle" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/OleObject.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DrawingObject.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/email/EmailTest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/Utils.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeGeneration.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/barcode/BarcodeRecognitionTest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableLink.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/GetWorksheetPivotTablesInfoResponse.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotItem.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/BaseField.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/FilterColumn.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/Sorter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/AutoFilter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotFilter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/ColorFilter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/ColumnRange.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/CustomFilter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/DynamicFilter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/IconFilter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/MultipleFilter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/MultipleFilters.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/SorterKey.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/Top10Filter.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/GetPivotTableInfoByIndexRespose.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableFieldRequest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/Font.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableBorder.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/CreatePivotTableRequest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/AsposeApp.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTablesInfo.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableData.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/model/PivotTableStyleRequest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/cells/PivotTablesTestCase.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/barcode/BarcodeGenerationTest.java" />
+        <option value="$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/PivotTables.java" />
       </list>
     </option>
   </component>
@@ -1384,7 +1382,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="43" />
+    <option name="x" value="52" />
     <option name="y" value="23" />
     <option name="width" value="1237" />
     <option name="height" value="777" />
@@ -1415,24 +1413,29 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="AndroidView">
+      <pane id="Scratches">
+        <subPane />
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="asposecloudsdk" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1469,18 +1472,126 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
+      <pane id="AndroidView">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="asposecloudsdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Aspose_Cloud_SDK_For_Android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="asposecloudsdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sdk" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1507,14 +1618,15 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="ToolWindowDocumentation.ShowToolbar" value="false" />
     <property name="TODO_SCOPE" value="Project Files" />
+    <property name="SearchEverywhereHistoryKey" value="proguard&#9;FILE&#9;file:///Users/muhammadsohailismail/Aspose_Cloud_SDK_For_Android/asposecloudsdk/proguard-rules.pro" />
   </component>
-  <component name="RunManager" selected="Android Tests.ExtendedAttributesTe...">
-    <configuration default="false" name="ShapesTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Android Tests.PivotTablesTestCase">
+    <configuration default="false" name="FolderTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.slides.ShapesTest" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.storage.FolderTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1534,12 +1646,37 @@
       <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
       <method />
     </configuration>
-    <configuration default="false" name="DocumentPropertiesTe..." type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="EmailTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.slides.DocumentPropertiesTest" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.email.EmailTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SELECTED_MATRIX_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_PROJECT_ID" value="" />
+      <option name="IS_VALID_CLOUD_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
+      <method />
+    </configuration>
+    <configuration default="false" name="BarcodeGenerationTes..." type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+      <module name="asposecloudsdk" />
+      <option name="TESTING_TYPE" value="2" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.barcode.BarcodeGenerationTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1559,12 +1696,12 @@
       <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
       <method />
     </configuration>
-    <configuration default="false" name="TaskLinksTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="BarcodeRecognitionTe..." type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.tasks.TaskLinksTest" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.barcode.BarcodeRecognitionTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1584,37 +1721,12 @@
       <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
       <method />
     </configuration>
-    <configuration default="false" name="AssignmentsTest" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="PivotTablesTestCase" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
       <module name="asposecloudsdk" />
       <option name="TESTING_TYPE" value="2" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.tasks.AssignmentsTest" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="true" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_SELECTION_ERROR" value="" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ExtendedAttributesTe..." type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true" nameIsGenerated="true">
-      <module name="asposecloudsdk" />
-      <option name="TESTING_TYPE" value="2" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.tasks.ExtendedAttributesTest" />
+      <option name="CLASS_NAME" value="com.aspose.cloud.sdk.cells.PivotTablesTestCase" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="USE_LAST_SELECTED_DEVICE" value="true" />
@@ -1777,19 +1889,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Android Tests.ShapesTest" />
-      <item index="1" class="java.lang.String" itemvalue="Android Tests.DocumentPropertiesTe..." />
-      <item index="2" class="java.lang.String" itemvalue="Android Tests.TaskLinksTest" />
-      <item index="3" class="java.lang.String" itemvalue="Android Tests.AssignmentsTest" />
-      <item index="4" class="java.lang.String" itemvalue="Android Tests.ExtendedAttributesTe..." />
+      <item index="0" class="java.lang.String" itemvalue="Android Tests.FolderTest" />
+      <item index="1" class="java.lang.String" itemvalue="Android Tests.EmailTest" />
+      <item index="2" class="java.lang.String" itemvalue="Android Tests.BarcodeGenerationTes..." />
+      <item index="3" class="java.lang.String" itemvalue="Android Tests.BarcodeRecognitionTe..." />
+      <item index="4" class="java.lang.String" itemvalue="Android Tests.PivotTablesTestCase" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Android Tests.ExtendedAttributesTe..." />
-        <item index="1" class="java.lang.String" itemvalue="Android Tests.AssignmentsTest" />
-        <item index="2" class="java.lang.String" itemvalue="Android Tests.TaskLinksTest" />
-        <item index="3" class="java.lang.String" itemvalue="Android Tests.DocumentPropertiesTe..." />
-        <item index="4" class="java.lang.String" itemvalue="Android Tests.ShapesTest" />
+        <item index="0" class="java.lang.String" itemvalue="Android Tests.PivotTablesTestCase" />
+        <item index="1" class="java.lang.String" itemvalue="Android Tests.BarcodeRecognitionTe..." />
+        <item index="2" class="java.lang.String" itemvalue="Android Tests.BarcodeGenerationTes..." />
+        <item index="3" class="java.lang.String" itemvalue="Android Tests.EmailTest" />
+        <item index="4" class="java.lang.String" itemvalue="Android Tests.FolderTest" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
@@ -1832,36 +1944,36 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="43" y="23" width="1237" height="777" extended-state="6" />
+    <frame x="52" y="23" width="1237" height="777" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32970712" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="143" y="123" width="1037" height="577" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49037656" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49707112" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48702928" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4054463" sideWeight="0.5472803" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40393344" sideWeight="0.44937238" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5447699" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48702928" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.483682" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48535565" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49037656" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49037656" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.45523012" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48702928" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48702928" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970712" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24769874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2543933" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48033473" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32970712" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="143" y="123" width="1037" height="577" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24937238" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.48033473" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4054463" sideWeight="0.45271966" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49707112" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1881,210 +1993,88 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/Utils.java</url>
-          <line>239</line>
+          <url>file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeGeneration.java</url>
+          <line>330</line>
           <properties />
-          <option name="timeStamp" value="61" />
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeGeneration.java</url>
+          <line>347</line>
+          <properties />
+          <option name="timeStamp" value="139" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="120" />
+      <option name="time" value="177" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Pages.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/cells/RowTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.1895733">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="5" selection-start-line="25" selection-start-column="4" selection-end-line="28" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Text.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/cells/TextTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33175355">
-          <caret line="39" column="7" selection-start-line="30" selection-start-column="4" selection-end-line="39" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/Watermark.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/cells/WorkbookTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9810426">
-          <caret line="80" column="33" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/model/StampModel.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/cells/WorksheetTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11848341">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state vertical-scroll-proportion="-2.4834123">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Document.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/email/EmailTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7677724">
-          <caret line="235" column="20" selection-start-line="235" selection-start-column="20" selection-end-line="235" selection-end-column="20" />
+        <state vertical-scroll-proportion="-1.014218">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/pdf/api/DocumentProperties.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/imaging/ImagePropertiesTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="134" column="40" selection-start-line="134" selection-start-column="40" selection-end-line="134" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/DocumentPropertiesTest.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/imaging/ManipulateImageTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75829387">
-          <caret line="38" column="79" selection-start-line="38" selection-start-column="79" selection-end-line="38" selection-end-column="79" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentPropertiesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6919431">
-          <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/DocumentProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26540285">
-          <caret line="98" column="39" selection-start-line="98" selection-start-column="39" selection-end-line="98" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Images.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.421801">
-          <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Shapes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47393364">
-          <caret line="78" column="27" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Slides.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1943128">
-          <caret line="631" column="23" selection-start-line="631" selection-start-column="18" selection-end-line="631" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/slides/api/Text.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.82464457">
-          <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/storage/api/Folder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.914692">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/AddAssignmentToProjectResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11848341">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/AddCalendarToProjectResponse.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/imaging/TIFFFramesTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16587678">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/model/GetOutlineCodesInformationResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2843602">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/ExtendedAttributesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.521327">
-          <caret line="30" column="89" selection-start-line="30" selection-start-column="89" selection-end-line="30" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Calendars.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1421801">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/ExtendedAttributes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1421801">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/ProjectDocuments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18957347">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Resources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21327014">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/TaskLinks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1421801">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Tasks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21327014">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/GetDrawingObjectsResponse.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/ocr/OCRTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.09478673">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
@@ -2092,25 +2082,289 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/DrawingObjectTestCase.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/AnnotationsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.37914693">
+        <state vertical-scroll-proportion="0.09478673">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/common/Utils.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/AttachmentsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19115324">
-          <caret line="236" column="30" selection-start-line="236" selection-start-column="30" selection-end-line="236" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/MailMergeTestCase.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/BookmarksTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.791469">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/DocumentPropertiesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/DocumentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/FormFieldsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/ImagesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/LinksTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/PagesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/TextTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/pdf/WatermarkTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16587678">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentPropertiesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.028436018">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/DocumentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.80094784">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ImagesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/ShapesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/SlidesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.535545">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/slides/TextTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/storage/FolderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.70616114">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/AssignmentsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/CalendarsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/ExtendedAttributesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/ProjectDocumentsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/ResourcesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/TaskLinksTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/tasks/TasksTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07582939">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/BookmarkTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ConverterTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/DocumentPropertiesTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/DocumentTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/DrawingObjectTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/WatermarkTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.018957347">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/TextTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/SectionTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ProtectionTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ParagraphTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ParagraphLevelFormFieldsTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16587678">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
         </state>
@@ -2124,183 +2378,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/barcode/api/BarcodeGeneration.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/MailMergeTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38388625">
-          <caret line="469" column="170" selection-start-line="469" selection-start-column="26" selection-end-line="469" selection-end-column="170" />
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/DocumentProperties.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/HyperlinkTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0072289156">
-          <caret line="102" column="55" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/tasks/api/Assignments.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/FieldTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325301">
-          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.09478673">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Converter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="155" column="48" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="257" column="48" selection-start-line="257" selection-start-column="48" selection-end-line="257" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DocumentProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/DrawingObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="170" column="48" selection-start-line="170" selection-start-column="48" selection-end-line="170" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Field.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Hyperlink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="48" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/MailMerge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/PageSetup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325301">
-          <caret line="60" column="48" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Text.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="48" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Watermark.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="133" column="48" selection-start-line="133" selection-start-column="48" selection-end-line="133" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Protection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325301">
-          <caret line="109" column="48" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Section.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325301">
-          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Paragraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8056872">
-          <caret line="205" column="9" selection-start-line="200" selection-start-column="8" selection-end-line="205" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/androidTest/java/com/aspose/cloud/sdk/words/ParagraphLevelFormFieldsTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6113744">
-          <caret line="73" column="36" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="36" />
-          <folding>
-            <element signature="e#489#490#0" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/ParagraphLevelFormFieldResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23696682">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16587678">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/model/FormFieldProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16587678">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/ParagraphLevelFormFields.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1421801">
-          <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/words/api/Bookmark.java">
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/PivotTables.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18957347">
-          <caret line="23" column="3" selection-start-line="19" selection-start-column="0" selection-end-line="23" selection-end-column="3" />
+          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asposecloudsdk/src/main/java/com/aspose/cloud/sdk/cells/api/Pictures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16587678">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding />
         </state>
       </provider>
